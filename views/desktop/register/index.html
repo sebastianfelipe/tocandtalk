@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Registro - Toc&Talk!</title>
+		<link rel="icon" type="image/png" href="desktop/shared/img/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="desktop/shared/css/fonts.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/shared/css/general.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/shared/css/barra-noinicio.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/register/css/error-form.css" type="text/css"/>
+
+		<link rel="stylesheet" href="desktop/register/css/register.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/register/css/inputs.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/register/css/buttons.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/register/css/info.css" type="text/css"/>
+
+		<!-- JS -->
+		<script src="desktop/shared/js/jquery/jquery.min.js"></script>
+		<script src="desktop/shared/js/background-blur/background-blur.min.js"></script>
+		<script src="desktop/shared/js/velocity/velocity.min.js"></script>
+		<script src="desktop/shared/js/velocity/velocity.ui.min.js"></script>
+
+		<script src="desktop/register/js/register.js" type="text/javascript"></script>
+		<script src="desktop/register/js/info.js" type="text/javascript"></script>
+		<script> var error_handler = <%- JSON.stringify(errors) %>; </script>
+		<script src="desktop/register/js/error_handling.js" type="text/javascript"></script>
+	</head>
+
+	<body>
+		<div id="barra-superior">
+     		<image src="desktop/shared/img/tocandtalk-logo.png" id="img-logo">
+     		<div class="elementos-barra">
+     			<a href="/login"><div class="boton-ingresar">Ingresar</div></a>
+     		</div>
+    	</div>
+
+		<div id="register">
+			<t1>Crea tu cuenta Toc&Talk!</t1>
+
+			<form class="formulario" action="/register" onsubmit="return validateForm()" method="post">
+				
+				<!-- NAME -->
+
+				<div>
+					<!-- Nombre -->
+					<input
+						name="input_name"
+						type="text"
+						placeholder="Nombres"
+						
+						required="required"
+						autocomplete="on"
+						maxlength="25"
+
+						oninvalid="invalidInput()"
+						class="inputTxt inputChico">
+
+					<!-- Apellido -->
+					<input
+						name="input_lastname"
+						type="text"
+						placeholder="Apellidos"
+						
+						required="required"
+						autocomplete="on"
+						maxlength="25"
+
+						oninvalid="invalidInput()"
+						class="inputTxt inputChico">
+				</div>
+
+				<!-- Error Nombre/Apellido -->
+				<!--
+					<div id="error_name" class="error_msg error_l">
+						<image src="desktop/shared/img/error.png" class="img_error">
+
+						Nombre inválido. Ingrese sólo números (0-9) o letras (a-z A-Z).
+					</div>
+				<div id="error_lastname" class="error_msg error_l">
+					<image src="desktop/shared/img/error.png" class="img_error">
+					Apellido inválido. Ingrese sólo números (0-9) o letras (a-z A-Z).
+				</div>
+				-->
+				<!-- USERNAME -->
+
+				<div>
+					<!-- Info -->
+					<div class="info" id="info_username">
+						<div class="info_content">
+							Ingrese un nombre de usuario.
+							<div class="text_space"></div>
+							Mínimo 8 caracteres.
+							<div class="text_space"></div>
+							Pueden ser sólo números (0-9) o letras (a-z), sin espacios.
+							<div class="text_space"></div>
+							No se distinguen mayúsculas y minúsculas.
+						</div>
+						<image src="desktop/register/img/info_tip.png" class="info_tip">
+					</div>
+
+					<!-- Nombre de usuario -->
+					<input
+						id="input_username"
+						name="input_username"
+						type="text"
+						placeholder="Nombre de usuario"
+
+						required="required"
+						autocomplete="off"
+						maxlength="25"
+						minlength="2"
+						pattern="[a-zA-Z0-9]+"
+
+						class="inputTxt inputGrande"
+						oninvalid="invalidInput()">
+				</div>
+
+				<!-- Error Nombre de usuario -->
+				<div id="error_username_e" class="error_msg error_l">
+					<image src="desktop/shared/img/error.png" class="img_error">
+					Este nombre de usuario ya está registrado. Intente con otro.
+				</div>
+
+				<div id="error_username" class="error_msg error_l">
+					<image src="desktop/shared/img/error.png" class="img_error">
+					Nombre de usuario inválido. 
+					Ingrese sólo números (0-9) o letras (a-z). 
+					Mínimo 8 caracteres y máximo 25.
+				</div>
+
+				<!-- EMAIL -->
+
+				<div>
+					<!-- Info -->
+					<div class="info" id="info_email">
+						<div class="info_content">
+							Ingrese su dirección de correo electrónico.
+							<div class="text_space"></div>
+							Por ejemplo: hola@tocandtalk.com
+						</div>
+						<image src="desktop/register/img/info_tip.png" class="info_tip">
+					</div>
+
+					<!-- Correo electrónico -->
+					<input
+						id="input_email"
+						name="input_email"
+						type="email"
+						placeholder="Correo electrónico"
+
+						autocomplete="on"
+						maxlength="100"
+
+						class="inputTxt inputGrande"
+						required="required"
+						oninvalid="invalidInput()">
+				</div>
+
+				<!-- Error Email -->
+				<div id="error_email_e" class="error_msg error_l">
+					<image src="desktop/shared/img/error.png" class="img_error">
+					Ésta dirección de correo electrónico ya está registrada en Toc&Talk!. 
+					<!-- ¿Olvidó su contraseña? -->
+				</div>
+				<div id="error_email" class="error_msg error_l">
+					<image src="desktop/shared/img/error.png" class="img_error">
+					Dirección de correo electrónico inválida. 
+				</div>
+
+				<!-- PASSWORD -->
+
+				<div>
+					<!-- Info -->
+					<div class="info" id="info_password">
+						<div class="info_content">
+							Ingrese una contraseña.
+							<div class="text_space"></div>
+							Mínimo 8 caracteres y máximo 25.
+							<div class="text_space"></div>
+							Pueden ser sólo números (0-9) o letras minúsculas (a-z) y mayúsculas (A-Z), sin espacios.
+						</div>
+						<image src="desktop/register/img/info_tip.png" class="info_tip">
+					</div>
+
+					<!-- Contraseña -->
+					<input
+						id="input_password"
+						name="input_password"
+						type="password"
+						placeholder="Contraseña"
+						
+						required="required"
+						autocomplete="off"
+						minlength="8"
+						maxlength="25"
+						pattern="[a-zA-Z0-9]+"
+
+						oninvalid="invalidInput()"
+						class="inputTxt inputGrande">
+				</div>
+
+				<!-- Error contraseña -->
+				<div id="error_password"class="error_msg">
+					<image src="desktop/shared/img/error.png" class="img_error">
+					Contraseña inválida. La contraseña debe poseer sólo números (0-9) o letras 
+					minúsculas (a-z) o mayúsculas (A-Z), sin espacios. 
+					El tamaño mínimo son 8 caracteres y el máximo 25.
+				</div>
+
+				<div>
+					<!-- Confirmar contraseña -->
+					<input
+						id="input_password_confirmation"
+						name="input_password_confirmation"
+						type="password"
+						placeholder="Confirmar contraseña"
+						
+						required="required"
+						autocomplete="off"
+						minlength="8"
+						maxlength="25"
+						pattern="[a-zA-Z0-9]+"
+
+						oninvalid="invalidInput()"
+						class="inputTxt inputGrande">
+				</div>
+
+				<!-- Error: Contraseñas no coinciden -->
+				<div id="error_password_confirmation"class="error_msg error_l">
+					<image src="desktop/shared/img/error.png" class="img_error">
+					Las contraseñas no coinciden.
+				</div>
+				
+				<div class="inputTxtEspacio"/>
+
+				<!-- BIRTHDAY -->
+				
+				<div style="text-align: center;">
+
+					<!-- Error: Fecha errónea -->
+					<div class="info" id="error_date">
+						<div class="info_content">
+							La fecha ingresada no es válida.
+							<div class="text_space"></div>
+							Reeingrese una fecha correcta.
+						</div>
+						<image src="desktop/register/img/info_tip.png" class="info_tip">
+					</div>
+
+					<!-- Cumpleaños -->
+					
+					<div id="labelFecha">
+						<t2>¿Cuándo estás de cumpleaños?</t2>
+					</div>
+					<br />
+					<!--
+					<input
+						type="date" class="inputSel"
+						name="date_birthday"
+						min="1920-01-01"
+						max="2000-01-01">
+					-->
+					<input
+						name="date_day"
+						type="number"
+						placeholder="Día"
+						
+						autocomplete="off"
+						min="1"
+						max="31"
+						required=""
+
+						class="inputTxt inputFechaDia"
+						oninvalid="invalidInput()">
+
+					<select
+						class="inputSel inputFechaMes"
+						name="date_month"
+						required=""
+						placeholder="lero">
+						<option value="" disabled="" selected="" hidden="">Mes</option>
+						<option value="enero">Enero</option>
+						<option value="febrero">Febrero</option>
+						<option value="marzo">Marzo</option>
+						<option value="abril">Abril</option>
+						<option value="mayo">Mayo</option>
+						<option value="junio">Junio</option>
+						<option value="julio">Julio</option>
+						<option value="agosto">Agosto</option>
+						<option value="septiembre">Septiembre</option>
+						<option value="octubre">Octubre</option>
+						<option value="noviembre">Noviembre</option>
+						<option value="diciembre">Diciembre</option>
+					</select>
+
+					<input
+						name="date_year"
+						type="number"
+						placeholder="Año"
+						
+						autocomplete="off"
+						min="1920"
+						max="2001"
+						required=""
+
+						class="inputTxt inputFechaAnno"
+						oninvalid="invalidInput()">
+				</div>
+
+				<div id="error_date"class="error_msg error_c">
+					<image src="desktop/shared/img/error.png" class="img_error">
+					La fecha no es válida.
+				</div>
+
+				<div class="inputTxtEspacio"/>
+
+				<!-- SEX -->
+				<div>
+					<t2>¿Eres hombre o mujer?</t2>
+				</div>
+
+				<div>
+					<!-- Sexo -->
+					<input type="radio" name="radio_sex" value="hombre">
+						<label for="hombre"><span><span></span></span><t2>Hombre</t2></label>
+					<input type="radio" name="radio_sex" value="mujer" required value="1">
+						<label for="mujer"><span><span></span></span><t2>Mujer</t2></label>
+				</div>
+
+				<!-- Error sexo -->
+				<div id="error_sex" class="error_msg error_c">
+					<image src="desktop/shared/img/error.png" class="img_error">
+					Seleccione un sexo.
+				</div>
+
+				<div class="inputTxtEspacio"/>
+
+				<!-- COUNTRY -->
+				<div>
+					<!-- Nacionalidad -->
+					<select
+						name="option_country"
+						required=""
+						class="inputSel inputSelGrande">
+						<option value="" disabled="" selected="" hidden="">Selecciona tu nacionalidad</option>
+						<option value="ar">Argentina</option>
+						<option value="bol">Bolivia</option>
+						<option value="chec">Checoslovaquia</option>
+						<option value="cl">Chile</option>
+						<option value="ncor">Corea del Norte</option>
+						<option value="lor">Estado Federal de Loreto</option>
+						<option value="sal">Islas Salomón</option>
+						<option value="cham">Reino Champiñón</option>
+						<option value="tuc">República de Tucumán</option>
+						<option value="rda">República Democrática Alemana</option>
+						<option value="soml">Somalilandia</option>
+						<option value="uru">Uruguay</option>
+						<option value="viets">Vietnam del Sur</option>
+					</select>
+				</div>
+
+				<!-- LANGUAGE -->
+
+				<div>
+					<!-- Idioma nativo -->
+					<select
+						name="option_native_language"
+						required=""
+						class="inputSel inputSelGrande"
+						placeholder="lala">
+						<option value="" disabled="" selected="" hidden="">Selecciona tu idioma nativo</option>
+						<option value="deu">Alemán</option>
+						<option value="chm">Chino mandarín</option>
+						<option value="es">Español</option>
+						<option value="fr">Francés</option>
+						<option value="ing">Inglés</option>
+						<option value="jap">Japonés</option>
+						<option value="por">Portugués</option>
+					</select>
+				</div>
+
+				<input type="submit" value="Registrarme" class="boton-registrar">
+			</form>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,219 @@
+body {
+	text-align: center;
+	background: rgba(255,255,255,1);
+}
+
+t1 {
+	font-family: FiraSansThin;
+	font-size: 34px;
+	color: rgba(50,50,50,1);
+}
+
+t2 {
+	font-family: FiraSansLight;
+	font-size: 24px;
+	color: rgba(50,50,50,1);
+}
+
+t3 {
+	font-family: FiraSansLight;
+	font-size: 14px;
+	color: rgba(50,50,50,1);
+}
+
+.leLink {
+	font-family: FiraSansLight;
+	font-size: 17px;
+	color: rgba(11,164,185,1);
+	margin-top: 2px;
+}
+.leLink a:link { 
+	text-decoration:none;
+	color: rgba(11,164,185,1);
+	background: inherit;
+}
+.leLink a:visited {
+	text-decoration:none;
+	color: rgba(11,164,185,1);
+	background: inherit;
+}
+.leLink a:active {
+	text-decoration:none;
+	color: rgba(11,164,185,1);
+	background: inherit;
+}
+.leLink a:hover {
+	text-decoration: underline;
+}
+
+#login {
+	display: inline-block;
+	width: 340px;
+	text-align: center;
+
+	margin-top: 60px;
+	margin-bottom: 15px;
+	padding-top: 18px;
+	padding-bottom: 8px;
+
+	background: rgba(244,244,244,1);
+
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border: 0px solid #000000;
+
+	-webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.16);
+	-moz-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.16);
+	box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.16);
+}
+
+.formulario {
+	margin-top: 14px;
+	margin-bottom: 16px;
+	display: relative;
+}
+
+.titulo {
+	width: 100%;
+	display: inline-block;
+}
+
+/* Inputs */
+
+.inputTxt {
+	height: 32px;
+	width: 280px;
+
+	padding: 5px 5px 5px 12px;
+	margin-top: 2px;
+	margin-bottom: 4px;
+
+	font-family: FiraSansLight;
+	font-size: 16px;
+
+	background: rgba(255,255,255,1);
+
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	border: 1px solid #aaaaaa;
+
+	-o-transition:.6s;
+	-ms-transition:.6s;
+	-moz-transition:.6s;
+	-webkit-transition:.6s;
+	transition:.6s;
+}
+
+.inputTxt:hover {
+	border: 1px solid #d2d2d2;
+}
+
+.inputTxt:focus {
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	border: 1px solid #0ba4b9;
+}
+
+.inputTxt:active {
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	border: 1px solid #0ba4b9;
+}
+
+/* Botones */
+
+.boton-ingresar {
+	position: relative;
+	display: inline-block;
+
+	width: 120px;
+	height: 40px;
+
+	padding-top: 4px;
+	padding-bottom: 4px;
+	margin-top: 4px;
+
+	text-decoration: none;
+	font-family: FiraSansLight;
+	font-size: 18px;
+
+	color: rgba(255,255,255,1);
+	background: rgba(254,139,4,1);
+
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border: 0px solid #000000;
+
+	-o-transition:.7s;
+	-ms-transition:.7s;
+	-moz-transition:.7s;
+	-webkit-transition:.7s;
+	transition:.7s;
+}
+
+.boton-ingresar:hover {
+	background: rgba(250,160,60,1);
+	color: rgba(255,255,255,1);
+
+	-webkit-box-shadow: 0px 0px 9px 2px rgba(250,160,60,1);
+	-moz-box-shadow: 0px 0px 9px 2px rgba(250,160,60,1);
+	box-shadow: 0px 0px 9px 2px rgba(250,160,60,1);
+}
+
+.boton-ingresar:active {
+	background: rgba(216,122,20,1);
+	color: rgba(255,255,255,1);
+
+	-webkit-box-shadow: 0px 0px 9px 2px rgba(216,122,20,1);
+	-moz-box-shadow: 0px 0px 9px 2px rgba(216,122,20,1);
+	box-shadow: 0px 0px 9px 2px rgba(216,122,20,1);
+
+	border: 0px solid #000000;
+}
+
+.boton-ingresar:focus {
+	background: rgba(230,122,20,1);
+	color: rgba(255,255,255,1);
+
+	-webkit-box-shadow: 0px 0px 9px 2px rgba(230,122,20,1);
+	-moz-box-shadow: 0px 0px 9px 2px rgba(230,122,20,1);
+	box-shadow: 0px 0px 9px 2px rgba(230,122,20,1);
+
+	border: 0px solid #000000;
+}
+
+.boton-ingresar a:link { 
+	text-decoration: none;
+	color: rgba(255,255,255,1);
+	background: inherit;
+}
+
+.boton-ingresar a:visited {
+	text-decoration: none;
+	color: rgba(255,255,255,1);
+	background: inherit;
+}
+
+.error-login {
+	display: none; /* Mensaje oculto */
+
+	padding-left: 12px;
+	padding-right: 8px;
+	margin-bottom: 6px;
+	margin-top: 5px;
+
+	text-align: center;
+	font-size: 13px;
+	font-family: FiraSansBook;
+	color: #ff1744;
+}
+
+.img-error {
+	width: 10px;
+	margin-right: 5px;
+}
