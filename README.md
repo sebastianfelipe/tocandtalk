@@ -16,7 +16,7 @@ Jefe de Proyecto: Sebastián Torres Garfe
 
 Requerimientos:
 	* NodeJs
-	* Navegadores Google Chrome/Opera
+	* Navegadores Google Chrome/Opera/Firefox
 
 Herramientas utilizadas para el desarrollo:
 	* NodeJs -> Entorno en tiempo de ejecución multiplataforma (de código abierto) para la capa del servidor
