@@ -15,7 +15,7 @@ var limit = global_module.limit;
 var port1 = global_module.port1;
 var port2 = global_module.port2;
 
-var peerConnection = function (id) {
+var _peerConnection = function (id) {
 
   //console.log(server._clients['peerjs']);
   console.log('P2P: User connected ' + id);
@@ -23,7 +23,7 @@ var peerConnection = function (id) {
   console.log(users);
 }
 
-var peerDisconnect = function (id) {
+var _peerDisconnect = function (id) {
   console.log('P2P: User disconnected ' + id);
   users.splice(users.indexOf(id),1);
   availables.splice(availables.indexOf(id),1);
@@ -31,7 +31,7 @@ var peerDisconnect = function (id) {
   console.log(availables);
 }
 
-var ioConnection = function(socket) {
+var _ioConnection = function(socket) {
   console.log('IO: User connected');
   //var userId = Math.floor(Math.random()*9999999999).toString();
   //console.log("IO: User Id was generated: " + userId);
@@ -43,13 +43,13 @@ var ioConnection = function(socket) {
     console.log('IO: User disconnected');
   });
 
-  socket.on('toc', function(callerId){
-    console.log('IO: ' + callerId + ' wants to verify if has to wait (be called) or is available (to call)');
-    console.log('IO: Push -> ' + callerId);
-    if (availables.indexOf(callerId) == -1)
+  socket.on('toc', function(caller_id){
+    console.log('IO: ' + caller_id + ' wants to verify if has to wait (be called) or is available (to call)');
+    console.log('IO: Push -> ' + caller_id);
+    if (availables.indexOf(caller_id) == -1)
     {
       console.log('IO: Push -> Is first time, so it was added');
-      availables.push(callerId);
+      availables.push(caller_id);
     }
     else
     {
@@ -62,23 +62,23 @@ var ioConnection = function(socket) {
       wait = true;
     }
 
-    console.log("IO: Does " + callerId + " it has to wait? " + wait);
+    console.log("IO: Does " + caller_id + " it has to wait? " + wait);
     console.log('IO: Availables ');
     console.log(availables);
     socket.emit('tocAnswer', wait);
   });
 
-  socket.on('get', function(callerId) {
-      var recipientId = randomSearch(callerId);
-      console.log("IO: The get result has recipientId: " + recipientId + " and callerId: " + callerId);
-      availables.splice(availables.indexOf(callerId),1);
-      availables.splice(availables.indexOf(recipientId),1);
+  socket.on('get', function(caller_id) {
+      var recipient_id = randomSearch(caller_id);
+      console.log("IO: The get result has recipient_id: " + recipient_id + " and caller_id: " + caller_id);
+      availables.splice(availables.indexOf(caller_id),1);
+      availables.splice(availables.indexOf(recipient_id),1);
       console.log('Availables:');
       console.log(availables);
-      socket.emit('talk',recipientId);
+      socket.emit('talk',recipient_id);
   });
 }
 
-module.exports.peerConnection = peerConnection;
-module.exports.peerDisconnect = peerDisconnect;
-module.exports.ioConnection = ioConnection;
+module.exports._peerConnection = _peerConnection;
+module.exports._peerDisconnect = _peerDisconnect;
+module.exports._ioConnection = _ioConnection;

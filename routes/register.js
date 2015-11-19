@@ -31,13 +31,13 @@ router.post('/',function (req, res) {
     req.session.username = req.body.username;
   }
   */
-  var user = {"username"        : req.body.input_username,
-              "name"            : req.body.input_name,
-              "lastname"        : req.body.input_lastname,
-              "sex"             : req.body.radio_sex,
-              "email"           : req.body.input_email,
-              "password"        : req.body.input_password,
-              "conf_password"   : req.body.input_password_confirmation
+  var user = {"username"        : req.body.i_username,
+              "name"            : req.body.i_name,
+              "lastname"        : req.body.i_lastname,
+              "sex"             : req.body.r_sex,
+              "email"           : req.body.i_email,
+              "password"        : req.body.i_password,
+              "conf_password"   : req.body.i_password_confirmation
               };
 
     var resultUniqueUsername = uniqueUsername(req);

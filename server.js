@@ -54,9 +54,9 @@ var callbacks_module = require('./modules/callbacks.js');
 //var randomSearch = search_module.randomSearch;
 
 // Callbacks Imports
-var peerConnection = callbacks_module.peerConnection;
-var peerDisconnect = callbacks_module.peerDisconnect;
-var ioConnection = callbacks_module.ioConnection;
+var _peerConnection = callbacks_module._peerConnection;
+var _peerDisconnect = callbacks_module._peerDisconnect;
+var _ioConnection = callbacks_module._ioConnection;
 
 // Shared Variables Imports
 var users = global_module.users;
@@ -70,11 +70,11 @@ var port2 = global_module.port2;
 var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: port2})
 
 
-peerServer.on('connection', peerConnection);
+peerServer.on('connection', _peerConnection);
 
-peerServer.on('disconnect', peerDisconnect);
+peerServer.on('disconnect', _peerDisconnect);
 
-io.on('connection',ioConnection);
+io.on('connection',_ioConnection);
 
 http.listen(port1, function(){
 console.log('http server running on ' +

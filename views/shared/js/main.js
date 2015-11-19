@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // DOM elements manipulated as user interacts with the app
   // Information Boxes
-  var trackingBox = document.querySelector('#tracking');
-  var messagesBox = document.querySelector('#messages');
+  var tracking_box = document.querySelector('#tracking');
+  var messages_box = document.querySelector('#messages');
 
   // Entries
   var callerIdEntry = document.querySelector('#caller-id');
@@ -50,11 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   var addMessage = function (para) {
-    if (trackingBox.firstChild) {
-      trackingBox.insertBefore(para, trackingBox.firstChild);
+    if (tracking_box.firstChild) {
+      tracking_box.insertBefore(para, tracking_box.firstChild);
     }
     else {
-      trackingBox.appendChild(para);
+      tracking_box.appendChild(para);
     }
   };
 
@@ -81,11 +81,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function writeMessage(id, message) {
     if (callerId == id) {id = "You";}
     para = makePara(id + ": " + message);
-    if (messagesBox.firstChild) {
-      messagesBox.insertBefore(para, messagesBox.firstChild);
+    if (messages_box.firstChild) {
+      messages_box.insertBefore(para, messages_box.firstChild);
     }
     else {
-      messagesBox.appendChild(para);
+      messages_box.appendChild(para);
     }
     return;
   };

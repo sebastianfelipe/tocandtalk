@@ -7,7 +7,7 @@ var bd = global.bd;
 var uniqueUsername = function (req) {
   for (var i in bd.user)
   {
-    if (bd.user[i].username == req.body.input_username)
+    if (bd.user[i].username == req.body.i_username)
     {
       //req.session.username = Math.floor(Math.random()*9999999999).toString();
       return false;
@@ -19,7 +19,7 @@ var uniqueUsername = function (req) {
 var uniqueEmail = function (req) {
     for (var i in bd.user)
     {
-        if (bd.user[i].email == req.body.input_email)
+        if (bd.user[i].email == req.body.i_email)
         {
             //req.session.username = Math.floor(Math.random()*9999999999).toString();
             return false;
@@ -36,8 +36,8 @@ var validPass = function (req, user){
 }
 
 var isValid = function (req,user){
- for(var i=0; i < req.body.input_username.length; i++){
-   if( req.body.input_username.charCodeAt(i)>127){
+ for(var i=0; i < req.body.i_username.length; i++){
+   if( req.body.i_username.charCodeAt(i)>127){
     return false;
     }
   }

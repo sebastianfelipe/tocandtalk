@@ -20,10 +20,10 @@ router.post('/',function (req, res) {
   for (var i in bd.user)
   {
     console.log("bduser -> " + bd.user[i].username);
-    console.log("reqbody -> " + req.body.input_username);
-    if (((bd.user[i].username == req.body.input_username) || (bd.user[i].email == req.body.input_username)) && bd.user[i].password== req.body.input_password )
+    console.log("reqbody -> " + req.body.i_username);
+    if (((bd.user[i].username == req.body.i_username) || (bd.user[i].email == req.body.i_username)) && bd.user[i].password== req.body.i_password )
     {
-      console.log(bd.user[i].username == req.body.input_username);
+      console.log(bd.user[i].username == req.body.i_username);
 
       //req.session.username = Math.floor(Math.random()*9999999999).toString();
       req.session.username = bd.user[i].username;
