@@ -8,6 +8,7 @@ var limit = global_module.limit;
 var port1 = global_module.port1;
 var port2 = global_module.port2;
 
+// Nota: Arreglar problema de baja probabildiad
 var randomSearch = function (caller_id) {
   var recipient_id = availables[Math.floor(Math.random()*availables.length)];
   console.log("randomSearch: " + recipient_id + " " + caller_id);

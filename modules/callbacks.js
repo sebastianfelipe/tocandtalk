@@ -25,8 +25,17 @@ var _peerConnection = function (id) {
 
 var _peerDisconnect = function (id) {
   console.log('P2P: User disconnected ' + id);
-  users.splice(users.indexOf(id),1);
-  availables.splice(availables.indexOf(id),1);
+  user_index_id = users.indexOf(id);
+  availables_index_id = availables.indexOf(id);
+  if (user_index_id > -1)
+  {
+    users.splice(user_index_id, 1); 
+  }
+  if (availables_index_id > -1)
+  {
+    availables.splice(availables_index_id, 1); 
+  }
+
   console.log(users);
   console.log(availables);
 }
@@ -71,8 +80,17 @@ var _ioConnection = function(socket) {
   socket.on('get', function(caller_id) {
       var recipient_id = randomSearch(caller_id);
       console.log("IO: The get result has recipient_id: " + recipient_id + " and caller_id: " + caller_id);
-      availables.splice(availables.indexOf(caller_id),1);
-      availables.splice(availables.indexOf(recipient_id),1);
+
+      availables_index_caller_id = availables.indexOf(caller_id);
+      availables_index_recipient_id = availables.indexOf(recipient_id);
+      if (availables_index_caller_id > -1)
+      {
+        availables.splice(availables_index_caller_id, 1); 
+      }
+      if (availables_index_recipient_id > -1)
+      {
+        availables.splice(availables_index_recipient_id, 1); 
+      }
       console.log('Availables:');
       console.log(availables);
       socket.emit('talk',recipient_id);

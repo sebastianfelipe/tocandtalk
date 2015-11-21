@@ -1,3 +1,8 @@
+// Module Imports
+var search_module = require('./modules/search.js');
+var global_module = require('./modules/global.js');
+var callbacks_module = require('./modules/callbacks.js');
+
 var ip = require('ip');
 var express = require('express');
 var app = express();
@@ -45,11 +50,6 @@ app.use('/login', login_routes);
 app.use('/register', register_routes);
 app.use('/logout', logout_routes);
 
-// Module Imports
-var search_module = require('./modules/search.js');
-var global_module = require('./modules/global.js');
-var callbacks_module = require('./modules/callbacks.js');
-
 // Function Imports
 //var randomSearch = search_module.randomSearch;
 
@@ -71,9 +71,7 @@ var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: 
 
 
 peerServer.on('connection', _peerConnection);
-
 peerServer.on('disconnect', _peerDisconnect);
-
 io.on('connection',_ioConnection);
 
 http.listen(port1, function(){
