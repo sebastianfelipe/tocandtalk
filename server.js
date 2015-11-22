@@ -1,13 +1,13 @@
-// Module Imports
-var search_module = require('./modules/search.js');
-var global_module = require('./modules/global.js');
-var callbacks_module = require('./modules/callbacks.js');
-
 var ip = require('ip');
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
+// Module Imports
+var search_module = require('./modules/search.js');
+var global_module = require('./modules/global.js');
+var callbacks_module = require('./modules/callbacks.js');
 
 // Middleware Configuration
 var path = require('path');
@@ -50,6 +50,7 @@ app.use('/login', login_routes);
 app.use('/register', register_routes);
 app.use('/logout', logout_routes);
 
+
 // Function Imports
 //var randomSearch = search_module.randomSearch;
 
@@ -81,3 +82,12 @@ console.log('http server running on ' +
 
 console.log('peer server running on ' +
             ip.address() + ':' + port2);
+
+
+// Only for development use
+var queries = require('./database/queries.js');
+
+//app.get('/test', func)
+// End of development use
+
+
