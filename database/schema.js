@@ -1,5 +1,6 @@
 // getting-started.js
 var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 
 // Types
 var ObjectId = mongoose.Schema.Types.ObjectId;
@@ -10,17 +11,32 @@ schema.username = mongoose.Schema({
 	username: {
 		type: String,
 		required: true,
+		maxlength: 5,
 		unique: true
 	}
 });
 
 schema.email = mongoose.Schema({
-	email: String
+	email: {
+		type: String,
+		required: true,
+		unique: true
+	}
 });
 
 
-schema.nationality = mongoose.Schema({
-
+schema.country = mongoose.Schema({
+	name: {
+		type: String,
+		required: true,
+		unique: true,
+		maxlength: 3
+	},
+	code: {
+		type: String,
+		required: true,
+		unique: true
+	}
 });
 
 schema.sex = mongoose.Schema({
@@ -40,5 +56,11 @@ schema.language = mongoose.Schema({
 	sex: ObjectId,
 	description: String
 });
+
+schema.username.plugin(uniqueValidator);
+schema.email.plugin(uniqueValidator);
+schema.country.plugin(uniqueValidator);
+schema.sex.plugin(uniqueValidator);
+schema.language.plugin(uniqueValidator);
 
 module.exports.schema = schema;

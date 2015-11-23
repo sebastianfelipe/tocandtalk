@@ -50,6 +50,13 @@ app.use('/login', login_routes);
 app.use('/register', register_routes);
 app.use('/logout', logout_routes);
 
+// -----------------------------------
+// Only for development use
+var queries = require('./database/queries.js');
+app.use('/test', queries);
+//app.get('/test', func)
+// End of development use
+// ------------------------------------
 
 // Function Imports
 //var randomSearch = search_module.randomSearch;
@@ -84,10 +91,6 @@ console.log('peer server running on ' +
             ip.address() + ':' + port2);
 
 
-// Only for development use
-var queries = require('./database/queries.js');
 
-//app.get('/test', func)
-// End of development use
 
 
