@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>schema.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>schema.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>getting-started.js</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mongoose'</span>);
+<span class="hljs-keyword">var</span> uniqueValidator = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mongoose-unique-validator'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Types</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> ObjectId = mongoose.Schema.Types.ObjectId;
+
+<span class="hljs-keyword">var</span> schema = {};
+
+schema.username = mongoose.Schema({
+	username: {
+		type: <span class="hljs-built_in">String</span>,
+		required: <span class="hljs-literal">true</span>,
+		minlength: <span class="hljs-number">5</span>,
+		unique: <span class="hljs-literal">true</span>
+	}
+});
+
+schema.email = mongoose.Schema({
+	email: {
+		type: <span class="hljs-built_in">String</span>,
+		required: <span class="hljs-literal">true</span>,
+		unique: <span class="hljs-literal">true</span>
+	}
+});
+
+
+schema.country = mongoose.Schema({
+	name: {
+		type: <span class="hljs-built_in">String</span>,
+		required: <span class="hljs-literal">true</span>,
+		unique: <span class="hljs-literal">true</span>,
+		maxlength: <span class="hljs-number">3</span>
+	},
+	code: {
+		type: <span class="hljs-built_in">String</span>,
+		required: <span class="hljs-literal">true</span>,
+		unique: <span class="hljs-literal">true</span>
+	}
+});
+
+schema.sex = mongoose.Schema({
+	sex: [<span class="hljs-built_in">String</span>]
+});
+
+schema.language = mongoose.Schema({
+	username: ObjectId,
+	email: ObjectId,
+	nationality: ObjectId,
+	native_language: ObjectId,
+	spoken_languages: [ObjectId],
+	interest_languages: [ObjectId],
+	first_name: <span class="hljs-built_in">String</span>,
+	last_name: <span class="hljs-built_in">String</span>,
+	password: <span class="hljs-built_in">String</span>,
+	sex: ObjectId,
+	description: <span class="hljs-built_in">String</span>
+});
+
+schema.username.plugin(uniqueValidator, {message: <span class="hljs-string">'unique'</span>});
+schema.email.plugin(uniqueValidator, {message: <span class="hljs-string">'unique'</span>});
+schema.country.plugin(uniqueValidator, {message: <span class="hljs-string">'unique'</span>});
+schema.sex.plugin(uniqueValidator, {message: <span class="hljs-string">'unique'</span>});
+schema.language.plugin(uniqueValidator, {message: <span class="hljs-string">'unique'</span>});
+
+<span class="hljs-built_in">module</span>.exports.schema = schema;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
