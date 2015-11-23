@@ -6,19 +6,40 @@
 
 	<!-- JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript">
-		$.getJSON("http://192.168.0.131:4000/test/validate/jon/lalalalar", function (json) {
-			$('#lala').html(json.errors);
-		});
-		var obj = $.getJSON("http://192.168.0.131:4000/test/validate/jon/lalalalar", function (json) {
-			return json;
-		});
-		console.log(obj);
-		console.log(obj.getAllResponseHeaders;
-	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script> 
 </head> 
 
 	<body>
-		<p id="lala" name="lala"> Hola mundo! </p>
+		<div>
+			Username: <input type="text" name="username" id="username" autocomplete="off"><br>
+			<br>
+			<p id="result" name="result"></p>
+		</div>
+
+		<script>
+		$('#username').on('keyup', function (event) {
+			var username = $('#username').val();
+			if (username.length > 2) {	
+				$.ajaxSetup({async: false});
+				var json = $.getJSON("http://192.168.0.131:4000/test/uval/" + username);
+				var errors = json.responseJSON.errors;
+				console.log(errors);
+				if (errors.indexOf('error_username_username_unique;') > -1)
+				{
+					$('#result').html("El nombre está ocupado");
+				}
+				else
+				{
+					$('#result').html("El nombre está disponible");
+				}
+				$.ajaxSetup({async: false});
+			}
+			else
+			{
+				$('#result').html("");
+			}
+		
+		});
+		</script>
 	</body>
 </html>

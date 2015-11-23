@@ -11,7 +11,7 @@ schema.username = mongoose.Schema({
 	username: {
 		type: String,
 		required: true,
-		maxlength: 5,
+		minlength: 5,
 		unique: true
 	}
 });
@@ -57,10 +57,10 @@ schema.language = mongoose.Schema({
 	description: String
 });
 
-schema.username.plugin(uniqueValidator);
-schema.email.plugin(uniqueValidator);
-schema.country.plugin(uniqueValidator);
-schema.sex.plugin(uniqueValidator);
-schema.language.plugin(uniqueValidator);
+schema.username.plugin(uniqueValidator, {message: 'unique'});
+schema.email.plugin(uniqueValidator, {message: 'unique'});
+schema.country.plugin(uniqueValidator, {message: 'unique'});
+schema.sex.plugin(uniqueValidator, {message: 'unique'});
+schema.language.plugin(uniqueValidator, {message: 'unique'});
 
 module.exports.schema = schema;
