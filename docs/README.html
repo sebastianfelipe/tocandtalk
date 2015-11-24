@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>tocandtalk</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="tocandtalk">tocandtalk</h1>
+<p>Proyecto: Toc&amp;Talk!</p>
+<p>Branch: Master</p>
+<p>Versión: 0.0.0</p>
+<p>Equipo: * Nibaldo González Salgado</p>
+<ul>
+<li>Fabián Da Silva Retamales</li>
+<li>Felipe Mancilla Sepúlveda</li>
+<li>Sebastián Torres Garfe</li>
+<li>Víctor Torres Varas</li>
+</ul>
+<p>Jefe de Proyecto: Sebastián Torres Garfe</p>
+<p>Requerimientos:</p>
+<ul>
+<li>NodeJs</li>
+<li>Navegadores Google Chrome/Opera/Firefox</li>
+</ul>
+<p>Herramientas utilizadas para el desarrollo:</p>
+<ul>
+<li>NodeJs -&gt; Entorno en tiempo de ejecución multiplataforma (de código abierto) para la capa del servidor</li>
+<li>PeerJs -&gt; API para implementar el protocolo P2P</li>
+<li>Javascript -&gt; Lenguaje utilizado en la capa de negocios</li>
+<li>Express -&gt; Framework para desarrollo web basado en javascript y utilizado en conjunto nodejs</li>
+<li>HTML5 -&gt; Lenguaje utilizado en la capa de vistas</li>
+<li>CSS -&gt; Estilos de las vistas</li>
+<li>WebRTC -&gt; Protocolo de comunicación para realizar videollamadas</li>
+<li>Socket.io -&gt; API para implementar comunicaciones entre el servidor y los clientes conectados a él a través de sockets.</li>
+<li>Crosswalk -&gt; Genera aplicación android a través de WebViews</li>
+</ul>
+<p>Contenido:</p>
+<ul>
+<li>bower_components: componentes provenientes de bower y utilizados por el servidor nodejs</li>
+<li>node_modules: módulos de nodejs</li>
+<li>images: imágenes de la página web</li>
+<li>init: código utilizado para compilar la aplicación con crosswalk (para android)</li>
+<li>modules: código javascript utilizado en la capa de negocios</li>
+<li>views: vistas de la plataforma web</li>
+<li>server.js: código principal para correr el servidor</li>
+<li>router.js: definición de las rutas por parte del servidor (controlador del MVC de express)</li>
+</ul>
+<p>Sobre lo implementado:</p>
+<ul>
+<li>Comunicación entre el cliente y el servidor (y viceversa) a través de sockets.</li>
+<li>Conexión P2P desde una peer a un servidor P2P.</li>
+<li>Implementación de MVC sobre nodejs utilizando javascript</li>
+<li>Generación automática de ids para los clientes que se conectan a la plataforma.</li>
+<li>Identificación y separación de los usuarios que se conectan en aquellos que recibirán llamadas y aquellos que las realizarán.</li>
+<li>Selección aleatoria de uno de los usuarios a la espera de una llamada por parte de un llamador.</li>
+<li>Conexión de datos (paso de mensajes) entre dos peers.</li>
+<li>Videollamadas entre dos usuarios, a través de un protocolo P2P.</li>
+<li>Implementación de un chat entre dos usuarios conectados entre sí, a través de paso de mensajes bajo el protocolo P2P</li>
+<li>Identificación y notificación de la desconexión de una peer de destino hacia una peer llamadora.</li>
+<li>Implementación de realizar una búsqueda nueva, cerrando la videollamada y la conexión de datos de la peer de destino.</li>
+</ul>
+<p>Ejecución:</p>
+<ul>
+<li>Ingresar por consola a la carpeta donde se encuentra el archivo server.js</li>
+<li>En la shell escribir: node server.js</li>
+<li>La consola desplegará información respecto a la dirección y puerto donde están corriendo ambos servidores (servidores cliente/servidor y P2P)</li>
+<li>Ingresar a través del navegador a la dirección IP que posee como puerto el puerto 3000</li>
+<li>Si se abre la plataforma web desde la misma máquina donde se están corriendo los servidores, basta con ingresar a “localhost:3000/“ desde el navegador</li>
+</ul>
+<p>Nota:</p>
+<ul>
+<li>Este prototipo no puede ser utilizado en otros navegadores que no sean ni Google Chrome ni Opera.</li>
+<li>El diseño visual no es lo importante en este punto de nuestro desarrollo.</li>
+</ul>
+
+            </div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
