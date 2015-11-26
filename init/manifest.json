@@ -1,0 +1,14 @@
+{
+  "name": "toc&talk!",
+  "description": "toc&talk! client",
+  "xwalk_version": "0.0.1",
+  "start_url": "start.html",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "density": "4.0"
+    }
+  ]
+}
