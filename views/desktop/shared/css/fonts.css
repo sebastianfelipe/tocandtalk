@@ -1,3 +1,5 @@
+/* Sólo se usan las fuentes FiraLight FiraBook y FiraThin */
+
 /* Fira Sans Regular */
 @font-face {
 	font-family: FiraSansRegular;
@@ -89,7 +91,6 @@
 	font-family: FiraSansThin;
 	src: url('../fonts/FiraSans/FiraSans-ThinItalic.otf') format("opentype");
 	font-style: oblique;
-	font-variant: 
 }
 
 /* Fira Sans Hair */
@@ -113,7 +114,6 @@
 	font-family: FiraSansHair;
 	src: url('../fonts/FiraSans/FiraSans-HairItalic.otf') format("opentype");
 	font-style: oblique;
-	font-variant: 
 }
 
 /* Fira Sans Eight */
@@ -137,5 +137,4 @@
 	font-family: FiraSansEight;
 	src: url('../fonts/FiraSans/FiraSans-EightItalic.otf') format("opentype");
 	font-style: oblique;
-	font-variant: 
 }

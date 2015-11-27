@@ -1,3 +1,30 @@
+body {
+	text-align: center;
+
+	padding: 0px;
+	margin: 0px;
+	
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	top: 0px;
+}
+
 button:focus, input:focus{
     outline: 0;
+}
+
+a:link { 
+	text-decoration: none;
+	background: inherit;
+}
+
+a:visited {
+	text-decoration: none;
+	background: inherit;
+}
+
+.str {
+	position: relative;
+	display: inline-block;
 }
