@@ -1,20 +1,11 @@
 var mongoose = require('mongoose');
-//var assert = require('assert');
-//var uniqueValidator = require('mongoose-unique-validator');
-//var validate = require('mongoose-validate');
 var router = require('express').Router();
+var async = require('async');
+var db = require('./configuration.js');
+var schema = require('./schema.js');
+var models = require('./models.js');
 
-mongoose.connect('mongodb://localhost/test');
 
-var schema = require('./schema.js').schema;
-var models = require('./models.js').models;
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-  // yay!
-
-});
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -66,7 +57,6 @@ var userSchema = mongoose.Schema({
     	validate: [validate.email, 'format']
     }
 });
- 
 
 // Apply the uniqueValidator plugin to userSchema. 
 userSchema.plugin(uniqueValidator, { message: 'unique' });
@@ -84,23 +74,40 @@ router.get('/validate/:username/:email', allowCrossDomain, function(req, res) {
 });
 */
 
+var trySync = function(name) {
+	var username = new models.Username({ username: name});
+	username.validate(function (err) {
+		errors = error_adapter(models.Username.modelName, err);
+		return errors;
+	});
+};
+
 router.get('/push', function(req, res) {
-	var usernames = require('./data/username.json');
-	models.Username.collection.insertMany(usernames, function(err, docs) {
+	var languages = require('./data/language.json');
+	models.Language.collection.insert(languages, function(err, docs) {
 		console.log(err);
 		console.log(docs);
 		res.send({errors: err, documents: docs});
 	});
 });
 
+
 router.get('/uval/:username', allowCrossDomain, function(req, res) {
+	console.log(req.params.username);
 	var username = new models.Username({ username: req.params.username});
 	username.validate(function (err) {
 		errors = error_adapter(models.Username.modelName, err);
+		console.log(errors);
 		res.json({errors: errors});
 	})
 });
 
+
+router.get('/list', function(req, res) {
+	var json = {data: [1,2,3,4,5,6]}
+	res.json(json);
+
+});
 /*
 router.get('/save/:username/:email', function(req, res) {
 	var user = new User({ username: req.params.username, email: req.params.email});
@@ -111,14 +118,38 @@ router.get('/save/:username/:email', function(req, res) {
 });
 */
 
-router.get('/show', function(req, res) {
-	models.Username.find({}, function(err, elements) {
-		res.send(elements);
-	});
+router.get('/show/:model', function(req, res) {
+	if (req.params.model == "usernames") {
+		models.Username.find({}, function(err, elements) {
+			res.json(elements);
+		});
+	}
+	else if (req.params.model == "emails") {
+		models.Email.find({}, function(err, elements) {
+			res.json(elements);
+		});
+	}
+	else if (req.params.model == "users") {
+		models.User.find({}, function(err, elements) {
+			res.json(elements);
+		});
+	}
+	else
+	{
+		res.json({});
+	}
 });
 
-router.get('/remove', function(req, res) {
-	models.Username.remove().exec();
+router.get('/remove/:model', function(req, res) {
+	if (req.params.model == "usernames") {
+		models.Username.remove().exec();
+	}
+	else if (req.params.model == "emails") {
+		models.Email.remove().exec();
+	}
+	else if (req.params.model == "users") {
+		models.User.remove().exec();
+	}
 	res.send('removed');
 });
 
