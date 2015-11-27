@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>register.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>register.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">var</span> router = express.Router();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>var bd = {};
+bd.user = [];</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Module Imports</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> global = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../modules/global.js'</span>);
+<span class="hljs-keyword">var</span> validation_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../modules/validations.js'</span>);
+<span class="hljs-keyword">var</span> authenticate_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../modules/authenticate.js'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Function Imports</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> authenticate = authenticate_module.authenticate;
+<span class="hljs-keyword">var</span> uniqueUsername = validation_module.uniqueUsername;
+<span class="hljs-keyword">var</span> uniqueEmail = validation_module.uniqueEmail;
+<span class="hljs-keyword">var</span> validPass = validation_module.validPass;
+<span class="hljs-keyword">var</span> isValid = validation_module.isValid;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Shared Variables</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> bd = global.bd;
+
+
+router.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>{
+  <span class="hljs-keyword">return</span> res.render(<span class="hljs-string">'register/index.html'</span>, {forceType: <span class="hljs-string">"desktop"</span>, errors: <span class="hljs-string">""</span>});
+});
+
+router.post(<span class="hljs-string">'/'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>{
+  <span class="hljs-comment">/*
+  if (bd[req.body.username] == req.body.password)
+  {
+    req.session.username = req.body.username;
+  }
+  */</span>
+  <span class="hljs-keyword">var</span> user = {<span class="hljs-string">"username"</span>        : req.body.i_username,
+              <span class="hljs-string">"name"</span>            : req.body.i_name,
+              <span class="hljs-string">"lastname"</span>        : req.body.i_lastname,
+              <span class="hljs-string">"sex"</span>             : req.body.r_sex,
+              <span class="hljs-string">"email"</span>           : req.body.i_email,
+              <span class="hljs-string">"password"</span>        : req.body.i_password,
+              <span class="hljs-string">"conf_password"</span>   : req.body.i_password_confirmation
+              };
+
+    <span class="hljs-keyword">var</span> resultUniqueUsername = uniqueUsername(req);
+    <span class="hljs-keyword">var</span> resultUniqueEmail = uniqueEmail(req);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>var resultValidPass = validPass(req, user);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> resultIsValid = isValid(req, user);
+
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Is unique? "</span> + resultUniqueUsername);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>if (resultUniqueUsername &amp;&amp; resultUniqueEmail &amp;&amp; resultValidPass &amp;&amp; resultIsValid )</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (resultUniqueUsername &amp;&amp; resultUniqueEmail &amp;&amp; resultIsValid )
+  {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Asegurarse que cada una de las weas de aquí está bien</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Guardar al usuario en la bd</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    bd.user.push(user);
+    <span class="hljs-built_in">console</span>.log(bd);
+    req.session.username = user.username;
+    <span class="hljs-keyword">return</span> res.redirect(<span class="hljs-string">'/'</span>);
+  }
+ <span class="hljs-keyword">else</span>
+ {
+    <span class="hljs-keyword">var</span> error_handler = <span class="hljs-string">""</span>;
+    <span class="hljs-keyword">if</span> (!resultUniqueUsername) {error_handler += <span class="hljs-string">"error_username_e;"</span>;}
+    <span class="hljs-keyword">if</span> (!resultUniqueEmail) {error_handler += <span class="hljs-string">"error_email_e;"</span>;}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>if (!resultValidPass) {error_handler += “error_password_confirmation;”;}</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (!resultIsValid) {error_handler += <span class="hljs-string">"error_username;"</span>;}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>console.log(“Ha ocupado un caracter incorrecto!”);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">return</span> res.render(<span class="hljs-string">'register/index.html'</span>, {foceType: <span class="hljs-string">"desktop"</span>, errors: error_handler});
+  }
+});
+
+<span class="hljs-built_in">module</span>.exports = router;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

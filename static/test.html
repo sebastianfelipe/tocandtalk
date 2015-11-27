@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Toc&Talk!</title>
+
+	<!-- JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head> 
+
+	<body>
+		<div>
+			Username: <input type="text" name="username" id="username" autocomplete="off"><br>
+			<br>
+			<p id="result" name="result"></p>
+		</div>
+
+		<script>
+		$('#username').on('keyup', function (event) {
+			var username = $('#username').val();
+			if (username.length > 2) {	
+				$.ajaxSetup({async: false});
+				var json = $.getJSON("http://127.0.0.1:4000/test/uval/" + username);
+				var errors = json.responseJSON.errors;
+				console.log(errors);
+				if (errors.indexOf('error_username_username_unique;') > -1)
+				{
+					$('#result').html("El nombre está ocupado");
+				}
+				else
+				{
+					$('#result').html("El nombre está disponible");
+				}
+				$.ajaxSetup({async: true});
+			}
+			else
+			{
+				$('#result').html("");
+			}
+		
+		});
+		</script>
+	</body>
+</html>

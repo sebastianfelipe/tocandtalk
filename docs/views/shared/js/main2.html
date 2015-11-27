@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>main2.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>main2.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'DOMContentLoaded'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>PeerJS server location</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> server_ip = <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">var</span> server_port = <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>DOM elements manipulated as user interacts with the app
+Information Boxes</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> tracking_box = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#tracking'</span>);
+  <span class="hljs-keyword">var</span> messages_box = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#messages'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Entries</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> callerIdEntry = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#caller-id'</span>);
+  <span class="hljs-keyword">var</span> messageEntry = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#message-entry'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Buttons</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> searchBtn = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#search'</span>);
+  <span class="hljs-keyword">var</span> sendMessageBtn = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#send-message'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Stream</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> remoteVideo = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#remote-video'</span>);
+  <span class="hljs-keyword">var</span> localVideo = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#local-video'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>the ID set for this client
+var callerId = null;</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>PeerJS object, instantiated when this client connects with its
+caller ID</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> peer = <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>the local video stream captured with getUserMedia()</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> localStream = <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>socket</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> socket = <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>talking</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> talking = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>call</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> call = <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>dataConnection</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> dataConnection = <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>DOM utilities</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> makePara = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) </span>{
+    <span class="hljs-keyword">var</span> p = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'p'</span>);
+    p.innerText = text;
+    <span class="hljs-keyword">return</span> p;
+  };
+
+  <span class="hljs-keyword">var</span> addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">para</span>) </span>{
+    <span class="hljs-keyword">if</span> (tracking_box.firstChild) {
+      tracking_box.insertBefore(para, tracking_box.firstChild);
+    }
+    <span class="hljs-keyword">else</span> {
+      tracking_box.appendChild(para);
+    }
+  };
+
+  <span class="hljs-keyword">var</span> logError = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) </span>{
+    <span class="hljs-keyword">var</span> p = makePara(<span class="hljs-string">'ERROR: '</span> + text);
+    p.style.color = <span class="hljs-string">'red'</span>;
+    addMessage(p);
+  };
+
+  <span class="hljs-keyword">var</span> logMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) </span>{
+    addMessage(makePara(text));
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>get the local video and audio stream and show preview in the
+“LOCAL” video element
+successCb: has the signature successCb(stream); receives
+the local video stream as an argument</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">insertAfter</span>(<span class="hljs-params">referenceNode, newNode</span>) </span>{
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+    <span class="hljs-keyword">return</span>;
+  };
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">writeMessage</span>(<span class="hljs-params">id, message</span>) </span>{
+    <span class="hljs-keyword">if</span> (callerId == id) {id = <span class="hljs-string">"You"</span>;}
+    para = makePara(id + <span class="hljs-string">": "</span> + message);
+    <span class="hljs-keyword">if</span> (messages_box.firstChild) {
+      messages_box.insertBefore(para, messages_box.firstChild);
+    }
+    <span class="hljs-keyword">else</span> {
+      messages_box.appendChild(para);
+    }
+    <span class="hljs-keyword">return</span>;
+  };
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">send</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (!peer) {
+      logError(<span class="hljs-string">'cannot answer a call without a connection'</span>);
+    }
+
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!localStream) {
+      logError(<span class="hljs-string">'could not answer call as there is no localStream ready'</span>);
+    }
+
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((!dataConnection) || (!call)) {
+      logError(<span class="hljs-string">'Nobody is talking with you right now. Search someone first!'</span>);
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (messageEntry.value.trim()) {
+      dataConnection.send(messageEntry.value.trim());
+      writeMessage(callerId,messageEntry.value.trim());
+    }
+    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"message-entry"</span>).value = <span class="hljs-string">""</span>;
+    <span class="hljs-keyword">return</span>;
+  };
+
+  <span class="hljs-keyword">var</span> sendMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    send();
+  };
+
+  <span class="hljs-keyword">var</span> sendMessageEntry = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>) </span>{
+    <span class="hljs-keyword">if</span> (key.keyCode == <span class="hljs-number">13</span>) {
+      send();
+    }
+    <span class="hljs-keyword">return</span>;
+  }
+
+ <span class="hljs-keyword">var</span> getLocalStream = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">successCb</span>) </span>{
+    <span class="hljs-keyword">if</span> (localStream &amp;&amp; successCb) {
+      successCb(localStream);
+    }
+    <span class="hljs-keyword">else</span> {
+      navigator.mediaDevices = navigator.mediaDevices || ((navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia) ? {
+         getUserMedia: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>) </span>{
+           <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">y, n</span>) </span>{
+             (navigator.mozGetUserMedia ||
+              navigator.webkitGetUserMedia).call(navigator, c, y, n);
+           });
+         }
+      } : <span class="hljs-literal">null</span>);
+
+      <span class="hljs-keyword">if</span> (!navigator.mediaDevices) {
+        logError(<span class="hljs-string">"getUserMedia() not supported."</span>);
+        <span class="hljs-keyword">return</span>;
+      }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Prefer camera resolution nearest to 1280x720.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+      <span class="hljs-keyword">var</span> constraints = { audio: <span class="hljs-literal">false</span>, video: <span class="hljs-literal">true</span> };
+
+      navigator.mediaDevices.getUserMedia(constraints)
+      .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">stream</span>) </span>{
+        localStream = stream;
+        localVideo.src = <span class="hljs-built_in">window</span>.URL.createObjectURL(stream);
+        video.onloadedmetadata = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+          video.play();
+        };
+      })
+      .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(err.name + <span class="hljs-string">": "</span> + err.message);
+      });
+      <span class="hljs-comment">/*
+      navigator.webkitGetUserMedia(
+          {
+            audio: false,
+            video: true
+          },
+
+          function (stream) {
+            localStream = stream;
+
+            localVideo.src = window.URL.createObjectURL(stream);
+
+            if (successCb) {
+              successCb(stream);
+            }
+          },
+
+          function (err) {
+            logError('failed to access local camera');
+            logError(err.message);
+          }
+      );
+      */</span>
+    }
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>set the “REMOTE” video element source</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> showRemoteStream = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">stream</span>) </span>{
+    remoteVideo.src = <span class="hljs-built_in">window</span>.URL.createObjectURL(stream);
+  };
+
+  <span class="hljs-keyword">var</span> search = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (talking) {
+      <span class="hljs-keyword">if</span> (call)
+      {
+        call.close();
+        call = <span class="hljs-literal">null</span>;
+      }
+      talking = <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (!peer) {
+      logError(<span class="hljs-string">'please connect first'</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (!localStream) {
+      logError(<span class="hljs-string">'could not search for a user because there is no localStream ready'</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"messages"</span>).innerHTML = <span class="hljs-string">""</span>;
+    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"message-entry"</span>).value = <span class="hljs-string">""</span>;
+    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"tracking"</span>).innerHTML = <span class="hljs-string">""</span>;
+    socket.emit(<span class="hljs-string">'toc'</span>, callerId);
+    <span class="hljs-keyword">return</span>;
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>answer an incoming call</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> answer = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">incomingCall</span>) </span>{
+    <span class="hljs-keyword">if</span> (!peer) {
+      logError(<span class="hljs-string">'cannot answer a call without a connection'</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (!localStream) {
+      logError(<span class="hljs-string">'could not answer call as there is no localStream ready'</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+    call = incomingCall;
+    logMessage(<span class="hljs-string">'incoming call answered'</span>);
+    call.on(<span class="hljs-string">'stream'</span>, showRemoteStream);
+    call.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      logError(<span class="hljs-string">"The conversation with the user "</span> + call.peer + <span class="hljs-string">" finished"</span>);
+      dataConnection.close();
+      call = <span class="hljs-literal">null</span>;
+      talking = <span class="hljs-literal">false</span>;
+    });
+
+
+    call.answer(localStream);
+    talking = <span class="hljs-literal">true</span>;
+    logMessage(<span class="hljs-string">"You are talking with "</span> + call.peer + <span class="hljs-string">" right now :)"</span>);
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>set caller ID and connect to the PeerJS server</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connect</span>(<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>callerId = callerIdEntry.value;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">if</span> (!callerId) {
+      logError(<span class="hljs-string">'please set caller ID first'</span>);
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">if</span> ((!server_ip) || (!server_port))
+    {
+      logError(<span class="hljs-string">'Problem with the server connection. Please reload the page'</span>);
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;  
+    }
+
+    <span class="hljs-keyword">try</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>create connection to the ID server</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      peer = <span class="hljs-keyword">new</span> Peer(callerId, {key: <span class="hljs-string">'6sdshp5kg3edbo6r'</span>, host: server_ip, port: server_port});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>peer = new Peer(callerId, {key: ‘6sdshp5kg3edbo6r’});
+hack to get around the fact that if a server connection cannot
+be established, the peer and its socket property both still have
+open === true; instead, listen to the wrapped WebSocket
+and show an error if its readyState becomes CLOSED</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-comment">/*
+      peer.socket._socket.onclose = function () {
+        logError('no connection to server');
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>peer = null;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      };
+      */</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>get local stream ready for incoming calls once the wrapped
+WebSocket is open</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-comment">/*
+      peer.socket._socket.onopen = function () {
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>getLocalStream();</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      };
+      */
+      peer.on('connection', function(dataConnectionPeer) {
+        dataConnection = dataConnectionPeer;
+        dataConnection.on('data', function(data) {
+          writeMessage(dataConnection.peer, data);
+        });
+        dataConnection.on('close', function() {
+          dataConnection = null;
+        });
+      });
+      peer.on('call',answer);
+      return true;
+    }
+    catch (e) {
+      peer = null;
+      logError('error while connecting to server');
+      return false;
+    }
+  };
+
+  function talk (recipientId) {
+    if (!peer) {
+      logError('please connect first');
+      return;
+    }
+
+    if (!localStream) {
+      logError('could not start call as there is no local camera');
+      return
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>var recipientId = recipientIdEntry.value;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">if</span> (!recipientId) {
+      logError(<span class="hljs-string">'could not start call as no recipient ID is set'</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+
+    getLocalStream(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">stream</span>) </span>{
+      logMessage(<span class="hljs-string">'outgoing call initiated'</span>);
+
+      call = peer.call(recipientId, stream);
+      call.on(<span class="hljs-string">'stream'</span>, showRemoteStream);
+      call.on(<span class="hljs-string">'error'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+        logError(<span class="hljs-string">'error with call'</span>);
+        logError(e.message);
+      });
+      call.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+          logError(<span class="hljs-string">"The conversation with the user "</span> + call.peer + <span class="hljs-string">" finished"</span>);
+          dataConnection.close();
+          call = <span class="hljs-literal">null</span>;
+          talking = <span class="hljs-literal">false</span>;
+      });
+    });
+    dataConnection = peer.connect(recipientId);
+    dataConnection.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+      writeMessage(dataConnection.peer, data);
+    });
+    dataConnection.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      dataConnection = <span class="hljs-literal">null</span>;
+    });
+    talking = <span class="hljs-literal">true</span>;
+    logMessage(<span class="hljs-string">"You are talking with "</span> + recipientId + <span class="hljs-string">" right now :)"</span>);
+    <span class="hljs-keyword">return</span>;
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Main</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (!socket)
+  {
+    
+    socket = io();
+    socket.on(<span class="hljs-string">'receiveConnection'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+      server_ip = data[<span class="hljs-string">"ip"</span>];
+      server_port = data[<span class="hljs-string">"port"</span>];
+      <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'user'</span>).innerHTML = <span class="hljs-string">"User connected as "</span> + callerId;
+      getLocalStream();
+      connect();
+    });
+
+    socket.on(<span class="hljs-string">'tocAnswer'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">wait</span>)</span>{
+    <span class="hljs-keyword">if</span> (wait)
+    {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>socket.emit(‘push’,callerId);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      logMessage(<span class="hljs-string">'Wait a moment for someone to talk'</span>);
+    }
+    <span class="hljs-keyword">else</span>
+    {
+      socket.emit(<span class="hljs-string">'get'</span>,callerId);
+      logMessage(<span class="hljs-string">'Wait a moment for someone to talk'</span>);
+    }
+    });
+
+    socket.on(<span class="hljs-string">'talk'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">recipientId</span>)</span>{
+      talk(recipientId);
+    });
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Finish Main</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>wire up button events</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  searchBtn.addEventListener(<span class="hljs-string">'click'</span>,search);
+  sendMessageBtn.addEventListener(<span class="hljs-string">'click'</span>,sendMessage);
+  messageEntry.addEventListener(<span class="hljs-string">'keypress'</span>, sendMessageEntry);
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
