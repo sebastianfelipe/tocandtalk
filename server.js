@@ -40,19 +40,19 @@ device.enableViewRouting(app, {
 });
 
 // Routes
-index_routes = require('./routes/index.js');
+home_routes = require('./routes/home.js');
+talk_routes = require('./routes/talk.js');
 login_routes = require('./routes/login.js');
 register_routes = require('./routes/register.js');
 logout_routes = require('./routes/logout.js');
-home_routes = require('./routes/home.js');
 friends_routes = require('./routes/friends.js');
 profile_routes = require('./routes/profile.js');
 
-app.use('/', index_routes);
+app.use('/', home_routes);
+app.use('/talk', talk_routes);
 app.use('/login', login_routes);
 app.use('/register', register_routes);
 app.use('/logout', logout_routes);
-app.use('/home', home_routes);
 app.use('/friends', friends_routes);
 app.use('/profile', profile_routes);
 
