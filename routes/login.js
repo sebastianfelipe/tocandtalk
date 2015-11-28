@@ -29,20 +29,11 @@ router.post('/', function (req, res) {
     var errors = "";
     if (doc)
     {
-      console.log(doc);
-      console.log(req.body.i_password);
-      console.log(doc.password);
       if (req.body.i_password == doc.password)
       {
         req.session.username = doc._username;
-        console.log(req.session);
-        res.redirect('/');
+        return res.redirect('/');
       }
-      else
-      {
-        errors += "error_user;";
-      }
-      return res.render('login/index.html', {forceType: "desktop", req: req.body, errors: errors});
     }
     else
     {
@@ -57,21 +48,13 @@ router.post('/', function (req, res) {
           {
             req.session.username = doc._username;
             console.log(req.session);
-            res.redirect('/');
+            return res.redirect('/');
           }
-          else
-          {
-            errors += "error_user;";
-          }
-          return res.render('login/index.html', {forceType: "desktop", req: req.body, errors: errors});
-        }
-        else
-        {
-          errors += "error_user;";
-          return res.render('login/index.html', {forceType: "desktop", req: req.body, errors: errors});
         }
       });
     }
+    errors += "error_user;";
+    return res.render('login/index.html', {forceType: "desktop", req: req.body, errors: errors});
   });
 });
 
