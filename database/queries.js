@@ -82,15 +82,16 @@ var trySync = function(name) {
 	});
 };
 
+/*
 router.get('/push', function(req, res) {
-	var languages = require('./data/language.json');
-	models.Language.collection.insert(languages, function(err, docs) {
+	var country = require('./data/country.json');
+	models.Country.collection.insert(country, function(err, docs) {
 		console.log(err);
 		console.log(docs);
 		res.send({errors: err, documents: docs});
 	});
 });
-
+*/
 
 router.get('/uval/:username', allowCrossDomain, function(req, res) {
 	console.log(req.params.username);
@@ -149,6 +150,12 @@ router.get('/remove/:model', function(req, res) {
 	}
 	else if (req.params.model == "users") {
 		models.User.remove().exec();
+	}
+	else if (req.params.model == "countries") {
+		models.Country.remove().exec();
+	}
+	else if (req.params.model == "languages") {
+		models.Language.remove().exec();
 	}
 	res.send('removed');
 });

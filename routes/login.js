@@ -42,13 +42,36 @@ router.post('/', function (req, res) {
       {
         errors += "error_user;";
       }
+      return res.render('login/index.html', {forceType: "desktop", req: req.body, errors: errors});
     }
     else
     {
-      errors += "error_user;";
+      models.User.findOne({_email: req.body.i_username}, function(err, doc) {
+        var errors = "";
+        if (doc)
+        {
+          console.log(doc);
+          console.log(req.body.i_password);
+          console.log(doc.password);
+          if (req.body.i_password == doc.password)
+          {
+            req.session.username = doc._username;
+            console.log(req.session);
+            res.redirect('/');
+          }
+          else
+          {
+            errors += "error_user;";
+          }
+          return res.render('login/index.html', {forceType: "desktop", req: req.body, errors: errors});
+        }
+        else
+        {
+          errors += "error_user;";
+          return res.render('login/index.html', {forceType: "desktop", req: req.body, errors: errors});
+        }
+      });
     }
-    return res.render('login/index.html', {forceType: "desktop", req: req.body, errors: errors});
-
   });
 });
 

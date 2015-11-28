@@ -46,14 +46,14 @@ router.get('/', function (req, res) {
   async.parallel({
       countries: function(callback){
           setTimeout(function(){
-              models.Country.find().exec(function (err, docs) {
+              models.Country.find().sort([['name', 1]]).exec(function (err, docs) {
                 callback(err, docs);
               })
           }, 200);
       },
       languages: function(callback){
           setTimeout(function(){
-              models.Language.find().exec(function (err, docs) {
+              models.Language.find().sort([['name', 1]]).exec(function (err, docs) {
                 callback(err, docs);
               })
           }, 200);
@@ -61,8 +61,7 @@ router.get('/', function (req, res) {
   },
   function(err, results) {
       // results is now equals to: {one: 1, two: 2}
-    console.log(err);
-    return res.render('register/index.html', {forceType: "desktop", countries: results.countries, languages: results.languages, errors: ""});
+    return res.render('register/index.html', {forceType: "desktop", countries: results.countries, languages: results.languages, req: req.body, errors: ""});
   });
 });
 
@@ -81,14 +80,15 @@ router.get('/', function (req, res) {
 */
 router.post('/',function (req, res) {
   var errors = "";
-  var username = new models.Username({username: req.body.i_username});
+  var username = new models.Username({username: req.body.i_username.trim().toLowerCase()});
   var email = new models.Email({email: req.body.i_email});
-  var user = new models.User({  _username: username.username,
-                                _email: email.email,
-                                nationality: req.body.s_country,
-                                first_name: req.body.i_name,
-                                last_name: req.body.i_lastname,
-                                sex: req.body.r_sex,
+  var user = new models.User({  _username: username.username.trim().toLowerCase(),
+                                _email: email.email.trim().toLowerCase(),
+                                nationality: req.body.s_country.trim().toLowerCase(),
+                                native_language: req.body.s_native_language.trim().toLowerCase(),
+                                first_name: req.body.i_name.trim().toLowerCase(),
+                                last_name: req.body.i_lastname.trim().toLowerCase(),
+                                sex: req.body.r_sex.trim().toLowerCase(),
                                 password: req.body.i_password
                                 });
 
@@ -103,7 +103,7 @@ router.post('/',function (req, res) {
           setTimeout(function(){
               username.validate(function (err) {
                 var errors_tmp = error_adapter(models.Username.modelName, err);
-                callback(err, errors_tmp);
+                callback(null, errors_tmp);
               });
           }, 200);
       },
@@ -111,7 +111,7 @@ router.post('/',function (req, res) {
           setTimeout(function(){
               email.validate(function (err) {
                 var errors_tmp = error_adapter(models.Email.modelName, err);
-                callback(err, errors_tmp);
+                callback(null, errors_tmp);
               });
           }, 200);
       },
@@ -119,7 +119,7 @@ router.post('/',function (req, res) {
           setTimeout(function(){
               user.validate(function (err) {
                 var errors_tmp = error_adapter(models.User.modelName, err);
-                callback(err, errors_tmp);
+                callback(null, errors_tmp);
               });
           }, 200);
       }
@@ -136,14 +136,14 @@ router.post('/',function (req, res) {
       async.parallel({
           countries: function(callback){
               setTimeout(function(){
-                  models.Country.find().exec(function (err, docs) {
+                  models.Country.find().sort([['name', 1]]).exec(function (err, docs) {
                     callback(err, docs);
                   })
               }, 200);
           },
           languages: function(callback){
               setTimeout(function(){
-                  models.Language.find().exec(function (err, docs) {
+                  models.Language.find().sort([['name', 1]]).exec(function (err, docs) {
                     callback(err, docs);
                   })
               }, 200);
@@ -162,7 +162,7 @@ router.post('/',function (req, res) {
                 setTimeout(function(){
                     username.save(function (err) {
                       var errors_tmp = error_adapter(models.Username.modelName, err);
-                      callback(err, errors_tmp);
+                      callback(null, errors_tmp);
                     });
                 }, 200);
             },
@@ -170,7 +170,7 @@ router.post('/',function (req, res) {
                 setTimeout(function(){
                     email.save(function (err) {
                       var errors_tmp = error_adapter(models.Email.modelName, err);
-                      callback(err, errors_tmp);
+                      callback(null, errors_tmp);
                     });
                 }, 200);
             },
@@ -178,7 +178,7 @@ router.post('/',function (req, res) {
                 setTimeout(function(){
                     user.save(function (err) {
                       var errors_tmp = error_adapter(models.User.modelName, err);
-                      callback(err, errors_tmp);
+                      callback(null, errors_tmp);
                     });
                 }, 200);
             }
@@ -195,14 +195,14 @@ router.post('/',function (req, res) {
             async.parallel({
                 countries: function(callback){
                     setTimeout(function(){
-                        models.Country.find().exec(function (err, docs) {
+                        models.Country.find().sort([['name', 1]]).exec(function (err, docs) {
                           callback(err, docs);
                         })
                     }, 200);
                 },
                 languages: function(callback){
                     setTimeout(function(){
-                        models.Language.find().exec(function (err, docs) {
+                        models.Language.find().sort([['name', 1]]).exec(function (err, docs) {
                           callback(err, docs);
                         })
                     }, 200);
