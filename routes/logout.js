@@ -6,8 +6,6 @@ router.get('/', function (req, res) {
   {
     delete req.session.username;
   }
-  console.log("Cookies: ",req.cookies);
-  console.log("Session: ",req.session);
   return res.redirect('/');
 });
 
