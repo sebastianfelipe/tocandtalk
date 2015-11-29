@@ -8,6 +8,8 @@ body {
 	right: 0px;
 	bottom: 0px;
 	top: 0px;
+
+	background: rgba(250,250,250,1);
 }
 
 button:focus, input:focus{

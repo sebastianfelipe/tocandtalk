@@ -46,21 +46,35 @@
 }
 
 /* Logo: 163x40 */
-#bar_logo {
+#bar_logo, #bar_logo_solo {
 	position: absolute;
-	display: inline-block;
 
 	height: 40px;
 	margin-left: 2px;
 }
 
-#bar_tab_container {
-	position: absolute;
+#bar_logo {
 	display: inline-block;
+}
+
+#bar_logo_solo {
+	display: none;
+}
+
+#bar_tab_container, #bar_tab_container_icon {
+	position: absolute;
 
 	height: 48px;
 
 	margin-left: 178px;
+}
+
+#bar_tab_container {
+	display: inline-block;
+}
+
+#bar_tab_container_icon {
+	display: none;
 }
 
 .bar_tab_element1, .bar_tab_text1 {
@@ -100,16 +114,33 @@
 	margin-top: 9px;
 }
 
-.bar_tab_select {
+.bar_tab_select, .bar_tab_select_icon  {
 	height: 4px;
 	width: 100%;
-
-	margin-top: 44px;
 
 	background: rgba(248,248,248,1);
 }
 
-/* Sección 2: Menú de usuario */
+.bar_tab_select {
+	margin-top: 44px;
+}
+
+.bar_tab_select_icon {
+	margin-top: 3px;
+}
+
+.bar_tab_icon {
+	width: 46px;
+}
+
+.bar_tab_icon_img {
+	position: relative;
+	display: inline-block;
+	width: 32px;
+	margin-top: 4px;
+}
+
+/* Sección 2: Cuenta de suario */
 
 .bar_section_user {
 	position: absolute;
@@ -233,6 +264,8 @@
 	margin-top: 1px;
 	margin-bottom: 1px;
 
+	text-align: left;
+
 	font-family: FiraSansBook;
 	font-size: 16px;
 	color: rgba(248,248,248,1);
@@ -259,4 +292,14 @@
 
 .user_menu_element_text {
 	margin-top: 4px;
+	padding-left: 20px;
+}
+
+#user_menu_arrow {
+	z-index: 99;
+
+	position: fixed;
+
+	top: 42px;
+	right: 30px;
 }

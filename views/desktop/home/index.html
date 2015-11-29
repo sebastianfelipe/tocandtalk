@@ -20,6 +20,7 @@
 
 		<script src="strings/es/shared.js"></script>
 		<script src="strings/es/home/index.js"></script>
+		<script src="desktop/shared/js/session.js"></script>
 		<script src="desktop/shared/js/bar_user_image.js"></script>
 		<script src="desktop/shared/js/bar_window.js"></script>
 
@@ -28,21 +29,29 @@
 		<script src="desktop/shared/js/user_menu_items.js"></script>
 		<script src="desktop/shared/js/user_menu.js"></script>
 
+		<script src="desktop/home/js/button_start.js"></script>
+		<script src="desktop/home/js/window.js"></script>
+
 		<!-- CSS -->
 		<link rel="stylesheet" href="desktop/shared/css/fonts.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/css/general.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/css/bar.css" type="text/css"/>
+
 		<link rel="stylesheet" href="desktop/home/css/bar.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/home/css/home.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/home/css/inputs.css" type="text/css"/>
 
 	</header>
 
 	<body>
+		<!-- Barra superior -->
 		<div id="bar">
 			<div id="bar_content">
 				<div id="bar_section_tabs">
 					<!-- Logo -->
-					<a href="/home" title="">
+					<a href="/" title="">
 						<image src="desktop/shared/img/tocandtalk-logo.png" id="bar_logo"></image>
+						<image src="desktop/shared/img/tocandtalk_logo_solo.png" id="bar_logo_solo"></image>
 					</a>
 
 					<!-- Tabs -->
@@ -64,9 +73,28 @@
 							</div>
 						</a>
 					</div>
+
+					<div id="bar_tab_container_icon">
+						<div id="bar_tab1_icon" class="bar_tab_element bar_tab_icon">
+							<image src="desktop/shared/img/bar_icon_home.png" class="bar_tab_icon_img"></image>
+							<div id="bar_tab_select1_icon" class="bar_tab_select_icon"></div>
+						</div>
+						<a href="/friends" title="">
+							<div id="bar_tab2_icon" class="bar_tab_element bar_tab_icon">
+								<image src="desktop/shared/img/bar_icon_friends.png" class="bar_tab_icon_img"></image>
+								<div id="bar_tab_select2_icon" class="bar_tab_select_icon"></div>
+							</div>
+						</a>
+						<a href="/profile" title="">
+							<div id="bar_tab3_icon" class="bar_tab_element bar_tab_icon">
+								<image src="desktop/shared/img/bar_icon_profile.png" class="bar_tab_icon_img"></image>
+								<div id="bar_tab_select3_icon" class="bar_tab_select_icon"></div>
+							</div>
+						</a>
+					</div>
 				</div>
 
-				<!-- Menú de usuario -->
+				<!-- Sección de usuario -->
 				<div id="bar_section_user1" class="bar_section_user">
 					
 					<div class="bar_user_img"></div>
@@ -80,7 +108,11 @@
 				<div id="bar_user_show"></div>
 			</div>
 		</div>
+
+		<!-- Menú de usuario -->
+
 		<div id="user_menu">
+			<image src="desktop/shared/img/user_menu_arrow.png" id="user_menu_arrow"></image>
 			<div class="user_menu_element" id="user_menu_element1">
 				<div class="user_menu_element_sel" id="user_menu_element_sel1"></div>
 				<div class="str str_menu_item1 user_menu_element_text"></div>
@@ -91,13 +123,55 @@
 				<div class="str str_menu_item2 user_menu_element_text"></div>
 				
 			</div>
-			<div class="user_menu_element" id="user_menu_element3">
-				<div class="user_menu_element_sel" id="user_menu_element_sel3"></div>
-				<div class="str str_menu_item3 user_menu_element_text"></div>
-				
-			</div>
+			<a href="logout" title="">
+				<div class="user_menu_element" id="user_menu_element3">
+					<div class="user_menu_element_sel" id="user_menu_element_sel3"></div>
+					<div class="str str_menu_item3 user_menu_element_text"></div>
+				</div>
+			</a>
 			</div>
 		</div>
+
+		<!-- Contenido -->
+
+		<form class="" action="/talk" onsubmit="" method="get">
+			<div id="home_content">
+
+				<div id="home_section1">
+					<div class="button_start">
+						<input type="image" src="desktop/home/img/tocandtalk_start.png" id="button_start_img">
+					</div>
+					<br>
+					<input type="submit" class="str str_talk_start" id="str_talk_start">
+					
+				</div>
+
+				<div id="home_section2">
+					<div class="home_card" style="margin-top: 20px;">
+						<div class="str card_welcome_title" id="str_welcome_title"></div>
+						<br>
+						<div class="str card_welcome_desc" id="str_welcome_desc"></div>
+						
+					</div>
+					<div class="home_card">
+						<div class="str card_lang_select_title" id="str_lang_select_title"></div>
+						<br>
+
+						<select
+							id="lang"
+							name="lang"
+							class="input_lang"
+							required="">
+							<option value="EN">Inglés</option>
+							<option value="PR">Portugués</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+		</form>
+
+
 
 
 

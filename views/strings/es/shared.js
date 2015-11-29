@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$('.str_name_user_example').text("Mi nombre");
 
 	$('.str_tab1').text(
 		"Inicio"
