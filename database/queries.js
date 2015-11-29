@@ -82,16 +82,20 @@ var trySync = function(name) {
 	});
 };
 
-/*
+
 router.get('/push', function(req, res) {
 	var country = require('./data/country.json');
+	var language = require('./data/language.json');
 	models.Country.collection.insert(country, function(err, docs) {
 		console.log(err);
 		console.log(docs);
-		res.send({errors: err, documents: docs});
 	});
+	models.Language.collection.insert(language, function(err, docs) {
+		console.log(err);
+		console.log(docs);
+	});
+	return res.send('Countries and languages added');
 });
-*/
 
 router.get('/uval/:username', allowCrossDomain, function(req, res) {
 	console.log(req.params.username);
