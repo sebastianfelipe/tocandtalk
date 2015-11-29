@@ -19,10 +19,6 @@ var authenticate_module = require('../modules/authenticate.js');
 
 // Function Imports
 var authenticate = authenticate_module.authenticate;
-var uniqueUsername = validation_module.uniqueUsername;
-var uniqueEmail = validation_module.uniqueEmail;
-var validPass = validation_module.validPass;
-var isValid = validation_module.isValid;
 
 // Shared Variables
 var error_adapter = function(model_name, err) {
@@ -89,7 +85,8 @@ router.post('/',function (req, res) {
                                 first_name: req.body.i_name.trim().toLowerCase(),
                                 last_name: req.body.i_lastname.trim().toLowerCase(),
                                 sex: req.body.r_sex.trim().toLowerCase(),
-                                password: req.body.i_password
+                                password: req.body.i_password,
+                                description: ""
                                 });
 
   if (req.body.i_password != req.body.i_password_confirmation)
