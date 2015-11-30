@@ -91,7 +91,7 @@ router.post('/',function (req, res) {
 
   if (req.body.i_password != req.body.i_password_confirmation)
   {
-    errors += "error_user_password_confirmation"; 
+    errors += "error_user_password_confirmation;"; 
   }
 
   // Validation step
