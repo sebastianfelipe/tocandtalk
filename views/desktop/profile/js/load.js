@@ -17,15 +17,20 @@ $(document).ready(function () {
         {
             $('#bar_user_name').html(user.first_name);
         }
+
         if (user.nationality)
         {
             $('#usr_loc_section2').html(user.nationality);
         }
-        if (user.nationality)
+        if (user.description)
         {
             $('#usr_desc_section2').html(user.description);
             $('#input_edit_desc').html(user.description);
         }
+
+        fullname = user.first_name + " " + user.last_name;
+        console.log(fullname);
+        $('#img_section2').html(fullname);
     }
 
     // Manejo de casos relacionados con errores de formulario e informacion que requiere ser cargada otra vez

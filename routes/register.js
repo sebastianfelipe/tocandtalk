@@ -80,11 +80,11 @@ router.post('/',function (req, res) {
   var email = new models.Email({email: req.body.i_email});
   var user = new models.User({  _username: username.username.trim().toLowerCase(),
                                 _email: email.email.trim().toLowerCase(),
-                                nationality: req.body.s_country.trim().toLowerCase(),
-                                native_language: req.body.s_native_language.trim().toLowerCase(),
-                                first_name: req.body.i_name.trim().toLowerCase(),
-                                last_name: req.body.i_lastname.trim().toLowerCase(),
-                                sex: req.body.r_sex.trim().toLowerCase(),
+                                nationality: req.body.s_country,
+                                native_language: req.body.s_native_language,
+                                first_name: req.body.i_name,
+                                last_name: req.body.i_lastname,
+                                sex: req.body.r_sex,
                                 password: req.body.i_password,
                                 description: ""
                                 });

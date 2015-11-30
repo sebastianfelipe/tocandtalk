@@ -260,8 +260,10 @@
 						<div id="usr_image_background" class="usr_image_background"></div>
 						<div class="usr_image_background_opacity"></div>
 
-						<div id="img_section2">
+						<div id="img_section2" class="name_user">
+							<!--
 							<div class="str_name_user name_user"></div>
+							-->
 						</div>
 
 						<div id="img_section1">
@@ -299,7 +301,7 @@
 								Editar Ubicación
 							-->
 							<div id="c_location_edit">
-								<form>
+								<form action="/profile/edit_user_nationality" method="post">
 									<div id="edit_location_sel">
 										<select
 											id="s_country"
@@ -351,7 +353,7 @@
 							<div id="c_description_edit">
 								<div class="str str_desc_edit_title"></div>:
 
-								<form>
+								<form action="/profile/edit_user_description" method="post">
 									<textarea width="430" id="input_edit_desc" name="input_edit_desc" class="input_desc"></textarea>
 
 									<div class="save_cancel_container">
