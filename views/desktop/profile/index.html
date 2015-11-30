@@ -27,6 +27,12 @@
 		<link rel="stylesheet" href="desktop/profile/css/edit.css" type="text/css"/>
 
 		<!-- JS -->
+		<script>
+			var languages = <%- JSON.stringify(languages) %>;
+			var user = <%- JSON.stringify(user) %>;
+			var req = <%- JSON.stringify(req) %>;
+			var errors = <%- JSON.stringify(errors) %>;
+		</script>
     	<script src="desktop/shared/js/jquery/jquery.min.js"></script>
 		<script src="desktop/shared/js/blurjs/blur.min.js"></script>
 		<script src="desktop/shared/js/background-blur/background-blur.min.js"></script>
@@ -42,15 +48,11 @@
 		<script src="desktop/shared/js/user_menu.js"></script>
 		<script src="desktop/shared/js/session.js"></script>
 
-		<script>
-			var user = <%- JSON.stringify(user) %>;
-		</script>
-
 		<script src="desktop/profile/js/data.js"></script>
 		<script src="desktop/shared/js/bar_window.js"></script>
 		<script src="desktop/profile/js/user_image.js"></script>
 		<script src="desktop/profile/js/window.js"></script>
-
+		<script src="desktop/profile/js/load.js"></script>
 
 	</header>
 
@@ -115,7 +117,10 @@
 					<image src="desktop/shared/img/bar_arrow.png" id="bar_user_arrow"></image>
 				</div>
 				<div id="bar_user_name_container">
+					<div id="bar_user_name" class="str"></div>
+					<!--
 					<div id="bar_user_name" class="str str_name_user"></div>
+					-->
 				</div>
 				<div id="bar_user_show"></div>
 			</div>

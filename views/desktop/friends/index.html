@@ -16,6 +16,12 @@
 		<link href="desktop/shared/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
 
 		<!-- JS -->
+		<script>
+			var languages = <%- JSON.stringify(languages) %>;
+			var user = <%- JSON.stringify(user) %>;
+			var req = <%- JSON.stringify(req) %>;
+			var errors = <%- JSON.stringify(errors) %>;
+		</script>
 		<script src="desktop/shared/js/jquery/jquery.min.js"></script>
 
 		<script src="strings/es/shared.js"></script>
@@ -27,6 +33,7 @@
 		<script src="desktop/shared/js/bar_tab3.js"></script>
 		<script src="desktop/shared/js/user_menu_items.js"></script>
 		<script src="desktop/shared/js/user_menu.js"></script>
+		<script src="desktop/friends/js/load.js"></script>
 
 		<!-- CSS -->
 		<link rel="stylesheet" href="desktop/shared/css/fonts.css" type="text/css"/>
@@ -96,7 +103,10 @@
 					<image src="desktop/shared/img/bar_arrow.png" id="bar_user_arrow"></image>
 				</div>
 				<div id="bar_user_name_container">
+					<div id="bar_user_name" class="str"></div>
+					<!--
 					<div id="bar_user_name" class="str str_name_user_example"></div>
+					-->
 				</div>
 				<div id="bar_user_show"></div>
 			</div>
