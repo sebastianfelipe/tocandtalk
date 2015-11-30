@@ -11,21 +11,15 @@ $(document).ready(function(){
             var h_section1 = $('#profile_section1').height();
 
             $('#profile_section2').css("margin-left", "0px");
-            $('#profile_content').width(530);
-
             $('#profile_section2').css("margin-top", h_section1 + "px");
+            $('#profile_content').width(530);
 
         } else {
 
-
             $('#profile_section2').css("margin-left", "536px");
             $('#profile_section2').css("margin-top", "0px");
-
             $('#profile_content').width(1066);
-
-
-        }
-           
+        }  
     }
     
     resizeContent();

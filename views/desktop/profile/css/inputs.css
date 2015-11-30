@@ -7,8 +7,6 @@
 
 	padding: 4px 6px 4px 6px;
 
-	margin-top: 16px;
-
 	text-decoration: none;
 	font-family: FiraSansBook;
 	font-size: 14px;
@@ -73,4 +71,221 @@
 	text-decoration: none;
 	color: rgba(255,255,255,1);
 	background: inherit;
+}
+
+.button_save {
+	position: relative;
+	display: inline;
+
+	width: auto;
+	height: auto;
+
+	padding: 4px 6px 4px 6px;
+	margin-left: 10px;
+
+	text-decoration: none;
+	font-family: FiraSansBook;
+	font-size: 14px;
+
+	text-align: center;
+
+	color: rgba(255,255,255,1);
+	background: rgba(0,208,107,1);
+
+	border-radius:			3px 3px 3px 3px;
+	-moz-border-radius:		3px 3px 3px 3px;
+	-webkit-border-radius:	3px 3px 3px 3px;
+	border: 0px solid #000000;
+
+	-o-transition:.7s;
+	-ms-transition:.7s;
+	-moz-transition:.7s;
+	-webkit-transition:.7s;
+	transition:.7s;
+
+	outline:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+
+.button_save:hover, .button_save:focus {
+	background: #00e676;
+	
+	color: rgba(255,255,255,1);
+
+	-webkit-box-shadow: 0px 0px 6px 0px #00e676;
+	-moz-box-shadow: 	0px 0px 6px 0px #00e676;
+	box-shadow: 		0px 0px 6px 0px #00e676;
+
+	-o-transition:.7s;
+	-ms-transition:.7s;
+	-moz-transition:.7s;
+	-webkit-transition:.7s;
+	transition:.7s;
+}
+
+.button_save:active {
+	background: #64dd17;
+	color: rgba(255,255,255,1);
+
+	-webkit-box-shadow: 0px 0px 9px 0px #64dd17;
+	-moz-box-shadow: 	0px 0px 9px 0px #64dd17;
+	box-shadow: 		0px 0px 9px 0px #64dd17;
+
+	border: 0px solid #000000;
+}
+
+.button_cancel {
+	position: relative;
+	display: inline;
+	overflow: hidden;
+
+	width: auto;
+	height: auto;
+
+	padding: 4px 6px 4px 6px;
+
+	text-decoration: none;
+	font-family: FiraSansBook;
+	font-size: 14px;
+
+	text-align: center;
+
+	color: rgba(0,208,107,1);
+	background: none;
+
+	border-radius:			3px 3px 3px 3px;
+	-moz-border-radius:		3px 3px 3px 3px;
+	-webkit-border-radius:	3px 3px 3px 3px;
+	border: 0px solid #000000;
+
+	-o-transition:.7s;
+	-ms-transition:.7s;
+	-moz-transition:.7s;
+	-webkit-transition:.7s;
+	transition:.7s;
+
+	outline:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+
+.button_cancel:hover, .button_cancel:focus {
+	background: rgba(0,208,107,1);
+	
+	color: rgba(255,255,255,1);
+
+	-o-transition:.7s;
+	-ms-transition:.7s;
+	-moz-transition:.7s;
+	-webkit-transition:.7s;
+	transition:.7s;
+}
+
+.button_cancel:active {
+	background: rgba(0,208,107,1);
+	color: rgba(255,255,255,1);
+
+	-webkit-box-shadow: 0px 0px 9px 0px rgba(0,208,107,1);
+	-moz-box-shadow: 0px 0px 9px 0px rgba(0,208,107,1);
+	box-shadow: 0px 0px 9px 0px rgba(0,208,107,1);
+
+	border: 0px solid #000000;
+}
+
+textarea { 
+   resize: vertical; 
+}
+
+.input_desc {
+	height: 80px;
+	width: 430px;
+
+	padding: 5px 5px 5px 12px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+
+	font-family: FiraSansBook;
+	font-size: 14px;
+
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	border: 1px solid #aaaaaa;
+
+	background: rgba(255,255,255,1);
+
+	-o-transition:.6s;
+	-ms-transition:.6s;
+	-moz-transition:.6s;
+	-webkit-transition:.6s;
+	transition:.6s;
+}
+
+.input_desc:hover {
+	border: 1px solid #d2d2d2;
+}
+
+.input_desc:focus {
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	border: 1px solid #0ba4b9;
+}
+
+.input_desc:active {
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	border: 1px solid #0ba4b9;
+}
+
+.input_sel_contry {
+	position: relative;
+	display: inline;
+
+	width: 270px;
+	height: 35px;
+
+	padding: 5px 5px 5px 12px;
+	margin-bottom: 2px;
+
+	font-family: FiraSansLight;
+	font-size: 16px;
+	color: rgba(250,250,250,1);
+
+	background: url('/desktop/profile/img/select_arrow.png') no-repeat right rgba(70,70,70,1);
+
+	border-radius:			3px 3px 3px 3px;
+	-moz-border-radius:		3px 3px 3px 3px;
+	-webkit-border-radius:	3px 3px 3px 3px;
+	border: 0px solid #aaaaaa;
+    
+    outline:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+
+    -o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+
+.input_sel_contry:hover, .input_sel_contry:focus {
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(70,70,70,1);
+	-moz-box-shadow: 0px 0px 4px 0px rgba(70,70,70,1);
+	box-shadow: 0px 0px 4px 0px rgba(70,70,70,1);
+
+	-o-transition:.8s;
+	-ms-transition:.8s;
+	-moz-transition:.8s;
+	-webkit-transition:.8s;
+	transition:.8s;
 }

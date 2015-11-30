@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="project">
 	<header>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Toc&Talk!</title>
@@ -23,13 +23,16 @@
 		<link rel="stylesheet" href="desktop/profile/css/profile.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/profile/css/user.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/profile/css/inputs.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/css/edit_profile.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/css/edit.css" type="text/css"/>
 
 		<!-- JS -->
-		<script src="desktop/shared/js/jquery/jquery.min.js"></script>
+    	<script src="desktop/shared/js/jquery/jquery.min.js"></script>
 		<script src="desktop/shared/js/blurjs/blur.min.js"></script>
 		<script src="desktop/shared/js/background-blur/background-blur.min.js"></script>
 
-
+		<script src="desktop/profile/js/edit_profile.js"></script>
+    	
 		<script src="strings/es/shared.js"></script>
 		<script src="strings/es/profile/index.js"></script>
 		<script src="desktop/shared/js/bar_user_image.js"></script>
@@ -47,6 +50,8 @@
 		<script src="desktop/shared/js/bar_window.js"></script>
 		<script src="desktop/profile/js/user_image.js"></script>
 		<script src="desktop/profile/js/window.js"></script>
+
+
 	</header>
 
 	<body>
@@ -81,22 +86,23 @@
 					</div>
 
 					<div id="bar_tab_container_icon">
-						<div id="bar_tab1_icon" class="bar_tab_element bar_tab_icon">
-							<image src="desktop/shared/img/bar_icon_home.png" class="bar_tab_icon_img"></image>
-							<div id="bar_tab_select1_icon" class="bar_tab_select_icon"></div>
-						</div>
+						<a href="/" title="">
+							<div id="bar_tab1_icon" class="bar_tab_element bar_tab_icon">
+								<image src="desktop/shared/img/bar_icon_home.png" class="bar_tab_icon_img"></image>
+								<div id="bar_tab_select1_icon" class="bar_tab_select_icon"></div>
+							</div>
+						</a>
 						<a href="/friends" title="">
 							<div id="bar_tab2_icon" class="bar_tab_element bar_tab_icon">
 								<image src="desktop/shared/img/bar_icon_friends.png" class="bar_tab_icon_img"></image>
 								<div id="bar_tab_select2_icon" class="bar_tab_select_icon"></div>
 							</div>
 						</a>
-						<a href="/profile" title="">
-							<div id="bar_tab3_icon" class="bar_tab_element bar_tab_icon">
-								<image src="desktop/shared/img/bar_icon_profile.png" class="bar_tab_icon_img"></image>
-								<div id="bar_tab_select3_icon" class="bar_tab_select_icon"></div>
-							</div>
-						</a>
+						
+						<div id="bar_tab3_icon" class="bar_tab_element bar_tab_icon">
+							<image src="desktop/shared/img/bar_icon_profile.png" class="bar_tab_icon_img"></image>
+							<div id="bar_tab_select3_icon" class="bar_tab_select_icon"></div>
+						</div>
 					</div>
 				</div>
 
@@ -145,44 +151,94 @@
 			<div id="profile_section2">
 		
 				<!-- Idiomas que hablo -->
-				<div class="profile_card" style="overflow: hidden;">
-					<div class="lang_title">
-						<div class="str str_lang_spoken_title"></div>
-					</div>
-					<br>
+				<div id="card_spoken_lang" class="profile_card" style="overflow: hidden;">
 
-					<div class="lang_list">
-						<div class="str str_lang_native"></div> (<div class="str str_lang_native_title"></div>)
-						<div class="str" id="str_lang_spoken_list"></div>
-					</div>
-					<br>
-
-					<div class="lang_edit_button">
-						<div class="button_edit">
-							<div class="str str_button_edit_lang"></div>
+					<!--
+						Lista de idiomas que hablo
+					-->
+					<div id="c_spoken_languages">
+						
+						<div class="lang_title">
+							<div class="str str_lang_spoken_title"></div>
 						</div>
+						<br>
+
+						<div class="lang_list">
+							<div class="str str_lang_native"></div> (<div class="str str_lang_native_title"></div>)
+							<div class="str" id="str_lang_spoken_list"></div>
+						</div>
+						<br>
+
+						<div class="lang_edit_button">
+							<div id="b_edit_spoken_lang" class="button_edit">
+								<div class="str str_button_edit_lang"></div>
+							</div>
+						</div>
+
+					</div>
+
+					<!--
+						Editar idiomas que hablo
+					-->
+					<div id="c_spoken_languages_edit">
+						<div class="lang_title">
+							<div class="str str_edit_lang_spoken_title"></div>
+						</div>
+						<br>
+						
+						<div class="save_cancel_container lang_buttons">
+							<div id="b_cancel_spoken_lang" class="button_cancel">
+								<div class="str str_button_cancel"></div>
+							</div>
+							<div id="b_save_spoken_lang" class="button_save str_button_save_lang"></div>
+						</div>
+
 					</div>
 				</div>
 
-				<!-- Idiomas que manejo -->
-				<div class="profile_card" style="overflow: hidden;">
-					<div class="lang_title">
-						<div class="str str_lang_interest_title"></div>
-					</div>
-					<br>
+				<!-- Idiomas que me interesan -->
+				<div id="card_interest_lang" class="profile_card" style="overflow: hidden;">
 
-					<div class="lang_list">
-						<div class="lang_empity">
-							<i><div class="str str_lang_list_empity"></div></i>
+					<!--
+						Lista de idiomas que me interesan
+					-->
+					<div id="c_interest_languages">
+						
+						<div class="lang_title">
+							<div class="str str_lang_interest_title"></div>
 						</div>
-						<div class="str str_lang_list"></div>
-					</div>
-					<br>
+						<br>
 
-					<div class="lang_edit_button">
-						<div class="button_edit">
-							<div class="str str_button_edit_lang" id="str_button_edit_lang_int"></div>
-							<div class="str str_button_add_lang" id="str_button_add_lang_int"></div>
+						<div class="lang_list">
+							<div class="lang_empity">
+								<i><div class="str str_lang_list_empity"></div></i>
+							</div>
+							<div class="str str_lang_list"></div>
+						</div>
+						<br>
+
+						<div class="lang_edit_button">
+							<div id="b_edit_interest_lang" class="button_edit">
+								<div class="str str_button_cancel_lang" id="str_button_edit_lang_int"></div>
+								<div class="str str_button_add_lang" id="str_button_add_lang_int"></div>
+							</div>
+						</div>
+
+					</div>
+
+					<!--
+						Editar idiomas que me interesan
+					-->
+					<div id="c_interest_languages_edit">
+						<div class="lang_title">
+							<div class="str str_edit_lang_interest_title"></div>
+						</div>
+
+						<div class="save_cancel_container lang_buttons">
+							<div id="b_cancel_interest_lang" class="button_cancel">
+								<div class="str str_button_cancel"></div>
+							</div>
+							<div id="b_save_interest_lang" class="button_save str_button_save_lang"></div>
 						</div>
 					</div>
 				</div>
@@ -205,47 +261,99 @@
 						<div id="img_section1">
 							<div class="usr_image"></div>
 						</div>
-
-						
-
 					</div>
 					<br>
 
 					<div id="usr_content">
 
 						<div id="usr_loc_container">
-							
-							<div id="usr_loc_section3">
-								<div class="button_edit">
-									<div class="str str_button_edit"></div>
+
+							<!--
+								Mostrar Ubicación
+							-->
+							<div id="c_location">
+								<div id="usr_loc_section3">
+									<div id="b_edit_location" class="button_edit">
+										<div class="str str_button_edit"></div>
+									</div>
+								</div>
+
+								<div id="usr_loc_section2">
+									<div class="str str_profile_country"></div>
+								</div>
+
+								<div id="usr_loc_section1">
+									<div class="str str_loc_title"></div>:
 								</div>
 							</div>
 
-							<div id="usr_loc_section2">
-								<div class="str str_profile_country"></div>
-							</div>
+							<!--
+								Editar Ubicación
+							-->
+							<div id="c_location_edit">
+								<form>
+									<div id="edit_location_sel">
+										<select
+											id="s_country"
+											name="s_country"
+											required=""
+											class="input_sel_contry">
+											<option value="CL">Chile</option>
+										</select>
+									</div>
 
-							
+									<div class="str str_location_edit_title"></div>:
 
-							<div id="usr_loc_section1">
-								<div class="str str_loc_title"></div>:
+									<div class="save_cancel_container">
+										<div id="b_cancel_location" class="button_cancel">
+											<div class="str str_button_cancel"></div>
+										</div>
+										<input type="submit" id="b_save_location" class="button_save str_button_save">
+									</div>
+								</form>
 							</div>
 						</div>
 						<br>
 
 						<div id="usr_desc_container">
-							<div id="usr_desc_section3">
-								<div class="button_edit">
-									<div class="str str_button_edit"></div>
+
+							<!--
+								Mostrar Descripción
+							-->
+							<div id="c_description">
+								
+								<div id="usr_desc_section3">
+									<div id="b_edit_description" class="button_edit">
+										<div class="str str_button_edit"></div>
+									</div>
 								</div>
+
+								<div id="usr_desc_section1">
+									<div class="str str_desc_title"></div>:
+								</div>
+
+								<div id="usr_desc_section2">
+									Bla Bla
+								</div>
+
 							</div>
 
-							<div id="usr_desc_section1">
-								<div class="str str_desc_title"></div>:
-							</div>
+							<!--
+								Editar Ubicación
+							-->
+							<div id="c_description_edit">
+								<div class="str str_desc_edit_title"></div>:
 
-							<div id="usr_desc_section2">
-								Bla Bla
+								<form>
+									<textarea width="430" name="input_edit_desc" class="input_desc"></textarea>
+
+									<div class="save_cancel_container">
+										<div id="b_cancel_description" class="button_cancel">
+											<div class="str str_button_cancel"></div>
+										</div>
+										<input type="submit" id="b_save_description" class="button_save str_button_save">
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>

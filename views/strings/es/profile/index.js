@@ -4,6 +4,18 @@ $(document).ready(function(){
 		"Editar"
 	);
 
+	$('.str_button_cancel').text(
+		"Cancelar"
+	);
+
+	$('.str_button_save').val(
+		"Guardar"
+	);
+
+	$('.str_button_save_lang').text(
+		"Guardar"
+	);
+
 	
 
 	$('.str_button_edit_lang').text(
@@ -18,8 +30,16 @@ $(document).ready(function(){
 		"Ubicación"
 	);
 
+	$('.str_location_edit_title').text(
+		"Escoja su país"
+	);
+
 	$('.str_desc_title').text(
 		"Descripción"
+	);
+
+	$('.str_desc_edit_title').text(
+		"Editar descripción"
 	);
 
 	$('.str_lang_spoken_title').text(
@@ -37,5 +57,17 @@ $(document).ready(function(){
 	$('.str_lang_list_empity').text(
 		"No ha añadido ningún idioma"
 	);
+
+	$('.str_edit_lang_spoken_title').text(
+		"Editar idiomas que hablo"
+	);
+
+	$('.str_edit_lang_interest_title').text(
+		"Editar idiomas que me interesan"
+	);
+
+
+
+	
 
 });
