@@ -178,6 +178,7 @@
 
 	background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 #bar_user_arrow {

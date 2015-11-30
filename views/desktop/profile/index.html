@@ -15,25 +15,38 @@
 		<link href="desktop/shared/img/icons/tocandtalk-android-192x192.png" rel="icon" sizes="192x192" />
 		<link href="desktop/shared/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
 
-		<!-- JS -->
-		<script src="desktop/shared/js/jquery/jquery.min.js"></script>
-
-		<script src="strings/es/shared.js"></script>
-		<script src="strings/es/home/index.js"></script>
-		<script src="desktop/shared/js/bar_user_image.js"></script>
-		<script src="desktop/shared/js/bar_window.js"></script>
-
-		<script src="desktop/shared/js/bar_tab1.js"></script>
-		<script src="desktop/shared/js/bar_tab2.js"></script>
-		<script src="desktop/shared/js/user_menu_items.js"></script>
-		<script src="desktop/shared/js/user_menu.js"></script>
-
 		<!-- CSS -->
 		<link rel="stylesheet" href="desktop/shared/css/fonts.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/css/general.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/css/bar.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/profile/css/bar.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/css/profile.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/css/user.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/css/inputs.css" type="text/css"/>
 
+		<!-- JS -->
+		<script src="desktop/shared/js/jquery/jquery.min.js"></script>
+		<script src="desktop/shared/js/blurjs/blur.min.js"></script>
+		<script src="desktop/shared/js/background-blur/background-blur.min.js"></script>
+
+
+		<script src="strings/es/shared.js"></script>
+		<script src="strings/es/profile/index.js"></script>
+		<script src="desktop/shared/js/bar_user_image.js"></script>
+		<script src="desktop/shared/js/bar_tab1.js"></script>
+		<script src="desktop/shared/js/bar_tab2.js"></script>
+		<script src="desktop/shared/js/user_menu_items.js"></script>
+		<script src="desktop/shared/js/user_menu.js"></script>
+		<script src="desktop/shared/js/session.js"></script>
+
+		<script>
+			var user = <%- JSON.stringify(user) %>;
+		</script>
+
+		<script src="desktop/profile/js/data.js"></script>
+		<script src="desktop/shared/js/bar_window.js"></script>
+		<script src="desktop/profile/js/user_image.js"></script>
+		<script src="desktop/profile/js/window.js"></script>
 	</header>
 
 	<body>
@@ -96,7 +109,7 @@
 					<image src="desktop/shared/img/bar_arrow.png" id="bar_user_arrow"></image>
 				</div>
 				<div id="bar_user_name_container">
-					<div id="bar_user_name" class="str str_name_user_example"></div>
+					<div id="bar_user_name" class="str str_name_user"></div>
 				</div>
 				<div id="bar_user_show"></div>
 			</div>
@@ -125,7 +138,122 @@
 			</div>
 		</div>
 
+		<!-- Contenido -->
 
+		<div id="profile_content">
+
+			<div id="profile_section2">
+		
+				<!-- Idiomas que hablo -->
+				<div class="profile_card" style="overflow: hidden;">
+					<div class="lang_title">
+						<div class="str str_lang_spoken_title"></div>
+					</div>
+					<br>
+
+					<div class="lang_list">
+						<div class="str str_lang_native"></div> (<div class="str str_lang_native_title"></div>)
+						<div class="str" id="str_lang_spoken_list"></div>
+					</div>
+					<br>
+
+					<div class="lang_edit_button">
+						<div class="button_edit">
+							<div class="str str_button_edit_lang"></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Idiomas que manejo -->
+				<div class="profile_card" style="overflow: hidden;">
+					<div class="lang_title">
+						<div class="str str_lang_interest_title"></div>
+					</div>
+					<br>
+
+					<div class="lang_list">
+						<div class="lang_empity">
+							<i><div class="str str_lang_list_empity"></div></i>
+						</div>
+						<div class="str str_lang_list"></div>
+					</div>
+					<br>
+
+					<div class="lang_edit_button">
+						<div class="button_edit">
+							<div class="str str_button_edit_lang" id="str_button_edit_lang_int"></div>
+							<div class="str str_button_add_lang" id="str_button_add_lang_int"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="profile_section1">
+
+				<!-- Perfil -->
+				<div class="profile_card" style="padding-bottom: 20px;">
+
+					<div id="usr_image_container">
+						<div class="usr_image_background_back"></div>
+						<div id="usr_image_background" class="usr_image_background"></div>
+						<div class="usr_image_background_opacity"></div>
+
+						<div id="img_section2">
+							<div class="str_name_user name_user"></div>
+						</div>
+
+						<div id="img_section1">
+							<div class="usr_image"></div>
+						</div>
+
+						
+
+					</div>
+					<br>
+
+					<div id="usr_content">
+
+						<div id="usr_loc_container">
+							
+							<div id="usr_loc_section3">
+								<div class="button_edit">
+									<div class="str str_button_edit"></div>
+								</div>
+							</div>
+
+							<div id="usr_loc_section2">
+								<div class="str str_profile_country"></div>
+							</div>
+
+							
+
+							<div id="usr_loc_section1">
+								<div class="str str_loc_title"></div>:
+							</div>
+						</div>
+						<br>
+
+						<div id="usr_desc_container">
+							<div id="usr_desc_section3">
+								<div class="button_edit">
+									<div class="str str_button_edit"></div>
+								</div>
+							</div>
+
+							<div id="usr_desc_section1">
+								<div class="str str_desc_title"></div>:
+							</div>
+
+							<div id="usr_desc_section2">
+								Bla Bla
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
 
 	</body>
 </html>

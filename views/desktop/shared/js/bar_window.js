@@ -86,7 +86,7 @@ $(document).ready(function(){
             $('#bar_user_name_container').width(1066);
 
             if ($('#bar_user_show').width() == 80) {
-                $('#bar_user_show').width(name_width + 80);
+                
             }
 
             $('#bar_user_show').css("margin-left", (986 - name_width) + "px");

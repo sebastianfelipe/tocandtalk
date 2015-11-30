@@ -1,0 +1,113 @@
+#profile_content {
+	z-index: 10;
+
+	position: relative;
+	display: inline-block;
+	
+	width: 1066px;
+
+	margin-top: 72px;
+
+	text-align: left;
+
+	/*background: rgba(1,1,1,0.1);*/
+}
+
+#profile_section1, #profile_section2 {
+	
+	display: inline-block;
+
+	width: 530px;
+	height: auto;
+
+	left: 0px;
+
+	text-align: left;
+
+	/*background: rgba(1,1,1,0.2);*/
+}
+
+#profile_section1 {
+	position: relative;
+}
+
+#profile_section2 {
+	position: absolute;
+	margin-left: 536px;
+}
+
+.profile_card {
+	display: block;
+
+	/* Width 530px */
+	width: auto;
+	height: auto;
+
+	margin-bottom: 16px;
+	margin-left: 5px;
+	margin-right: 5px;
+
+	background: rgba(230,230,230,1);
+
+	border-radius: 			2px 2px 2px 2px;
+	-moz-border-radius: 	2px 2px 2px 2px;
+	-webkit-border-radius:	2px 2px 2px 2px;
+	border: 0px solid #000000;
+
+	-webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.35);
+	-moz-box-shadow: 	0px 0px 2px 0px rgba(0,0,0,0.35);
+	box-shadow: 		0px 0px 2px 0px rgba(0,0,0,0.35);
+}
+
+/* Hasta aquí copy-paste de home.css */
+
+/* Idiomas */
+
+.lang_title {
+	position: relative;
+	
+	font-family: FiraSansLight;
+	font-size: 22px;
+	color: rgba(70,70,70,1);
+
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.lang_title, .lang_edit_button {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.lang_list {
+	position: relative;
+
+	margin-left: 60px;
+	margin-top: 0px;
+	margin-right: 20px;
+
+	font-family: FiraSansBook;
+	font-size: 17px;
+	color: rgba(70,70,70,1);
+}
+
+.lang_edit_button {
+	position: relative;
+	text-align: right;
+	margin-bottom: 20px;
+}
+
+#str_button_add_lang_int {
+	display: none;
+}
+
+.lang_empity {
+	display: none;
+	text-align: center;
+	margin-right: 40px;
+	color: rgba(150,150,150,1);
+}
+
+#str_lang_interest_list {
+	display: none;
+}
