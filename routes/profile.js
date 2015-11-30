@@ -19,6 +19,13 @@ router.get('/', authenticate, function (req, res) {
               })
           }, 200);
       },
+      countries: function(callback){
+          setTimeout(function(){
+              models.Country.find().sort([['name', 1]]).exec(function (err, docs) {
+                callback(err, docs);
+              })
+          }, 200);
+      },
       user: function(callback) {
           setTimeout(function(){
               models.User.findOne({_username: req.session.username}, {password: 0}).exec(function (err, doc) {
@@ -28,7 +35,7 @@ router.get('/', authenticate, function (req, res) {
       }
   },
   function(err, results) {
-  	 return res.render('profile/index.html', {forceType: "desktop", user: results.user, languages: results.languages, req: req.body, errors: ""});
+  	 return res.render('profile/index.html', {forceType: "desktop", user: results.user, languages: results.languages, countries: results.countries, req: req.body, errors: ""});
   });
 });
 

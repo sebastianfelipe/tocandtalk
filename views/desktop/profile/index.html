@@ -29,6 +29,7 @@
 		<!-- JS -->
 		<script>
 			var languages = <%- JSON.stringify(languages) %>;
+			var countries = <%- JSON.stringify(countries) %>;
 			var user = <%- JSON.stringify(user) %>;
 			var req = <%- JSON.stringify(req) %>;
 			var errors = <%- JSON.stringify(errors) %>;
@@ -284,7 +285,9 @@
 								</div>
 
 								<div id="usr_loc_section2">
+									<!--
 									<div class="str str_profile_country"></div>
+									-->
 								</div>
 
 								<div id="usr_loc_section1">
@@ -303,7 +306,7 @@
 											name="s_country"
 											required=""
 											class="input_sel_contry">
-											<option value="CL">Chile</option>
+											<option value="" disabled="" selected="" hidden="">Selecciona tu nacionalidad</option>
 										</select>
 									</div>
 
@@ -338,7 +341,6 @@
 								</div>
 
 								<div id="usr_desc_section2">
-									Bla Bla
 								</div>
 
 							</div>
@@ -350,7 +352,7 @@
 								<div class="str str_desc_edit_title"></div>:
 
 								<form>
-									<textarea width="430" name="input_edit_desc" class="input_desc"></textarea>
+									<textarea width="430" id="input_edit_desc" name="input_edit_desc" class="input_desc"></textarea>
 
 									<div class="save_cancel_container">
 										<div id="b_cancel_description" class="button_cancel">
