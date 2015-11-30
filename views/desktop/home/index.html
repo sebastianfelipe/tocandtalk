@@ -15,39 +15,44 @@
 		<link href="desktop/shared/img/icons/tocandtalk-android-192x192.png" rel="icon" sizes="192x192" />
 		<link href="desktop/shared/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
 
-		<!-- JS -->
 		<script>
 			var languages = <%- JSON.stringify(languages) %>;
 			var user = <%- JSON.stringify(user) %>;
 			var req = <%- JSON.stringify(req) %>;
 			var errors = <%- JSON.stringify(errors) %>;
 		</script>
+
+		<!-- LIBS -->
 		<script src="desktop/shared/js/jquery/jquery.min.js"></script>
+		
+		<!-- CSS -->
+		<link rel="stylesheet" href="desktop/shared/css/fonts.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/shared/css/general.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/shared/css/bar.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/home/css/bar.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/home/css/home.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/home/css/inputs.css" type="text/css"/>
 
+		<!-- STRINGS -->
 		<script src="strings/es/shared.js"></script>
-		<script src="strings/es/home/index.js"></script>
-		<script src="desktop/shared/js/session.js"></script>
-		<script src="desktop/shared/js/bar_user_image.js"></script>
-		<script src="desktop/shared/js/bar_window.js"></script>
+		<script src="strings/es/home.js"></script>
 
+		<!-- JS -->
+		<script src="desktop/shared/js/functions.js"></script>
+
+		<script src="desktop/shared/js/bar_user_image.js"></script>
 		<script src="desktop/shared/js/bar_tab2.js"></script>
 		<script src="desktop/shared/js/bar_tab3.js"></script>
 		<script src="desktop/shared/js/user_menu_items.js"></script>
 		<script src="desktop/shared/js/user_menu.js"></script>
 
 		<script src="desktop/home/js/button_start.js"></script>
-		<script src="desktop/home/js/window.js"></script>
 
+		<script src="desktop/shared/js/load.js"></script>
 		<script src="desktop/home/js/load.js"></script>
-		<!-- CSS -->
-		<link rel="stylesheet" href="desktop/shared/css/fonts.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/shared/css/general.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/shared/css/bar.css" type="text/css"/>
 
-		<link rel="stylesheet" href="desktop/home/css/bar.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/home/css/home.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/home/css/inputs.css" type="text/css"/>
-
+		<script src="desktop/shared/js/bar_window.js"></script>
+		<script src="desktop/home/js/window.js"></script>
 	</header>
 
 	<body>
@@ -110,11 +115,7 @@
 					<image src="desktop/shared/img/bar_arrow.png" id="bar_user_arrow"></image>
 				</div>
 				<div id="bar_user_name_container">
-					<div id="bar_user_name" class="str"></div>
-
-					<!--
-					<div id="bar_user_name" class="str str_name_user_example"></div>
-					-->
+					<div id="bar_user_name" class="str str_name_user"></div>
 				</div>
 				<div id="bar_user_show"></div>
 			</div>

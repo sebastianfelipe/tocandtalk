@@ -16,26 +16,31 @@ $(document).ready(function(){
 
   });
 
-  $("#b_edit_description").click(function(){
+  $("#b_edit_description").click(function() {
 
     $('#c_description').css("display", "none");
     $('#c_description_edit').fadeIn(300);
+
+    if (user) {
+      if (user.description) {            
+          $('#input_edit_desc').val(user.description);
+      }
+    }
     
   });
 
   $("#b_edit_location").click(function(){
-    var dif_height = $('#c_location_edit').height() - $('#c_location').height();
+    //var dif_height = $('#c_location_edit').height() - $('#c_location').height();
 
     $('#c_location').css("display", "none");
+    $('#c_location_edit').fadeIn(300);
 
+    /*
     $("#usr_loc_container").animate({
       height: '+=' + dif_height + 'px'
     }, 1000);
-
-    $('#c_location_edit').fadeIn(300);
-
     $("#usr_loc_container").height(auto);
-
+    */
   });
 
 
@@ -62,17 +67,17 @@ $(document).ready(function(){
   });
 
   $("#b_cancel_location").click(function(){
-    var dif_height = $('#c_location').height() - $('#c_location_edit').height();
+    //var dif_height = $('#c_location').height() - $('#c_location_edit').height();
 
     $('#c_location').fadeIn(300);
+    $('#c_location_edit').css("display", "none");
 
+    /*
     $("#usr_loc_container").animate({
       height: '+=' + dif_height + 'px'
     }, 1000);
-
-    $('#c_location_edit').css("display", "none");
-
     $("#usr_loc_container").height(auto);
+    */
   });
 
   /* Save */
@@ -95,24 +100,20 @@ $(document).ready(function(){
     $('#c_description').fadeIn(300);
     $('#c_description_edit').css("display", "none");
 
-
-
   });
 
   $("#b_save_location").click(function(){
-    var dif_height = $('#c_location').height() - $('#c_location_edit').height();
+    //var dif_height = $('#c_location').height() - $('#c_location_edit').height();
 
     $('#c_location').fadeIn(300);
+    $('#c_location_edit').css("display", "none");
 
+    /*
     $("#usr_loc_container").animate({
       height: '+=' + dif_height + 'px'
     }, 1000);
-
-    $('#c_location_edit').css("display", "none");
-
     $("#usr_loc_container").height(auto);
-
-
+    */
 
   });
 

@@ -12,9 +12,5 @@ $(document).ready(function () {
         $('#s_country').append(new Option(country.name, country.name));
     });
 */
-	console.log('in');
-	if (user.first_name)
-	{
-		$('#bar_user_name').html(user.first_name);
-	}
+	
 });

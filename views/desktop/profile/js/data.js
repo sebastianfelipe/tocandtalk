@@ -10,11 +10,9 @@
 	_id
 */
 $(document).ready(function(){
-	var name =  capitalizeFirstLetterName(user['first_name']) + " " + capitalizeFirstLetterName(user['last_name']);
-
-	$('.str_name_user').text(name);
-	$('.str_profile_country').text(user['nationality']);
-	$('.str_lang_native').text(user['native_language']);
+	
+	//$('.str_profile_country').text(user['nationality']);
+	//$('.str_lang_native').text(user['native_language']);
 
 	/* Idiomas que me interesan */
 
@@ -64,13 +62,4 @@ $(document).ready(function(){
 
 
 	}
-
-
-
-
-	
-
-
-
-
 });

@@ -13,24 +13,18 @@ $(document).ready(function () {
     // Informacion del usuario
     if (user)
     {
-        if (user.first_name)
-        {
-            $('#bar_user_name').html(user.first_name);
-        }
-
         if (user.nationality)
         {
-            $('#usr_loc_section2').html(user.nationality);
+            $('.str_profile_country').text(user.nationality);
         }
         if (user.description)
-        {
-            $('#usr_desc_section2').html(user.description);
-            $('#input_edit_desc').html(user.description);
+        {            
+            $('.str_desc_content').text(user.description);
+        }
+        if (user.native_language) {
+            $('.str_lang_native').text(user.native_language);
         }
 
-        fullname = user.first_name + " " + user.last_name;
-        console.log(fullname);
-        $('#img_section2').html(fullname);
     }
 
     // Manejo de casos relacionados con errores de formulario e informacion que requiere ser cargada otra vez

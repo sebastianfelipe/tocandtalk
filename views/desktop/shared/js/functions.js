@@ -11,11 +11,3 @@ function capitalizeFirstLetterName(name) {
 	}
 	return name1;
 }
-
-
-$(document).ready(function(){
-	
-
-	
-
-});

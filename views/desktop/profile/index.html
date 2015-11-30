@@ -15,6 +15,18 @@
 		<link href="desktop/shared/img/icons/tocandtalk-android-192x192.png" rel="icon" sizes="192x192" />
 		<link href="desktop/shared/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
 
+		<script>
+			var languages = <%- JSON.stringify(languages) %>;
+			var countries = <%- JSON.stringify(countries) %>;
+			var user = <%- JSON.stringify(user) %>;
+			var req = <%- JSON.stringify(req) %>;
+			var errors = <%- JSON.stringify(errors) %>;
+		</script>
+    	
+    	<!-- LIBS -->
+    	<script src="desktop/shared/js/jquery/jquery.min.js"></script>
+		<script src="desktop/shared/js/background-blur/background-blur.min.js"></script>
+
 		<!-- CSS -->
 		<link rel="stylesheet" href="desktop/shared/css/fonts.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/css/general.css" type="text/css"/>
@@ -26,34 +38,27 @@
 		<link rel="stylesheet" href="desktop/profile/css/edit_profile.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/profile/css/edit.css" type="text/css"/>
 
-		<!-- JS -->
-		<script>
-			var languages = <%- JSON.stringify(languages) %>;
-			var countries = <%- JSON.stringify(countries) %>;
-			var user = <%- JSON.stringify(user) %>;
-			var req = <%- JSON.stringify(req) %>;
-			var errors = <%- JSON.stringify(errors) %>;
-		</script>
-    	<script src="desktop/shared/js/jquery/jquery.min.js"></script>
-		<script src="desktop/shared/js/blurjs/blur.min.js"></script>
-		<script src="desktop/shared/js/background-blur/background-blur.min.js"></script>
-
-		<script src="desktop/profile/js/edit_profile.js"></script>
-    	
+		<!-- Strings -->
 		<script src="strings/es/shared.js"></script>
-		<script src="strings/es/profile/index.js"></script>
+		<script src="strings/es/profile.js"></script>
+
+		<!-- JS -->
+		<script src="desktop/shared/js/functions.js"></script>
+    	
 		<script src="desktop/shared/js/bar_user_image.js"></script>
 		<script src="desktop/shared/js/bar_tab1.js"></script>
 		<script src="desktop/shared/js/bar_tab2.js"></script>
 		<script src="desktop/shared/js/user_menu_items.js"></script>
 		<script src="desktop/shared/js/user_menu.js"></script>
-		<script src="desktop/shared/js/session.js"></script>
 
+		<script src="desktop/profile/js/edit_profile.js"></script>
 		<script src="desktop/profile/js/data.js"></script>
-		<script src="desktop/shared/js/bar_window.js"></script>
 		<script src="desktop/profile/js/user_image.js"></script>
-		<script src="desktop/profile/js/window.js"></script>
+		<script src="desktop/shared/js/load.js"></script>
 		<script src="desktop/profile/js/load.js"></script>
+
+		<script src="desktop/shared/js/bar_window.js"></script>
+		<script src="desktop/profile/js/window.js"></script>
 
 	</header>
 
@@ -118,10 +123,7 @@
 					<image src="desktop/shared/img/bar_arrow.png" id="bar_user_arrow"></image>
 				</div>
 				<div id="bar_user_name_container">
-					<div id="bar_user_name" class="str"></div>
-					<!--
 					<div id="bar_user_name" class="str str_name_user"></div>
-					-->
 				</div>
 				<div id="bar_user_show"></div>
 			</div>
@@ -260,10 +262,8 @@
 						<div id="usr_image_background" class="usr_image_background"></div>
 						<div class="usr_image_background_opacity"></div>
 
-						<div id="img_section2" class="name_user">
-							<!--
+						<div id="img_section2">
 							<div class="str_name_user name_user"></div>
-							-->
 						</div>
 
 						<div id="img_section1">
@@ -287,9 +287,7 @@
 								</div>
 
 								<div id="usr_loc_section2">
-									<!--
 									<div class="str str_profile_country"></div>
-									-->
 								</div>
 
 								<div id="usr_loc_section1">
@@ -308,7 +306,7 @@
 											name="s_country"
 											required=""
 											class="input_sel_contry">
-											<option value="" disabled="" selected="" hidden="">Selecciona tu nacionalidad</option>
+											<option value="" disabled="" selected="" hidden=""></option>
 										</select>
 									</div>
 
@@ -343,12 +341,13 @@
 								</div>
 
 								<div id="usr_desc_section2">
+									<div class="str usr_desc_text str_desc_content"></div>
 								</div>
 
 							</div>
 
 							<!--
-								Editar Ubicación
+								Editar Descripción
 							-->
 							<div id="c_description_edit">
 								<div class="str str_desc_edit_title"></div>:

@@ -1,4 +1,5 @@
 .info {
+	z-index: 70;
 	position: absolute;
 	margin-left: 461px;
 	background: rgba(20,20,240,1);
