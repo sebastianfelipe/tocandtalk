@@ -18,7 +18,7 @@ function capitalizeWord(word) {
 	if (word_tmp)
 	{
 		word = word_tmp[0].toUpperCase();
-		if (word_tmp.length > 2)
+		if (word_tmp.length > 1)
 		{
 			word += word_tmp.substring(1).toLowerCase();
 		}
