@@ -1,6 +1,6 @@
 body {
 	text-align: center;
-	background: rgba(255,255,255,1);
+	background: rgba(244,244,244,1);
 }
 
 t1 {
@@ -49,12 +49,21 @@ t3 {
 	text-decoration: underline;
 }
 
+#login_cont {
+	z-index: 70;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
 #login {
+	z-index: 70;
 	display: inline-block;
+	
 	width: 340px;
 	text-align: center;
 
-	margin-top: 64px;
+	margin-top: 240px;
 	margin-bottom: 15px;
 	padding-top: 18px;
 	padding-bottom: 12px;
@@ -281,4 +290,8 @@ t3 {
 	text-decoration: none;
 	color: rgba(255,255,255,1);
 	background: inherit;
+}
+
+#bar_logo {
+	display: none;
 }
