@@ -66,6 +66,10 @@ $(document).ready(function(){
 		"Editar idiomas que me interesan"
 	);
 
+	$('.str_desc_no').text(
+		"No hay ninguna descripición en su perfil"
+	);
+
 
 
 	

@@ -180,7 +180,11 @@
 	margin-left: 370px;
 }
 
-.usr_desc_text {
+.usr_desc_text, #desc_no {
 	font-size: 15px;
 }
 
+#desc_no {
+	display: none;
+	color: rgba(150,150,150,1);
+}
