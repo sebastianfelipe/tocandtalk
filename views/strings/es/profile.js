@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	document.title = "Toc&Talk! - Mi Perfil";
 
 	$('.str_button_edit').text(
 		"Editar"
@@ -15,7 +16,6 @@ $(document).ready(function(){
 	$('.str_button_save_lang').text(
 		"Guardar"
 	);
-
 	
 
 	$('.str_button_edit_lang').text(

@@ -10,7 +10,7 @@ $(document).ready(function(){
         overlay: 'rgba(0, 0, 0, .3)'
     });
 	*/
-/*
+    /*
 	var newImg = new Image();
 
     newImg.src = "desktop/shared/img/user_image_example.jpg";

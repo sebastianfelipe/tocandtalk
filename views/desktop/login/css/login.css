@@ -27,6 +27,9 @@ t3 {
 	color: rgba(11,164,185,1);
 	margin-top: 2px;
 }
+.leLink:hover, .leLink:focus {
+	text-decoration: underline;
+}
 .leLink a:link { 
 	text-decoration:none;
 	color: rgba(11,164,185,1);
@@ -51,7 +54,7 @@ t3 {
 	width: 340px;
 	text-align: center;
 
-	margin-top: 60px;
+	margin-top: 64px;
 	margin-bottom: 15px;
 	padding-top: 18px;
 	padding-bottom: 8px;
@@ -149,6 +152,8 @@ t3 {
 	-webkit-border-radius: 4px 4px 4px 4px;
 	border: 0px solid #000000;
 
+	cursor: pointer;
+
 	-o-transition:.7s;
 	-ms-transition:.7s;
 	-moz-transition:.7s;
@@ -216,4 +221,64 @@ t3 {
 .img-error {
 	width: 10px;
 	margin-right: 5px;
+}
+
+.button_bar {
+	position: relative;
+	display: inline-block;
+
+	width: auto;
+	height: 24px;
+
+	padding: 6px 8px 4px 8px;
+
+	margin-top: 4px;
+	margin-right: 4px;
+	margin-left: 4px;
+
+	text-decoration: none;
+	font-family: FiraSansBook;
+	font-size: 16px;
+	text-align: center;
+
+	color: rgba(255,255,255,1);
+	background: rgba(11,164,185,0);
+
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border: 1px solid #ffffff;
+
+	-o-transition:.7s;
+	-ms-transition:.7s;
+	-moz-transition:.7s;
+	-webkit-transition:.7s;
+	transition:.7s;
+}
+
+.button_bar:hover {
+	background: rgba(255,255,255,1);
+	color: rgba(11,164,185,1);
+}
+
+.button_bar:active {
+	background: rgba(255,255,255,0.7);
+	color: rgba(11,164,185,1);
+}
+
+.button_bar:focus {
+	background: rgba(255,255,255,0.7);
+	color: rgba(11,164,185,1);
+}
+
+.button_bar a:link { 
+	text-decoration: none;
+	color: rgba(255,255,255,1);
+	background: inherit;
+}
+
+.buton_bar a:visited {
+	text-decoration: none;
+	color: rgba(255,255,255,1);
+	background: inherit;
 }

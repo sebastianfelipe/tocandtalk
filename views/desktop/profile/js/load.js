@@ -27,6 +27,11 @@ $(document).ready(function () {
 
     }
 
+    if ($('#img_section2').height() >= 40) {
+        var new_margin = 100 - (($('#img_section2').height() - 36) / 2);
+        $('#img_section2').css("margin-top", new_margin + "px");
+    }
+
     // Manejo de casos relacionados con errores de formulario e informacion que requiere ser cargada otra vez
     if (req)
     {

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Registro - Toc&Talk!</title>
+		<title>Toc&Talk!</title>
 		<meta name="application-name" content="Toc&Talk!"/>
 
 		<!-- Icons -->
@@ -28,7 +28,7 @@
 		<!-- CSS -->
 		<link rel="stylesheet" href="desktop/shared/css/fonts.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/css/general.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/shared/css/barra-noinicio.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/shared/css/bar.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/register/css/error-form.css" type="text/css"/>
 
 		<link rel="stylesheet" href="desktop/register/css/register.css" type="text/css"/>
@@ -43,21 +43,35 @@
 		<!-- JS -->
 		<script src="desktop/register/js/register.js" type="text/javascript"></script>
 		<script src="desktop/register/js/info.js" type="text/javascript"></script>
-		
 		<script src="desktop/register/js/load.js" type="text/javascript"></script>
 		<script src="desktop/register/js/error_handling.js" type="text/javascript"></script>
+
+		<script src="desktop/shared/js/bar_window.js" type="text/javascript"></script>
 	</head>
 
 	<body>
-		<div id="barra-superior">
-     		<image src="desktop/shared/img/tocandtalk-logo.png" id="img-logo">
-     		<div class="elementos-barra">
-     			<a href="/login"><div class="boton-ingresar">Ingresar</div></a>
-     		</div>
-    	</div>
+		<!-- Barra superior -->
+		<div id="bar">
+			<div id="bar_content">
+				<div id="bar_section_tabs">
+					<!-- Logo -->
+					<a href="/" title="">
+						<image src="desktop/shared/img/tocandtalk-logo.png" id="bar_logo"></image>
+						<image src="desktop/shared/img/tocandtalk_logo_solo.png" id="bar_logo_solo"></image>
+					</a>
+				</div>
+				<div id="bar_section_user1" class="bar_section_user">
+					<a href="/login">
+						<div class="boton-ingresar">
+							<div class="str str_button_login"></div>
+						</div>
+					</a>
+     			</div>
+			</div>
+		</div>
 
 		<div id="register">
-			<t1>Crea tu cuenta Toc&Talk!</t1>
+			<t1><div class="str str_title"></div></t1>
 
 			<form class="formulario" action="/register" onsubmit="return validateForm()" method="post">
 				
@@ -69,7 +83,7 @@
 						id="i_name"
 						name="i_name"
 						type="text"
-						placeholder="Nombres"
+						placeholder=""
 						
 						required="required"
 						autocomplete="on"
@@ -83,7 +97,7 @@
 						id="i_lastname"
 						name="i_lastname"
 						type="text"
-						placeholder="Apellidos"
+						placeholder=""
 						
 						required="required"
 						autocomplete="on"
@@ -127,7 +141,7 @@
 						id="i_username"
 						name="i_username"
 						type="text"
-						placeholder="Nombre de usuario"
+						placeholder=""
 
 						required="required"
 						autocomplete="off"
@@ -170,7 +184,7 @@
 						id="i_email"
 						name="i_email"
 						type="email"
-						placeholder="Correo electrónico"
+						placeholder=""
 
 						autocomplete="on"
 						maxlength="100"
@@ -211,7 +225,7 @@
 						id="i_password"
 						name="i_password"
 						type="password"
-						placeholder="Contraseña"
+						placeholder=""
 						
 						required="required"
 						autocomplete="off"
@@ -237,7 +251,7 @@
 						id="i_password_confirmation"
 						name="i_password_confirmation"
 						type="password"
-						placeholder="Confirmar contraseña"
+						placeholder=""
 						
 						required="required"
 						autocomplete="off"
@@ -272,7 +286,7 @@
 					</div>
 
 					<div id="labelFecha">
-						<t2>Cumpleaños</t2>
+						<t2><div class="str str_brithday_title"></div></t2>
 					</div>
 
 					<!-- Cumpleaños -->
@@ -288,7 +302,7 @@
 						id="i_day"
 						name="i_day"
 						type="number"
-						placeholder="Día"
+						placeholder=""
 						
 						autocomplete="off"
 						min="1"
@@ -302,8 +316,7 @@
 						id="s_month"
 						class="inputSel inputFechaMes"
 						name="s_month"
-						required=""
-						placeholder="lero">
+						required="">
 						<option value="" disabled="" selected="" hidden="">Mes</option>
 						<option value="enero">Enero</option>
 						<option value="febrero">Febrero</option>
@@ -323,7 +336,7 @@
 						id="i_year"
 						name="i_year"
 						type="number"
-						placeholder="Año"
+						placeholder=""
 						
 						autocomplete="off"
 						min="1920"
@@ -345,9 +358,13 @@
 				<div>
 					<!-- Sexo -->
 					<input type="radio" name="r_sex" value="hombre">
-						<label for="hombre"><span><span></span></span><t2>Hombre</t2></label>
+						<label for="hombre"><span><span></span></span>
+							<t2><div class="str str_sex_male"></div></t2>
+						</label>
 					<input type="radio" name="r_sex" value="mujer" required value="1">
-						<label for="mujer"><span><span></span></span><t2>Mujer</t2></label>
+						<label for="mujer"><span><span></span></span>
+							<t2><div class="str str_sex_female"></div></t2>
+						</label>
 				</div>
 
 				<!-- Error sexo -->
