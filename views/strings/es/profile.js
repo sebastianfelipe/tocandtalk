@@ -67,11 +67,7 @@ $(document).ready(function(){
 	);
 
 	$('.str_desc_no').text(
-		"No hay ninguna descripición en su perfil"
+		"Ninguna descripción que mostrar"
 	);
-
-
-
-	
 
 });
