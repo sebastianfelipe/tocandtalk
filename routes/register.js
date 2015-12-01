@@ -18,7 +18,7 @@ var validation_module = require('../modules/validations.js');
 var authenticate_module = require('../modules/authenticate.js');
 
 // Function Imports
-var authenticate = authenticate_module.authenticate;
+var authenticateRegister = authenticate_module.authenticateRegister;
 
 // Shared Variables
 var error_adapter = function(model_name, err) {
@@ -38,7 +38,7 @@ var error_adapter = function(model_name, err) {
   return error_list.join(';');
 }
 
-router.get('/', function (req, res) {
+router.get('/', authenticateRegister, function (req, res) {
   async.parallel({
       countries: function(callback){
           setTimeout(function(){
