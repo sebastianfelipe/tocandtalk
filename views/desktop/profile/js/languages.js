@@ -12,13 +12,17 @@
 $(document).ready(function(){
 
 	$.each(languages, function (i, item) {
-		$('.s_languages').append($('<option>', { 
+		$('.s_languages').append($('<option>', {
 			value: item.name,
 			text : item.name 
 		}));
 	});
 
 	/* Idiomas que me interesan */
+<<<<<<< HEAD
+=======
+
+>>>>>>> controllers
 /*
 	if (user['interest_languages'].length == 0) {
 
@@ -55,12 +59,28 @@ $(document).ready(function(){
 
 /*
 	if (user['spoken_languages'].length > 0) {
+		// Información para mostrar
+		var s_lang = user.spoken_languages;
+		console.log(s_lang)
+		for (key in s_lang)
+		{
+			$('#str_lang_spoken_list').append($('<p>', {value: s_lang[key], text: s_lang[key]}));
+		}
+
+		for (key in s_lang)
+		{
+			$('#str_lang_spoken_list_edit').append($('<p>', {value: s_lang[key], text: s_lang[key]}));
+		}
+		
+		/*
 		var s_lang = user['spoken_languages'];
 		var s_lang_str = "";
 		var s_lang_edit_str = "";
 		var s_lang_length = user['spoken_languages'].length;
 
+
 		for (i = 0; i < user['spoken_languages'].length; i++) {
+
 			s_lang_str += "<br>";
 			s_lang_str += s_lang[0];
 
@@ -73,11 +93,7 @@ $(document).ready(function(){
 		$('#str_lang_spoken_list').html(s_lang_str);
 		
 		$('#str_lang_spoken_list_edit').html(s_lang_edit_str);
-
-	} else {
-
-
+		*/
 
 	}
-*/
 });
