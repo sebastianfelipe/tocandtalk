@@ -1,7 +1,7 @@
 /*  Ajusta la barra principal según el tamaño de la ventana.
     Tamaño máximo: 1066px
     */
-$(document).ready(function(){
+$(document).ready(function() {
 
 	function resizeContent() {
         var win_width = $(window).width();
