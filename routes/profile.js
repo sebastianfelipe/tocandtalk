@@ -135,6 +135,7 @@ router.post('/add_user_interest_language',function (req, res) {
   var errors = "";
   console.log(req.body);
   add_interest_language = req.body.s_interest_languages;
+  console.log(add_interest_language);
 
   async.parallel({
       user: function(callback) {
@@ -145,7 +146,7 @@ router.post('/add_user_interest_language',function (req, res) {
                   add_interest_language_id = doc.interest_languages.indexOf(add_interest_language);
                   if (add_interest_language_id < 0)
                   {
-                    doc.interest_languages.push(req.body.add_interest_language);
+                    doc.interest_languages.push(add_interest_language);
                   }
                   doc.save(function (err) {
                     var errors_tmp = error_adapter(models.Username.modelName, err);
