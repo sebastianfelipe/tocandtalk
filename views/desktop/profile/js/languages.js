@@ -12,17 +12,23 @@
 $(document).ready(function(){
 
 	$.each(languages, function (i, item) {
-		$('.s_languages').append($('<option>', {
+		$('#s_interest_languages').append($('<option>', {
 			value: item.name,
 			text : item.name 
 		}));
 	});
 
+	$.each(languages, function (i, item) {
+		$('#s_spoken_languages').append($('<option>', {
+			value: item.name,
+			text : item.name 
+		}));
+	});
 
 	/* Idiomas que hablo */
 
 
-	if (user['spoken_languages'].length > 0)
+	if (user.spoken_languages.length > 0)
 	{
 		// Información para mostrar
 		var s_lang = user.spoken_languages;
@@ -44,7 +50,7 @@ $(document).ready(function(){
 	}
 	/* Idiomas que me interesan */
 
-	if (user['interest_languages'].length > 0)
+	if (user.interest_languages.length > 0)
 	{
 		// Información para mostrar
 		var i_lang = user.interest_languages;

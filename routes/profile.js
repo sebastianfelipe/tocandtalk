@@ -184,7 +184,7 @@ router.post('/add_user_spoken_language',function (req, res) {
                 if (doc)
                 {
                   add_spoken_language_id = doc.spoken_languages.indexOf(add_spoken_language);
-                  if (add_spoken_language_id < 0)
+                  if ((add_spoken_language_id < 0) && (add_spoken_language != doc.native_language))
                   {
                     doc.spoken_languages.push(add_spoken_language);
                   }
