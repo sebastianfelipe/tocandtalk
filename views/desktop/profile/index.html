@@ -46,6 +46,7 @@
 		<script src="desktop/shared/js/functions.js"></script>
 		<script src="desktop/profile/js/functions.js"></script>
 		<script src="desktop/profile/js/classes.js"></script>
+		<script src="desktop/profile/js/functions.js"></script>
     	
 		<script src="desktop/shared/js/bar_user_image.js"></script>
 		<script src="desktop/shared/js/bar_tab1.js"></script>
@@ -176,6 +177,7 @@
 
 						<div class="lang_list">
 							<div class="str str_lang_native"></div> (<div class="str str_lang_native_title"></div>)
+							<br />
 							<div class="str" id="str_lang_spoken_list"></div>
 						</div>
 						<br>
@@ -242,10 +244,13 @@
 						<br>
 
 						<div class="lang_list">
+							<!--
 							<div class="lang_empity">
 								<i><div class="str str_lang_list_empity"></div></i>
 							</div>
-							<div class="str str_lang_list"></div>
+							-->
+							<div class="str" id="str_lang_interest_list"></div>
+							<!--<div class="str str_lang_list" id="str_lang_interest_list"></div>-->
 						</div>
 						<br>
 
@@ -267,7 +272,7 @@
 						</div>
 
 						<div class="lang_list">
-							<div class="str str_lang_list_edit"></div>
+							<div class="str str_lang_list_edit" id="str_lang_interest_list_edit"></div>
 						</div>
 
 						<!-- Añadir idioma que me interesa -->
