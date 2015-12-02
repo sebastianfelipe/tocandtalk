@@ -89,7 +89,7 @@ router.post('/edit_user_nationality',function (req, res) {
     errors += error_list.join('');
     console.log(err);
     console.log(results.user);
-    res.redirect('/profile');
+    return res.redirect('/profile');
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
 });
@@ -126,7 +126,7 @@ router.post('/edit_user_description',function (req, res) {
     errors += error_list.join('');
     console.log(err);
     console.log(results.user);
-    res.redirect('/profile');
+    return res.redirect('/profile');
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
 });
