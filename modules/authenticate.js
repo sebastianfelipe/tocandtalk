@@ -7,7 +7,7 @@ var authenticate = function (req, res, next)
 	}
 	else
 	{
-		return next();
+		next();
 	}
 }
 
@@ -19,7 +19,7 @@ var authenticateRegister = function (req, res, next)
 	}
 	else
 	{
-		return next();
+		next();
 	}
 }
 
