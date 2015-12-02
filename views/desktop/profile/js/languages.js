@@ -53,8 +53,7 @@ $(document).ready(function(){
 
 	/* Idiomas que manejo */
 
-	if (user['spoken_languages'].length != 0) {
-
+	if (user['spoken_languages'].length > 0) {
 		var s_lang = user['spoken_languages'];
 		var s_lang_str = "";
 		var s_lang_edit_str = "";
@@ -62,17 +61,17 @@ $(document).ready(function(){
 
 		for (i = 0; i < user['spoken_languages'].length; i++) {
 			s_lang_str += "<br>";
-			s_lang_str += i_lang[0];
+			s_lang_str += s_lang[0];
 
 			s_lang_edit_str += "<br>";
-			s_lang_edit_str += i_lang[0];
-			s_lang_edit_str += ' <a href="/profile"><div class="str">(Eliminar)</div></a>';
+			s_lang_edit_str += s_lang[0];
+			s_lang_edit_str += '<form action="/profile/remove_spoken_language" method="post"><input type="submit" id="test" class="str">(Eliminar)</input></form>';
 		}
 
 		$('#str_lang_spoken_list').css("display", "block");
-		$('#str_lang_spoken_list').text(s_lang_str);
+		$('#str_lang_spoken_list').html(s_lang_str);
 		
-		$('#str_lang_spoken_list_edit').text(s_lang_edit_str);
+		$('#str_lang_spoken_list_edit').html(s_lang_edit_str);
 
 	} else {
 
