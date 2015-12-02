@@ -111,3 +111,24 @@
 #str_lang_interest_list {
 	display: none;
 }
+
+.add_lang {
+	display: block;
+
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-right: 50px;
+
+	padding: 10px;
+
+	font-family: FiraSansBook;
+	font-size: 17px;
+	color: rgba(70,70,70,1);
+
+	background: rgba(220,220,220,1);
+
+	border-radius: 			2px 2px 2px 2px;
+	-moz-border-radius: 	2px 2px 2px 2px;
+	-webkit-border-radius:	2px 2px 2px 2px;
+	border: 0px solid #000000;
+}

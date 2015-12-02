@@ -52,7 +52,7 @@
 		<script src="desktop/shared/js/user_menu.js"></script>
 
 		<script src="desktop/profile/js/edit_profile.js"></script>
-		<script src="desktop/profile/js/data.js"></script>
+		<script src="desktop/profile/js/languages.js"></script>
 		<script src="desktop/profile/js/user_image.js"></script>
 		<script src="desktop/shared/js/load.js"></script>
 		<script src="desktop/profile/js/load.js"></script>
@@ -193,6 +193,27 @@
 							<div class="str str_edit_lang_spoken_title"></div>
 						</div>
 						<br>
+
+						<div class="lang_list">
+							<div class="str" id="str_lang_spoken_list_edit"></div>
+						</div>
+
+						<!-- Añadir idioma que hablo -->
+						<div class="add_lang">
+							Añadir idioma<br>
+							<form>
+								<select
+									id="s_spoken_languages"
+									style="width:170px;"
+									name="s_spoken_languages"
+									class="s_languages"
+									required="">
+									<option value="" disabled="" selected="" hidden="">Idioma</option>
+								</select>
+
+								<input type="submit" value="Añadir" class="boton-registrar">
+							</form>
+						</div>
 						
 						<div class="save_cancel_container lang_buttons">
 							<div id="b_cancel_spoken_lang" class="button_cancel">
@@ -240,6 +261,27 @@
 					<div id="c_interest_languages_edit">
 						<div class="lang_title">
 							<div class="str str_edit_lang_interest_title"></div>
+						</div>
+
+						<div class="lang_list">
+							<div class="str str_lang_list_edit"></div>
+						</div>
+
+						<!-- Añadir idioma que me interesa -->
+						<div class="add_lang">
+							Añadir idioma<br>
+							<form>
+								<select
+									id="s_interest_languages"
+									style="width:170px;"
+									name="s_interest_languages"
+									class="s_languages"
+									required="">
+									<option value="" disabled="" selected="" hidden="">Idioma</option>
+								</select>
+
+								<input type="submit" value="Añadir" class="boton-registrar">
+							</form>
 						</div>
 
 						<div class="save_cancel_container lang_buttons">
@@ -342,7 +384,7 @@
 
 								<div id="usr_desc_section2">
 									<div class="str usr_desc_text str_desc_content"></div>
-									<i><div class="str str_desc_no" id="desc_no"></div><i> 
+									<i><div class="str str_desc_no" id="desc_no"></div></i> 
 								</div>
 
 							</div>

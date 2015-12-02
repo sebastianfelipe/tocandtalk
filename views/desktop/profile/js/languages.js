@@ -10,9 +10,13 @@
 	_id
 */
 $(document).ready(function(){
-	
-	//$('.str_profile_country').text(user['nationality']);
-	//$('.str_lang_native').text(user['native_language']);
+
+	$.each(languages, function (i, item) {
+		$('.s_languages').append($('<option>', { 
+			value: item.name,
+			text : item.name 
+		}));
+	});
 
 	/* Idiomas que me interesan */
 
@@ -27,18 +31,24 @@ $(document).ready(function(){
 
 		var i_lang = user['interest_languages'];
 		var i_lang_str = "";
+		var i_lang_edit_str = "";
 		var i_lang_length = user['interest_languages'].length;
 
 		for (i = 0; i < user['interest_languages'].length; i++) {
 			i_lang_str += i_lang[0];
+			i_lang_edit_str += i_lang[0];
+
+			i_lang_edit_str += ' <a href="/profile"><div class="str">(Eliminar)</div></a>';
 
 			if (i != i_lang_length - 1) {
 				i_lang_str += "<br>";
+				i_lang_edit_str += "<br>";
 			}
 		}
 
 		$('#str_lang_interest_list').css("display", "block");
 		$('#str_lang_interest_list').text(i_lang_str);
+		$('#str_lang_list_edit').text(i_lang_edit_str);
 	}
 
 	/* Idiomas que manejo */
@@ -47,19 +57,27 @@ $(document).ready(function(){
 
 		var s_lang = user['spoken_languages'];
 		var s_lang_str = "";
+		var s_lang_edit_str = "";
 		var s_lang_length = user['spoken_languages'].length;
 
 		for (i = 0; i < user['spoken_languages'].length; i++) {
 			s_lang_str += "<br>";
 			s_lang_str += i_lang[0];
+
+			s_lang_edit_str += "<br>";
+			s_lang_edit_str += i_lang[0];
+			s_lang_edit_str += ' <a href="/profile"><div class="str">(Eliminar)</div></a>';
 		}
 
 		$('#str_lang_spoken_list').css("display", "block");
 		$('#str_lang_spoken_list').text(s_lang_str);
+		
+		$('#str_lang_spoken_list_edit').text(s_lang_edit_str);
 
 	} else {
 
 
 
 	}
+
 });
