@@ -19,7 +19,7 @@ $(document).ready(function(){
 	});
 
 	/* Idiomas que me interesan */
-
+/*
 	if (user['interest_languages'].length == 0) {
 
 		$('#str_button_edit_lang_int').css("display", "none");
@@ -50,9 +50,10 @@ $(document).ready(function(){
 		$('#str_lang_interest_list').text(i_lang_str);
 		$('#str_lang_list_edit').text(i_lang_edit_str);
 	}
-
+*/
 	/* Idiomas que manejo */
 
+/*
 	if (user['spoken_languages'].length > 0) {
 		var s_lang = user['spoken_languages'];
 		var s_lang_str = "";
@@ -78,5 +79,5 @@ $(document).ready(function(){
 
 
 	}
-
+*/
 });
