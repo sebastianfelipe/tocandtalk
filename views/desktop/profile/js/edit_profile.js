@@ -48,6 +48,8 @@ $(document).ready(function(){
     $('#c_location').css("display", "none");
     $('#c_location_edit').fadeIn(300);
 
+    $('#s_country').val(user.nationality);
+
     window.button_save_location = ButtonSaveLight;
     window.button_save_location.init("#b_save_location");
   });
