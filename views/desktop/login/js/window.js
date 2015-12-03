@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     function resizeDivs() {
         var winwidth = $(window).width();
+        var winheight = $(window).height();
 
         if (winwidth < 560) {
 
@@ -14,7 +15,6 @@ $(document).ready(function(){
 
             $("#mundo").width(540);
             $('#aviones').width(540);
-            $("#globos").width(520);
 
             $("#portada-fin").css('margin-top', '620px');
 
@@ -37,7 +37,6 @@ $(document).ready(function(){
 
             $("#mundo").width(new_width);
             $('#aviones').width(new_width);
-            $("#globos").width(new_width - 6);
 
             var new_margin = 0.1581 * winwidth + 531.5;
             $("#portada-fin").css('margin-top', new_margin + 'px');
@@ -59,10 +58,26 @@ $(document).ready(function(){
 
             $("#mundo").width(1066);
             $("#aviones").width(1066);
-            $("#globos").width(1000);
 
             $("#portada-fin").css('margin-top', '700px');
             $("#portada-fin").height(50);
+        }
+
+        if (winheight <= 750) {
+            $('#portada').height(750);
+            $('#portada-fondo').height(750);
+            $('#portada-nubes').css("margin-top", "400px");
+            $('#mundo').css("margin-top", "427px");
+            $('#aviones').css("margin-top", "422px");
+
+        } else {
+            var doc_height = $(document).height();
+
+            $('#portada').height(doc_height);
+            $('#portada-fondo').height(doc_height);
+            $('#portada-nubes').css("margin-top", (doc_height - 350) + "px");
+            $('#mundo').css("margin-top", (doc_height - 323) + "px");
+            $('#aviones').css("margin-top", (doc_height - 328) + "px");
         }
 
     }
