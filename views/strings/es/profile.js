@@ -13,6 +13,10 @@ $(document).ready(function(){
 		"Guardar"
 	);
 
+	$('.str_button_ok').text(
+		"Terminar"
+	);
+
 	$('.str_button_save_lang').text(
 		"Guardar"
 	);
