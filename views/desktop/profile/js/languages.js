@@ -41,10 +41,11 @@ $(document).ready(function(){
 
 		for (key in s_lang)
 		{
-			form = $('<form>', {action: "/profile/remove_spoken_language", method: "post"});
+			
+			form = $('<form>', {action: "/profile/remove_spoken_language", method: "post", class: "item_lang"});
 			form.append($('<input>', {name: "remove_spoken_language", value: s_lang[key], hidden: true}));
-			form.append($('<p>', {text: s_lang[key]}));
-			form.append($('<input>', {type: "submit", value: "Eliminar"}));
+			form.append($('<p>', {text: s_lang[key], class: "subitem_lang"}));
+			form.append($('<input>', {type: "submit", value: "Eliminar", class: "subitem_lang_button"}));
 			$('#str_lang_spoken_list_edit').append(form);
 		}
 	}
@@ -63,10 +64,10 @@ $(document).ready(function(){
 
 		for (key in i_lang)
 		{
-			form = $('<form>', {action: "/profile/remove_interest_language", method: "post"});
+			form = $('<form>', {action: "/profile/remove_interest_language", method: "post", class: "item_lang"});
 			form.append($('<input>', {name: "remove_interest_language", value: i_lang[key], hidden: true}));
-			form.append($('<p>', {text: i_lang[key]}));
-			form.append($('<input>', {type: "submit", value: "Eliminar"}));
+			form.append($('<p>', {text: i_lang[key], class: "subitem_lang"}));
+			form.append($('<input>', {type: "submit", value: "Eliminar", class: "subitem_lang_button"}));
 			$('#str_lang_interest_list_edit').append(form);
 		}
 	}
