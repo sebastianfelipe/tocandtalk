@@ -109,7 +109,7 @@
 }
 
 #str_lang_interest_list {
-	display: none;
+	display: inline;
 }
 
 .add_lang {
@@ -223,9 +223,9 @@
 	color: rgba(255,255,255,1);
 	background: #ff9800;
 
-	border-radius:			3px 3px 3px 3px;
-	-moz-border-radius:		3px 3px 3px 3px;
-	-webkit-border-radius:	3px 3px 3px 3px;
+	border-radius:			150px 150px 150px 150px;
+	-moz-border-radius:		150px 150px 150px 150px;
+	-webkit-border-radius:	150px 150px 150px 150px;
 	border: 0px solid #000000;
 
 	-o-transition:.7s;
