@@ -33,21 +33,21 @@ router.get('/', authenticate, function (req, res) {
       languages: function(callback){
           setTimeout(function(){
               models.Language.find().sort([['name', 1]]).exec(function (err, docs) {
-                callback(err, docs);
+                callback(null, docs);
               })
           }, 200);
       },
       countries: function(callback){
           setTimeout(function(){
               models.Country.find().sort([['name', 1]]).exec(function (err, docs) {
-                callback(err, docs);
+                callback(null, docs);
               })
           }, 200);
       },
       user: function(callback) {
           setTimeout(function(){
               models.User.findOne({_username: req.session.username}, {password: 0}).exec(function (err, doc) {
-                callback(err, doc);
+                callback(null, doc);
               })
           }, 200);
       }
@@ -59,7 +59,6 @@ router.get('/', authenticate, function (req, res) {
 
 router.post('/edit_user_nationality',function (req, res) {
   var errors = "";
-  console.log(req.body);
 
   async.parallel({
       user: function(callback) {
@@ -87,8 +86,6 @@ router.post('/edit_user_nationality',function (req, res) {
       }
     }
     errors += error_list.join('');
-    console.log(err);
-    console.log(results.user);
     return res.redirect('/profile');
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
@@ -96,7 +93,6 @@ router.post('/edit_user_nationality',function (req, res) {
 
 router.post('/edit_user_description',function (req, res) {
   var errors = "";
-  console.log(req.body);
 
   async.parallel({
       user: function(callback) {
@@ -124,8 +120,6 @@ router.post('/edit_user_description',function (req, res) {
       }
     }
     errors += error_list.join('');
-    console.log(err);
-    console.log(results.user);
     return res.redirect('/profile');
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
@@ -133,9 +127,7 @@ router.post('/edit_user_description',function (req, res) {
 
 router.post('/add_user_interest_language',function (req, res) {
   var errors = "";
-  console.log(req.body);
   add_interest_language = req.body.s_interest_languages;
-  console.log(add_interest_language);
 
   async.parallel({
       user: function(callback) {
@@ -167,8 +159,6 @@ router.post('/add_user_interest_language',function (req, res) {
       }
     }
     errors += error_list.join('');
-    console.log(err);
-    console.log(results.user);
     return res.redirect('/profile');
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
@@ -176,7 +166,6 @@ router.post('/add_user_interest_language',function (req, res) {
 
 router.post('/add_user_spoken_language',function (req, res) {
   var errors = "";
-  console.log(req.body);
   add_spoken_language = req.body.s_spoken_languages;
   async.parallel({
       user: function(callback) {
@@ -208,8 +197,6 @@ router.post('/add_user_spoken_language',function (req, res) {
       }
     }
     errors += error_list.join('');
-    console.log(err);
-    console.log(results.user);
     return res.redirect('/profile');
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
@@ -248,8 +235,6 @@ router.post('/remove_interest_language',function (req, res) {
       }
     }
     errors += error_list.join('');
-    console.log(err);
-    console.log(results.user);
     return res.redirect('/profile');
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
@@ -289,8 +274,6 @@ router.post('/remove_spoken_language',function (req, res) {
       }
     }
     errors += error_list.join('');
-    console.log(err);
-    console.log(results.user);
     return res.redirect('/profile');
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });

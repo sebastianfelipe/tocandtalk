@@ -22,7 +22,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('views', path.join(__dirname, 'views'));
 
 // Middleware Uses
-app.use(express.static(path.join(__dirname, 'bower_components')));
+//app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(express.static(path.join(__dirname, 'modules')));
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.json());

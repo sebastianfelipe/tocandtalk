@@ -26,7 +26,12 @@ $(document).ready(function () {
         if (user.native_language) {
             $('.str_lang_native').text(user.native_language);
         }
-
+        var tmp_desc = jQuery.trim(user.description);
+        if (tmp_desc.length == 0) {
+            $('#desc_no').css("display", "inline-block");
+        } else {
+            $('#desc_no').css("display", "none");
+        }
     }
 
     if ($('#img_section2').height() >= 40) {
@@ -34,12 +39,7 @@ $(document).ready(function () {
         $('#img_section2').css("margin-top", new_margin + "px");
     }
 
-    var tmp_desc = jQuery.trim(user.description);
-    if (tmp_desc.length == 0) {
-        $('#desc_no').css("display", "inline-block");
-    } else {
-        $('#desc_no').css("display", "none");
-    }
+
 
     // Manejo de casos relacionados con errores de formulario e informacion que requiere ser cargada otra vez
     if (req)

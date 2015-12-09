@@ -1,5 +1,4 @@
 $(document).ready(function () {
-	console.log('in');
 	if (user)
 	{
 		/* Nombre de Usuario */
@@ -19,5 +18,4 @@ $(document).ready(function () {
 			$('.str_name_user').html(first_name + "<br>" + last_name);
 		}
 	}
-	
 });
