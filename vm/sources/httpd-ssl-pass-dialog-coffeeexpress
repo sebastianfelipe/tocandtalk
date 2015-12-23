@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "coffeepass"
+#exec /bin/systemd-ask-password "Enter SSL pass phrase for $1 ($2) : "
+#exec /bin/systemd-ask-password "coffeepass"
