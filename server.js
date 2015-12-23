@@ -3,12 +3,13 @@ var express = require('express');
 var app = express();
 //var http = require('http').Server(app);
 var http = require('http').createServer();
-var io = require('socket.io')(http);
+//var io = require('socket.io')(http);
 
 //var server = require('http').createServer()
 var url = require('url')
 var WebSocketServer = require('ws').Server
 var wss = new WebSocketServer({ server: http })
+var io = require('socket.io')(wss);
 //var express = require('express')
 //var app = express()
 
