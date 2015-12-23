@@ -1,7 +1,8 @@
 var ip = require('ip');
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
+//var http = require('http').Server(app);
+var http = require('http').createServer();
 var io = require('socket.io')(http);
 
 //var server = require('http').createServer()
