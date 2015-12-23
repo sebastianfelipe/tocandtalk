@@ -81,9 +81,8 @@ var port2 = global_module.port2;
 
 
 // Server Configuration
-var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: port2})
-
-
+//var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: port2})
+var peerServer = new require('peer').PeerServer({port: port2})
 peerServer.on('connection', _peerConnection);
 peerServer.on('disconnect', _peerDisconnect);
 io.on('connection',_ioConnection);
