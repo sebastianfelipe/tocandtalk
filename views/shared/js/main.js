@@ -9,7 +9,7 @@ $(document).ready(function(){
   if (!refs.socket)
   {
 
-    refs.socket = io('https://https.tocandtalk.com/');
+    refs.socket = io('https://204.87.169.109/');
     refs.socket.on('receiveConnection', function(data) {
       refs.server_ip = data["ip"];
       refs.server_port = data["port"];

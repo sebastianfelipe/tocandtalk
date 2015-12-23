@@ -61,7 +61,8 @@ var connect = function () {
   }
 
   try {
-    refs.peer = new Peer(refs.caller_id, {key: refs.peer_key, host: refs.server_ip, port: refs.server_port});
+    //refs.peer = new Peer(refs.caller_id, {key: refs.peer_key, host: refs.server_ip, port: refs.server_port});
+    refs.peer = new Peer(refs.caller_id, {host: refs.server_ip, port: refs.server_port});
     refs.peer.on('connection', function(data_connection) {
       refs.data_connection = data_connection;
       refs.data_connection.on('data', function(data) {
