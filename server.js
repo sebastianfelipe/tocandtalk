@@ -4,6 +4,14 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+//var server = require('http').createServer()
+var url = require('url')
+var WebSocketServer = require('ws').Server
+var wss = new WebSocketServer({ server: http })
+//var express = require('express')
+//var app = express()
+
+
 // Module Imports
 var search_module = require('./modules/search.js');
 var global_module = require('./modules/global.js');
@@ -78,16 +86,28 @@ var availables = global_module.availables;
 var limit = global_module.limit;
 var port1 = global_module.port1;
 var port2 = global_module.port2;
-
+var port3 = global_module.port3;
 
 // Server Configuration
 var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: port2})
 
+wss.on('connection', function connection(ws) {
+  var location = url.parse(ws.upgradeReq.url, true);
+  // you might use location.query.access_token to authenticate or share sessions 
+  // or ws.upgradeReq.headers.cookie (see http://stackoverflow.com/a/16395220/151312) 
+  
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+ 
+  ws.send('something');
+});
 
 peerServer.on('connection', _peerConnection);
 peerServer.on('disconnect', _peerDisconnect);
 io.on('connection',_ioConnection);
 
+http.on('request', app)
 http.listen(port1, function(){
 console.log('http server running on ' +
             ip.address() + ':' + port1);

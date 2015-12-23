@@ -1,5 +1,6 @@
 var port1 = 4000;
 var port2 = 9000;
+var port3 = 4080;
 
 var users = [];
 var availables = [];
@@ -58,4 +59,5 @@ module.exports.users = users;
 module.exports.availables = availables;
 module.exports.limit = limit;
 module.exports.port1 = port1;
-module.exports.port2 = port2;  
+module.exports.port2 = port2;
+module.exports.port3 = port3;  
