@@ -4,13 +4,6 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var fs = require('fs');
-
-var privateKey  = fs.readFileSync('/etc/pki/tls/private/server.key', 'utf8');
-var certificate = fs.readFileSync('/etc/pki/tls/certs/server.crt', 'utf8');
-var credentials = {key: privateKey, cert: certificate};
-var https = require('https').createServer(credentials, app);
-
 // Module Imports
 var search_module = require('./modules/search.js');
 var global_module = require('./modules/global.js');
@@ -85,7 +78,7 @@ var availables = global_module.availables;
 var limit = global_module.limit;
 var port1 = global_module.port1;
 var port2 = global_module.port2;
-
+var port3 = global_module.port3;
 
 // Server Configuration
 var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: port2})
@@ -103,11 +96,21 @@ console.log('http server running on ' +
 console.log('peer server running on ' +
             ip.address() + ':' + port2);
 
+
+/*
+var fs = require('fs');
+
+var privateKey  = fs.readFileSync('/etc/pki/tls/private/server.key', 'utf8');
+var certificate = fs.readFileSync('/etc/pki/tls/certs/server.crt', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+var https = require('https').createServer(credentials, app);
+
 https.listen(port3, function(){
 console.log('https server running on ' +
             ip.address() + ':' + port3);
 });
 
+*/
 
 
 

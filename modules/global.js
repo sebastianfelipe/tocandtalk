@@ -1,6 +1,6 @@
-var port1 = 80;
+var port1 = 4000;
 var port2 = 9000;
-var port3 = 443;
+var port3 = 5000;
 
 var users = [];
 var availables = [];
