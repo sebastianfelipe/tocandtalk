@@ -8,8 +8,8 @@ $(document).ready(function(){
 
   if (!refs.socket)
   {
-    var url = "ws://204.87.169.109:4000/"
-    refs.socket = io.connect(url);
+    //var url = "ws://204.87.169.109:4000/"
+    refs.socket = io.connect();
     console.log(refs.socket);
     refs.socket.on('receiveConnection', function(data) {
       //refs.server_ip = data["ip"];
