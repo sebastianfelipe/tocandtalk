@@ -25,7 +25,6 @@ app.set('views', path.join(__dirname, 'views'));
 //app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(express.static(path.join(__dirname, 'modules')));
 app.use(express.static(path.join(__dirname, 'views')));
-app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
@@ -87,6 +86,7 @@ var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: 
 
 peerServer.on('connection', _peerConnection);
 peerServer.on('disconnect', _peerDisconnect);
+io.on('connection',_ioConnection);
 
 http.listen(port1, function(){
 console.log('http server running on ' +
@@ -96,9 +96,7 @@ console.log('http server running on ' +
 console.log('peer server running on ' +
             ip.address() + ':' + port2);
 
-//io.set('destroy upgrade', false);
-io.set('transports', ['websocket']);
-io.on('connection',_ioConnection);
+
 
 
 

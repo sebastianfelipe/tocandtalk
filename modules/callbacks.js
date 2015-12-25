@@ -1,6 +1,5 @@
 // Node Modules
 var ip = require('ip');
-var WebSocketServer = require('ws').Server
 
 // Module Imports
 var search_module = require('./search.js');
@@ -42,15 +41,6 @@ var _peerDisconnect = function (id) {
 }
 
 var _ioConnection = function(socket) {
-  var wss = new WebSocketServer({
-      server: server,
-      path: '/socket.io/' + socket.id
-  });
-  wss.on('connection', function(ws) {
-      ws.on('message', function(message) {
-          console.log(message);
-      });
-  });
   console.log('IO: User connected');
   //var userId = Math.floor(Math.random()*9999999999).toString();
   //console.log("IO: User Id was generated: " + userId);
