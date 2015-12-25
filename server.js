@@ -95,9 +95,9 @@ console.log('http server running on ' +
 console.log('peer server running on ' +
             ip.address() + ':' + port2);
 
-io.set('destroy upgrade', false);
+//io.set('destroy upgrade', false);
 io.set('transports', ['websocket']);
-io.sockets.on('connection',_ioConnection);
+io.on('connection',_ioConnection);
 
 
 
