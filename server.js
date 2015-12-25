@@ -105,7 +105,9 @@ var certificate = fs.readFileSync('./ssl/server.crt', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 var httpServer = http.createServer(app);
 //var httpsServer = https.createServer(credentials, app);
-var ioHttpServer = io(httpServer);
+
+//var ioHttpServer = io(httpServer);
+
 //var ioHttpsServer = io(httpsServer);
 
 //var p2pHttpServer = http.createServer(app);
@@ -148,7 +150,7 @@ var options = {debug: true};
 //var peerServer = ExpressPeerServer(httpServer, options);
 app.use('/peerjs', peerServer);
 
-ioHttpServer.on('connection',_ioConnection);
+//ioHttpServer.on('connection',_ioConnection);
 //ioHttpsServer.on('connection',_ioConnection);
 
 //peerServer.on('connection', _peerConnection);
