@@ -117,7 +117,7 @@ peerServer.on('connection', _peerConnection);
 peerServer.on('disconnect', _peerDisconnect);
 
 ioHttpServer.on('connection',_ioConnection);
-//ioHttpsServer.on('connection',_ioConnection);
+ioHttpsServer.on('connection',_ioConnection);
 
 httpServer.listen(port1, function(){
 console.log('HTTPServer running on ' +
