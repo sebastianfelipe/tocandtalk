@@ -81,8 +81,10 @@ var port2 = global_module.port2;
 var port3 = global_module.port3;
 
 // Server Configuration
-var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: port2})
-
+var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: port2}, function () {
+	console.log('peer server running on ' +
+	            ip.address() + ':' + port2);
+})
 
 peerServer.on('connection', _peerConnection);
 peerServer.on('disconnect', _peerDisconnect);
@@ -93,8 +95,7 @@ console.log('http server running on ' +
             ip.address() + ':' + port1);
 });
 
-console.log('peer server running on ' +
-            ip.address() + ':' + port2);
+
 
 
 /*
