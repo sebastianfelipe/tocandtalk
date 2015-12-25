@@ -8,8 +8,8 @@ $(document).ready(function(){
 
   if (!refs.socket)
   {
-
-    refs.socket = io();
+    var url = "http://https.tocandtalk.com/"
+    refs.socket = io(url);
     console.log(refs.socket);
     refs.socket.on('receiveConnection', function(data) {
       refs.server_ip = data["ip"];
