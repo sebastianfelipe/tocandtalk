@@ -2,7 +2,7 @@ var ip = require('ip');
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-//var io = require('socket.io')(http);
+var io = require('socket.io')(http);
 
 // Module Imports
 var search_module = require('./modules/search.js');
@@ -95,12 +95,9 @@ console.log('http server running on ' +
 console.log('peer server running on ' +
             ip.address() + ':' + port2);
 
-
-var WebSocketServer = require('ws').Server
-var io = require('socket.io').listen(http);
 io.set('destroy upgrade', false);
 io.set('transports', ['websocket']);
-io.on('connection',_ioConnection);
+io.sockets.on('connection',_ioConnection);
 
 
 
