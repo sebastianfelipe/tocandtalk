@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var fs = require('fs');
 
 // Module Imports
 var search_module = require('./modules/search.js');
@@ -95,7 +96,12 @@ var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: 
 */
 
 // En caso de no funcionar la conexion al server, agregar path:'/peerjs' y lo mismo en el cliente
-var peerServer = require('peer').PeerServer({port: port2}, function () {
+var ssl = {
+    key: fs.readFileSync('/etc/pki/tls/private/server.key'),
+    cert: fs.readFileSync('/etc/pki/tls/certs/server.crt')
+  	};
+
+var peerServer = require('peer').PeerServer({port: port2, ssl: ssl}, function () {
 	console.log('peer server running on ' +
 	            ip.address() + ':' + port2);
 });
