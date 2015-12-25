@@ -100,7 +100,7 @@ var WebSocketServer = require('ws').Server
 var io = require('socket.io').listen(http);
 io.set('destroy upgrade', false);
 io.set('transports', ['websocket']);
-io.sockets.on('connection',_ioConnection);
+io.on('connection',_ioConnection);
 
 
 
