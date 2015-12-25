@@ -5,6 +5,7 @@ var fs = require('fs');
 var http = require('http')
 var https = require('https');
 var io = require('socket.io');
+var ExpressPeerServer = require('peer').ExpressPeerServer;
 
 // Module Imports
 var search_module = require('./modules/search.js');
@@ -81,6 +82,7 @@ var limit = global_module.limit;
 var port1 = global_module.port1;
 var port2 = global_module.port2;
 var port3 = global_module.port3;
+var port4 = global_module.port4;
 
 // Server Configuration
 /*
@@ -105,7 +107,10 @@ var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 var ioHttpServer = io(httpServer);
 var ioHttpsServer = io(httpsServer);
+//var p2pHttpServer = http.createServer(app);
+//var p2pHttpsServer = https.createServer(credentials, app);
 
+/*
 var peerServer = require('peer').PeerServer({port: port2, path: 'peerjs'}, function () {
 //var peerServer = require('peer').PeerServer({port: port2}, function () {
 	console.log('P2PServer running on ' +
@@ -114,6 +119,33 @@ var peerServer = require('peer').PeerServer({port: port2, path: 'peerjs'}, funct
 
 peerServer.on('connection', _peerConnection);
 peerServer.on('disconnect', _peerDisconnect);
+*/
+
+/*
+var options = {debug: true};
+
+app.use('/peerjs', ExpressPeerServer(p2pHttpServer, options));
+
+p2pHttpServer.listen(port2, function () {
+  console.log('P2PServer running on ' +
+              ip.address() + ':' + port2);
+});
+p2pHttpServer.on('connection', _peerConnection);
+p2pHttpServer.on('disconnect', _peerDisconnect);
+
+p2pHttpsServer.listen(port4, function () {
+  console.log('P2PServer running on ' +
+              ip.address() + ':' + port4);
+});
+p2pHttpsServer.on('connection', _peerConnection);
+p2pHttpsServer.on('disconnect', _peerDisconnect);
+*/
+
+
+var options = {debug: true};
+
+var peerServer = ExpressPeerServer(httpServer, options);
+app.use('/peerjs', peerServer);
 
 ioHttpServer.on('connection',_ioConnection);
 ioHttpsServer.on('connection',_ioConnection);
@@ -123,10 +155,15 @@ console.log('HTTPServer running on ' +
             ip.address() + ':' + port1);
 });
 
+/*
 httpsServer.listen(port3, function(){
 console.log('HTTPSServer running on ' +
             ip.address() + ':' + port3);
 });
+*/
+
+peerServer.on('connection', _peerConnection);
+peerServer.on('disconnect', _peerDisconnect);
 
 /*
 var fs = require('fs');

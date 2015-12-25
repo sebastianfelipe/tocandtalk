@@ -6,7 +6,7 @@ var refs = {
   protocol: null,
   peer: null,
   peer_key: '6sdshp5kg3edbo6r',
-  peer_port: 9000,
+  peer_port: 4080,
   socket: null,
 
   talking: false,
