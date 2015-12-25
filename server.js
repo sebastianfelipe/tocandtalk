@@ -150,6 +150,10 @@ app.use('/peerjs', peerServer);
 ioHttpServer.on('connection',_ioConnection);
 ioHttpsServer.on('connection',_ioConnection);
 
+peerServer.on('connection', _peerConnection);
+peerServer.on('disconnect', _peerDisconnect);
+
+httpServer.on('request', app);
 httpServer.listen(port1, function(){
 console.log('HTTPServer running on ' +
             ip.address() + ':' + port1);
@@ -162,8 +166,7 @@ console.log('HTTPSServer running on ' +
 });
 */
 
-peerServer.on('connection', _peerConnection);
-peerServer.on('disconnect', _peerDisconnect);
+
 
 /*
 var fs = require('fs');
