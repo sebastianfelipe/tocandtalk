@@ -151,7 +151,7 @@ var peerServer = ExpressPeerServer(httpServer, options);
 app.use('/peerjs', peerServer);
 
 ioHttpServer.on('connection',_ioConnection);
-ioHttpsServer.on('connection',_ioConnection);
+//ioHttpsServer.on('connection',_ioConnection);
 
 peerServer.on('connection', _peerConnection);
 peerServer.on('disconnect', _peerDisconnect);
