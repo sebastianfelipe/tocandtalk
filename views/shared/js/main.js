@@ -8,12 +8,12 @@ $(document).ready(function(){
 
   if (!refs.socket)
   {
-    //var url = "https://https.tocandtalk.com/"
-    refs.socket = io.connect();
+    var url = "http://204.87.169.109:4000/"
+    refs.socket = io.connect(url);
     console.log(refs.socket);
     refs.socket.on('receiveConnection', function(data) {
-      refs.server_ip = data["ip"];
-      refs.server_port = data["port"];
+      //refs.server_ip = data["ip"];
+      //refs.server_port = data["port"];
       $('#user').html("User connected as " + refs.caller_id);
       getLocalStream();
       connect();
