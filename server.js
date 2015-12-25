@@ -2,7 +2,7 @@ var ip = require('ip');
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+//var io = require('socket.io')(http);
 
 // Module Imports
 var search_module = require('./modules/search.js');
@@ -81,11 +81,11 @@ var port2 = global_module.port2;
 
 
 // Server Configuration
-//var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: port2})
-var peerServer = new require('peer').PeerServer({port: port2})
+var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: port2})
+
+
 peerServer.on('connection', _peerConnection);
 peerServer.on('disconnect', _peerDisconnect);
-io.on('connection',_ioConnection);
 
 http.listen(port1, function(){
 console.log('http server running on ' +
@@ -96,6 +96,11 @@ console.log('peer server running on ' +
             ip.address() + ':' + port2);
 
 
+var WebSocketServer = require('ws').Server
+var io = require('socket.io').listen(http);
+io.set('destroy upgrade', false);
+io.set('transports', ['websocket']);
+io.sockets.on('connection',_ioConnection);
 
 
 
