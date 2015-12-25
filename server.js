@@ -98,8 +98,8 @@ var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: 
 
 // En caso de no funcionar la conexion al server, agregar path:'/peerjs' y lo mismo en el cliente
 
-var privateKey  = fs.readFileSync('/etc/pki/tls/private/server.key', 'utf8');
-var certificate = fs.readFileSync('/etc/pki/tls/certs/server.crt', 'utf8');
+var privateKey  = fs.readFileSync('./ssl/server.key', 'utf8');
+var certificate = fs.readFileSync('./ssl/server.crt', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
@@ -108,7 +108,7 @@ var ioServer = io(http);
 
 var peerServer = require('peer').PeerServer({port: port2, path: 'peerjs'}, function () {
 //var peerServer = require('peer').PeerServer({port: port2}, function () {
-	console.log('peer server running on ' +
+	console.log('P2PServer running on ' +
 	            ip.address() + ':' + port2);
 });
 
@@ -117,10 +117,14 @@ peerServer.on('disconnect', _peerDisconnect);
 ioServer.on('connection',_ioConnection);
 
 httpServer.listen(port1, function(){
-console.log('http server running on ' +
+console.log('HTTPServer running on ' +
             ip.address() + ':' + port1);
 });
 
+httpsServer.listen(port3, function(){
+console.log('HTTPSServer running on ' +
+            ip.address() + ':' + port3);
+});
 
 
 

@@ -9,10 +9,12 @@ var authenticate = authenticate_module.authenticate;
 router.get('/', authenticate, function (req, res) {
 	var protocol = req.protocol;
 	console.log(req.secure);
+	console.log(protocol);
 	if (req.secure)
 	{
 		protocol += "s";
 	}
+	console.log(protocol);
   return res.render('talk2/index.html', {forceType: "desktop", username: req.session.username, server_ip: ip.address(), protocol: protocol });
 });
 
