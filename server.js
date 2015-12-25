@@ -1,7 +1,7 @@
 var ip = require('ip');
 var express = require('express');
 var app = express();
-var fs = require('fs');
+//var fs = require('fs');
 var http = require('http')
 var https = require('https');
 var io = require('socket.io');
@@ -148,7 +148,7 @@ p2pHttpsServer.on('disconnect', _peerDisconnect);
 var options = {debug: true};
 
 //var peerServer = ExpressPeerServer(httpServer, options);
-app.use('/peerjs', peerServer);
+//app.use('/peerjs', peerServer);
 
 //ioHttpServer.on('connection',_ioConnection);
 //ioHttpsServer.on('connection',_ioConnection);
