@@ -106,7 +106,7 @@ var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: 
 var httpServer = http.createServer(app);
 //var httpsServer = https.createServer(credentials, app);
 
-//var ioHttpServer = io(httpServer);
+var ioHttpServer = io(httpServer);
 
 //var ioHttpsServer = io(httpsServer);
 
@@ -147,7 +147,7 @@ p2pHttpsServer.on('disconnect', _peerDisconnect);
 
 var options = {debug: true};
 
-//var peerServer = ExpressPeerServer(httpServer, options);
+var peerServer = ExpressPeerServer(httpServer, options);
 //app.use('/peerjs', peerServer);
 
 //ioHttpServer.on('connection',_ioConnection);
