@@ -8,7 +8,7 @@ $(document).ready(function(){
 
   if (!refs.socket)
   {
-    var url = "ws://https.tocandtalk.com/"
+    var url = "wss://https.tocandtalk.com/"
     refs.socket = io(url);
     console.log(refs.socket);
     refs.socket.on('receiveConnection', function(data) {
