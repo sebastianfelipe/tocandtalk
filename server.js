@@ -102,11 +102,10 @@ var privateKey  = fs.readFileSync('./ssl/server.key', 'utf8');
 var certificate = fs.readFileSync('./ssl/server.crt', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 var httpServer = http.createServer(app);
-//var httpsServer = https.createServer(credentials, app);
+var httpsServer = https.createServer(credentials, app);
 var ioHttpServer = io(httpServer);
-/*
+
 var ioHttpsServer = io(httpsServer);
-*/
 
 var peerServer = require('peer').PeerServer({port: port2, path: 'peerjs'}, function () {
 //var peerServer = require('peer').PeerServer({port: port2}, function () {
@@ -125,12 +124,11 @@ console.log('HTTPServer running on ' +
             ip.address() + ':' + port1);
 });
 
-/*
 httpsServer.listen(port3, function(){
 console.log('HTTPSServer running on ' +
             ip.address() + ':' + port3);
 });
-*/
+
 
 /*
 var fs = require('fs');
