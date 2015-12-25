@@ -9,10 +9,14 @@ $(document).ready(function(){
   refs.protocol = protocol;
   if (!refs.socket)
   {
+    refs.secure = secure;
+    refs.server_port = server_port;
     var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_port+"/";
+    console.log(secure)
+    //refs.socket = io.connect(url, {secure: refs.secure});
+    console.log(url);
     refs.socket = io.connect(url);
     console.log(refs.socket);
-    console.log(url);
     refs.socket.on('receiveConnection', function(data) {
       //refs.server_ip = data["ip"];
       //refs.server_port = data["port"];
