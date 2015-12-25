@@ -9,7 +9,7 @@ $(document).ready(function(){
   if (!refs.socket)
   {
     var url = "ws://https.tocandtalk.com/"
-    refs.socket = io(url);
+    refs.socket = io.connect(url);
     console.log(refs.socket);
     refs.socket.on('receiveConnection', function(data) {
       refs.server_ip = data["ip"];
