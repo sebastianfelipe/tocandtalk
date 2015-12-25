@@ -8,7 +8,7 @@ $(document).ready(function(){
 
   if (!refs.socket)
   {
-    var url = "https://204.87.169.109:4000/"
+    var url = "ws://204.87.169.109:4000/"
     refs.socket = io.connect(url);
     console.log(refs.socket);
     refs.socket.on('receiveConnection', function(data) {
