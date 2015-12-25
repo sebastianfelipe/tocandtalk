@@ -5,12 +5,14 @@ $(document).ready(function(){
   refs.entry_message = $('#message-entry');
   refs.button_search = $('#search');
   refs.button_send_message = $('#send-message');
-
+  refs.server_ip = server_ip;
+  refs.protocol = protocol;
   if (!refs.socket)
   {
-    //var url = "ws://204.87.169.109:4000/"
-    refs.socket = io.connect();
+    var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_port+"/";
+    refs.socket = io.connect(url);
     console.log(refs.socket);
+    console.log(url);
     refs.socket.on('receiveConnection', function(data) {
       //refs.server_ip = data["ip"];
       //refs.server_port = data["port"];

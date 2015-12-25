@@ -1,7 +1,8 @@
 var refs = {
   peer_path: '/peerjs',
-  server_ip: '204.87.169.109',
+  server_ip: null,
   server_port: 4000,
+  protocol: null,
   peer: null,
   peer_key: '6sdshp5kg3edbo6r',
   peer_port: 9000,
