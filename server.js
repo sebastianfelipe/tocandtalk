@@ -104,8 +104,7 @@ var credentials = {key: privateKey, cert: certificate};
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 var ioHttpServer = io(httpServer);
-
-var ioHttpsServer = io(httpsServer);
+//var ioHttpsServer = io(httpsServer);
 
 var peerServer = require('peer').PeerServer({port: port2, path: 'peerjs'}, function () {
 //var peerServer = require('peer').PeerServer({port: port2}, function () {
@@ -117,18 +116,19 @@ peerServer.on('connection', _peerConnection);
 peerServer.on('disconnect', _peerDisconnect);
 
 ioHttpServer.on('connection',_ioConnection);
-ioHttpsServer.on('connection',_ioConnection);
+//ioHttpsServer.on('connection',_ioConnection);
 
 httpServer.listen(port1, function(){
 console.log('HTTPServer running on ' +
             ip.address() + ':' + port1);
 });
 
+/*
 httpsServer.listen(port3, function(){
 console.log('HTTPSServer running on ' +
             ip.address() + ':' + port3);
 });
-
+*/
 
 /*
 var fs = require('fs');
