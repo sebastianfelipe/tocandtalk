@@ -4,6 +4,13 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var fs = require('fs');
+
+var privateKey  = fs.readFileSync('/etc/pki/tls/private/server.key', 'utf8');
+var certificate = fs.readFileSync('/etc/pki/tls/certs/server.crt', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+var https = require('https').createServer(credentials, app);
+
 // Module Imports
 var search_module = require('./modules/search.js');
 var global_module = require('./modules/global.js');
@@ -96,6 +103,10 @@ console.log('http server running on ' +
 console.log('peer server running on ' +
             ip.address() + ':' + port2);
 
+https.listen(port3, function(){
+console.log('https server running on ' +
+            ip.address() + ':' + port3);
+});
 
 
 
