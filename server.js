@@ -101,7 +101,7 @@ var ssl = {
     cert: fs.readFileSync('/etc/pki/tls/certs/server.crt')
   	};
 
-var peerServer = require('peer').PeerServer({port: port2, path: '/peerjs'}, function () {
+var peerServer = require('peer').PeerServer({port: port2}, function () {
 	console.log('peer server running on ' +
 	            ip.address() + ':' + port2);
 });
