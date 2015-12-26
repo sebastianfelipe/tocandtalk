@@ -14,7 +14,7 @@ $(document).ready(function(){
     var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_port+"/";
     console.log(secure)
     console.log(url);
-    refs.socket = io.connect({secure: refs.secure});
+    refs.socket = io.connect(url, {secure: refs.secure});
     //refs.socket = io.connect(url);
     console.log(refs.socket);
     refs.socket.on('receiveConnection', function(data) {
