@@ -102,13 +102,12 @@ var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: 
 
 var privateKey  = fs.readFileSync('./ssl/server.key', 'utf8');
 var certificate = fs.readFileSync('./ssl/server.crt', 'utf8');
-//var credentials = {key: privateKey, cert: certificate};
+var credentials = {key: privateKey, cert: certificate};
 var httpServer = http.createServer(app);
-//var httpsServer = https.createServer(credentials, app);
+var httpsServer = https.createServer(credentials, app);
 
 var ioHttpServer = io(httpServer);
-
-//var ioHttpsServer = io(httpsServer);
+var ioHttpsServer = io(httpsServer);
 
 //var p2pHttpServer = http.createServer(app);
 //var p2pHttpsServer = https.createServer(credentials, app);
@@ -161,12 +160,12 @@ console.log('HTTPServer running on ' +
             ip.address() + ':' + port1);
 });
 
-/*
+
 httpsServer.listen(port3, function(){
 console.log('HTTPSServer running on ' +
             ip.address() + ':' + port3);
 });
-*/
+
 
 
 
