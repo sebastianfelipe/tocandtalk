@@ -13,8 +13,9 @@ $(document).ready(function () {
 		$('.str_name_user').text(first_name);
 
 		if ($('#bar_user_name').width() > 180) {
-			$('#bar_user_name').css("margin-top", "5px");
-			$('#bar_user_name').css("font-size", "14px");
+			$('#bar_user_name')
+				.css("margin-top", "5px")
+				.css("font-size", "14px");
 			$('.str_name_user').html(first_name + "<br>" + last_name);
 		}
 	}

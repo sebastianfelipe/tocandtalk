@@ -29,11 +29,12 @@ function capitalize(msg) {
 	msg_tmp = msg;
 	words_list = [];
 	words = msg.split(' ');
-	for (key in words)
-	{
-		word = capitalizeWord(words[key]);
+	
+	words.forEach(function(str) {
+		word = capitalizeWord(str);
 		words_list.push(word);
-	}
+	}); 
+
 	words = words_list.join(' ').trim();
 	return words;
 
