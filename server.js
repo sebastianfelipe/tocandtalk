@@ -148,7 +148,7 @@ p2pHttpsServer.on('disconnect', _peerDisconnect);
 var options = {debug: true};
 
 var peerServer = ExpressPeerServer(httpServer, options);
-app.use('/peerjs', peerServer);
+app.use('/', peerServer);
 
 ioHttpServer.on('connection',_ioConnection);
 //ioHttpsServer.on('connection',_ioConnection);
