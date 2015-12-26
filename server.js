@@ -4,7 +4,7 @@ var app = express();
 var fs = require('fs');
 var http = require('http');
 var https = require('https');
-//var io = require('socket.io');
+var io = require('socket.io');
 var ExpressPeerServer = require('peer').ExpressPeerServer;
 
 // Module Imports
@@ -103,7 +103,12 @@ var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: 
 
 var privateKey  = fs.readFileSync('./ssl/server.key', 'utf8');
 var certificate = fs.readFileSync('./ssl/server.crt', 'utf8');
-var credentials = {key: privateKey, cert: certificate};
+var credentials = {
+                  key: privateKey,
+                  cert: certificate,
+                  requestCert: false,
+                  rejectUnauthorized: false
+                  };
 
 // Servers
 var servers = {'http': {
@@ -113,8 +118,8 @@ var servers = {'http': {
                      },
               'https': {
                         'web':        https.createServer(credentials, app),
-                        'io':         https.createServer(credentials, app),
-                        'peer':       https.createServer(credentials, app)
+                        'io':         new io(),
+                        'peer':       null
                       }
               };
 
@@ -130,13 +135,35 @@ servers.http.peer = require('peer').PeerServer({port: ports.http.peer}, function
                 ip.address() + ':' + ports.http.peer);
 });
 
-servers.http.io = require('socket.io')(servers.http.web);
+//servers.http.io = require('socket.io')(servers.http.web);
 
-
-servers.http.io.on('connection',_ioConnection);
+//servers.http.io.attach(http)
+//servers.http.io.on('connection',_ioConnection);
 
 servers.http.peer.on('connection', _peerConnection);
 servers.http.peer.on('disconnect', _peerDisconnect);
+
+// HTTPS Servers
+
+servers.https.web.listen(ports.https.web, function(){
+    console.log('HTTPS: WebServer running on ' +
+                ip.address() + ':' + ports.https.web);
+});
+
+servers.https.peer = require('peer').PeerServer({port: ports.https.peer, ssl: credentials}, function () {
+    console.log('HTTP: P2PServer running on ' +
+                ip.address() + ':' + ports.https.peer);
+});
+
+//servers.http.io.attach(servers.http.web)
+//servers.http.io.on('connection',_ioConnection);
+
+servers.https.io.listen(servers.http.web)
+servers.https.io.listen(servers.https.web)
+servers.https.io.on('connection',_ioConnection);
+
+servers.https.peer.on('connection', _peerConnection);
+servers.https.peer.on('disconnect', _peerDisconnect);
 
 /*
 servers.http.io.listen(ports.http.io, function(){
