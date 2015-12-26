@@ -15,7 +15,7 @@ router.get('/', authenticate, function (req, res) {
 	{
 		server_port = 4443;
 	}
-	var server_ip = 204.87.169.109;
+	var server_ip = "204.87.169.109";
 	console.log(protocol);
   return res.render('talk2/index.html', {forceType: "desktop", username: req.session.username, server_ip: server_ip, protocol: protocol, secure: req.secure, server_port: server_port});
 });
