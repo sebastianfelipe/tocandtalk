@@ -34,7 +34,7 @@ var getLocalStream = function (successCb)
       return;
     }
     // Prefer camera resolution nearest to 1280x720.
-    var constraints = { audio: false, video: true };
+    var constraints = { audio: true, video: true };
 
     navigator.mediaDevices.getUserMedia(constraints)
     .then(function(stream) {
