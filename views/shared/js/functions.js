@@ -90,10 +90,12 @@ var talk = function (recipient_id) {
     return;
   }
 
+  /*
   if (!refs.localStream) {
     logError('could not start call as there is no local camera');
     return
   }
+  */
 
   if (!recipient_id) {
     logError('could not start call as no recipient ID is set');
