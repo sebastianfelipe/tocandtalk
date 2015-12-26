@@ -66,7 +66,12 @@ var connect = function () {
     //refs.peer = new Peer(refs.caller_id, {host: refs.server_ip, port: refs.server_port, path: refs.peer_path});
     //refs.peer = new Peer(refs.caller_id, {host: refs.server_ip, port: refs.peer_port, path: refs.peer_path});
     //console.log({key: 'peerjs', host: refs.server_ip, port: refs.server_ports.peer});
-    refs.peer = new Peer(refs.caller_id, {key: 'peerjs', host: refs.server_ip, port: refs.server_ports.peer});
+    var peer_options = {key: 'peerjs',
+                        host: refs.server_ip,
+                        port: refs.server_ports.peer,
+                        secure: refs.secure,
+                        debug: 3};
+    refs.peer = new Peer(refs.caller_id, peer_options);
     //console.log(peer);
     
     refs.peer.on('connection', function(data_connection) {

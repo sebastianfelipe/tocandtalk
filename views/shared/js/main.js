@@ -13,6 +13,8 @@ $(document).ready(function(){
     refs.server_ports = server_ports;
     var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
     console.log(url);
+    // -------------------------------------------------------------
+    /*
     refs.socket = io(url, {secure: refs.secure});
     //refs.socket = io.connect(url);
     //refs.socket = io();
@@ -39,6 +41,14 @@ $(document).ready(function(){
       talk(recipient_id);
     });
   }
+  */
+  // -------------------------------------------------------------
+  
+  // Test de nueva versión 
+  getLocalStream();
+  connect();
+}
+
   refs.button_search.on('click', _search);
   refs.button_send_message.on('click',_sendMessage);
   refs.entry_message.on('keypress', _sendMessage);
