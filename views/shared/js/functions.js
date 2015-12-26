@@ -34,7 +34,7 @@ var getLocalStream = function (successCb)
       return;
     }
     // Prefer camera resolution nearest to 1280x720.
-    var constraints = { audio: false, video: true };
+    var constraints = { audio: false, video: false };
 
     navigator.mediaDevices.getUserMedia(constraints)
     .then(function(stream) {
@@ -90,12 +90,11 @@ var talk = function (recipient_id) {
     return;
   }
 
-  /*
+  
   if (!refs.localStream) {
     logError('could not start call as there is no local camera');
     return
   }
-  */
 
   if (!recipient_id) {
     logError('could not start call as no recipient ID is set');
