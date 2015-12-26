@@ -10,12 +10,12 @@ $(document).ready(function(){
   if (!refs.socket)
   {
     refs.secure = secure;
-    refs.server_port = server_port;
-    var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_port+"/";
-    console.log(secure)
+    refs.server_ports = server_ports;
+    var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
     console.log(url);
-    refs.socket = io.connect(url, {secure: refs.secure});
+    refs.socket = io(url, {secure: refs.secure});
     //refs.socket = io.connect(url);
+    //refs.socket = io();
     console.log(refs.socket);
     refs.socket.on('receiveConnection', function(data) {
       //refs.server_ip = data["ip"];
@@ -24,7 +24,6 @@ $(document).ready(function(){
       getLocalStream();
       connect();
     });
-
     refs.socket.on('tocAnswer', function (wait){
     if (wait)
     {
@@ -36,12 +35,10 @@ $(document).ready(function(){
       logMessage('Wait a moment for someone to talk');
     }
     });
-
     refs.socket.on('talk', function(recipient_id){
       talk(recipient_id);
     });
   }
-
   refs.button_search.on('click', _search);
   refs.button_send_message.on('click',_sendMessage);
   refs.entry_message.on('keypress', _sendMessage);

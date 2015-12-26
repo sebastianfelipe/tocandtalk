@@ -1,12 +1,11 @@
 var refs = {
   peer_path: '/peerjs',
   server_ip: null,
-  server_port: 4080,
+  server_ports: null,
   secure: false,
   protocol: null,
   peer: null,
   peer_key: '6sdshp5kg3edbo6r',
-  peer_port: 4080,
   socket: null,
 
   talking: false,
