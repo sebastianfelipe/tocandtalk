@@ -53,15 +53,22 @@ var connect = function () {
     logError('please set caller ID first');
     return false;
   }
-
-  if ((!refs.server_ip) || (!refs.server_port))
+  
+  if ((!refs.server_ip) || (!refs.server_ports.peer))
   {
     logError('Problem with the server connection. Please reload the page');
     return false;  
   }
 
   try {
-    refs.peer = new Peer(refs.caller_id, {key: refs.peer_key, host: refs.server_ip, port: refs.server_port});
+    //refs.peer = new Peer(refs.caller_id, {key: refs.peer_key, host: refs.server_ip, port: refs.server_port});
+    //refs.peer = new Peer(refs.caller_id, {host: refs.server_ip, port: refs.server_port});
+    //refs.peer = new Peer(refs.caller_id, {host: refs.server_ip, port: refs.server_port, path: refs.peer_path});
+    //refs.peer = new Peer(refs.caller_id, {host: refs.server_ip, port: refs.peer_port, path: refs.peer_path});
+    //console.log({key: 'peerjs', host: refs.server_ip, port: refs.server_ports.peer});
+    refs.peer = new Peer(refs.caller_id, {key: 'peerjs', host: refs.server_ip, port: refs.server_ports.peer});
+    //console.log(peer);
+    
     refs.peer.on('connection', function(data_connection) {
       refs.data_connection = data_connection;
       refs.data_connection.on('data', function(data) {
@@ -72,6 +79,7 @@ var connect = function () {
       });
     });
     refs.peer.on('call', _answer);
+    
   }
   catch (e) {
     refs.peer = null;

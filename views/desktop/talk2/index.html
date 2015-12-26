@@ -127,9 +127,14 @@
   <script data-source="desktop/talk2/js/gwdvideo_min.js" data-version="5" data-exports-type="gwd-video" type="text/javascript" src="desktop/talk2/js/gwdvideo_min.js"></script>
   <script type="text/javascript">
     var callerId = <%- JSON.stringify(username) %> ;
+    var server_ip = <%- JSON.stringify(server_ip) %> ;
+    var protocol = <%- JSON.stringify(protocol) %> ;
+    var server_ports = <%- JSON.stringify(server_ports) %> ;
+    var secure = <%- JSON.stringify(secure) %> ;
   </script>
   <script src="socket.io/socket.io.js"></script>
   <script src="peer.js"></script>
+  <!--<script src="http://cdn.peerjs.com/0.3/peer.js"></script>-->
   <script src="shared/js/references.js"></script>
   <script src="shared/js/callbacks.js"></script>
   <script src="shared/js/functions.js"></script>

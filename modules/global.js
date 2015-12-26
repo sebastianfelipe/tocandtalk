@@ -1,5 +1,19 @@
-var port1 = 4000;
+var port1 = 4080;
 var port2 = 9000;
+var port3 = 4443;
+var port4 = 9443;
+
+var ports = {'http': {
+                        'web':        4080,
+                        'io':         4080,
+                        'peer':       9080
+                     },
+             'https': {
+                        'web':        4443,
+                        'io':         4443,
+                        'peer':       9443
+                      }
+            };
 
 var users = [];
 var availables = [];
@@ -58,4 +72,6 @@ module.exports.users = users;
 module.exports.availables = availables;
 module.exports.limit = limit;
 module.exports.port1 = port1;
-module.exports.port2 = port2;  
+module.exports.port2 = port2;
+module.exports.port3 = port3;
+module.exports.ports = ports;
