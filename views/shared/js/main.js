@@ -5,19 +5,22 @@ $(document).ready(function(){
   refs.entry_message = $('#message-entry');
   refs.button_search = $('#search');
   refs.button_send_message = $('#send-message');
-
+  refs.server_ip = server_ip;
+  refs.protocol = protocol;
   if (!refs.socket)
   {
-
-    refs.socket = io();
+    refs.secure = secure;
+    refs.server_ports = server_ports;
+    var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
+    console.log(url);
+    // -------------------------------------------------------------
+    getLocalStream();
+    connect();
+    refs.socket = io(url, {secure: refs.secure});
+    console.log(refs.socket);
     refs.socket.on('receiveConnection', function(data) {
-      refs.server_ip = data["ip"];
-      refs.server_port = data["port"];
       $('#user').html("User connected as " + refs.caller_id);
-      getLocalStream();
-      connect();
     });
-
     refs.socket.on('tocAnswer', function (wait){
     if (wait)
     {
@@ -29,11 +32,18 @@ $(document).ready(function(){
       logMessage('Wait a moment for someone to talk');
     }
     });
-
     refs.socket.on('talk', function(recipient_id){
       talk(recipient_id);
     });
-  }
+  // -------------------------------------------------------------
+  
+  // Test de nueva versión
+  /*
+  getLocalStream();
+  connect();
+  refs.socket = io(url, {secure: refs.secure});
+  */
+}
 
   refs.button_search.on('click', _search);
   refs.button_send_message.on('click',_sendMessage);
