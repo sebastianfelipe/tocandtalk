@@ -1,153 +1,134 @@
 <!DOCTYPE html>
 <html>
+	<header>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Toc&Talk!</title>
+		<meta name="application-name" content="Toc&Talk!"/>
 
-<head data-gwd-animation-mode="quickMode">
-  <meta charset="utf-8">
-  <title>Toc&amp;Talk!</title>
-  <meta name="generator" content="Google Web Designer 1.4.2.0915">
-  <link rel="stylesheet" href="desktop/shared/css/w3.css">
-  <script src="desktop/shared/js/jquery/jquery.min.js"></script>
-  <script src="node_modules/webrtc-adapter-test/adapter.js"></script>
-  <style type="text/css">
-    html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0px;
-    }
-    body {
-      -webkit-transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-      -webkit-transform-style: preserve-3d;
-      background-color: transparent;
-    }
-    .gwd-video-jnf3 {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 0%;
-      top: 0%;
-      border: 3px none rgb(238, 229, 229);
-      overflow: auto;
-      border-image-source: none;
-      background-image: none;
-      background-color: rgb(0, 0, 0);
-    }
-    .gwd-video-ke1g {
-      position: absolute;
-      width: 20%;
-      height: 25%;
-      left: 77.27%;
-      top: 74.01%;
-      background-color: transparent;
-    }
-    .gwd-div-1ldv {
-      position: absolute;
-      text-align: left;
-      color: white;
-      width: 100%;
-      height: 39.99px;
-      overflow: visible;
-      left: 0%;
-      top: 0%;
-      background-image: none;
-      background-color: rgba(0, 0, 0, 0.498039);
-    }
-    .gwd-div-dp3i {
-      position: absolute;
-      font-family: Verdana, sans-serif;
-      text-align: left;
-      color: rgb(0, 0, 0);
-      border-image-source: none;
-      border-color: transparent;
-      width: 300px;
-      height: 150px;
-      left: 1.88%;
-      top: 6.1%;
-    }
-    .gwd-div-1hor {
-      position: absolute;
-      border-width: 2px;
-      opacity: 0.9;
-      width: 20%;
-      left: 2.2%;
-      top: 91.37%;
-      height: 35px;
-    }
-    .gwd-div-ml19 {
-      position: absolute;
-      font-family: Verdana, sans-serif;
-      color: white;
-      text-align: left;
-      opacity: 1;
-      border-image-source: none;
-      border-color: rgb(255, 255, 255);
-      height: 63%;
-      left: 2.18%;
-      top: 27.75%;
-      width: 25.09%;
-      overflow: auto;
-      background-image: none;
-      background-color: rgba(0, 0, 0, 0.498039);
-    }
-    .gwd-div-1h3f {
-      position: absolute;
-      font-family: Verdana, sans-serif;
-      text-align: left;
-      color: white;
-      height: 4.23%;
-      width: 40%;
-      border-image-source: none;
-      border-color: rgb(252, 252, 252);
-      left: 29.92%;
-      top: 91.43%;
-      overflow: auto;
-    }
-    .gwd-div-xlqe {
-      position: absolute;
-      opacity: 1;
-      left: 22.2%;
-      top: 91.39%;
-      height: 35px;
-      width: 50px;
-    }
-    .gwd-div-wdiz {
-      position: absolute;
-      width: 97px;
-      left: 85%;
-      top: 18px;
-      height: 25px;
-      border-image-source: none;
-      border-color: transparent;
-      overflow: auto;
-      background-image: none;
-    }
-  </style>
-  <link href="desktop/talk2/css/gwdvideo_style.css" data-version="5" data-exports-type="gwd-video" rel="stylesheet">
-  <script data-source="desktop/talk2/js/googbase_min.js" data-version="3" data-exports-type="googbase" type="text/javascript" src="desktop/talk2/js/googbase_min.js"></script>
-  <script data-source="desktop/talk2/js/gwd_webcomponents_min.js" data-version="4" data-exports-type="gwd_webcomponents" type="text/javascript" src="desktop/talk2/js/gwd_webcomponents_min.js"></script>
-  <script data-source="desktop/talk2/js/gwdvideo_min.js" data-version="5" data-exports-type="gwd-video" type="text/javascript" src="desktop/talk2/js/gwdvideo_min.js"></script>
-  <script type="text/javascript">
-    var callerId = <%- JSON.stringify(username) %> ;
-  </script>
-  <script src="socket.io/socket.io.js"></script>
-  <script src="peer.js"></script>
-  <script src="shared/js/references.js"></script>
-  <script src="shared/js/callbacks.js"></script>
-  <script src="shared/js/functions.js"></script>
-  <script src="shared/js/main.js"></script>
-</head>
+		<!-- Icons -->
+		<link rel="icon" type="image/png" href="desktop/shared/img/icons/favicon.png" />
+		<link href="desktop/shared/img/icons/tocandtalk-ios.png" rel="apple-touch-icon" />
+		<link href="desktop/shared/img/icons/tocandtalk-ios-76x76.png" rel="apple-touch-icon" sizes="76x76" />
+		<link href="desktop/shared/img/icons/tocandtalk-ios-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+		<link href="desktop/shared/img/icons/tocandtalk-ios-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+		<link href="desktop/shared/img/icons/tocandtalk-ios-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+		<link href="desktop/shared/img/icons/tocandtalk-android-192x192.png" rel="icon" sizes="192x192" />
+		<link href="desktop/shared/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
 
-<body>
-  <video is="gwd-video" id="remote-video" sources="" class="gwd-video-jnf3" autoplay=""></video>
-  <div class="gwd-div-1ldv w3-container">
-    <p id="user">User</p>
-  </div>
-  <input class="gwd-div-dp3i" id="search" type="image" src="desktop/shared/img/logobk.png" width="300" height="150">
-  <div class="gwd-div-ml19 w3-container" id="messages"></div>
-  <input class="gwd-div-1hor" id="message-entry" type="text" autocomplete="off">
-  <button class="gwd-div-xlqe" id="send-message">Send</button>
-  <video is="gwd-video" id="local-video" muted="" sources="" class="gwd-video-ke1g" style="background-image: none;" autoplay=""></video>
-  <div class="gwd-div-1h3f" id="tracking"></div>
-  <a class="gwd-div-wdiz w3-container w3-black" id="logout" href="/logout" style="text-decoration: none">Log Out</a>
-</body>
+		<script type="text/javascript">
+			var callerId = <%- JSON.stringify(username) %> ;
+		</script>
 
+		<!-- CSS -->
+		<link rel="stylesheet" href="desktop/shared/css/fonts.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/shared/css/general.css" type="text/css"/>
+		
+		<link rel="stylesheet" href="desktop/talk2/css/talk.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/talk2/css/video.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/talk2/css/panel.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/talk2/css/buttons.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/talk2/css/buttons_dialog.css" type="text/css"/>
+
+		<!-- LIBS -->
+		<script src="desktop/shared/js/jquery/jquery.min.js"></script>
+		<script src="desktop/shared/js/react/react.min.js"></script>
+
+		<script src="node_modules/webrtc-adapter-test/adapter.js"></script>
+		<script data-source="desktop/talk2/js/googbase_min.js" data-version="3" data-exports-type="googbase" type="text/javascript" src="desktop/talk2/js/googbase_min.js"></script>
+		<script data-source="desktop/talk2/js/gwd_webcomponents_min.js" data-version="4" data-exports-type="gwd_webcomponents" type="text/javascript" src="desktop/talk2/js/gwd_webcomponents_min.js"></script>
+		<script data-source="desktop/talk2/js/gwdvideo_min.js" data-version="5" data-exports-type="gwd-video" type="text/javascript" src="desktop/talk2/js/gwdvideo_min.js"></script>
+
+		<script src="socket.io/socket.io.js"></script>
+		<script src="peer.js"></script>
+		<script src="shared/js/references.js"></script>
+		<script src="shared/js/callbacks.js"></script>
+		<script src="shared/js/functions.js"></script>
+		<script src="shared/js/main.js"></script>
+
+		<!-- STRINGS -->
+		<script src="strings/es/shared.js"></script>
+		<script src="strings/es/talk.js"></script>
+
+		<!-- JS -->
+		<script src="desktop/shared/js/functions.js"></script>
+		<script src="desktop/talk2/js/buttons_dialog.js"></script>
+        <script src="desktop/talk2/js/window.js"></script>
+
+		<script src="desktop/shared/js/load.js"></script>
+	</header>
+
+	<body>
+		<!-- Video Remoto -->
+		<video is="gwd-video" id="remote-video" sources="" autoplay=""></video>
+		<!-- Video Local -->
+		<video is="gwd-video" id="local-video" muted="" sources="" autoplay=""></video>
+		<div id="video_s"></div>
+		<!-- Logo -->
+		<image src="desktop/talk2/img/tocandtalk_logo.png" id="logo_black"></image>
+
+		<!-- Botones -->
+		<div id="buttons_container_above">
+			<a href="/" title="Salir">
+				<div id="button_exit">
+					<image src="desktop/talk2/img/button_exit.svg" id="b_icon_exit"></image>
+				</div>
+			</a>
+		</div>
+
+		<div id="buttons_container_below">
+			<div id="b_dialog_container">
+				<div id="b_dialog_vol" class="b_dialog">
+					<bt>Volumen</bt>
+				</div>
+
+				<div id="b_dialog_fullscr" class="b_dialog">
+					<bt>Pantalla completa</bt>
+				</div>
+
+				<div id="b_dialog_mic" class="b_dialog">
+					<bt>Deshabilitar Micrófono</bt>
+				</div>
+
+				<div id="b_dialog_video" class="b_dialog">
+					<bt>Deshabilitar Webcam</bt>
+				</div>
+
+				<div id="b_dialog_next" class="b_dialog">
+					<bt>Siguiente usuario</bt>
+				</div>
+			</div>
+			<br>
+			<div id="controls_bar">
+				<!-- Volumen -->
+				<image src="desktop/talk2/img/button_volume_up.svg" id="b_icon_vol" class="control_icon ic01"></image>
+				
+				<!-- Pantalla completa -->
+				<image src="desktop/talk2/img/button_full_screen.svg" id="b_icon_fullscr" class="control_icon ic02"></image>
+				
+				<div id="control_sep"></div>
+
+				<!-- Micrófono -->
+				<image src="desktop/talk2/img/button_mic.svg" id="b_icon_mic" class="control_icon ic03"></image>
+				
+				<!-- Video -->
+				<image src="desktop/talk2/img/button_videocam.svg" id="b_icon_video" class="control_icon ic04"></image>
+			</div>
+			<div id="button_next">
+				<!-- <image src="desktop/talk2/img/button_next.svg" id="b_icon_next" class="control_icon"></image> -->
+				<input id="search" type="image" src="desktop/talk2/img/button_next.svg" class="control_icon">
+			</div>
+		</div>
+
+		<!-- Panel de Mensajes y Perfil -->
+        <div id="panel">
+            <div class="gwd-div-1ldv w3-container" style="color:white;">
+                <p id="user">User</p>
+            </div>
+            
+            <div class="gwd-div-ml19 w3-container" id="messages"></div>
+            <input class="gwd-div-1hor" id="message-entry" type="text" autocomplete="off">
+            <button class="gwd-div-xlqe" id="send-message">Send</button>
+        </div>
+
+	</body>
 </html>

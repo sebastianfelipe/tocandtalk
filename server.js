@@ -47,6 +47,7 @@ register_routes = require('./routes/register.js');
 logout_routes = require('./routes/logout.js');
 friends_routes = require('./routes/friends.js');
 profile_routes = require('./routes/profile.js');
+settings_routes = require('./routes/settings.js');
 
 app.use('/', home_routes);
 app.use('/talk', talk_routes);
@@ -55,6 +56,7 @@ app.use('/register', register_routes);
 app.use('/logout', logout_routes);
 app.use('/friends', friends_routes);
 app.use('/profile', profile_routes);
+app.use('/settings', settings_routes);
 
 // -----------------------------------
 // Only for development use
