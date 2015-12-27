@@ -104,14 +104,12 @@ var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: 
 
 var privateKey  = fs.readFileSync('./ssl/server.key', 'utf8');
 var certificate = fs.readFileSync('./ssl/server.crt', 'utf8');
-/*
 var credentials = {
                   key: privateKey,
                   cert: certificate,
                   requestCert: false,
                   rejectUnauthorized: false
                   };
-*/
 // Servers
 var servers = {'http': {
                         'web':               http.createServer(app),
@@ -119,7 +117,7 @@ var servers = {'http': {
                         'peer':              null
                      },
               'https': {
-                        'web':        null,//https.createServer(credentials, app),
+                        'web':        https.createServer(credentials, app),
                         'io':         new io(),
                         'peer':       null
                       }
@@ -141,8 +139,6 @@ servers.http.peer.on('connection', _peerConnection);
 servers.http.peer.on('disconnect', _peerDisconnect);
 
 // HTTPS Servers
-
-/*
 servers.https.web.listen(ports.https.web, function(){
     console.log('HTTPS: WebServer running on ' +
                 ip.address() + ':' + ports.https.web);
@@ -152,12 +148,12 @@ servers.https.peer = require('peer').PeerServer({port: ports.https.peer, ssl: cr
     console.log('HTTP: P2PServer running on ' +
                 ip.address() + ':' + ports.https.peer);
 });
-*/
+
 servers.https.io.listen(servers.http.web)
-//servers.https.io.listen(servers.https.web)
+servers.https.io.listen(servers.https.web)
 servers.https.io.on('connection',_ioConnection);
 
-//servers.https.peer.on('connection', _peerConnection);
-//servers.https.peer.on('disconnect', _peerDisconnect);
+servers.https.peer.on('connection', _peerConnection);
+servers.https.peer.on('disconnect', _peerDisconnect);
 
 
