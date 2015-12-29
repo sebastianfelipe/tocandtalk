@@ -5,15 +5,23 @@ $(document).ready(function(){
   refs.entry_message = $('#message-entry');
   refs.button_search = $('#search');
   refs.button_send_message = $('#send-message');
+  
+  /*
   refs.server_ip = server_ip;
   refs.protocol = protocol;
+  refs.secure = secure;
+  */
+
+  refs.server_ip = "204.87.169.109",
+  refs.protocol = "https";
+  refs.secure = true;
+  
   if (!refs.socket)
   {
     refs.server_ports = server_ports;
     //refs.secure = secure;
     //var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
     var url = "https://https.tocandtalk.com";
-    refs.secure = true;
     console.log(url);
     // -------------------------------------------------------------
     getLocalStream();
