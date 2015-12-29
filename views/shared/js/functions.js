@@ -80,7 +80,14 @@ var connect = function () {
                         secure: true,
                         debug: 3};
     */
-    var peer_options = {key: refs.peer_key, debug: 3};
+    /*
+    var peer_options = {key: refs.peer_key, secure: true, debug: 3};
+    */
+    var peer_options = {key: 'peerjs',
+                        host: "https.tocandtalk.com",
+                        port: 443,//refs.server_ports.peer,
+                        secure: true,
+                        debug: 3};
     refs.peer = new Peer(refs.caller_id, peer_options);
     //console.log(peer);
     
