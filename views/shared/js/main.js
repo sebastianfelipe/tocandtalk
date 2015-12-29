@@ -12,7 +12,7 @@ $(document).ready(function(){
     refs.server_ports = server_ports;
     //refs.secure = secure;
     //var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
-    var url = 'https'+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
+    var url = 'https'+"://"+refs.server_ip;
     refs.secure = true;
     console.log(url);
     // -------------------------------------------------------------
