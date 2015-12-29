@@ -14,6 +14,7 @@ var ports = {'http': {
                         'peer':       4443
                       }
             };
+var host_name = "https.tocandtalk.com";
 
 var users = [];
 var availables = [];
@@ -75,3 +76,4 @@ module.exports.port1 = port1;
 module.exports.port2 = port2;
 module.exports.port3 = port3;
 module.exports.ports = ports;
+module.exports.host_name = host_name;

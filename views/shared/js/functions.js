@@ -84,7 +84,7 @@ var connect = function () {
     var peer_options = {key: refs.peer_key, secure: true, debug: 3};
     */
     var peer_options = {key: 'peerjs',
-                        host: refs.server_ip,//refs.server_ip, //"https.tocandtalk.com",
+                        host: refs.host_name,//refs.server_ip, //"https.tocandtalk.com",
                         port: 443,//refs.server_ports.peer,
                         secure: true,
                         debug: 3};

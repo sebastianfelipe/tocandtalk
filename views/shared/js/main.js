@@ -12,17 +12,19 @@ $(document).ready(function(){
   refs.secure = secure;
   */
 
-  refs.server_ip = "204.87.169.109",
+  refs.server_ip = server_ip,
+  refs.host_name = host_name,
   refs.protocol = "https";
   refs.secure = true;
   
+  console.log(refs.host_name);
   if (!refs.socket)
   {
     refs.server_ports = server_ports;
     //refs.secure = secure;
     //var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
     //var url = "https://https.tocandtalk.com";
-    var url = refs.protocol+"://"+refs.server_ip+"/";
+    var url = refs.protocol+"://"+refs.host_name+"/";
     console.log(url);
     // -------------------------------------------------------------
     getLocalStream();
