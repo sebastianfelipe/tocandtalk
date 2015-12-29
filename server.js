@@ -101,9 +101,10 @@ var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: 
 
 // En caso de no funcionar la conexion al server, agregar path:'/peerjs' y lo mismo en el cliente
 
-
+/*
 var privateKey  = fs.readFileSync('./ssl/mysite.key', 'utf8');
 var certificate = fs.readFileSync('./ssl/mysite.crt', 'utf8');
+*/
 /*
 var credentials = {
                   key: privateKey,
@@ -113,11 +114,12 @@ var credentials = {
                   };
 */
 
+/*
 var credentials = {
                   key: privateKey,
                   cert: certificate
                   };
-
+*/
 // Servers
 var servers = {'http': {
                         'web':               http.createServer(app),
@@ -125,7 +127,7 @@ var servers = {'http': {
                         'peer':              http.createServer(app)
                      },
               'https': {
-                        'web':        https.createServer(credentials, app),
+                        'web':        null,//https.createServer(credentials, app),
                         'io':         new io(),
                         'peer':       null
                       }
