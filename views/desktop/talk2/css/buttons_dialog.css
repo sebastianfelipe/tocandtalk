@@ -1,0 +1,43 @@
+#b_dialog_container {
+	position: relative;
+	display: inline-block;
+
+	width: 501px;
+	height: 25px;
+
+	text-align: left;
+}
+
+bt {
+	font-family: FiraSansBook;
+	font-size: 12px;
+}
+
+.b_dialog {
+	position: absolute;
+	display: inline-block;
+
+	color: rgba(255,255,255,0.9);
+
+	margin-top: 2px;
+	padding-left: 8px;
+	padding-right: 8px;
+
+	text-align: center;
+
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.7);
+	box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.7);
+
+	background: rgba(0,0,0,0.8);
+
+	border-radius:			3px 3px 3px 3px;
+	-moz-border-radius:		3px 3px 3px 3px;
+	-webkit-border-radius:	3px 3px 3px 3px;
+	border: 0px solid #000000;
+}
+
+#b_dialog_vol, #b_dialog_fullscr, #b_dialog_next, #b_dialog_mic, #b_dialog_video {
+	height: 23px;
+	display: none;
+}
