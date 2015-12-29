@@ -23,7 +23,7 @@ router.get('/', authenticate, function (req, res) {
 	}
 	//var server_ip = "204.87.169.109";
 	var server_ip = ip.address();
-  return res.render('talk2/index.html', {forceType: "desktop", username: req.session.username, host_name: host_name, server_ip: server_ip, protocol: protocol, secure: req.secure, server_ports: server_ports});
+  return res.render('talk/index.html', {forceType: "desktop", username: req.session.username, host_name: host_name, server_ip: server_ip, protocol: protocol, secure: req.secure, server_ports: server_ports});
 });
 
 module.exports = router;
