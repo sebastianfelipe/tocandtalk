@@ -26,16 +26,19 @@ function capitalizeWord(word) {
 	return word;
 }
 function capitalize(msg) {
-	msg_tmp = msg;
-	words_list = [];
-	words = msg.split(' ');
-	
-	words.forEach(function(str) {
-		word = capitalizeWord(str);
-		words_list.push(word);
-	}); 
+	var words = "";
+	if (msg)
+	{
+		msg_tmp = msg;
+		words_list = [];
+		words = msg.split(' ');
+		
+		words.forEach(function(str) {
+			word = capitalizeWord(str);
+			words_list.push(word);
+		}); 
 
-	words = words_list.join(' ').trim();
+		words = words_list.join(' ').trim();
+	}
 	return words;
-
 }
