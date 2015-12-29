@@ -104,11 +104,18 @@ var peerServer = new require('peer').PeerServer({key: '6sdshp5kg3edbo6r', port: 
 
 var privateKey  = fs.readFileSync('./ssl/mysite.key', 'utf8');
 var certificate = fs.readFileSync('./ssl/mysite.crt', 'utf8');
+/*
 var credentials = {
                   key: privateKey,
                   cert: certificate,
                   requestCert: false,
                   rejectUnauthorized: false
+                  };
+*/
+
+var credentials = {
+                  key: privateKey,
+                  cert: certificate
                   };
 
 // Servers
@@ -157,18 +164,20 @@ servers.https.web.listen(ports.https.web, function(){
                 ip.address() + ':' + ports.https.web);
 });
 */
+/*
 servers.https.peer = require('peer').PeerServer({port: ports.https.peer, ssl: credentials}, function () {
-    console.log('HTTP: P2PServer running on ' +
+    console.log('HTTPS: P2PServer running on ' +
                 ip.address() + ':' + ports.https.peer);
 });
-
+servers.https.peer.on('connection', _peerConnection);
+servers.https.peer.on('disconnect', _peerDisconnect);
+*/
 /*
 servers.https.io.listen(servers.http.web)
 servers.https.io.listen(servers.https.web)
 servers.https.io.on('connection',_ioConnection);
 */
-servers.https.peer.on('connection', _peerConnection);
-servers.https.peer.on('disconnect', _peerDisconnect);
+
 
 /*
 servers.http.io.listen(ports.http.io, function(){
