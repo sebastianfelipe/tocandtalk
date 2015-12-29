@@ -1,6 +1,8 @@
-function invalidInput(){
+function invalidInput()
+{
 }
 
-function validateForm(){
-	return true;
+function validateForm()
+{
+
 }

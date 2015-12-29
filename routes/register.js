@@ -61,19 +61,111 @@ router.get('/', authenticateRegister, function (req, res) {
   });
 });
 
+router.post('/',function (req, res) {
+  var errors = "";
+  var username = new models.Username({username: req.body.i_username.trim().toLowerCase()});
+  var email = new models.Email({email: req.body.i_email});
+  var user = new models.User({  _username: username.username.trim().toLowerCase(),
+                                _email: email.email.trim().toLowerCase(),
+                                nationality: req.body.s_country,
+                                native_language: req.body.s_native_language,
+                                first_name: req.body.i_name,
+                                last_name: req.body.i_lastname,
+                                sex: req.body.r_sex,
+                                password: req.body.i_password,
+                                description: ""
+                                });
+
+  if (req.body.i_password != req.body.i_password_confirmation)
+  {
+    errors += "error_user_password_confirmation;"; 
+  }
+
+  // Validation step
+  async.parallel({
+      username: function(callback){
+          setTimeout(function(){
+              username.validate(function (err) {
+                var errors_tmp = error_adapter(models.Username.modelName, err);
+                callback(null, errors_tmp);
+              });
+          }, 200);
+      },
+      email: function(callback){
+          setTimeout(function(){
+              email.validate(function (err) {
+                var errors_tmp = error_adapter(models.Email.modelName, err);
+                callback(null, errors_tmp);
+              });
+          }, 200);
+      },
+      user: function(callback){
+          setTimeout(function(){
+              user.validate(function (err) {
+                var errors_tmp = error_adapter(models.User.modelName, err);
+                callback(null, errors_tmp);
+              });
+          }, 200);
+      }
+  },
+  function(err, results) {
+    // error handling
+    error_list = [];
+    for (var key in results) {
+      error_list.push(results[key]);
+    }
+    errors += error_list.join('');
+    if (!errors) 
+    {
+      // Save
+      async.parallel({
+            username: function(callback){
+                setTimeout(function(){
+                    username.save(function (err) {
+                      var errors_tmp = error_adapter(models.Username.modelName, err);
+                      callback(null, errors_tmp);
+                    });
+                }, 200);
+            },
+            email: function(callback){
+                setTimeout(function(){
+                    email.save(function (err) {
+                      var errors_tmp = error_adapter(models.Email.modelName, err);
+                      callback(null, errors_tmp);
+                    });
+                }, 200);
+            },
+            user: function(callback){
+                setTimeout(function(){
+                    user.save(function (err) {
+                      var errors_tmp = error_adapter(models.User.modelName, err);
+                      callback(null, errors_tmp);
+                    });
+                }, 200);
+            }
+        },
+        function(err, results) {
+            // error handling
+            error_list = [];
+            for (var key in results) {
+              error_list.push(results[key]);
+            }
+            errors += error_list.join('');
+            if (!errors) 
+            {
+              req.session.username = user._username;
+            }
+            return res.send({req: req.body, errors: errors});
+      });
+    }
+    else
+    {
+        return res.send({req: req.body, errors: errors});
+    }
+  });
+});
+
 /*
-  username: ObjectId,
-  email: ObjectId,
-  nationality: String,
-  native_language: String,
-  spoken_languages: [String],
-  interest_languages: [String],
-  first_name: String,
-  last_name: String,
-  password: String,
-  sex: String,
-  description: String
-*/
 router.post('/',function (req, res) {
   var errors = "";
   var username = new models.Username({username: req.body.i_username.trim().toLowerCase()});
@@ -220,44 +312,7 @@ router.post('/',function (req, res) {
     //return res.render('register/index.html', {forceType: "desktop", countries: results.countries, languages: results.languages, errors: ""});
   });
 });
-/*
-router.post('/',function (req, res) {
-  var user = {"username"        : req.body.i_username,
-              "name"            : req.body.i_name,
-              "lastname"        : req.body.i_lastname,
-              "sex"             : req.body.r_sex,
-              "email"           : req.body.i_email,
-              "password"        : req.body.i_password,
-              "conf_password"   : req.body.i_password_confirmation
-              };
-
-    var resultUniqueUsername = uniqueUsername(req);
-    var resultUniqueEmail = uniqueEmail(req);
-    //var resultValidPass = validPass(req, user);
-    var resultIsValid = isValid(req, user);
-
-  console.log("Is unique? " + resultUniqueUsername);
-  //if (resultUniqueUsername && resultUniqueEmail && resultValidPass && resultIsValid )
-  if (resultUniqueUsername && resultUniqueEmail && resultIsValid )
-  {
-    // Asegurarse que cada una de las weas de aquí está bien
-
-    // Guardar al usuario en la bd
-    bd.user.push(user);
-    console.log(bd);
-    req.session.username = user.username;
-    return res.redirect('/');
-  }
- else
- {
-    var error_handler = "";
-    if (!resultUniqueUsername) {error_handler += "error_username_e;";}
-    if (!resultUniqueEmail) {error_handler += "error_email_e;";}
-    //if (!resultValidPass) {error_handler += "error_password_confirmation;";}
-    if (!resultIsValid) {error_handler += "error_username;";}
-    //console.log("Ha ocupado un caracter incorrecto!");
-    return res.render('register/index.html', {foceType: "desktop", errors: error_handler});
-  }
-});
 */
+
+
 module.exports = router;

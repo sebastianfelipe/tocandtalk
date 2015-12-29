@@ -25,6 +25,43 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+  async.parallel({
+      username: function(callback){
+          setTimeout(function(){
+            var errors = "";
+              models.User.findOne({_username: req.body.i_username, password: req.body.i_password}).exec(function (err, doc) {
+                callback(null,doc);
+                  })
+          }, 200);
+      },
+      email: function(callback){
+          setTimeout(function(){
+            var errors = "";
+              models.User.findOne({_email: req.body.i_username, password: req.body.i_password}).exec(function (err, doc) {
+                callback(null,doc);
+                  })
+          }, 200);
+      }
+  },
+  function(err, results) {
+      var errors = "";
+      var doc = results.username || results.email;
+      if (doc)
+      {
+        req.session.username = doc._username;
+      }
+      else
+      {
+        errors += "error_user;";
+        
+      }
+      //return res.req.res.redirect('/');
+      return res.send({req: req.body, errors: errors});
+  });
+});
+
+/*
+router.post('/', function (req, res) {
   models.User.findOne({_username: req.body.i_username}, function(err, doc) {
     var errors = "";
     if (doc)
@@ -57,5 +94,6 @@ router.post('/', function (req, res) {
     }
   });
 });
+*/
 
 module.exports = router;

@@ -15,6 +15,7 @@
 		<link href="desktop/shared/img/icons/tocandtalk-android-192x192.png" rel="icon" sizes="192x192" />
 		<link href="desktop/shared/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
 
+		<script> var req = <%- JSON.stringify(req) %>; </script>
 		<script> var errors = <%- JSON.stringify(errors) %>; </script>
 
 		<!-- CSS -->
@@ -31,12 +32,16 @@
 		<script src="strings/es/login.js"></script>
 
 		<!-- JS -->
-		<script src="desktop/login/js/login.js" type="text/javascript"></script>
-		<script src="desktop/login/js/error_handling.js" type="text/javascript"></script>
+
 		<script src="desktop/shared/js/cover.js" type="text/javascript"></script>
 		<script src="desktop/login/js/bar.js" type="text/javascript"></script>
 		<script src="desktop/shared/js/bar_window.js" type="text/javascript"></script>
 		<script src="desktop/login/js/window.js" type="text/javascript"></script>
+
+		<script src="desktop/login/js/login.js" type="text/javascript"></script>
+		<script src="desktop/login/js/functions.js" type="text/javascript"></script>
+		<script src="desktop/login/js/load.js" type="text/javascript"></script>
+		<script src="desktop/login/js/events.js" type="text/javascript"></script>
 	</head> 
 
 	<body>
@@ -65,7 +70,7 @@
     			<t2><div class="str str_title_login"></div></t2>
     		</div>
 
-    		<form class="formulario" action="/login" onsubmit="return validateForm()"method="post">
+    		<form id="form_login" name="form_login" class="formulario" action="/login" method="post">
 
     			<div>
 					<!-- Nombre de usuario / email -->
