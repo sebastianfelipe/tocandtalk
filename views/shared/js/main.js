@@ -21,7 +21,8 @@ $(document).ready(function(){
     refs.server_ports = server_ports;
     //refs.secure = secure;
     //var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
-    var url = "https://https.tocandtalk.com";
+    //var url = "https://https.tocandtalk.com";
+    var url = refs.protocol+"://"+refs.server_ip+"/";
     console.log(url);
     // -------------------------------------------------------------
     getLocalStream();
