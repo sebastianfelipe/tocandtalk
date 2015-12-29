@@ -6,12 +6,12 @@ var port4 = 9443;
 var ports = {'http': {
                         'web':        4080,
                         'io':         4080,
-                        'peer':       9080
+                        'peer':       4080
                      },
              'https': {
                         'web':        4443,
                         'io':         4443,
-                        'peer':       9443
+                        'peer':       4443
                       }
             };
 

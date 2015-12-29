@@ -9,11 +9,11 @@ $(document).ready(function(){
   refs.protocol = protocol;
   if (!refs.socket)
   {
-    refs.secure = true; ///secure;
+    refs.secure = secure;
     refs.server_ports = server_ports;
-    //var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
+    var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
    
-    var url = 'https'+"://"+refs.server_ip+":"+refs.server_ports.io+"/";   
+    //var url = 'https'+"://"+refs.server_ip+":"+refs.server_ports.io+"/";   
     console.log(url);
     // -------------------------------------------------------------
     getLocalStream();
