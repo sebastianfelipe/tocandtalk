@@ -16,27 +16,13 @@ var models = require('../database/models.js');
 var global = require('../modules/global.js');
 var validation_module = require('../modules/validations.js');
 var authenticate_module = require('../modules/authenticate.js');
+var functions_module = require('../modules/functions.js');
 
 // Function Imports
 var authenticateRegister = authenticate_module.authenticateRegister;
+var error_adapter = functions_module.error_adapter;
 
 // Shared Variables
-var error_adapter = function(model_name, err) {
-  error_list = [];
-  if (err) {
-    var errors = err.errors;
-    for (var key in errors) {
-      var pieces = [key, errors[key].kind]
-      error = 'error_' + model_name.toLowerCase();
-      for (var piece in pieces) {
-        error += '_' + pieces[piece].replace(' ','').replace('userdefined', errors[key].message);
-      }
-      error_list.push(error);
-    }
-  }
-  error_list.push('');
-  return error_list.join(';');
-}
 
 router.get('/', authenticateRegister, function (req, res) {
   async.parallel({

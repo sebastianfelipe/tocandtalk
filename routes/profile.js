@@ -8,25 +8,13 @@ var models = require('../database/models.js');
 
 // Module Imports
 var authenticate_module = require('../modules/authenticate.js');
+var functions_module = require('../modules/functions.js');
+
+// Functions
 var authenticate = authenticate_module.authenticate;
+var error_adapter = functions_module.error_adapter;
 
 // Shared Variables
-var error_adapter = function(model_name, err) {
-  error_list = [];
-  if (err) {
-    var errors = err.errors;
-    for (var key in errors) {
-      var pieces = [key, errors[key].kind]
-      error = 'error_' + model_name.toLowerCase();
-      for (var piece in pieces) {
-        error += '_' + pieces[piece].replace(' ','').replace('userdefined', errors[key].message);
-      }
-      error_list.push(error);
-    }
-  }
-  error_list.push('');
-  return error_list.join(';');
-}
 
 router.get('/', authenticate, function (req, res) {
   async.parallel({
