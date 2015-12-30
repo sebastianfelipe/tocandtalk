@@ -3,41 +3,82 @@
 	display: inline-block;
 
 	width: 501px;
-	height: 25px;
+	height: 27px;
 
 	text-align: left;
 }
 
+bt, .txt_t, .txt_p {
+    font-family: FiraSansBook;
+}
+
 bt {
-	font-family: FiraSansBook;
 	font-size: 12px;
 }
 
+.txt_t {
+    margin-bottom: 6px;
+    width: 100%;
+    
+    font-size: 13px;
+}
+
+.txt_p {
+    margin-top: 2px;
+    width: 100%;
+    
+	font-size: 11px;
+    color: rgba(200,200,200,1);
+}
+
 .b_dialog {
-	position: absolute;
+    position: absolute;
 	display: inline-block;
-
-	color: rgba(255,255,255,0.9);
-
+    
 	margin-top: 2px;
 	padding-left: 8px;
 	padding-right: 8px;
 
 	text-align: center;
-
-	-webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.7);
-	-moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.7);
-	box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.7);
-
-	background: rgba(0,0,0,0.8);
-
-	border-radius:			3px 3px 3px 3px;
+    
+    color: rgba(255,255,255,1);
+    background: rgba(10,10,10,0.94);
+    border: 0px solid #000000;
+    
+    border-radius:			3px 3px 3px 3px;
 	-moz-border-radius:		3px 3px 3px 3px;
 	-webkit-border-radius:	3px 3px 3px 3px;
-	border: 0px solid #000000;
+
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.7);
+	-moz-box-shadow:    0px 0px 4px 0px rgba(0,0,0,0.7);
+	box-shadow:         0px 0px 4px 0px rgba(0,0,0,0.7);
 }
 
-#b_dialog_vol, #b_dialog_fullscr, #b_dialog_next, #b_dialog_mic, #b_dialog_video {
+#b_dialog_vol, #b_dialog_fullscr, #b_dialog_fullscr_exit, #b_dialog_next, #b_dialog_mic, #b_dialog_mic_off, #b_dialog_video, #b_dialog_video_off {
+    z-index: 85;
+    display: none;
 	height: 23px;
-	display: none;
+}
+
+#b_dialog_mic_none, #b_dialog_video_none {
+    z-index: 85;
+    display: none;
+    
+    bottom: 87px;
+    left: 0px;
+    
+    padding: 4px 6px 6px 6px;
+}
+
+.b_dialog_arrow {
+    position: absolute;
+    display: none;
+    
+    width: 7px;
+    height: auto;
+    
+    top: 25px;
+    
+    opacity: 0.9;
+    filter: alpha(opacity=90);
 }

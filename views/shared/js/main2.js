@@ -44,8 +44,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // DOM utilities
   var makePara = function (text) {
-    var p = document.createElement('p');
-    p.innerText = text;
+    //var p = document.createElement('p');
+    //p.innerText = text;
+    var p = $("<div>", {class: "p_msg_info", text: text});
+    
     return p;
   };
 
@@ -79,8 +81,18 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   function writeMessage(id, message) {
-    if (callerId == id) {id = "You";}
-    para = makePara(id + ": " + message);
+    //if (callerId == id) {id = "You";}
+    //para = makePara(id + ": " + message);
+    var type = "";
+    if (callerId == id) {
+        type = "sender";
+    } else {
+        type = "receiver"
+    }
+    
+    var para = $('<div>', {class: "msg_bubble_chat msg_b_chat_"+type, text: message});
+    para.append($('<image>', {src: "desktop/talk2/img/msg_"+type+"_arrow.svg", class: "msg_b_arrow_"+type}));
+    
     if (messages_box.firstChild) {
       messages_box.insertBefore(para, messages_box.firstChild);
     }
