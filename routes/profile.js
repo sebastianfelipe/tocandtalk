@@ -47,7 +47,7 @@ router.get('/', authenticate, function (req, res) {
 
 router.post('/edit_user_nationality',function (req, res) {
   var errors = "";
-
+  console.log('dentro de');
   async.parallel({
       user: function(callback) {
           setTimeout(function(){
@@ -66,6 +66,7 @@ router.post('/edit_user_nationality',function (req, res) {
   },
   function(err, results) {
     // error handling
+    /*
     error_list = [];
     for (var key in results) {
       if (!results[key].errors)
@@ -74,7 +75,12 @@ router.post('/edit_user_nationality',function (req, res) {
       }
     }
     errors += error_list.join('');
-    return res.redirect('/profile');
+    */
+    //errors = results.user.errors;
+    console.log(results);
+    console.log(results.user.doc);
+    console.log(results.user.errors);
+    return res.send({user: results.user.doc, req: req.body, errors: errors});
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
 });
@@ -100,15 +106,8 @@ router.post('/edit_user_description',function (req, res) {
   },
   function(err, results) {
     // error handling
-    error_list = [];
-    for (var key in results) {
-      if (!results[key].errors)
-      {
-        error_list.push(results[key].errors);
-      }
-    }
-    errors += error_list.join('');
-    return res.redirect('/profile');
+    console.log('edit_user_description');
+    return res.send({user: results.user.doc, req: req.body, errors: errors});
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
 });
@@ -139,15 +138,8 @@ router.post('/add_user_interest_language',function (req, res) {
   },
   function(err, results) {
     // error handling
-    error_list = [];
-    for (var key in results) {
-      if (!results[key].errors)
-      {
-        error_list.push(results[key].errors);
-      }
-    }
-    errors += error_list.join('');
-    return res.redirect('/profile');
+    console.log('add_user_interest_language');
+    return res.send({user: results.user.doc, req: req.body, errors: errors});
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
 });
@@ -177,15 +169,8 @@ router.post('/add_user_spoken_language',function (req, res) {
   },
   function(err, results) {
     // error handling
-    error_list = [];
-    for (var key in results) {
-      if (!results[key].errors)
-      {
-        error_list.push(results[key].errors);
-      }
-    }
-    errors += error_list.join('');
-    return res.redirect('/profile');
+    console.log('add_user_spoken_language');
+    return res.send({user: results.user.doc, req: req.body, errors: errors});
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
 });
@@ -215,15 +200,10 @@ router.post('/remove_interest_language',function (req, res) {
   },
   function(err, results) {
     // error handling
-    error_list = [];
-    for (var key in results) {
-      if (!results[key].errors)
-      {
-        error_list.push(results[key].errors);
-      }
-    }
-    errors += error_list.join('');
-    return res.redirect('/profile');
+    console.log(results);
+    console.log(results.user.doc);
+    console.log(results.user.errors);
+    return res.send({user: results.user.doc, req: req.body, errors: errors});
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
 
@@ -254,15 +234,10 @@ router.post('/remove_spoken_language',function (req, res) {
   },
   function(err, results) {
     // error handling
-    error_list = [];
-    for (var key in results) {
-      if (!results[key].errors)
-      {
-        error_list.push(results[key].errors);
-      }
-    }
-    errors += error_list.join('');
-    return res.redirect('/profile');
+    console.log(results);
+    console.log(results.user.doc);
+    console.log(results.user.errors);
+    return res.send({user: results.user.doc, req: req.body, errors: errors});
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
 
