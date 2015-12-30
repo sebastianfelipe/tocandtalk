@@ -31,11 +31,13 @@ $(document).ready(function(){
     $('#c_description').css("display", "none");
     $('#c_description_edit').fadeIn(300);
 
+    /*
     if (user) {
       if (user.description) {            
           $('#input_edit_desc').val(user.description);
       }
     }
+    */
 
     window.button_save_description = ButtonSaveLight;
     window.button_save_description.init("#b_save_description");
@@ -48,7 +50,7 @@ $(document).ready(function(){
     $('#c_location').css("display", "none");
     $('#c_location_edit').fadeIn(300);
 
-    $('#s_country').val(user.nationality);
+    //$('#s_country').val(user.nationality);
 
     window.button_save_location = ButtonSaveLight;
     window.button_save_location.init("#b_save_location");

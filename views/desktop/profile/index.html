@@ -44,9 +44,7 @@
 
 		<!-- JS -->
 		<script src="desktop/shared/js/functions.js"></script>
-		<script src="desktop/profile/js/functions.js"></script>
 		<script src="desktop/profile/js/classes.js"></script>
-		<script src="desktop/profile/js/functions.js"></script>
     	
 		<script src="desktop/shared/js/bar_user_image.js"></script>
 		<script src="desktop/shared/js/bar_tab1.js"></script>
@@ -59,10 +57,15 @@
 		<script src="desktop/profile/js/user_image.js"></script>
 		
 		<script src="desktop/shared/js/load.js"></script>
-		<script src="desktop/profile/js/load.js"></script>
 
 		<script src="desktop/shared/js/bar_window.js"></script>
 		<script src="desktop/profile/js/window.js"></script>
+
+		<script src="desktop/profile/js/references.js" type="text/javascript"></script>
+		<script src="desktop/profile/js/errors.js" type="text/javascript"></script>
+		<script src="desktop/profile/js/functions.js" type="text/javascript"></script>
+		<script src="desktop/profile/js/load.js" type="text/javascript"></script>
+		<script src="desktop/profile/js/events.js" type="text/javascript"></script>
 
 	</header>
 
@@ -212,7 +215,7 @@
 						<!-- Añadir idioma que hablo -->
 						<div class="add_lang">
 							Añadir idioma<br>
-							<form action="/profile/add_user_spoken_language" method="post">
+							<form id="form_add_user_spoken_language" name="form_add_user_spoken_language" action="/profile/add_user_spoken_language" method="post">
 								<select
 									id="s_spoken_languages"
 									style="width:170px;"
@@ -284,7 +287,7 @@
 						<!-- Añadir idioma que me interesa -->
 						<div class="add_lang">
 							Añadir idioma<br>
-							<form action="/profile/add_user_interest_language" method="post">
+							<form id="form_add_user_interest_language" name="form_add_user_interest_language" action="/profile/add_user_interest_language" method="post">
 								<select
 									id="s_interest_languages"
 									style="width:170px;"
@@ -355,7 +358,7 @@
 								Editar Ubicación
 							-->
 							<div id="c_location_edit">
-								<form action="/profile/edit_user_nationality" method="post">
+								<form id="form_edit_user_nationality" name="form_edit_user_nationality" action="/profile/edit_user_nationality" method="post">
 									<div id="edit_location_sel">
 										<select
 											id="s_country"
@@ -409,7 +412,7 @@
 							<div id="c_description_edit">
 								<div class="str str_desc_edit_title"></div>:
 
-								<form action="/profile/edit_user_description" method="post">
+								<form id="form_edit_user_description" name="form_edit_user_description" action="/profile/edit_user_description" method="post">
 									<textarea width="430" id="input_edit_desc" name="input_edit_desc" class="input_desc"></textarea>
 
 									<div class="save_cancel_container">

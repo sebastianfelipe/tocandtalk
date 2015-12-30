@@ -6,14 +6,15 @@ var port4 = 9443;
 var ports = {'http': {
                         'web':        4080,
                         'io':         4080,
-                        'peer':       9080
+                        'peer':       4080
                      },
              'https': {
                         'web':        4443,
                         'io':         4443,
-                        'peer':       9443
+                        'peer':       4443
                       }
             };
+var host_name = "https.tocandtalk.com";
 
 var users = [];
 var availables = [];
@@ -75,3 +76,4 @@ module.exports.port1 = port1;
 module.exports.port2 = port2;
 module.exports.port3 = port3;
 module.exports.ports = ports;
+module.exports.host_name = host_name;

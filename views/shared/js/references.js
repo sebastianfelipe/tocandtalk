@@ -2,6 +2,7 @@ var refs = {
   peer_path: '/peerjs',
   server_ip: null,
   server_ports: null,
+  host_name: null,
   secure: false,
   protocol: null,
   peer: null,
