@@ -16,11 +16,12 @@
 		<link href="desktop/shared/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
 
 		<script type="text/javascript">
-			var callerId = <%- JSON.stringify(username) %> ;
-            var server_ip = <%- JSON.stringify(server_ip) %> ;
-            var protocol = <%- JSON.stringify(protocol) %> ;
-            var server_ports = <%- JSON.stringify(server_ports) %> ;
-            var secure = <%- JSON.stringify(secure) %> ;
+          var callerId = <%- JSON.stringify(username) %> ;
+          var host_name = <%- JSON.stringify(host_name) %> ;
+          var server_ip = <%- JSON.stringify(server_ip) %> ;
+          var protocol = <%- JSON.stringify(protocol) %> ;
+          var server_ports = <%- JSON.stringify(server_ports) %> ;
+          var secure = <%- JSON.stringify(secure) %> ;
 		</script>
         
 		<!-- CSS -->
@@ -73,7 +74,7 @@
         <script src="desktop/talk/js/load_screen.js"></script>
         <script src="desktop/talk/js/window.js"></script>
         
-		<script src="desktop/shared/js/load.js"></script>
+		<!--<script src="desktop/shared/js/load.js"></script>-->
 	</header>
 
 	<body ng-controller="TalkController">
