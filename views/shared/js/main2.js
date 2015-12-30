@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     var para = $('<div>', {class: "msg_bubble_chat msg_b_chat_"+type, text: message});
-    para.append($('<image>', {src: "desktop/talk2/img/msg_"+type+"_arrow.svg", class: "msg_b_arrow_"+type}));
+    para.append($('<image>', {src: "desktop/talk/img/msg_"+type+"_arrow.svg", class: "msg_b_arrow_"+type}));
     
     if (messages_box.firstChild) {
       messages_box.insertBefore(para, messages_box.firstChild);
