@@ -50,7 +50,6 @@
         
         <!-- JS -->
         <script src="desktop/talk/js/load_screen_functions.js"></script>
-
 		<script src="node_modules/webrtc-adapter-test/adapter.js"></script>
 		<script data-source="desktop/talk/js/googbase_min.js" data-version="3" data-exports-type="googbase" type="text/javascript" src="desktop/talk/js/googbase_min.js"></script>
 		<script data-source="desktop/talk/js/gwd_webcomponents_min.js" data-version="4" data-exports-type="gwd_webcomponents" type="text/javascript" src="desktop/talk/js/gwd_webcomponents_min.js"></script>
@@ -62,7 +61,7 @@
 		<script src="shared/js/callbacks.js"></script>
 		<script src="shared/js/functions.js"></script>
 		<script src="shared/js/main.js"></script>
-
+        
 		<script src="desktop/shared/js/functions.js"></script>
         <script src="desktop/talk/js/controller.js"></script>
 		<script src="desktop/talk/js/buttons_dialog.js"></script>
@@ -75,6 +74,20 @@
         <script src="desktop/talk/js/window.js"></script>
         
 		<!--<script src="desktop/shared/js/load.js"></script>-->
+
+        <script src="node_modules/webrtc-adapter-test/adapter.js"></script>
+		<script data-source="desktop/talk/js/googbase_min.js" data-version="3" data-exports-type="googbase" type="text/javascript" src="desktop/talk/js/googbase_min.js"></script>
+		<script data-source="desktop/talk/js/gwd_webcomponents_min.js" data-version="4" data-exports-type="gwd_webcomponents" type="text/javascript" src="desktop/talk/js/gwd_webcomponents_min.js"></script>
+		<script data-source="desktop/talk/js/gwdvideo_min.js" data-version="5" data-exports-type="gwd-video" type="text/javascript" src="desktop/talk/js/gwdvideo_min.js"></script>
+
+		<script src="socket.io/socket.io.js"></script>
+		<script src="peer.js"></script>
+		<script src="shared/js/references.js"></script>
+		<script src="shared/js/callbacks.js"></script>
+		<script src="shared/js/functions.js"></script>
+		<script src="shared/js/main.js"></script>
+        
+		<script src="desktop/shared/js/load.js"></script>
 	</header>
 
 	<body ng-controller="TalkController">
@@ -246,6 +259,12 @@
                             <image src="desktop/talk/img/msg_sender_arrow.svg" class="msg_b_arrow_sender"></image>
                             Hola!    
                         </div>
+=======
+                
+                <div id="p_msg_container">
+                    <div class="p_msg_list">
+                        
+>>>>>>> 1cc82f83e462803c3142361fbcae03d262cf3436
                         <div class="msg_bubble_chat msg_b_chat_receiver">
                             <image src="desktop/talk/img/msg_receiver_arrow.svg" class="msg_b_arrow_receiver"></image>
                             Hola!    
@@ -259,6 +278,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 -->
                 <div id="p_msg_container">
                     <div id="messages" class="p_msg_list"></div>
@@ -267,6 +287,16 @@
                 <div id="p_msg_send_container">
                     <image src="desktop/talk/img/msg_send_arrow.svg" id="msg_b_send_arrow"></image>
                     <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="newMsg.content">
+                
+                <!--
+                <div id="p_msg_container">
+                    <div id="messages" class="p_msg_list"></div>
+                </div>
+                -->
+                
+                <div id="p_msg_send_container">
+                    <image src="desktop/talk/img/msg_send_arrow.svg" id="msg_b_send_arrow"></image>
+                    <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="newMsg.content" ng-enter="sendMessage()">
                     <div id="msg_send_button">
                         <input type="image" src="desktop/talk/img/button_next.svg" class="msg_send_button_img" id="send-message" ng-click="sendMessage()">
                         <!-- <image src="desktop/talk/img/button_next.svg" class="msg_send_button_img"></image> -->

@@ -39,4 +39,20 @@ angular.module("tocandtalk", [])
         }
         
         
+<<<<<<< HEAD
     }]);
+=======
+    }])
+    .directive('ngEnter', function () {
+        return function (scope, element, attrs) {
+            element.bind("keydown keypress", function (event) {
+                if(event.which === 13) {
+                    scope.$apply(function (){
+                        scope.$eval(attrs.ngEnter);
+                    });
+                    event.preventDefault();
+                }
+        });
+    };
+});
+>>>>>>> 1cc82f83e462803c3142361fbcae03d262cf3436
