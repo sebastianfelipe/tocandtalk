@@ -18,6 +18,8 @@ angular.module("tocandtalk", ['ngAnimate'])
         
         // Obtener mensajes desde el otro usuario
         scope.getMessage = function(id, message) {
+            ChatNotification.new_msg();
+            
             scope.rcvMsg.content = message;
             scope.rcvMsg.type = "receiver";
             scope.messages.push(scope.rcvMsg);
@@ -32,12 +34,14 @@ angular.module("tocandtalk", ['ngAnimate'])
             }
             else
             {
-                if (scope.newMsg.content != null) {
+                if (valid_string(scope.newMsg.content)) {
                     scope.newMsg.type = "sender";
                     console.log(scope.newMsg.content);
                     refs.data_connection.send(scope.newMsg.content);
+                    
+                    ChatNotification.hide();
                     scope.messages.push(scope.newMsg);
-                    scope.newMsg = {};     
+                    scope.newMsg = {};
                 }
             }
         }
@@ -57,6 +61,6 @@ angular.module("tocandtalk", ['ngAnimate'])
     .directive('updateChat', function() {
         return function(scope, element, attrs) {
             chat_position();
-            chat_bottom_scroll();
+            chat_scroll_bottom();
         };
     });

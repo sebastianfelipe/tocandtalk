@@ -14,8 +14,8 @@ function capitalizeFirstLetterName(name) {
 }
 */
 function capitalizeWord(word) {
-	word_tmp = word;
-	if (word_tmp)
+	var word_tmp = word;
+	if (!!word_tmp)
 	{
 		word = word_tmp[0].toUpperCase();
 		if (word_tmp.length > 1)
@@ -27,18 +27,30 @@ function capitalizeWord(word) {
 }
 function capitalize(msg) {
 	var words = "";
-	if (msg)
+	if (!!msg)
 	{
-		msg_tmp = msg;
-		words_list = [];
+		//var msg_tmp = msg;
+		var words_list = [];
 		words = msg.split(' ');
-		
-		words.forEach(function(str) {
-			word = capitalizeWord(str);
+        
+		words.forEach(function(word) {
+			word = capitalizeWord(word);
 			words_list.push(word);
 		}); 
 
 		words = words_list.join(' ').trim();
 	}
 	return words;
+}
+
+function valid_string(str) {
+    // String nulo
+    if (str == null) {
+        return false;
+    }
+    // String sólo con espacios
+    if (!str.replace(/\s/g, '').length) {
+        return false;
+    }
+    return true;
 }

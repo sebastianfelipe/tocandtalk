@@ -86,7 +86,7 @@
 	<body id="TalkController" ng-controller="TalkController">
         <!-- Load -->
         <div id="load_screen">
-            <!--<button type="text" id="load_skip" style="position:absolute; top:0px; left:0px; margin:16px;">Saltar pantalla de carga</button>-->
+            <button type="text" id="load_skip" style="position:absolute; top:0px; left:0px; margin:16px;">Saltar pantalla de carga</button>
             <div id="world_container">
                 <image src="desktop/talk/img/mundo.svg" id="world"></image>
             </div>
@@ -199,6 +199,7 @@
             
             <!-- Imagen de Perfil -->
             <div id="usr_img"></div>
+            <div id="chat_notification"></div>
 		</div>
         
         <div id="b_dialog_mic_none" class="b_dialog" style="position:fixed;">
@@ -280,10 +281,7 @@
 
                     <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="newMsg.content" ng-enter="sendMessage()">
                     <div id="msg_send_button">
-                        <!--
                         <input type="image" src="desktop/talk/img/button_next.svg" class="msg_send_button_img" id="send-message" ng-click="sendMessage()">
-                        -->
-                        <input type="image" src="desktop/talk/img/button_next.svg" class="msg_send_button_img" id="send-message">
                         <!-- <image src="desktop/talk/img/button_next.svg" class="msg_send_button_img"></image> -->
                     </div>
                 </div>
@@ -291,7 +289,7 @@
             
             <!-- Perfil -->
             <div id="panel_cont_profile" class="panel_cont">
-                <div id="p_prof_conteiner" class="content_scroll_m">
+                <div id="p_prof_conteiner">
   
                     <div id="p_prof_img_cover">
                         <image id="p_prof_img_usr"></image>

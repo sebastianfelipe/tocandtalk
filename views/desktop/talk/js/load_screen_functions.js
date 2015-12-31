@@ -131,6 +131,7 @@ function restore_control() {
 }
 
 function start_load() {
+    ChatNotification.hide();
     
     if ( !$("#load_screen").is(":visible") ) $("#load_screen").fadeIn(150);
     
@@ -143,6 +144,7 @@ function start_load() {
 
 function end_load() {
     restore_control();
+    ChatNotification.hide();
     
     $("#load_screen").fadeOut(150);
     

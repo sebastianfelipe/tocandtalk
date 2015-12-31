@@ -217,3 +217,35 @@
     transform: scaleY(1);
     opacity: 1;
 }
+
+#chat_notification {
+    z-index: 80;
+    position: absolute;
+    display: none;
+    
+    width: auto;
+    height: 21px;
+    
+    left: 86px;
+    bottom: 14px;
+    
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 2px;
+    
+    font: 12pt FiraSansBook;
+    
+    color: rgba(255,255,255,1);
+    background: rgba(237,125,49,1);
+    border: 0px solid #000000;
+    
+    border-radius:          4px 4px 4px 4px;
+    -moz-border-radius:     4px 4px 4px 4px;
+    -webkit-border-radius:  4px 4px 4px 4px;
+    
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow:    0px 0px 3px 0px rgba(0,0,0,0.3);
+    box-shadow:         0px 0px 3px 0px rgba(0,0,0,0.3);
+    
+    cursor: default;
+}
