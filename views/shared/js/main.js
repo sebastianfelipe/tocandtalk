@@ -54,6 +54,6 @@ $(document).ready(function(){
 }
 
   refs.button_search.on('click', _search);
-  refs.button_send_message.on('click',_sendMessage);
-  refs.entry_message.on('keypress', _sendMessage);
+  //refs.button_send_message.on('click',_sendMessage);
+  //refs.entry_message.on('keypress', _sendMessage);
 });

@@ -7,9 +7,12 @@ var logMessage = function (text) {
 };
 
 var writeMessage = function(id, message) {
+  /*
   if (refs.callerId == id) {id = "You";}
   var message = '<p>' + id + ": " + message +'</p>';
   refs.box_messages.append(message);
+  */
+  angular.element($('#TalkController')).scope().getMessage(id, message)
   return;
 };
 

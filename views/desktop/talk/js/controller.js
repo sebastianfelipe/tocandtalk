@@ -17,24 +17,36 @@ angular.module("tocandtalk", ['ngAnimate'])
         scope.usr.interest_languages = ["Chino mandarín", "Francés"];
         
         // Obtener mensajes desde el otro usuario
-        scope.getMessage = function() {
-            
-            // scope.rcvMsg.content = "Mensaje recibido";
-            // scope.rcvMsg.type = "receiver";
-            // scope.messages.push(scope.rcvMsg);
-            // scope.rcvMsg = {};
+        scope.getMessage = function(id, message) {
+            scope.rcvMsg.content = message;
+            scope.rcvMsg.type = "receiver";
+            scope.messages.push(scope.rcvMsg);
+            console.log('mensaje recibido');
+            scope.rcvMsg = {};
         }
         
         // Enviar mensaje
         scope.sendMessage = function() {
-            if (scope.newMsg.content != null) {
-                scope.newMsg.type = "sender";
-                
-                // Acá enviar:
-                // scope.newMsg.content
-                
-                scope.messages.push(scope.newMsg);
-                scope.newMsg = {};     
+            if (!refs.peer) {
+              logError('cannot answer a call without a connection');
+            }
+
+            else if (!refs.localStream) {
+              logError('could not answer call as there is no localStream ready');
+            }
+
+            else if ((!refs.data_connection) || (!refs.call)) {
+              logError('Nobody is talking with you right now. Search someone first!');
+            }
+            else
+            {
+                if (scope.newMsg.content != null) {
+                    scope.newMsg.type = "sender";
+                    console.log(scope.newMsg.content);
+                    refs.data_connection.send(scope.newMsg.content);
+                    scope.messages.push(scope.newMsg);
+                    scope.newMsg = {};     
+                }
             }
         }
     }])
