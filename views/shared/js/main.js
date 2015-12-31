@@ -44,7 +44,7 @@ $(document).ready(function(){
     });
     refs.socket.on('talk', function(recipient_id){
       talk(recipient_id);
-      $('#load_screen').hide();
+      end_load();
     });
 
     getLocalStream();

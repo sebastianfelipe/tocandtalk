@@ -46,7 +46,10 @@ var _answer = function (incoming_call) {
   refs.call.on('stream', _showRemoteStream);
   refs.call.on('close', function() {
     logError("The conversation with the user " + refs.call.peer + " finished");
-    refs.data_connection.close();
+    if (refs.data_connection)
+    {
+      refs.data_connection.close();
+    }
     refs.call = null;
     refs.talking = false;
   });
@@ -55,7 +58,7 @@ var _answer = function (incoming_call) {
   refs.call.answer(refs.localStream);
   refs.talking = true;
   logMessage("You are talking with " + refs.call.peer + " right now :)");
-  $('#load_screen').hide();
+  end_load();
 };
 
   var sendMessageEntry = function(key) {
