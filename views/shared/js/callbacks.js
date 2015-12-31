@@ -4,6 +4,7 @@ var _showRemoteStream = function (stream) {
 };
 
 var _search = function () {
+  console.log('trying to send a message');
   if (refs.talking) {
     if (refs.call)
     {
