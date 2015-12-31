@@ -138,13 +138,18 @@ var talk = function (recipient_id) {
     });
     refs.call.on('close', function() {
         logError("The conversation with the user " + refs.call.peer + " finished");
-        refs.data_connection.close();
+        if (refs.data_connection)
+        {
+          refs.data_connection.close();
+        }
         refs.call = null;
         refs.talking = false;
     });
   });
   refs.data_connection = refs.peer.connect(recipient_id);
   refs.data_connection.on('data', function(data) {
+    console.log('Data is coming :D');
+    console.log(data);
     writeMessage(refs.data_connection.peer, data);
   });
   refs.data_connection.on('close', function() {
