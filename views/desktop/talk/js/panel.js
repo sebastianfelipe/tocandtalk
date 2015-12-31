@@ -8,6 +8,7 @@ $(document).ready(function(){
         } else {
             $("#panel").fadeIn(150);
             $("#panel_arrow").fadeIn(150);
+            chat_bottom_scroll();
         }
 	});
     
@@ -56,6 +57,8 @@ $(document).ready(function(){
             
             $("#panel_cont_chat").fadeIn(70);
             $("#panel_cont_profile").fadeOut(70);
+            
+            chat_bottom_scroll();
         }
         
     });
