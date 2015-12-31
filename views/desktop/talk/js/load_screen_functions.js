@@ -99,7 +99,7 @@ function position_content() {
 }
 
 function show_control() {
-    $("#buttons_container_below")
+    $("#buttons_container_below, #b_dialog_mic_none, #b_dialog_video_none")
         .css("z-index", "99");
     $("#usr_img").css("display", "none");
     $("#button_next").css("display", "none");
@@ -109,6 +109,8 @@ function show_control() {
     $("#b_dialog_container").width( 501 - 323 + $("#buttons_ctr_cont").width() );
     
     $("#local-video").css("z-index", "93");
+    
+    position_dialogs_det();
     
     // $("#controls_bar").css("background", "rgba(11,164,185,0.45)");
     return;
@@ -123,6 +125,8 @@ function restore_control() {
     
     $("#b_dialog_container").width(501);
     $("#local-video").css("z-index", "10");
+    
+    position_dialogs_det();
     return;
 }
 
@@ -145,5 +149,43 @@ function end_load() {
     World.stop();
     Point.stop();
     
+    return;
+}
+
+function enable_buttons_media() {
+    if ( !!refs.localStream.getVideoTracks()[0].enabled ) {
+        $("#b_icon_video_off").css("display", "none");
+        $("#b_icon_video_none").css("display", "none");
+        $("#b_icon_video").css("display", "inline-block");
+    } else {
+        $("#b_icon_video_none").css("display", "inline-block");
+        $("#b_icon_video_off").css("display", "none");
+        $("#b_icon_video").css("display", "none");
+    }
+
+    if ( !!refs.localStream.getAudioTracks()[0].enabled ) {
+        $("#b_icon_mic_off").css("display", "none");
+        $("#b_icon_mic_none").css("display", "none");
+        $("#b_icon_mic").css("display", "inline-block");
+    } else {
+        $("#b_icon_mic_none").css("display", "inline-block");
+        $("#b_icon_mic_off").css("display", "none");
+        $("#b_icon_mic").css("display", "none");
+    }
+    
+    return;
+}
+
+function disable_buttons_media(video, audio) {
+    if (!video) {
+        $("#b_icon_video_none").css("display", "inline-block");
+        $("#b_icon_video_off").css("display", "none");
+        $("#b_icon_video").css("display", "none");
+    }
+    if (!audio) {    
+        $("#b_icon_mic_none").css("display", "inline-block");
+        $("#b_icon_mic_off").css("display", "none");
+        $("#b_icon_mic").css("display", "none");
+    }
     return;
 }

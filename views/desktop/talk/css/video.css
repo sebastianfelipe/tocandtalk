@@ -25,6 +25,8 @@
 
 	right: 10px;
 	bottom: 12px;
+    
+    text-align: center;
 
 	background: rgba(0,0,0,1);
 
@@ -37,6 +39,17 @@
 	-moz-box-shadow: 0px 0px 4px -1px rgba(0,0,0,1);
 	box-shadow: 0px 0px 4px -1px rgba(0,0,0,1);
 }
+
+#not_local_video_img {
+    z-index: 15;
+    position: absolute;
+    display: inline-block;
+    width: 50px;
+    height: auto;
+    right: 94;
+    bottom: 64;
+}
+
 
 #video_s {
 	z-index: 30;

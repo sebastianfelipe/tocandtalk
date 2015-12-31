@@ -43,6 +43,7 @@
         <script src="desktop/shared/js/jquery/jquery.min.js"></script>
         <script src="desktop/shared/js/angularjs/angular.min.js"></script>
         <script src="desktop/shared/js/angularjs/angular-animate.min.js"></script>
+        <script src="desktop/shared/js/jquery/jquery-ui.min.js"></script>
 		<script src="desktop/shared/js/react/react.min.js"></script>
         <script src="desktop/shared/js/background-blur/background-blur.min.js"></script>
         <script src="desktop/shared/js/custom-scrollbar/jquery.mCustomScrollbar.min.js"></script>
@@ -54,6 +55,9 @@
         <!-- JS -->
         <script src="desktop/talk/js/load_screen_functions.js"></script>
         <script src="desktop/talk/js/chat.js"></script>
+        
+        <script src="desktop/shared/js/functions.js"></script>
+        <script src="desktop/talk/js/controller.js"></script>
 
 		<script src="node_modules/webrtc-adapter-test/adapter.js"></script>
 		<script data-source="desktop/talk/js/googbase_min.js" data-version="3" data-exports-type="googbase" type="text/javascript" src="desktop/talk/js/googbase_min.js"></script>
@@ -67,11 +71,9 @@
 		<script src="shared/js/functions.js"></script>
 		<script src="shared/js/main.js"></script>
         
-		<script src="desktop/shared/js/functions.js"></script>
-        <script src="desktop/talk/js/controller.js"></script>
-		<script src="desktop/talk/js/buttons_dialog.js"></script>
-        <script src="desktop/talk/js/buttons.js"></script>
         <script src="desktop/talk/js/volume.js"></script>
+        <script src="desktop/talk/js/buttons_dialog.js"></script>
+        <script src="desktop/talk/js/buttons.js"></script>
         <script src="desktop/talk/js/panel.js"></script>
         <script src="desktop/talk/js/user_image.js"></script>
         
@@ -215,8 +217,14 @@
         
         <!-- Barra de volumen -->
         <div id="volume_control">
-            <image src="desktop/talk/img/button_volume_up.svg" id="vol_ctr_up" class="volume_ctr_icon vol_ctr icon_volume_up"></image>
+            <image src="desktop/talk/img/button_volume_up.svg" id="vol_ctr_up" class="volume_ctr_icon vol_ctr icon_volume_up" title="Mute"></image>
+            <image src="desktop/talk/img/button_volume_down.svg" id="vol_ctr_down" class="volume_ctr_icon vol_ctr icon_volume_down" title="Mute"></image>
+            <image src="desktop/talk/img/button_volume_mute.svg" id="vol_ctr_mute" class="volume_ctr_icon vol_ctr icon_volume_mute" title="Mute"></image>
             <image src="desktop/talk/img/button_volume_off.svg" id="vol_ctr_off" class="volume_ctr_icon icon_volume_off"></image>
+            <section id="volume_slide">	
+                <div id="slider"></div> <!-- the Slider -->
+            </section>
+            <span class="tooltip"></span>
         </div>
 
 		<!-- Panel de Mensajes y Perfil -->

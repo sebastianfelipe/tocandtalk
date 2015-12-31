@@ -20,7 +20,7 @@ var getLocalStream = function (successCb)
   }
   else
   {
-    navigator.mediaDevices = navigator.mediaDevices || ((navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia) ? {
+    navigator.mediaDevices = navigator.mediaDevices || ((navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia) ? {
        getUserMedia: function(c) {
          return new Promise(function(y, n) {
            (navigator.mozGetUserMedia ||
@@ -35,15 +35,17 @@ var getLocalStream = function (successCb)
     }
     // Prefer camera resolution nearest to 1280x720.
     var constraints = { audio: true, video: true };
-
+        
     navigator.mediaDevices.getUserMedia(constraints)
-    .then(function(stream) {
-      refs.localStream = stream;
-      refs.localVideo.attr('src', window.URL.createObjectURL(stream));
-    })
-    .catch(function(err) {
-      console.log(err.name + ": " + err.message);
-    });
+        .then(function(stream) {
+            refs.localStream = stream;
+            refs.localVideo.attr('src', window.URL.createObjectURL(stream));
+            
+            enable_buttons_media();
+        })
+        .catch(function(err) {
+            console.log(err.name + ": " + err.message);
+        });
   }
 };
 

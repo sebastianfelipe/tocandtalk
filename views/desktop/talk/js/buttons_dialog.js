@@ -1,33 +1,54 @@
-$(document).ready(function () {
+/* Función position_dialogs_det:
+    *  Posiciona los diálogos en la pantalla.
+    *  Parám.: Nada.
+    *  Retorno: Null.
+    */
+function position_dialogs_det() {
+    var win_w = $(window).width();
+    var diag1 = 121;
+    var diag2 = 179;
     
-    /* Función margin_dialog:
-     *  Determina la posición de los diálogos de los botones.
-     *  Parám.: ico_margin: (Int/Float) Margen del icono
-     *          width_container: (Int/Float) Ancho del contenedor.
-     *          id_dialog:  (String: "#<id>") ID del Div del diálogo.
-     *          is_arrow:   (Boolean) True si se trata de la flecha
-     *                      del globo de diálogo.
-     *  Retono: Null.
-     */
-	function margin_dialog(ico_margin, width_container, id_dialog, is_arrow) {	
-		var m = ico_margin + (width_container - 311) / 2;
-        var margin = 0;
-        
-        if (is_arrow) {
-            margin = 31 + m;
-                
-        } else {
-            var w = $(id_dialog).width();
+    if ( $("#load_screen").is(":visible") ) {
+        diag1 += 32;
+        diag2 += 32;
+    }
+    
+    margin_dialog(diag1, win_w, "#b_dialog_mic_none", false);
+    margin_dialog(diag2, win_w, "#b_dialog_video_none", false);
+    
+    return;
+}
+
+/* Función margin_dialog:
+    *  Determina la posición de los diálogos de los botones.
+    *  Parám.: ico_margin: (Int/Float) Margen del icono
+    *          width_container: (Int/Float) Ancho del contenedor.
+    *          id_dialog:  (String: "#<id>") ID del Div del diálogo.
+    *          is_arrow:   (Boolean) True si se trata de la flecha
+    *                      del globo de diálogo.
+    *  Retono: Null.
+    */
+function margin_dialog(ico_margin, width_container, id_dialog, is_arrow) {	
+    var m = ico_margin + (width_container - 311) / 2;
+    var margin = 0;
+    
+    if (is_arrow) {
+        margin = 31 + m;
             
-            // (501-311)/2 = 95
-		    // 54/2 = 27
-            margin = 27 + m - w / 2;
-        }
-         
-		$(id_dialog).css("margin-left", margin + "px");
-		return;
-	}
+    } else {
+        var w = $(id_dialog).width();
+        
+        // (501-311)/2 = 95
+        // 54/2 = 27
+        margin = 27 + m - w / 2;
+    }
+        
+    $(id_dialog).css("margin-left", margin + "px");
+    return;
+}
     
+$(document).ready(function () {
+        
     /* Función position_dialogs:
      *  Posiciona los diálogos en la pantalla.
      *  Parám.: Nada.
@@ -56,20 +77,6 @@ $(document).ready(function () {
         
         margin_dialog(253, container_w, "#b_d_arrow_next", true);
         margin_dialog(253, container_w, "#b_dialog_next", false);
-        
-        return;
-    }
-    
-    /* Función position_dialogs_det:
-     *  Posiciona los diálogos en la pantalla.
-     *  Parám.: Nada.
-     *  Retorno: Null.
-     */
-    function position_dialogs_det() {
-        var win_w = $(window).width();
-        
-        margin_dialog(121, win_w, "#b_dialog_mic_none", false);
-        margin_dialog(179, win_w, "#b_dialog_video_none", false);
         
         return;
     }
