@@ -4,6 +4,7 @@ var _showRemoteStream = function (stream) {
 };
 
 var _search = function () {
+  console.log('trying to send a message');
   if (refs.talking) {
     if (refs.call)
     {
@@ -17,10 +18,12 @@ var _search = function () {
     logError('please connect first');
   }
 
+  /*
   if (!refs.localStream) {
     logError('could not search for a user because there is no localStream ready');
     return;
   }
+  */
   refs.box_messages.html("");
   refs.entry_message.val('');
   refs.socket.emit('toc', refs.caller_id);
@@ -52,6 +55,7 @@ var _answer = function (incoming_call) {
   refs.call.answer(refs.localStream);
   refs.talking = true;
   logMessage("You are talking with " + refs.call.peer + " right now :)");
+  $('#load_screen').hide();
 };
 
   var sendMessageEntry = function(key) {

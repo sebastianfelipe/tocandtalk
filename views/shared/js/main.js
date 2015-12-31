@@ -25,12 +25,9 @@ $(document).ready(function(){
     //var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
     //var url = "https://https.tocandtalk.com";
     var url = refs.protocol+"://"+refs.host_name+"/";
-    console.log(url);
     // -------------------------------------------------------------
-    getLocalStream();
-    connect();
+
     refs.socket = io(url, {secure: refs.secure});
-    console.log(refs.socket);
     refs.socket.on('receiveConnection', function(data) {
       $('#user').html("User connected as " + refs.caller_id);
     });
@@ -47,15 +44,13 @@ $(document).ready(function(){
     });
     refs.socket.on('talk', function(recipient_id){
       talk(recipient_id);
+      $('#load_screen').hide();
     });
+
+    getLocalStream();
+    connect();
+    _search();
   // -------------------------------------------------------------
-  
-  // Test de nueva versión
-  /*
-  getLocalStream();
-  connect();
-  refs.socket = io(url, {secure: refs.secure});
-  */
 }
 
   refs.button_search.on('click', _search);

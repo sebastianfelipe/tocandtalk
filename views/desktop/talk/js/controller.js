@@ -55,4 +55,4 @@ angular.module("tocandtalk", ['ngAnimate'])
             chat_position();
             chat_bottom_scroll();
         };
-    })
+    });
