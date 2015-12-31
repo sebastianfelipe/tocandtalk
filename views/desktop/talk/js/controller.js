@@ -21,21 +21,13 @@ angular.module("tocandtalk", ['ngAnimate'])
             scope.rcvMsg.content = message;
             scope.rcvMsg.type = "receiver";
             scope.messages.push(scope.rcvMsg);
-            console.log('mensaje recibido');
             scope.rcvMsg = {};
+            scope.$apply();
         }
         
         // Enviar mensaje
         scope.sendMessage = function() {
-            if (!refs.peer) {
-              logError('cannot answer a call without a connection');
-            }
-
-            else if (!refs.localStream) {
-              logError('could not answer call as there is no localStream ready');
-            }
-
-            else if ((!refs.data_connection) || (!refs.call)) {
+            if ((!refs.data_connection) || (!refs.call)) {
               logError('Nobody is talking with you right now. Search someone first!');
             }
             else
