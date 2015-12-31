@@ -1,4 +1,4 @@
-angular.module("tocandtalk", [])
+angular.module("tocandtalk", ['ngAnimate'])
     .controller('TalkController', ["$scope", function(scope) {
         scope.messages = []; // Arreglo de mensajes
         scope.newMsg = {}; // Mensaje enviado
@@ -34,9 +34,25 @@ angular.module("tocandtalk", [])
                 // scope.newMsg.content
                 
                 scope.messages.push(scope.newMsg);
-                scope.newMsg = {};
+                scope.newMsg = {};     
             }
         }
-        
-        
-    }]);
+    }])
+    .directive('ngEnter', function () {
+        return function (scope, element, attrs) {
+            element.bind("keydown keypress", function (event) {
+                if(event.which === 13) {
+                    scope.$apply(function (){
+                        scope.$eval(attrs.ngEnter);
+                    });
+                    event.preventDefault();
+                }
+            });
+        };
+    })
+    .directive('updateChat', function() {
+        return function(scope, element, attrs) {
+            chat_position();
+            chat_bottom_scroll();
+        };
+    })

@@ -16,16 +16,20 @@
 		<link href="desktop/shared/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
 
 		<script type="text/javascript">
-			var callerId = <%- JSON.stringify(username) %> ;
+			var callerId = <%a JSON.stringify(username) %> ;
             var server_ip = <%- JSON.stringify(server_ip) %> ;
+            var host_name = <%- JSON.stringify(host_name) %> ;
             var protocol = <%- JSON.stringify(protocol) %> ;
+            var server_ip = <%- JSON.stringify(server_ip) %> ;
             var server_ports = <%- JSON.stringify(server_ports) %> ;
+            var protocol = <%- JSON.stringify(protocol) %> ;
             var secure = <%- JSON.stringify(secure) %> ;
 		</script>
         
 		<!-- CSS -->
 		<link rel="stylesheet" href="desktop/shared/css/fonts.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/css/general.css" type="text/css"/>
+        <link rel="stylesheet" href="desktop/shared/css/custom-scrollbar/jquery.mCustomScrollbar.min.css" type="text/css"/>
 		
 		<link rel="stylesheet" href="desktop/talk/css/talk.css" type="text/css"/>
         <link rel="stylesheet" href="desktop/talk/css/load_screen.css" type="text/css"/>
@@ -38,10 +42,12 @@
         <link rel="stylesheet" href="desktop/talk/css/panel_profile.css" type="text/css"/>
 
 		<!-- LIBS -->
+        <script src="desktop/shared/js/jquery/jquery.min.js"></script>
         <script src="desktop/shared/js/angularjs/angular.min.js"></script>
-		<script src="desktop/shared/js/jquery/jquery.min.js"></script>
+        <script src="desktop/shared/js/angularjs/angular-animate.min.js"></script>
 		<script src="desktop/shared/js/react/react.min.js"></script>
         <script src="desktop/shared/js/background-blur/background-blur.min.js"></script>
+        <script src="desktop/shared/js/custom-scrollbar/jquery.mCustomScrollbar.min.js"></script>
         
         <!-- STRINGS -->
 		<script src="strings/es/shared.js"></script>
@@ -49,6 +55,7 @@
         
         <!-- JS -->
         <script src="desktop/talk/js/load_screen_functions.js"></script>
+        <script src="desktop/talk/js/chat.js"></script>
         
 		<script src="desktop/shared/js/functions.js"></script>
         <script src="desktop/talk/js/controller.js"></script>
@@ -238,19 +245,15 @@
             
             <!-- Chat -->
             <div id="panel_cont_chat" class="panel_cont">
-                <!--
+                
                 <div id="p_msg_container">
-                    <div id="p_msg_list">
-                        <div class="msg_bubble_chat msg_b_chat_sender">
-                            <image src="desktop/talk/img/msg_sender_arrow.svg" class="msg_b_arrow_sender"></image>
-                            Hola!    
-                        </div>
+                    <div class="p_msg_list">
                         <div class="msg_bubble_chat msg_b_chat_receiver">
                             <image src="desktop/talk/img/msg_receiver_arrow.svg" class="msg_b_arrow_receiver"></image>
                             Hola!    
                         </div>
                         
-                        <div ng-repeat="message in messages">                                
+                        <div ng-repeat="message in messages" update-chat class="animate-repeat">                                
                             <div class="msg_bubble_chat msg_b_chat_{{message.type}}">
                                 <image src="desktop/talk/img/msg_sender_arrow.svg" class="msg_b_arrow_{{message.type}}"></image>
                                 {{message.content}}    
@@ -258,14 +261,16 @@
                         </div>
                     </div>
                 </div>
-                -->
+                
+                <!--
                 <div id="p_msg_container">
                     <div id="messages" class="p_msg_list"></div>
                 </div>
+                -->
                 
                 <div id="p_msg_send_container">
                     <image src="desktop/talk/img/msg_send_arrow.svg" id="msg_b_send_arrow"></image>
-                    <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="newMsg.content">
+                    <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="newMsg.content" ng-enter="sendMessage()">
                     <div id="msg_send_button">
                         <input type="image" src="desktop/talk/img/button_next.svg" class="msg_send_button_img" id="send-message" ng-click="sendMessage()">
                         <!-- <image src="desktop/talk/img/button_next.svg" class="msg_send_button_img"></image> -->
@@ -275,8 +280,8 @@
             
             <!-- Perfil -->
             <div id="panel_cont_profile" class="panel_cont">
-                <div id="p_prof_conteiner">
-                    
+                <div id="p_prof_conteiner" class="content_scroll_m">
+  
                     <div id="p_prof_img_cover">
                         <image id="p_prof_img_usr"></image>
                         <br>
@@ -357,10 +362,11 @@
                         </div>
                         
                     </div>
-                    
                     <div id="p_prof_img_cover_background" class="p_prof_img_cover_background"></div>
                     <div id="p_prof_img_cover_black"></div>
+                    
                 </div>
+                
                 <div id="p_prof_foo"></div>
             </div>
             

@@ -29,6 +29,8 @@ ptd {
     overflow-y: scroll;
     overflow-x: hidden;
     
+    width: 240px;
+    
     top: 0px;
     bottom: 8px;
 }
@@ -37,7 +39,7 @@ ptd {
     position: relative;
     display: inline-block;
     
-    width: 220px;
+    width: 214px;
     height: 130px;
     
     padding-left: 10px;
@@ -111,7 +113,6 @@ ptd {
     width: 188px;
     
     margin-left: 10px;
-    margin-right: 12px;
     margin-top: 4px;
     
     padding-left: 15px;
