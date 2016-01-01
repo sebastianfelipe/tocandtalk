@@ -10,7 +10,7 @@ var port2 = global_module.port2;
 
 // Nota: Arreglar problema de baja probabildiad
 var randomSearch = function (caller_id, language) {
-  var recipient_id = availables[language][Math.floor(Math.random()*availables.length)];
+  var recipient_id = availables[language][Math.floor(Math.random()*availables[language].length)];
   console.log("randomSearch: " + recipient_id + " " + caller_id);
   if (recipient_id == caller_id) {return randomSearch(caller_id);}
   return recipient_id;
