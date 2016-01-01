@@ -1,9 +1,9 @@
 angular.module("tocandtalk", ['ngAnimate'])
     .controller('TalkController', ["$scope", function(scope) {
         scope.messages = []; // Arreglo de mensajes
+        scope.wait_msg = [];
         scope.newMsg = {}; // Mensaje enviado
         scope.rcvMsg = {}; // Mensaje recibido
-        scope.show_talk = false;
         
         // Datos del usuario
         scope.usr = {};
@@ -24,26 +24,24 @@ angular.module("tocandtalk", ['ngAnimate'])
             scope.rcvMsg.type = "receiver";
             scope.messages.push(scope.rcvMsg);
             scope.rcvMsg = {};
-            scope.$apply();
-        }
+            if (chat_visible()) { scope.$apply(); }
+        }          
         
         // Enviar mensaje
         scope.sendMessage = function() {
             if ((!refs.data_connection) || (!refs.call)) {
               logError('Nobody is talking with you right now. Search someone first!');
             }
-            else
+            else if (valid_string(scope.newMsg.content))
             {
-                if (valid_string(scope.newMsg.content)) {
-                    scope.newMsg.type = "sender";
-                    console.log(scope.newMsg.content);
-                    refs.data_connection.send(scope.newMsg.content);
-                    
-                    ChatNotification.hide();
-                    scope.messages.push(scope.newMsg);
-                    scope.newMsg = {};
-                }
+                scope.newMsg.type = "sender";
+                console.log(scope.newMsg.content);
+                refs.data_connection.send(scope.newMsg.content);
             }
+        }
+        
+        scope.loadMessages = function() {
+            scope.$apply();
         }
     }])
     .directive('ngEnter', function () {
@@ -63,4 +61,9 @@ angular.module("tocandtalk", ['ngAnimate'])
             chat_position();
             chat_scroll_bottom();
         };
+    })
+    .filter('capitalize', function() {
+        return function(input) {
+            return (!!input) ? capitalize(input) : '';
+        }
     });

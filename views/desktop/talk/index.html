@@ -294,7 +294,7 @@
                     <div id="p_prof_img_cover">
                         <image id="p_prof_img_usr"></image>
                         <br>
-                        {{usr.first_name}} {{usr.last_name}}
+                        {{usr.first_name | capitalize}} {{usr.last_name | capitalize}}
                     </div>
                     
                     <div class="p_prof_card">
@@ -303,7 +303,7 @@
                              display: inline-block;
                              width: 108px;
                              margin-left: 80px;">
-                            {{usr.country}}
+                            {{usr.country | capitalize}}
                         </div>
                         <div style=
                             "position: relative;
@@ -318,7 +318,7 @@
                              display: inline-block;
                              width: 108px;
                              margin-left: 80px;">
-                            {{usr.sex}}
+                            {{usr.sex | capitalize}}
                         </div>
                         <div style=
                             "position: relative;
@@ -348,10 +348,10 @@
                              margin-left: 12px;
                              margin-top: 4px;">
                             <div style="margin-top:2px; width:100%;">
-                                {{usr.native_language}} (Nativo)
+                                {{usr.native_language | capitalize}} (Nativo)
                             </div>
                             <div style="margin-top:2px; width:100%;" ng-repeat="spoken_language in usr.spoken_languages">
-                                {{spoken_language}}
+                                {{spoken_language | capitalize}}
                             </div>
                         </div>
                         
@@ -366,7 +366,7 @@
                              margin-left: 12px;
                              margin-top: 4px;">
                             <div style="margin-top:2px; width:100%;" ng-repeat="interest_language in usr.interest_languages">
-                                {{interest_language}}
+                                {{interest_language | capitalize}}
                             </div>
                         </div>
                         

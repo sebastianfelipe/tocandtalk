@@ -8,7 +8,9 @@ $(document).ready(function(){
         } else {
             $("#panel").fadeIn(150);
             $("#panel_arrow").fadeIn(150);
+            
             if ($("#panel_cont_chat").is(":visible")) ChatNotification.hide();
+            load_messages();
             chat_scroll_bottom();
         }
 	});
@@ -19,6 +21,7 @@ $(document).ready(function(){
         
         init: function() {
             this.tab_msg = true;
+            this.panel = true;
         },
         
         // Cambiar a pestaña de Chat
@@ -46,6 +49,7 @@ $(document).ready(function(){
     
     TabStatus.init();
     
+    // Mostrar chat
     $("#p_tab_msg").click(function() {
         if (TabStatus.is_tab_prof()) {
             TabStatus.set_tab_msg();
@@ -60,6 +64,7 @@ $(document).ready(function(){
             $("#panel_cont_profile").fadeOut(70);
             
             ChatNotification.hide();
+            load_messages();
             chat_scroll_bottom();
         }
         

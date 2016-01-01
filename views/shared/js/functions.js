@@ -12,7 +12,7 @@ var writeMessage = function(id, message) {
   var message = '<p>' + id + ": " + message +'</p>';
   refs.box_messages.append(message);
   */
-  angular.element($('#TalkController')).scope().getMessage(id, message)
+  angular.element($('#TalkController')).scope().getMessage(id, message);
   return;
 };
 

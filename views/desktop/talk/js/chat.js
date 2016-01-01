@@ -95,6 +95,16 @@ function chat_keep_scroll_bottom()
 }
 */
 
+function chat_visible() {
+    if ( $("#panel").is(":visible") && $("#panel_cont_chat").is(":visible") ) { return true; }
+    return false;
+}
+
+function load_messages() {
+    angular.element($('#TalkController')).scope().loadMessages();
+    return;
+}
+
 $(window).load(function() {				
     $.mCustomScrollbar.defaults.scrollButtons.enable=false;
     $.mCustomScrollbar.defaults.axis="y";
