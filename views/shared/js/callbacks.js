@@ -26,7 +26,7 @@ var _search = function () {
   */
   refs.box_messages.html("");
   refs.entry_message.val('');
-  refs.socket.emit('toc', refs.caller_id);
+  refs.socket.emit('toc', refs.caller_id, refs.language);
   return;
 };
 

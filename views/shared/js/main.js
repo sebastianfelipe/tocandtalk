@@ -38,7 +38,7 @@ $(document).ready(function(){
     }
     else
     {
-      refs.socket.emit('get', refs.caller_id);
+      refs.socket.emit('get', refs.caller_id, refs.language);
       logMessage('Wait a moment for someone to talk');
     }
     });

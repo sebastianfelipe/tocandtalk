@@ -26,16 +26,19 @@ var _peerConnection = function (id) {
 var _peerDisconnect = function (id) {
   console.log('P2P: User disconnected ' + id);
   user_index_id = users.indexOf(id);
-  availables_index_id = availables.indexOf(id);
   if (user_index_id > -1)
   {
     users.splice(user_index_id, 1); 
   }
-  if (availables_index_id > -1)
-  {
-    availables.splice(availables_index_id, 1); 
-  }
 
+  for (language in availables)
+  {
+    availables_index_id = availables[language].indexOf(id);
+    if (availables_index_id > -1)
+    {
+      availables[language].splice(availables_index_id, 1); 
+    }
+  }
   console.log(users);
   console.log(availables);
 }
@@ -52,13 +55,17 @@ var _ioConnection = function(socket) {
     console.log('IO: User disconnected');
   });
 
-  socket.on('toc', function(caller_id){
+  socket.on('toc', function(caller_id, language){
     console.log('IO: ' + caller_id + ' wants to verify if has to wait (be called) or is available (to call)');
     console.log('IO: Push -> ' + caller_id);
-    if (availables.indexOf(caller_id) == -1)
+    if (!(language in availables))
+    {
+      availables[language] = [];
+    }
+    if (availables[language].indexOf(caller_id) == -1)
     {
       console.log('IO: Push -> Is first time, so it was added');
-      availables.push(caller_id);
+      availables[language].push(caller_id);
     }
     else
     {
@@ -66,7 +73,7 @@ var _ioConnection = function(socket) {
     }
 
     var wait = false;
-    if (availables.length <= limit)
+    if (availables[language].length <= limit)
     {
       wait = true;
     }
@@ -77,19 +84,19 @@ var _ioConnection = function(socket) {
     socket.emit('tocAnswer', wait);
   });
 
-  socket.on('get', function(caller_id) {
-      var recipient_id = randomSearch(caller_id);
+  socket.on('get', function(caller_id, language) {
+      var recipient_id = randomSearch(caller_id, language);
       console.log("IO: The get result has recipient_id: " + recipient_id + " and caller_id: " + caller_id);
 
-      availables_index_caller_id = availables.indexOf(caller_id);
-      availables_index_recipient_id = availables.indexOf(recipient_id);
+      availables_index_caller_id = availables[language].indexOf(caller_id);
+      availables_index_recipient_id = availables[language].indexOf(recipient_id);
       if (availables_index_caller_id > -1)
       {
-        availables.splice(availables_index_caller_id, 1); 
+        availables[language].splice(availables_index_caller_id, 1); 
       }
       if (availables_index_recipient_id > -1)
       {
-        availables.splice(availables_index_recipient_id, 1); 
+        availables[language].splice(availables_index_recipient_id, 1); 
       }
       console.log('Availables:');
       console.log(availables);

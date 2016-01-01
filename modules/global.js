@@ -17,7 +17,7 @@ var ports = {'http': {
 var host_name = "https.tocandtalk.com";
 
 var users = [];
-var availables = [];
+var availables = {};
 var limit = 1;
 
 var bd = {};

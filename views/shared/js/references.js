@@ -8,6 +8,7 @@ var refs = {
   peer: null,
   peer_key: '6sdshp5kg3edbo6r',
   socket: null,
+  language: "Español",
 
   talking: false,
   call: null,
