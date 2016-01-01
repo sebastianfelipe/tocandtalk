@@ -7,14 +7,14 @@ angular.module("tocandtalk", ['ngAnimate'])
         
         // Datos del usuario
         scope.usr = {};
-        scope.usr.first_name = "Víctor";
-        scope.usr.last_name = "Torres Varas";
-        scope.usr.country = "Chile";
-        scope.usr.sex = "Masculino";
+        scope.usr.first_name = "víctor";
+        scope.usr.last_name = "torres varas";
+        scope.usr.country = "chile";
+        scope.usr.sex = "masculino";
         scope.usr.description = "Hola, soy un humano y quiero practicar idiomas";
-        scope.usr.native_language = "Español"
-        scope.usr.spoken_languages = ["Inglés"];
-        scope.usr.interest_languages = ["Chino mandarín", "Francés"];
+        scope.usr.native_language = "español"
+        scope.usr.spoken_languages = ["inglés"];
+        scope.usr.interest_languages = ["chino mandarín", "francés"];
         
         // Obtener mensajes desde el otro usuario
         scope.getMessage = function(id, message) {
@@ -37,6 +37,8 @@ angular.module("tocandtalk", ['ngAnimate'])
                 scope.newMsg.type = "sender";
                 console.log(scope.newMsg.content);
                 refs.data_connection.send(scope.newMsg.content);
+                scope.messages.push(scope.newMsg);
+                scope.newMsg = {};
             }
         }
         

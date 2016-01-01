@@ -281,7 +281,7 @@
 
                     <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="newMsg.content" ng-enter="sendMessage()">
                     <div id="msg_send_button">
-                        <input type="image" src="desktop/talk/img/button_next.svg" class="msg_send_button_img" id="send-message" ng-click="sendMessage()">
+                        <input type="image" src="desktop/talk/img/button_next.svg" class="msg_send_button_img" id="send-message" ng-model="newMsg.content" ng-click="sendMessage()">
                         <!-- <image src="desktop/talk/img/button_next.svg" class="msg_send_button_img"></image> -->
                     </div>
                 </div>
