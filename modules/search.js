@@ -12,7 +12,7 @@ var port2 = global_module.port2;
 var randomSearch = function (caller_id, language) {
   var recipient_id = availables[language][Math.floor(Math.random()*availables[language].length)];
   console.log("randomSearch: " + recipient_id + " " + caller_id);
-  if (recipient_id == caller_id) {return randomSearch(caller_id);}
+  if (recipient_id == caller_id) {return randomSearch(caller_id, language);}
   return recipient_id;
 };
 
