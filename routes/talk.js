@@ -23,7 +23,23 @@ router.get('/', authenticate, function (req, res) {
 	}
 	//var server_ip = "204.87.169.109";
 	var server_ip = ip.address();
-  return res.render('talk/index.html', {forceType: "desktop", username: req.session.username, host_name: host_name, server_ip: server_ip, protocol: protocol, secure: req.secure, server_ports: server_ports});
+  return res.render('talk/index.html', {forceType: "desktop", username: req.session.username, host_name: host_name, server_ip: server_ip, protocol: protocol, secure: req.secure, server_ports: server_ports, language: "English"});
+});
+
+router.post('/', authenticate, function (req, res) {
+	var protocol = req.protocol;
+	var server_ports;
+	if (req.secure)
+	{
+		server_ports = ports.https;
+	}
+	else
+	{
+		server_ports = ports.http;
+	}
+	//var server_ip = "204.87.169.109";
+	var server_ip = ip.address();
+  return res.render('talk/index.html', {forceType: "desktop", username: req.session.username, host_name: host_name, server_ip: server_ip, protocol: protocol, secure: req.secure, server_ports: server_ports, language: req.body.s_languages});
 });
 
 module.exports = router;

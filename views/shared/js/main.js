@@ -16,6 +16,7 @@ $(document).ready(function(){
   refs.host_name = host_name,
   refs.protocol = "https";
   refs.secure = true;
+  refs.language = language;
   
   console.log(refs.host_name);
   if (!refs.socket)
