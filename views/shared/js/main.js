@@ -19,40 +19,38 @@ $(document).ready(function(){
   refs.language = language;
   
   console.log(refs.host_name);
-  if (!refs.socket)
-  {
-    refs.server_ports = server_ports;
-    //refs.secure = secure;
-    //var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
-    //var url = "https://https.tocandtalk.com";
-    var url = refs.protocol+"://"+refs.host_name+"/";
-    // -------------------------------------------------------------
 
-    refs.socket = io(url, {secure: refs.secure});
-    refs.socket.on('receiveConnection', function(data) {
-      $('#user').html("User connected as " + refs.caller_id);
-    });
-    refs.socket.on('tocAnswer', function (wait){
-    if (wait)
-    {
-      logMessage('Wait a moment for someone to talk');
-    }
-    else
-    {
-      refs.socket.emit('get', refs.caller_id, refs.language);
-      logMessage('Wait a moment for someone to talk');
-    }
-    });
-    refs.socket.on('talk', function(recipient_id){
-      talk(recipient_id);
-      end_load();
-    });
-
-    getLocalStream();
-    connect();
-    _search();
+  refs.server_ports = server_ports;
+  //refs.secure = secure;
+  //var url = refs.protocol+"://"+refs.server_ip+":"+refs.server_ports.io+"/";
+  //var url = "https://https.tocandtalk.com";
+  var url = refs.protocol+"://"+refs.host_name+"/";
   // -------------------------------------------------------------
-}
+
+  refs.socket = io(url, {secure: refs.secure});
+  refs.socket.on('receiveConnection', function(data) {
+    $('#user').html("User connected as " + refs.caller_id);
+  });
+  refs.socket.on('tocAnswer', function (wait){
+  if (wait)
+  {
+    logMessage('Wait a moment for someone to talk');
+  }
+  else
+  {
+    refs.socket.emit('get', refs.caller_id, refs.language);
+    logMessage('Wait a moment for someone to talk');
+  }
+  });
+  refs.socket.on('talk', function(recipient_id){
+    talk(recipient_id);
+    end_load();
+  });
+
+  getLocalStream();
+  connect();
+  _search();
+  // -------------------------------------------------------------
 
   refs.button_search.on('click', _search);
   //refs.button_send_message.on('click',_sendMessage);
