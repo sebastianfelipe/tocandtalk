@@ -45,6 +45,10 @@ angular.module("tocandtalk", ['ngAnimate'])
         scope.loadMessages = function() {
             scope.$apply();
         }
+        
+        scope.clearMessages = function() {
+            scope.messages = [];
+        }
     }])
     .directive('ngEnter', function () {
         return function (scope, element, attrs) {

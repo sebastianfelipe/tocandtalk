@@ -43,6 +43,21 @@ $(document).ready(function () {
         return;
     }
     
+    function detect_fullscreen() {
+        if ( window.fullScreen || 
+             document.mozFullscreenEnabled || 
+             document.webkitIsFullScreen || 
+             document.msFullscreenEnabled ) {
+            
+            $("#b_icon_fullscr").css("display", "none");
+            $("#b_icon_fullscr_exit").css("display", "inline-block");
+        } else {
+            $("#b_icon_fullscr_exit").css("display", "none");
+            $("#b_icon_fullscr").css("display", "inline-block");
+        }
+        return;
+    }
+    
     $("#b_icon_video").css("display", "none");
     $("#b_icon_video_off").css("display", "none");
     $("#b_icon_video_none").css("display", "inline-block");
@@ -50,6 +65,8 @@ $(document).ready(function () {
     $("#b_icon_mic").css("display", "none");
     $("#b_icon_mic_off").css("display", "none");
     $("#b_icon_mic_none").css("display", "inline-block");
+    
+    detect_fullscreen();
     
     // Volumen
     $("#button_vol").click(function() {
@@ -96,14 +113,8 @@ $(document).ready(function () {
         $("#b_icon_fullscr").css("display", "inline-block");
 	});
     
-    $(window).resize(function() {
-        if (document.fullscreenEnabled || document.mozFullscreenEnabled || document.webkitIsFullScreen || document.msFullscreenEnabled) {
-            $("#b_icon_fullscr").css("display", "none");
-            $("#b_icon_fullscr_exit").css("display", "inline-block");
-        } else {
-            $("#b_icon_fullscr_exit").css("display", "none");
-            $("#b_icon_fullscr").css("display", "inline-block");
-        }
+    $(window).resize(function() {  
+        detect_fullscreen();
     });
     
     // Deshabilitar micrófono
