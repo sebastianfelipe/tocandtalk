@@ -21,7 +21,6 @@ $(document).ready(function(){
         
         init: function() {
             this.tab_msg = true;
-            this.panel = true;
         },
         
         // Cambiar a pestaña de Chat
@@ -70,6 +69,7 @@ $(document).ready(function(){
         
     });
     
+    // Mostrar el perfil de usuario
     $("#p_tab_prof").click(function() {
         if (TabStatus.is_tab_msg()) {
             TabStatus.set_tab_prof();
@@ -86,6 +86,7 @@ $(document).ready(function(){
         
     });
     
+    // Tabs:
     $("#p_tab_prof")
         .mouseenter(function() {
             if (TabStatus.is_tab_msg()) {

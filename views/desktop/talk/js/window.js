@@ -38,6 +38,11 @@ $(document).ready(function ()
         return;
     }
     
+    /* Función resizeWin:
+     *  Reescala el contenido de la ventana según su tamaño.
+     *  Parám.: Nada.
+     *  Retorno: Null.
+     */
     function resizeWin()
     {
         var win_w = $(window).width();

@@ -1,17 +1,23 @@
 var volume_value = 100;
 
+/* Función set_volume:
+ *   Define el volumen del vídeo remoto y el ícono de volumen.
+ * Parám.: value: (Int) Valor del volumen. Mínimo 1 y máximo 100.
+ *                El valor 0 activa el mute.
+ * Retorno: Null
+ */
 function set_volume(value) {
     if (value > 100) { value = 100 }
     else if (value < 0) {value = 1}
     
     if (value == 0) {
+        // Mute
         $(".icon_volume_off").css("display", "inline-block");
-        
         $(".icon_volume_up").css("display", "none");
         $(".icon_volume_down").css("display", "none");
-        $(".icon_volume_mute").css("display", "none");
-         
-    } else {
+        $(".icon_volume_mute").css("display", "none");     
+    }
+    else {
         volume_value = value;
         
         $(".icon_volume_off").css("display", "none");
@@ -20,19 +26,16 @@ function set_volume(value) {
             $(".icon_volume_up").css("display", "none");
             $(".icon_volume_down").css("display", "none");
             $(".icon_volume_mute").css("display", "inline-block");
-
         } 
         else if (value <= 65) {
             $(".icon_volume_up").css("display", "none");
             $(".icon_volume_down").css("display", "inline-block");
             $(".icon_volume_mute").css("display", "none");
-            
         }
         else {
             $(".icon_volume_up").css("display", "inline-block");
             $(".icon_volume_down").css("display", "none");
             $(".icon_volume_mute").css("display", "none");
-            
         }
     }
     
@@ -43,54 +46,54 @@ function set_volume(value) {
 
 $(document).ready(function () {
     
+    /* Función margin_volume_ctr:
+     *   Determina la posición del control del volumen en la pantalla.
+     * Parám.: Nada
+     * Retorno: Null
+     */
     function margin_volume_ctr() {
         var win_w = $(window).width();
-        //var vol_contr_w = $("#volume_control").width();
-        //var vol_arrow_w = $("#volume_arrow").width();
-        
         var margin_vol = (win_w - 311) / 2;
-        //var margin_arrow = (win_w - 311 - vol_arrow_w) / 2 + 37;
-        
         $("#volume_control").css("left", margin_vol + "px");
-        //$("#volume_arrow").css("margin-left", margin_arrow + "px");
-        
         return;
     }
-
+    
+    /* Función set_volume_slide:
+     *   Determina el valor volumen en el slide.
+     */
     function set_volume_slide(ui, slider, tooltip) {
         var value  = slider.slider('value');
 
-        tooltip.text(ui.value);  //Adjust the tooltip accordingly
+        tooltip.text(ui.value); // Muestra valor del volumen en el tooltip
         set_volume(value);
     }
     
+    /* Función volume_slide:
+     *   Muestra el slider de volumen.
+     */
     function volume_slide() {
-
-        //Store frequently elements in variables
         var slider  = $('#slider'),
             tooltip = $('.tooltip');
 
-        //Hide the Tooltip at first
-        //tooltip.hide();
         tooltip.text("100");
 
-        //Call the Slider
+        // Llamar al slider
         slider.slider({
-            //Config
             range: "min",
             min: 1,
             value: 100,
 
             start: function(event,ui) {
-                //tooltip.fadeIn('fast');
+                // tooltip.fadeIn('fast');
             },
             
-            //Slider Event
-            slide: function(event, ui) { //When the slider is sliding
+            // Cuando el slider es deslizado
+            slide: function(event, ui) {
                 set_volume_slide(ui, slider, tooltip);
             },
             
-            change: function(event, ui) { //When the slider is sliding
+            // Cuando se modifica el slider sin deslizar
+            change: function(event, ui) {
                 set_volume_slide(ui, slider, tooltip);
             },
 

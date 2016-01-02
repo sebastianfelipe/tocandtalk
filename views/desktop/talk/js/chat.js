@@ -1,6 +1,9 @@
+// Notificación de nuevos mensajes de Chat.
 var ChatNotification = {
+    // Contador de mensajes nuevos
     contMsg: "0",
     
+    // Mostrar notificación
     show: function()
     {
         this.contMsg += 1;
@@ -23,6 +26,7 @@ var ChatNotification = {
         return;
     },
     
+    // Ocultar notificación y resetear contador
     hide: function()
     {
         this.contMsg = 0;
@@ -32,9 +36,11 @@ var ChatNotification = {
         return;
     },
     
+    // Recibir nuevo mensaje.
+    // Muestra notificación sólo si el chat NO es visible.
     new_msg: function()
     {
-        if ( $("#panel").css("display") == "none" || $("#panel_cont_chat").css("display") == "none" )
+        if ( !$("#panel").is(":visible") || !$("#panel_cont_chat").is(":visible") )
         {
             this.show();
         }
@@ -95,11 +101,20 @@ function chat_keep_scroll_bottom()
 }
 */
 
+/* Determina si el chat es mostrado en pantalla.
+ *   Parám.: Nada.
+ *   Retorno: (Boolean) True si el chat es visible, false si no.
+ */
 function chat_visible() {
     if ( $("#panel").is(":visible") && $("#panel_cont_chat").is(":visible") ) { return true; }
     return false;
 }
 
+/* Función load_messages:
+ *   Actualiza la lista de mensajes.
+ * Parám.: Nada.
+ * Retorno: Null
+ */
 function load_messages() {
     angular.element($('#TalkController')).scope().loadMessages();
     return;

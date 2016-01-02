@@ -1,6 +1,7 @@
-/* Nota: La función start_load() muestra la pantalla
- * de búsqueda de usuarios y la función end_load() la quita.
- */
+// Nota: La función start_load() muestra la pantalla
+// de búsqueda de usuarios y la función end_load() la quita.
+
+// Mundo giratorio
 var World = {
     interval: null,
     start: function() {
@@ -29,6 +30,7 @@ var World = {
     }
 }
 
+// Puntos de carga
 var Point = {
     interval: null,
     start: function() {
@@ -70,6 +72,10 @@ var Point = {
     }
 }
 
+/* Función position_content:
+ *   Modifica la posición de los elementos en la pantalla de carga.
+ * Retorno: Null.
+ */
 function position_content() {
     var win_h = $(window).height();
     var win_w = $(window).width();
@@ -81,7 +87,8 @@ function position_content() {
     
     if (win_w <= 1230) {
         $("#world").css("left", -(1230 - win_w)/2 + "px");
-    } else {
+    }
+    else {
         $("#world").css("left", "auto");
     }
     
@@ -89,40 +96,40 @@ function position_content() {
         $("#world_container")
             .css("position", "fixed")
             .css("margin-top", "200px");
-    } else {
+    }
+    else {
         $("#world_container")
             .css("position", "absolute")
             .css("margin-top", margin_world + "px");
-    }
-            
+    }   
     return;
 }
 
+/* Función show_control:
+ *   Muestra el control en la pantalla de carga.
+ * Retorno: Null.
+ */
 function show_control() {
     $("#buttons_container_below, #b_dialog_mic_none, #b_dialog_video_none")
         .css("z-index", "99");
     $("#usr_img").css("display", "none");
     $("#button_next").css("display", "none");
-    
-    //$(".button_none").css("display", "inline-block");
-    
     $("#b_dialog_container").width( 501 - 323 + $("#buttons_ctr_cont").width() );
-    
     $("#local-video").css("z-index", "93");
     
     position_dialogs_det();
-    
-    // $("#controls_bar").css("background", "rgba(11,164,185,0.45)");
     return;
 }
 
+/* Función restore_control:
+ *   Restaura el control al quitar la pantalla de carga.
+ * Retorno: Null.
+ */
 function restore_control() {
     $("#buttons_container_below")
         .css("z-index", "80");
     $("#usr_img").css("display", "inline-block");
     $("#button_next").css("display", "inline-block");
-    //$(".button_none").css("display", "none");
-    
     $("#b_dialog_container").width(501);
     $("#local-video").css("z-index", "10");
     
@@ -130,6 +137,10 @@ function restore_control() {
     return;
 }
 
+/* Función start_load:
+ *   Muestra la pantalla de carga.
+ * Retorno: Null.
+ */
 function start_load() {
     ChatNotification.hide();
     
@@ -142,6 +153,10 @@ function start_load() {
     return;
 }
 
+/* Función end_load:
+ *   Quita la pantalla de carga.
+ * Retorno: Null.
+ */
 function end_load() {
     restore_control();
     ChatNotification.hide();
@@ -154,12 +169,17 @@ function end_load() {
     return;
 }
 
+/* Función enable_buttons_media:
+ *   Activa el control de cámara o micrófono si éstos están disponible.
+ * Retorno: Null.
+ */
 function enable_buttons_media() {
     if ( !!refs.localStream.getVideoTracks()[0].enabled ) {
         $("#b_icon_video_off").css("display", "none");
         $("#b_icon_video_none").css("display", "none");
         $("#b_icon_video").css("display", "inline-block");
-    } else {
+    }
+    else {
         $("#b_icon_video_none").css("display", "inline-block");
         $("#b_icon_video_off").css("display", "none");
         $("#b_icon_video").css("display", "none");
@@ -169,7 +189,8 @@ function enable_buttons_media() {
         $("#b_icon_mic_off").css("display", "none");
         $("#b_icon_mic_none").css("display", "none");
         $("#b_icon_mic").css("display", "inline-block");
-    } else {
+    }
+    else {
         $("#b_icon_mic_none").css("display", "inline-block");
         $("#b_icon_mic_off").css("display", "none");
         $("#b_icon_mic").css("display", "none");
@@ -178,6 +199,12 @@ function enable_buttons_media() {
     return;
 }
 
+/* Función disable_buttons_media:
+ *   Desactiva el control de cámara o micrófono.
+ * Parám.: video: (Boolean) True si la cámara está disponible, false para desactivar control.
+ *         audio: (Boolean) True si el micrófono está disponible, false para desactivar control.
+ * Retorno: Null.
+ */
 function disable_buttons_media(video, audio) {
     if (!video) {
         $("#b_icon_video_none").css("display", "inline-block");
