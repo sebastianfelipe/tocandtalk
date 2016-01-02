@@ -194,8 +194,8 @@ $(document).ready(function () {
 	});
     
     // Búsqueda de usuarios
-    $("#search").click(function() { 
-	   start_load();
+    $("#search").click(function() {
+        start_load();
 	});
     
 });
