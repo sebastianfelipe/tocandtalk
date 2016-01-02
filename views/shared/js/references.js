@@ -20,5 +20,6 @@ var refs = {
   box_messages: null,
   entry_message: null,
 
-  caller_id: callerId
+  caller_id: null,
+  recipient_user: null
 };

@@ -6,13 +6,13 @@ var logMessage = function (text) {
   console.log(text);
 };
 
-var writeMessage = function(id, message) {
+var writeMessage = function(message) {
   /*
   if (refs.callerId == id) {id = "You";}
   var message = '<p>' + id + ": " + message +'</p>';
   refs.box_messages.append(message);
   */
-  angular.element($('#TalkController')).scope().getMessage(id, message);
+  angular.element($('#TalkController')).scope().getMessage(message);
   return;
 };
 
@@ -66,45 +66,12 @@ var connect = function () {
   }
 
   try {
-    //refs.peer = new Peer(refs.caller_id, {key: refs.peer_key, host: refs.server_ip, port: refs.server_port});
-    //refs.peer = new Peer(refs.caller_id, {host: refs.server_ip, port: refs.server_port});
-    //refs.peer = new Peer(refs.caller_id, {host: refs.server_ip, port: refs.server_port, path: refs.peer_path});
-    //refs.peer = new Peer(refs.caller_id, {host: refs.server_ip, port: refs.peer_port, path: refs.peer_path});
-    //console.log({key: 'peerjs', host: refs.server_ip, port: refs.server_ports.peer});
-    /*
-    var peer_options = {key: 'peerjs',
-                        host: refs.server_ip,
-                        port: refs.server_ports.peer,
-                        secure: refs.secure,
-                        debug: 3};
-    */
-    /*
-    var peer_options = {key: 'peerjs',
-                        host: "https.tocandtalk.com",
-                        port: 4443,//refs.server_ports.peer,
-                        secure: true,
-                        debug: 3};
-    */
-    /*
-    var peer_options = {key: refs.peer_key, secure: true, debug: 3};
-    */
     var peer_options = {key: 'peerjs',
                         host: refs.host_name,//refs.server_ip, //"https.tocandtalk.com",
                         port: 443,//refs.server_ports.peer,
                         secure: true,
-                        debug: 3};
+                        debug: 0};
     refs.peer = new Peer(refs.caller_id, peer_options);
-    //console.log(peer);
-    
-    refs.peer.on('connection', function(data_connection) {
-      refs.data_connection = data_connection;
-      refs.data_connection.on('data', function(data) {
-        writeMessage(data_connection.peer, data);
-      });
-      refs.data_connection.on('close', function() {
-        refs.data_connection = null;
-      });
-    });
     refs.peer.on('call', _answer);
     
   }
@@ -114,7 +81,7 @@ var connect = function () {
   }
 };
 
-var talk = function (recipient_id) {
+var call = function (recipient_id) {
   if (!refs.peer) {
     logError('please connect first');
     return;
@@ -150,14 +117,23 @@ var talk = function (recipient_id) {
     });
   });
   refs.data_connection = refs.peer.connect(recipient_id);
+  refs.data_connection.on('open', function() {
+    refs.data_connection.send({user: refs.user});
+  });
   refs.data_connection.on('data', function(data) {
-    console.log('Data is coming :D');
-    console.log(data);
-    writeMessage(refs.data_connection.peer, data);
+    if (data.message)
+    {
+      writeMessage(data.message);
+    }
+    if (data.user)
+    {
+      angular.element($('#TalkController')).scope().getRecipientUser(data.user);
+    }
   });
   refs.data_connection.on('close', function() {
     refs.data_connection = null;
   });
+
   refs.talking = true;
   logMessage("You are talking with " + recipient_id + " right now :)");
   return;

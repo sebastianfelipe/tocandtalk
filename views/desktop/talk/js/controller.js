@@ -6,6 +6,7 @@ angular.module("tocandtalk", ['ngAnimate'])
         scope.rcvMsg = {}; // Mensaje recibido
         
         // Datos del usuario
+        /*
         scope.usr = {};
         scope.usr.first_name = "víctor";
         scope.usr.last_name = "torres varas";
@@ -15,11 +16,25 @@ angular.module("tocandtalk", ['ngAnimate'])
         scope.usr.native_language = "español"
         scope.usr.spoken_languages = ["inglés"];
         scope.usr.interest_languages = ["chino mandarín", "francés"];
-        
+        */
+        scope.getRecipientUser = function(recipient_user)
+        {
+            refs.recipient_user = recipient_user;
+            scope.usr = {};
+            scope.usr.first_name = refs.recipient_user.first_name;
+            scope.usr.last_name = refs.recipient_user.last_name;
+            scope.usr.country = refs.recipient_user.nationality;
+            scope.usr.sex = refs.recipient_user.sex;
+            scope.usr.description = refs.recipient_user.description;
+            scope.usr.native_language = refs.recipient_user.native_language;
+            scope.usr.spoken_languages = refs.recipient_user.spoken_languages;
+            scope.usr.interest_languages = refs.recipient_user.interest_languages;
+            scope.$apply();
+        }
         // Obtener mensajes desde el otro usuario
-        scope.getMessage = function(id, message) {
+        scope.getMessage = function(message) {
             ChatNotification.new_msg();
-            
+            console.log(message);
             scope.rcvMsg.content = message;
             scope.rcvMsg.type = "receiver";
             scope.messages.push(scope.rcvMsg);
@@ -36,7 +51,7 @@ angular.module("tocandtalk", ['ngAnimate'])
             {
                 scope.newMsg.type = "sender";
                 console.log(scope.newMsg.content);
-                refs.data_connection.send(scope.newMsg.content);
+                refs.data_connection.send({message: scope.newMsg.content});
                 scope.messages.push(scope.newMsg);
                 scope.newMsg = {};
             }

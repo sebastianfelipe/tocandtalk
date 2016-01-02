@@ -41,6 +41,28 @@ var _answer = function (incoming_call) {
     logError('could not answer call as there is no localStream ready');
     return;
   }
+
+  refs.peer.on('connection', function(data_connection) {
+    refs.data_connection = data_connection;
+    refs.data_connection.on('open', function() {
+      refs.data_connection.send({user: refs.user});
+    });
+    refs.data_connection.on('data', function(data) {
+      console.log(data);
+      if (data.message)
+      {
+        writeMessage(data.message);
+      }
+      if (data.user)
+      {
+        angular.element($('#TalkController')).scope().getRecipientUser(data.user);
+      }
+    });
+    refs.data_connection.on('close', function() {
+      refs.data_connection = null;
+    });
+  });
+
   refs.call = incoming_call;
   logMessage('incoming call answered');
   refs.call.on('stream', _showRemoteStream);
@@ -60,13 +82,13 @@ var _answer = function (incoming_call) {
   logMessage("You are talking with " + refs.call.peer + " right now :)");
   end_load();
 };
-
-  var sendMessageEntry = function(key) {
-    if (key.keyCode == 13) {
-      send();
-    }
-    return;
+/*
+var sendMessageEntry = function(key) {
+  if (key.keyCode == 13) {
+    send();
   }
+  return;
+};
 
 var _sendMessage = function(key) {
     if (!key)
@@ -99,3 +121,4 @@ var _sendMessage = function(key) {
     refs.entry_message.val('');
     return;
 };
+*/

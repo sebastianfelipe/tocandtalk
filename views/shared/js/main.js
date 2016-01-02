@@ -12,12 +12,14 @@ $(document).ready(function(){
   refs.secure = secure;
   */
 
+  refs.user = user;
   refs.server_ip = server_ip,
   refs.host_name = host_name,
   refs.protocol = "https";
   refs.secure = true;
   refs.language = language;
   
+  refs.caller_id = refs.user._username;
   console.log(refs.host_name);
 
   refs.server_ports = server_ports;
@@ -43,8 +45,9 @@ $(document).ready(function(){
   }
   });
   refs.socket.on('talk', function(recipient_id){
-    talk(recipient_id);
+    call(recipient_id);
     end_load();
+    refs.data_connection.send({user: refs.user});
   });
 
   getLocalStream();
