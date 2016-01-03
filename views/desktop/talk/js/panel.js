@@ -9,9 +9,12 @@ $(document).ready(function(){
             $("#panel").fadeIn(150);
             $("#panel_arrow").fadeIn(150);
             
-            if ($("#panel_cont_chat").is(":visible")) ChatNotification.hide();
-            load_messages();
-            chat_scroll_bottom();
+            // Cargar mensajes y ocultar notificación si el Chat es visible
+            if ($("#panel_cont_chat").is(":visible")) {
+                ChatNotification.hide();
+                load_messages();
+                chat_scroll_bottom();
+            }
         }
 	});
     
