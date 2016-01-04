@@ -79,9 +79,10 @@ schema.user = mongoose.Schema({
 	last_name: String,
 	password: String,
 	sex: String,
-	description: String
+	description: String,
+	cant_valoration: Number,
+	sum_valoration: Number
 });
-
 
 schema.username.plugin(uniqueValidator, {message: 'unique'});
 schema.email.plugin(uniqueValidator, {message: 'unique'});
