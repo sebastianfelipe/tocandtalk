@@ -50,6 +50,7 @@ angular.module("tocandtalk", ['ngAnimate'])
             else if (valid_string(scope.newMsg.content))
             {
                 scope.newMsg.type = "sender";
+                scope.newMsg.content = maxwidth_string(scope.newMsg.content, 174);
                 console.log(scope.newMsg.content);
                 refs.data_connection.send({message: scope.newMsg.content});
                 scope.messages.push(scope.newMsg);
@@ -61,8 +62,10 @@ angular.module("tocandtalk", ['ngAnimate'])
             scope.$apply();
         }
         
-        scope.clearMessages = function() {
+        scope.nextUser = function() {
+            start_load();
             scope.messages = [];
+            //if (chat_visible()) { scope.$apply(); }
         }
     }])
     .directive('ngEnter', function () {

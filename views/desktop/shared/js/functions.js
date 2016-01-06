@@ -54,3 +54,47 @@ function valid_string(str) {
     }
     return true;
 }
+
+function width_string(text, font) {
+    var f = font || '13px FiraSansBook',
+        o = $('<div>' + text + '</div>')
+                .css({'position': 'absolute', 'float': 'left', 'white-space': 'nowrap', 'visibility': 'hidden', 'font': f})
+                .appendTo($('body')),
+    w = o.width();
+    o.remove();
+    
+    return w;
+}
+
+function maxwidth_string(text, size) {
+    var array_txt = text.split(' ');
+    
+    var array_char_temp = [];
+    var word_temp = "";
+    var array_word_temp = [];
+    
+    for (var i = 0; i < array_txt.length; i++) {
+        
+        if (width_string(array_txt[i], '13px FiraSansBook') > size) {
+            array_char_temp = array_txt[i].split("");
+            
+            for (var j = 0; j < array_char_temp.length; j++) {
+                if (width_string(word_temp, '13px FiraSansBook') <= size) {
+                    word_temp += array_char_temp[j];
+                }
+                else {
+                    array_word_temp.push(word_temp);
+                    word_temp = array_char_temp[j];
+                }
+            }
+            
+            array_word_temp.push(word_temp);
+            array_txt[i] = array_word_temp.join(' ').trim();
+            
+            array_char_temp = [];
+            word_temp = "";
+            array_word_temp = [];
+        }        
+    }
+    return array_txt.join(' ').trim();
+}
