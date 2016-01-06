@@ -59,7 +59,9 @@ router.post('/',function (req, res) {
                                 last_name: req.body.i_lastname,
                                 sex: req.body.r_sex,
                                 password: req.body.i_password,
-                                description: ""
+                                description: "",
+                                sum_valoration: 0,
+                                cant_valoration: 0
                                 });
 
   if (req.body.i_password != req.body.i_password_confirmation)

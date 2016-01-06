@@ -1,3 +1,4 @@
+
 var mongoose = require('mongoose');
 var router = require('express').Router();
 var async = require('async');
@@ -163,6 +164,42 @@ router.get('/remove/:model', function(req, res) {
 	}
 	res.send('removed');
 });
+
+router.get('/valorate/:username/:value', function (req, res) {
+	var username = req.params.username;
+	var value = Number(req.params.value);
+	var errors = "";
+	async.parallel({
+	  user: function(callback) {
+	      setTimeout(function(){
+	          models.User.findOne({_username: username}, {password: 0}).exec(function (err, doc) {
+	            if (doc)
+	            {
+	              if (doc.sum_valoration == null)
+	              {
+	              	doc.sum_valoration == 0;
+	              }
+	     	       if (doc.cant_valoration == null)
+	              {
+	              	doc.cant_valoration == 0;
+	              }
+	              doc.sum_valoration += value;
+	              doc.cant_valoration += 1;
+	              doc.save(function (err) {
+	                var errors_tmp = error_adapter(models.Username.modelName, err);
+	                callback(null, {doc: doc, errors: errors_tmp});
+	              });
+	            }
+	          })
+	      }, 200);
+	  }
+	},
+	function(err, results) {
+		console.log('valorate');
+		return res.send({user: results.user.doc, req: req.body, errors: errors});
+	});
+});
+
 
 module.exports = router;
 
