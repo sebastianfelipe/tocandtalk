@@ -82,6 +82,11 @@ angular.module("tocandtalk", ['ngAnimate'])
             refs.call.close();
             refs.call = null;
           }
+          if (refs.data_connection)
+          {
+            refs.data_connection.close();
+            refs.data_connection = null;
+          }
           refs.talking = false;
 
           if (!refs.peer) {
