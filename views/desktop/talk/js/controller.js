@@ -105,6 +105,7 @@ angular.module("tocandtalk", ['ngAnimate'])
         }
     }])
     .directive('ngEnter', function () {
+        console.log('Se ha presionado el enter');
         return function (scope, element, attrs) {
             element.bind("keydown keypress", function (event) {
                 if(event.which === 13) {
