@@ -59,6 +59,7 @@ var _answer = function (incoming_call) {
       }
     });
     refs.data_connection.on('close', function() {
+      console.log('Answer lo ha cerrado!');
       refs.data_connection = null;
     });
   });

@@ -116,6 +116,7 @@ var call = function (recipient_id) {
         refs.talking = false;
     });
   });
+
   refs.data_connection = refs.peer.connect(recipient_id);
   refs.data_connection.on('open', function() {
     refs.data_connection.send({user: refs.user});
@@ -131,6 +132,7 @@ var call = function (recipient_id) {
     }
   });
   refs.data_connection.on('close', function() {
+    console.log('Call lo ha cerrado!');
     refs.data_connection = null;
   });
 
