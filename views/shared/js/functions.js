@@ -119,9 +119,12 @@ var call = function (recipient_id) {
 
   refs.data_connection = refs.peer.connect(recipient_id);
   refs.data_connection.on('open', function() {
+    console.log('Call ha enviado su información');
     refs.data_connection.send({user: refs.user});
   });
   refs.data_connection.on('data', function(data) {
+    console.log('Call ha recibido esto');
+    console.log(data);
     if (data.message)
     {
       writeMessage(data.message);

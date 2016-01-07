@@ -45,9 +45,12 @@ var _answer = function (incoming_call) {
   refs.peer.on('connection', function(data_connection) {
     refs.data_connection = data_connection;
     refs.data_connection.on('open', function() {
+    console.log('Answer ha enviado su información');
       refs.data_connection.send({user: refs.user});
     });
     refs.data_connection.on('data', function(data) {
+    console.log('Answer ha recibido esto');
+
       console.log(data);
       if (data.message)
       {
