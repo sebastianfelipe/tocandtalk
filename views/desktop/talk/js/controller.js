@@ -4,6 +4,9 @@ angular.module("tocandtalk", ['ngAnimate'])
         scope.newMsg = {}; // Mensaje enviado
         scope.rcvMsg = {}; // Mensaje recibido
         
+        var lastNewMsgCont = "";
+        var lastRcvMsgCont = "";
+        
         /*
         var f_name = maxwidth_string("víctor", '16px FiraSansLight', 213);
         var l_name = maxwidth_string("torres varas", '16px FiraSansLight', 213);
@@ -47,13 +50,17 @@ angular.module("tocandtalk", ['ngAnimate'])
         
         // Obtener mensajes desde el otro usuario
         scope.getMessage = function(message) {
-            ChatNotification.new_msg();
-            console.log(message);
-            scope.rcvMsg.content = message;
-            scope.rcvMsg.type = "receiver";
-            scope.messages.push(scope.rcvMsg);
-            scope.rcvMsg = {};
-            if (chat_visible()) { scope.$apply(); }
+            if (message != lastRcvMsgCont) {
+                lastRcvMsgCont = message;
+                
+                ChatNotification.new_msg();
+                console.log(message);
+                scope.rcvMsg.content = message;
+                scope.rcvMsg.type = "receiver";
+                scope.messages.push(scope.rcvMsg);
+                scope.rcvMsg = {};
+                if (chat_visible()) { scope.$apply(); }
+            }
         }          
         
         // Enviar mensaje
@@ -61,8 +68,10 @@ angular.module("tocandtalk", ['ngAnimate'])
             if ((!refs.data_connection) || (!refs.call)) {
               logError('Nobody is talking with you right now. Search someone first!');
             }
-            else if (valid_string(scope.newMsg.content))
+            else if (valid_string(scope.newMsg.content) && scope.newMsg.content != lastNewMsgCont)
             {
+                lastNewMsgCont = scope.newMsg.content;
+                
                 scope.newMsg.type = "sender";
                 scope.newMsg.content = maxwidth_string(scope.newMsg.content, '13px FiraSansBook', 174);
                 console.log(scope.newMsg.content);

@@ -119,7 +119,8 @@
 #portada-logo {
 	display: inline-block;
 
-	margin-top: 54px;
+	/* Margin Top Default: 54px */
+    margin-top: 2px;
 }
 
 #mundo {
