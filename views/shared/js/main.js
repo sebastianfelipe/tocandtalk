@@ -47,7 +47,7 @@ $(document).ready(function(){
   refs.socket.on('talk', function(recipient_id){
     call(recipient_id);
     end_load();
-    refs.data_connection.send({user: refs.user});
+    //refs.data_connection.send({user: refs.user});
   });
 
   getLocalStream();
