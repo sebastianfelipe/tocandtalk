@@ -89,6 +89,9 @@ angular.module("tocandtalk", ['ngAnimate'])
         scope.nextUser = function() {
             start_load();
             scope.messages = [];
+            
+            lastNewMsgCont = "";
+            lastRcvMsgCont = "";
             //scope.usr = {};
             //if (chat_visible()) { scope.$apply(); }
         }
