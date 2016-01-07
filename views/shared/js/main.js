@@ -52,6 +52,8 @@ $(document).ready(function(){
 
   getLocalStream();
   connect();
+  angular.element($('#TalkController')).scope().nextUser();
+
   //_search();
   // -------------------------------------------------------------
 
