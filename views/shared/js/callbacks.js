@@ -41,7 +41,7 @@ var _answer = function (incoming_call) {
     logError('could not answer call as there is no localStream ready');
     return;
   }
-
+  console.log('Answer ha sido llamado');
   refs.peer.on('connection', function(data_connection) {
     refs.data_connection = data_connection;
     refs.data_connection.on('open', function() {
