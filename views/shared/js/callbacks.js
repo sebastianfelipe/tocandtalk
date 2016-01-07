@@ -3,6 +3,7 @@ var _showRemoteStream = function (stream) {
   refs.remoteVideo.attr('src', window.URL.createObjectURL(stream));
 };
 
+/*
 var _search = function () {
   console.log('trying to send a message');
   if (refs.talking) {
@@ -18,17 +19,12 @@ var _search = function () {
     logError('please connect first');
   }
 
-  /*
-  if (!refs.localStream) {
-    logError('could not search for a user because there is no localStream ready');
-    return;
-  }
-  */
   refs.box_messages.html("");
   refs.entry_message.val('');
   refs.socket.emit('toc', refs.caller_id, refs.language);
   return;
 };
+*/
 
 // answer an incoming call
 var _answer = function (incoming_call) {
@@ -41,13 +37,16 @@ var _answer = function (incoming_call) {
     logError('could not answer call as there is no localStream ready');
     return;
   }
-
+  console.log('Answer ha sido llamado');
   refs.peer.on('connection', function(data_connection) {
     refs.data_connection = data_connection;
     refs.data_connection.on('open', function() {
+    console.log('Answer ha enviado su información');
       refs.data_connection.send({user: refs.user});
     });
     refs.data_connection.on('data', function(data) {
+    console.log('Answer ha recibido esto');
+
       console.log(data);
       if (data.message)
       {
@@ -59,6 +58,7 @@ var _answer = function (incoming_call) {
       }
     });
     refs.data_connection.on('close', function() {
+      console.log('Answer lo ha cerrado!');
       refs.data_connection = null;
     });
   });

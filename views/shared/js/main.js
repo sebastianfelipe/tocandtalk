@@ -47,15 +47,17 @@ $(document).ready(function(){
   refs.socket.on('talk', function(recipient_id){
     call(recipient_id);
     end_load();
-    refs.data_connection.send({user: refs.user});
+    //refs.data_connection.send({user: refs.user});
   });
 
   getLocalStream();
   connect();
-  _search();
+  angular.element($('#TalkController')).scope().nextUser();
+
+  //_search();
   // -------------------------------------------------------------
 
-  refs.button_search.on('click', _search);
+  //refs.button_search.on('click', _search);
   //refs.button_send_message.on('click',_sendMessage);
   //refs.entry_message.on('keypress', _sendMessage);
 });
