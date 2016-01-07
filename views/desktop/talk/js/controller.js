@@ -77,14 +77,12 @@ angular.module("tocandtalk", ['ngAnimate'])
         // Siguiente usuario
         scope.nextUser = function() {
 
-          if (refs.talking) {
-            if (refs.call)
-            {
-              refs.call.close();
-              refs.call = null;
-            }
-            refs.talking = false;
+          if (refs.call)
+          {
+            refs.call.close();
+            refs.call = null;
           }
+          refs.talking = false;
 
           if (!refs.peer) {
             logError('please connect first');
