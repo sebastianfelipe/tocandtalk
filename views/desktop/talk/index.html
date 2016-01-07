@@ -303,33 +303,36 @@
                         <div style=
                             "position: absolute;
                              display: inline-block;
-                             width: 108px;
-                             margin-left: 80px;">
-                            {{usr.country | capitalize}}
-                        </div>
-                        <div style=
-                            "position: relative;
-                             display: inline-block;
                              width: 80px;
                              margin-bottom: 7px;">
                             <tc>Ubicación:</tc>
                         </div>
+                        <div style=
+                            "position: relative;
+                             display: inline-block;
+                             width: 108px;
+                             margin-bottom: 7px;
+                             margin-left: 80px;">
+                            {{usr.country | capitalize}}
+                        </div>
+                        
                         <br>
                         <div style=
                             "position: absolute;
+                             display: inline-block;
+                             width: 80px;">
+                            <tc>Sexo:</tc>
+                        </div>
+                        <div style=
+                            "position: relative;
                              display: inline-block;
                              width: 108px;
                              margin-left: 80px;">
                             {{usr.sex | capitalize}}
                         </div>
-                        <div style=
-                            "position: relative;
-                             display: inline-block;
-                             width: 80px;">
-                            <tc>Sexo:</tc>
-                        </div>
+                        
                     </div>
-                    <div class="p_prof_card">
+                    <div class="p_prof_card" ng-show='usr.description != "" && usr.description != null'>
                         <tc>Descripción:</tc>
                         <br>
                         <div style=
@@ -352,13 +355,13 @@
                             <div style="margin-top:2px; width:100%;">
                                 {{usr.native_language | capitalize}} (Nativo)
                             </div>
-                            <div style="margin-top:2px; width:100%;" ng-repeat="spoken_language in usr.spoken_languages">
+                            <div style="margin-top:3px; width:100%;" ng-repeat="spoken_language in usr.spoken_languages">
                                 {{spoken_language | capitalize}}
                             </div>
                         </div>
                         
                     </div>
-                    <div class="p_prof_card" style="margin-bottom: 8px;">
+                    <div class="p_prof_card" ng-show="usr.interest_languages != null">
                         <tc>Idiomas que me interesan:</tc>
                         <br>
                         
@@ -367,12 +370,18 @@
                              display: inline-block;
                              margin-left: 12px;
                              margin-top: 4px;">
-                            <div style="margin-top:2px; width:100%;" ng-repeat="interest_language in usr.interest_languages">
+                            <div style="margin-top:3px; width:100%;" ng-repeat="interest_language in usr.interest_languages">
                                 {{interest_language | capitalize}}
                             </div>
                         </div>
-                        
                     </div>
+                    <div style="position: relative;
+                                width: 188px;
+                                height: 1px;
+                                margin-left: 10px;
+                                margin-top: 8px;">
+                    </div>
+                    
                     <div id="p_prof_img_cover_background" class="p_prof_img_cover_background"></div>
                     <div id="p_prof_img_cover_black"></div>
                     

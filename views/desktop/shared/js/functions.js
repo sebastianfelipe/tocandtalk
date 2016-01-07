@@ -66,20 +66,25 @@ function width_string(text, font) {
     return w;
 }
 
-function maxwidth_string(text, size) {
-    var array_txt = text.split(' ');
+/*
+    font: (String) SIZE FONT-STYLE
+          Ejemplo: '13px arial'
+*/
+function maxwidth_string(text, font, size) {
+    if (text == null) return null;
     
+    var array_txt = text.split(' ');
     var array_char_temp = [];
     var word_temp = "";
     var array_word_temp = [];
     
     for (var i = 0; i < array_txt.length; i++) {
         
-        if (width_string(array_txt[i], '13px FiraSansBook') > size) {
+        if (width_string(array_txt[i], font) > size) {
             array_char_temp = array_txt[i].split("");
             
             for (var j = 0; j < array_char_temp.length; j++) {
-                if (width_string(word_temp, '13px FiraSansBook') <= size) {
+                if (width_string(word_temp, font) <= size) {
                     word_temp += array_char_temp[j];
                 }
                 else {
@@ -97,4 +102,14 @@ function maxwidth_string(text, size) {
         }        
     }
     return array_txt.join(' ').trim();
+}
+
+function height_text(text, font, width) {
+    var o = $('<div>' + text + '</div>')
+                .css({'position': 'absolute', 'float': 'left', 'width': width + 'px', 'visibility': 'hidden', 'font': font})
+                .appendTo($('body')),
+    h = o.height();
+    o.remove();
+    
+    return h;
 }

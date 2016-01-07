@@ -5,32 +5,44 @@ angular.module("tocandtalk", ['ngAnimate'])
         scope.newMsg = {}; // Mensaje enviado
         scope.rcvMsg = {}; // Mensaje recibido
         
-        // Datos del usuario
         /*
+        var f_name = maxwidth_string("víctor", '16px FiraSansLight', 213);
+        var l_name = maxwidth_string("torres varas", '16px FiraSansLight', 213);
+        panel_profile_cover(f_name + " " + l_name);
         scope.usr = {};
-        scope.usr.first_name = "víctor";
-        scope.usr.last_name = "torres varas";
-        scope.usr.country = "chile";
+        scope.usr.first_name = f_name;
+        scope.usr.last_name = l_name;
+        scope.usr.country = "Chile";
         scope.usr.sex = "masculino";
-        scope.usr.description = "Hola, soy un humano y quiero practicar idiomas";
-        scope.usr.native_language = "español"
-        scope.usr.spoken_languages = ["inglés"];
-        scope.usr.interest_languages = ["chino mandarín", "francés"];
+        var desc = "Hola, soy un humano bla balsasdasdasdasfasfsdfs sdfsdfs";
+        scope.usr.description = maxwidth_string(desc, '13px FiraSansBook', 186);
+        scope.usr.native_language = "español";
+        scope.usr.spoken_languages = ["inglés", "portugués"];
+        scope.usr.interest_languages = ["alemán", "chino mandarín", "coreano"];
         */
+        
+        // Obtener datos del usuario
         scope.getRecipientUser = function(recipient_user)
-        {
+        {   
             refs.recipient_user = recipient_user;
+            
+            var f_name = maxwidth_string(refs.recipient_user.first_name, '16px FiraSansLight', 213);
+            var l_name = maxwidth_string(refs.recipient_user.last_name, '16px FiraSansLight', 213);
+            
+            panel_profile_cover(f_name + " " + l_name); // Ajusta alto del panel según el largo del nombre
+            
             scope.usr = {};
-            scope.usr.first_name = refs.recipient_user.first_name;
-            scope.usr.last_name = refs.recipient_user.last_name;
+            scope.usr.first_name = f_name;
+            scope.usr.last_name = l_name;
             scope.usr.country = refs.recipient_user.nationality;
             scope.usr.sex = refs.recipient_user.sex;
-            scope.usr.description = refs.recipient_user.description;
+            scope.usr.description = maxwidth_string(refs.recipient_user.description, '13px FiraSansBook', 186);
             scope.usr.native_language = refs.recipient_user.native_language;
             scope.usr.spoken_languages = refs.recipient_user.spoken_languages;
             scope.usr.interest_languages = refs.recipient_user.interest_languages;
             scope.$apply();
         }
+        
         // Obtener mensajes desde el otro usuario
         scope.getMessage = function(message) {
             ChatNotification.new_msg();
@@ -50,7 +62,7 @@ angular.module("tocandtalk", ['ngAnimate'])
             else if (valid_string(scope.newMsg.content))
             {
                 scope.newMsg.type = "sender";
-                scope.newMsg.content = maxwidth_string(scope.newMsg.content, 174);
+                scope.newMsg.content = maxwidth_string(scope.newMsg.content, '13px FiraSansBook', 174);
                 console.log(scope.newMsg.content);
                 refs.data_connection.send({message: scope.newMsg.content});
                 scope.messages.push(scope.newMsg);
@@ -62,9 +74,11 @@ angular.module("tocandtalk", ['ngAnimate'])
             scope.$apply();
         }
         
+        // Siguiente usuario
         scope.nextUser = function() {
             start_load();
             scope.messages = [];
+            //scope.usr = {};
             //if (chat_visible()) { scope.$apply(); }
         }
     }])

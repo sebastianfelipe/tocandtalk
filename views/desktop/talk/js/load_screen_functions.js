@@ -218,3 +218,14 @@ function disable_buttons_media(video, audio) {
     }
     return;
 }
+
+function panel_profile_cover(name) {
+    var h = height_text(name, '16px FiraSansLight', 214);
+    var h_base = 128;
+    
+    $("#p_prof_img_cover_background").height(h_base + h);
+    $("#p_prof_img_cover_black").height(h_base + h);
+    $("#p_prof_img_cover").height(h_base - 20 + h);
+    
+    return;
+}
