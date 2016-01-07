@@ -1,7 +1,6 @@
 angular.module("tocandtalk", ['ngAnimate'])
     .controller('TalkController', ["$scope", function(scope) {
         scope.messages = []; // Arreglo de mensajes
-        scope.wait_msg = [];
         scope.newMsg = {}; // Mensaje enviado
         scope.rcvMsg = {}; // Mensaje recibido
         
@@ -26,8 +25,11 @@ angular.module("tocandtalk", ['ngAnimate'])
         {   
             refs.recipient_user = recipient_user;
             
-            var f_name = maxwidth_string(refs.recipient_user.first_name, '16px FiraSansLight', 213);
-            var l_name = maxwidth_string(refs.recipient_user.last_name, '16px FiraSansLight', 213);
+            var f_name = refs.recipient_user.first_name;
+            var l_name = refs.recipient_user.last_name;
+            var description = refs.recipient_user.description;
+            f_name = maxwidth_string(f_name, '16px FiraSansLight', 213);
+            l_name = maxwidth_string(l_name, '16px FiraSansLight', 213);
             
             panel_profile_cover(f_name + " " + l_name); // Ajusta alto del panel según el largo del nombre
             
@@ -36,7 +38,7 @@ angular.module("tocandtalk", ['ngAnimate'])
             scope.usr.last_name = l_name;
             scope.usr.country = refs.recipient_user.nationality;
             scope.usr.sex = refs.recipient_user.sex;
-            scope.usr.description = maxwidth_string(refs.recipient_user.description, '13px FiraSansBook', 186);
+            scope.usr.description = maxwidth_string(description, '13px FiraSansBook', 186);
             scope.usr.native_language = refs.recipient_user.native_language;
             scope.usr.spoken_languages = refs.recipient_user.spoken_languages;
             scope.usr.interest_languages = refs.recipient_user.interest_languages;
