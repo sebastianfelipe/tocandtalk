@@ -87,20 +87,6 @@ function chat_scroll_bottom()
     return;
 }
 
-/*
-function chat_keep_scroll_bottom()
-{
-    var content_height = $(".p_msg_list").height();
-    var position_scroll = $("#p_msg_container").scrollTop();
-    
-    if ( position_scroll - content_height * 0.75 >= 0 )
-    {
-        $(".content_scroll_m").mCustomScrollbar("scrollTo","bottom",{ scrollEasing:"easeOut" });
-    }
-    return;
-}
-*/
-
 /* Determina si el chat es mostrado en pantalla.
  *   Parám.: Nada.
  *   Retorno: (Boolean) True si el chat es visible, false si no.

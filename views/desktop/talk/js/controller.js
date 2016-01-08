@@ -88,34 +88,32 @@ angular.module("tocandtalk", ['ngAnimate'])
         // Siguiente usuario
         scope.nextUser = function() {
 
-          if (refs.call)
-          {
-            refs.call.close();
-            refs.call = null;
-          }
-          if (refs.data_connection)
-          {
-            refs.data_connection.close();
-            refs.data_connection = null;
-          }
-          refs.talking = false;
+            if (refs.call) {
+                refs.call.close();
+                refs.call = null;
+            }
+            if (refs.data_connection) {
+                refs.data_connection.close();
+                refs.data_connection = null;
+            }
+            refs.talking = false;
 
-          if (!refs.peer) {
-            logError('please connect first');
-          }
+            if (!refs.peer) {
+                logError('please connect first');
+            }
 
-          /*
-          if (!refs.localStream) {
+            /*
+            if (!refs.localStream) {
             logError('could not search for a user because there is no localStream ready');
             return;
-          }
-          */
+            }
+            */
             start_load();
             scope.messages = [];
-            
+
             lastNewMsgCont = "";
             lastRcvMsgCont = "";
-          refs.socket.emit('toc', refs.caller_id, refs.language);
+            refs.socket.emit('toc', refs.caller_id, refs.language);
 
             //scope.usr = {};
             //if (chat_visible()) { scope.$apply(); }

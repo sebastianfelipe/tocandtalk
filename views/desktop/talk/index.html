@@ -55,10 +55,10 @@
 		<script src="strings/es/talk.js"></script>
         
         <!-- JS -->
+        <script src="desktop/shared/js/functions.js"></script>
         <script src="desktop/talk/js/load_screen_functions.js"></script>
         <script src="desktop/talk/js/chat.js"></script>
         
-        <script src="desktop/shared/js/functions.js"></script>
         <script src="desktop/talk/js/controller.js"></script>
 
 		<script src="node_modules/webrtc-adapter-test/adapter.js"></script>
@@ -259,26 +259,16 @@
                 
                 <div id="p_msg_container">
                     <div class="p_msg_list">
-                        <!--
-                        <div class="msg_bubble_chat msg_b_chat_receiver">
-                            <image src="desktop/talk/img/msg_receiver_arrow.svg" class="msg_b_arrow_receiver"></image>
-                            Hola!
-                        </div>
-                        -->
+                        
                         <div ng-repeat="message in messages" update-chat class="animate-repeat">                                
                             <div class="msg_bubble_chat msg_b_chat_{{message.type}}">
                                 <image src="desktop/talk/img/msg_{{message.type}}_arrow.svg" class="msg_b_arrow_{{message.type}}"></image>
                                 {{message.content}}    
                             </div>
                         </div>
+                        
                     </div>
                 </div>
-
-                <!--
-                <div id="p_msg_container">
-                    <div id="messages" class="p_msg_list"></div>
-                </div>
-                -->
                 
                 <div id="p_msg_send_container">
                     <image src="desktop/talk/img/msg_send_arrow.svg" id="msg_b_send_arrow"></image>
@@ -286,7 +276,6 @@
                     <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="newMsg.content" ng-enter="sendMessage()">
                     <div id="msg_send_button">
                         <input type="image" src="desktop/talk/img/button_next.svg" class="msg_send_button_img" id="send-message" ng-model="newMsg.content" ng-click="sendMessage()">
-                        <!-- <image src="desktop/talk/img/button_next.svg" class="msg_send_button_img"></image> -->
                     </div>
                 </div>
             </div>
@@ -392,15 +381,6 @@
                 <div id="p_prof_foo"></div>
             </div>
             
-            <!--
-            <div class="gwd-div-1ldv w3-container" style="color:white;">
-                <p id="user">User</p>
-            </div>
-            
-            <div class="gwd-div-ml19 w3-container" id="messages"></div>
-            <input class="gwd-div-1hor" id="message-entry" type="text" autocomplete="off">
-            <button class="gwd-div-xlqe" id="send-message">Send</button>
-            -->
         </div>
 
 	</body>
