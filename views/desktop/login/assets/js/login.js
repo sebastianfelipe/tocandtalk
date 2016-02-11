@@ -1,8 +1,0 @@
-function invalidInput()
-{
-}
-
-function validateForm()
-{
-
-}
