@@ -1,4 +1,4 @@
-#barra-superior {
+.barra-superior {
 	position: fixed;
 	z-index: 98;
 
@@ -21,7 +21,7 @@
 	background: rgba(11,164,185,0.96);
 }
 
-#img-logo {
+.img-logo {
 	display: inline-block;
 	position: absolute;
 	height: 45px;

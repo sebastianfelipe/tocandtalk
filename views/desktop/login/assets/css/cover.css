@@ -1,28 +1,28 @@
 /* Width */
 
-#portada, #mundo {
+.portada, .mundo {
 	width: 1066px;
 }
 
-#portada-fondo, #portada-nubes, #portada-fin, #cont-globos {
+.portada-fondo, .portada-nubes, .portada-fin, .cont-globos {
 	width: 100%;
 }
 
-#portada-contenido, #globos {
+.portada-contenido, .globos {
 	width: 1000px;
 }
 
-#portada-logo {
+.portada-logo {
 	width: 500px;
 }
 
 /* Portada */
 
-#portada, #portada-fondo, #portada-nubes, #portada-fin, #mundo, #cont-globos {
+.portada, .portada-fondo, .portada-nubes, .portada-fin, .mundo, .cont-globos {
 	overflow: hidden;
 }
 
-#portada {
+.portada {
 	z-index: 2;
 
 	top: 0px;
@@ -37,7 +37,7 @@
 	text-align: center;
 }
 
-#portada-fondo {
+.portada-fondo {
 	z-index: 1;
 
 	position: absolute;
@@ -55,10 +55,10 @@
 	background: -o-linear-gradient(top, rgba(13,118,130,1) 0%, rgba(40,214,185,1) 72%, rgba(40,214,185,1) 100%);
 	background: -ms-linear-gradient(top, rgba(13,118,130,1) 0%, rgba(40,214,185,1) 72%, rgba(40,214,185,1) 100%);
 	background: linear-gradient(to bottom, rgba(13,118,130,1) 0%, rgba(40,214,185,1) 72%, rgba(40,214,185,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d7682', endColorstr='#28d6b9', GradientType=0 );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='.0d7682', endColorstr='.28d6b9', GradientType=0 );
 }
 
-#portada-nubes {
+.portada-nubes {
 	z-index: 2;
 
 	position: absolute;
@@ -77,10 +77,10 @@
 	background: -o-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(246,246,246,0.47) 47%, rgba(161,231,240,1) 100%);
 	background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(246,246,246,0.47) 47%, rgba(161,231,240,1) 100%);
 	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(246,246,246,0.47) 47%, rgba(161,231,240,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#a1e7f0', GradientType=0 );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='.ffffff', endColorstr='.a1e7f0', GradientType=0 );
 }
 
-#portada-fin {
+.portada-fin {
 	z-index: 4;
 
 	position: absolute;
@@ -96,7 +96,7 @@
 	background: rgba(248,248,248,1);
 }
 
-#portada-contenido {
+.portada-contenido {
 	position: absolute;
 	display: inline-block;
 
@@ -106,7 +106,7 @@
 	text-align: center;
 }
 
-#portada-titulo {
+.portada-titulo {
 	display: inline-block;
 
 	margin-top: 36px;
@@ -116,14 +116,14 @@
 	color: rgba(244,244,244,1);
 }
 
-#portada-logo {
+.portada-logo {
 	display: inline-block;
 
 	/* Margin Top Default: 54px */
     margin-top: 2px;
 }
 
-#mundo {
+.mundo {
 	z-index: 3;
 
 	display: inline-block;
@@ -133,7 +133,7 @@
 	margin-top: 427px;
 }
 
-#aviones {
+.aviones {
 	z-index: 3;
 	position: absolute;
 	overflow: hidden;
@@ -142,12 +142,12 @@
 	width: 1066px;
 }
 
-#globos {
+.globos {
 	position: relative;
 	display: inline-block;
 }
 
-#cont-globos {
+.cont-globos {
 	z-index: 4;
 
 	position: absolute;
