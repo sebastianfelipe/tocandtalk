@@ -54,7 +54,7 @@ router.post('/', function (req, res) {
       }
       else
       {
-        errors += "error_user;";
+        errors += "eUser;";
         
       }
       //return res.req.res.redirect('/');

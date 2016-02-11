@@ -3,32 +3,27 @@ var app = angular.module('tocandtalk', []);
 // SERVICES
 app.service('sStage', function() {
    
-    this.city = "New York, NY";
     this.showErrors(errors)
     {
         // Nombre de usuario
-        if (errors.indexOf("error_user;") > -1) {
-            $("#error_user").show();
+        if (errors.indexOf("eUser;") > -1) {
+            $("#eUser").show();
         }
     }
 
     this.clear()
     {
-        $("#error_user").hide();
+        $("#eUser").hide();
     }
 
     this.load()
     {
-        show_errors(errors);
     }
 
-
-
-    this.reload(req, errors)
+    this.reload(errors)
     {
-        clear();
-        show_req(req);
-        show_errors(errors);
+        this.clear();
+        this.showErrors(errors);
     }    
 });
 
@@ -42,6 +37,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         $http.post('/login', data)
             .success(function (result) {
                 console.log(result);
+
             })
             .error(function (data, status) {
                 $log.error(data);
