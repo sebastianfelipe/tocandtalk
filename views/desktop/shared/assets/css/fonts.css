@@ -1,0 +1,140 @@
+/* Sólo se usan las fuentes FiraLight FiraBook y FiraThin */
+
+/* Fira Sans Regular */
+@font-face {
+	font-family: FiraSansRegular;
+	src: url('../fonts/FiraSans/FiraSans-Regular.otf') format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: FiraSansRegular;
+	src: url('../fonts/FiraSans/FiraSans-Bold.otf') format("opentype");
+	font-weight: bold;
+}
+@font-face {
+	font-family: FiraSansRegular;
+	src: url('../fonts/FiraSans/FiraSans-Italic.otf') format("opentype");
+	font-style: italic;
+}
+@font-face {
+	font-family: FiraSansRegular;
+	src: url('../fonts/FiraSans/FiraSans-Italic.otf') format("opentype");
+	font-style: oblique;
+}
+
+/* Fira Sans Book */
+@font-face {
+	font-family: FiraSansBook;
+	src: url('../fonts/FiraSans/FiraSans-Book.otf') format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: FiraSansBook;
+	src: url('../fonts/FiraSans/FiraSans-Bold.otf') format("opentype");
+	font-weight: bold;
+}
+@font-face {
+	font-family: FiraSansBook;
+	src: url('../fonts/FiraSans/FiraSans-BookItalic.otf') format("opentype");
+	font-style: italic;
+}
+@font-face {
+	font-family: FiraSansBook;
+	src: url('../fonts/FiraSans/FiraSans-BookItalic.otf') format("opentype");
+	font-style: oblique;
+	font-variant: 
+}
+
+/* Fira Sans Light */
+@font-face {
+	font-family: FiraSansLight;
+	src: url('../fonts/FiraSans/FiraSans-Light.otf') format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: FiraSansLight;
+	src: url('../fonts/FiraSans/FiraSans-Bold.otf') format("opentype");
+	font-weight: bold;
+}
+@font-face {
+	font-family: FiraSansLight;
+	src: url('../fonts/FiraSans/FiraSans-LightItalic.otf') format("opentype");
+	font-style: italic;
+}
+@font-face {
+	font-family: FiraSansLight;
+	src: url('../fonts/FiraSans/FiraSans-LightItalic.otf') format("opentype");
+	font-style: oblique;
+}
+
+/* Fira Sans Thin */
+@font-face {
+	font-family: FiraSansThin;
+	src: url('../fonts/FiraSans/FiraSans-Thin.otf') format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: FiraSansThin;
+	src: url('../fonts/FiraSans/FiraSans-Bold.otf') format("opentype");
+	font-weight: bold;
+}
+@font-face {
+	font-family: FiraSansThin;
+	src: url('../fonts/FiraSans/FiraSans-ThinItalic.otf') format("opentype");
+	font-style: italic;
+}
+@font-face {
+	font-family: FiraSansThin;
+	src: url('../fonts/FiraSans/FiraSans-ThinItalic.otf') format("opentype");
+	font-style: oblique;
+}
+
+/* Fira Sans Hair */
+@font-face {
+	font-family: FiraSansHair;
+	src: url('../fonts/FiraSans/FiraSans-Hair.otf') format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: FiraSansHair;
+	src: url('../fonts/FiraSans/FiraSans-Bold.otf') format("opentype");
+	font-weight: bold;
+}
+@font-face {
+	font-family: FiraSansHair;
+	src: url('../fonts/FiraSans/FiraSans-HairItalic.otf') format("opentype");
+	font-style: italic;
+}
+@font-face {
+	font-family: FiraSansHair;
+	src: url('../fonts/FiraSans/FiraSans-HairItalic.otf') format("opentype");
+	font-style: oblique;
+}
+
+/* Fira Sans Eight */
+@font-face {
+	font-family: FiraSansEight;
+	src: url('../fonts/FiraSans/FiraSans-Eight.otf') format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: FiraSansEight;
+	src: url('../fonts/FiraSans/FiraSans-Bold.otf') format("opentype");
+	font-weight: bold;
+}
+@font-face {
+	font-family: FiraSansEight;
+	src: url('../fonts/FiraSans/FiraSans-EightItalic.otf') format("opentype");
+	font-style: italic;
+}
+@font-face {
+	font-family: FiraSansEight;
+	src: url('../fonts/FiraSans/FiraSans-EightItalic.otf') format("opentype");
+	font-style: oblique;
+}

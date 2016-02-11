@@ -1,15 +1,3 @@
-function show_req(req)
-{
-	if (req.i_username)
-	{
-		$('#i_username').val(req.i_username);
-	}
-	if (req.i_password)
-	{
-		$('#i_password').val(req.i_password);
-	}
-}
-
 function show_errors(errors)
 {
     // Nombre de usuario

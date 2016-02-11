@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="tocandtalk">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
 		<title>Toc&Talk!</title>
@@ -10,54 +10,56 @@
 		<script> var errors = <%- JSON.stringify(errors) %>; </script>
 
 		<!-- Icons -->
-		<link href="desktop/shared/img/icons/favicon.png" rel="icon" type="image/png"></link>
-		<link href="desktop/shared/img/icons/tocandtalk-ios.png" rel="apple-touch-icon"></link>
-		<link href="desktop/shared/img/icons/tocandtalk-ios-76x76.png" rel="apple-touch-icon" sizes="76x76"></link>
-		<link href="desktop/shared/img/icons/tocandtalk-ios-120x120.png" rel="apple-touch-icon" sizes="120x120"></link>
-		<link href="desktop/shared/img/icons/tocandtalk-ios-152x152.png" rel="apple-touch-icon" sizes="152x152"></link>
-		<link href="desktop/shared/img/icons/tocandtalk-ios-180x180.png" rel="apple-touch-icon" sizes="180x180"></link>
-		<link href="desktop/shared/img/icons/tocandtalk-android-192x192.png" rel="icon" sizes="192x192"></link>
-		<link href="desktop/shared/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128"></link>
+		<link href="desktop/shared/assets/img/icons/favicon.png" rel="icon" type="image/png"></link>
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios.png" rel="apple-touch-icon"></link>
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-76x76.png" rel="apple-touch-icon" sizes="76x76"></link>
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-120x120.png" rel="apple-touch-icon" sizes="120x120"></link>
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-152x152.png" rel="apple-touch-icon" sizes="152x152"></link>
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-180x180.png" rel="apple-touch-icon" sizes="180x180"></link>
+		<link href="desktop/shared/assets/img/icons/tocandtalk-android-192x192.png" rel="icon" sizes="192x192"></link>
+		<link href="desktop/shared/assets/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128"></link>
 
 		<!-- CSS -->
-		<link href="desktop/shared/css/fonts.css" rel="stylesheet" type="text/css"/>
-		<link href="desktop/shared/css/general.css" rel="stylesheet" type="text/css"/>
-		<link href="desktop/shared/css/bar.css" rel="stylesheet" type="text/css"/>
-		<link href="desktop/login/css/login.css" rel="stylesheet" type="text/css"/>
-		<link href="desktop/login/css/cover.css" rel="stylesheet" type="text/css"/>
+		<link href="desktop/shared/assets/css/fonts.css" rel="stylesheet" type="text/css"/>
+		<link href="desktop/shared/assets/css/general.css" rel="stylesheet" type="text/css"/>
+		<link href="desktop/shared/assets/css/bar.css" rel="stylesheet" type="text/css"/>
+		<link href="desktop/login/assets/css/login.css" rel="stylesheet" type="text/css"/>
+		<link href="desktop/login/assets/css/cover.css" rel="stylesheet" type="text/css"/>
 
 		<!-- LIBS -->
-		<script src="desktop/shared/js/jquery/jquery.min.js"></script>
+		<script src="https://code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
+		<script src="desktop/shared/assets/js/jquery/jquery.min.js"></script>
 
 		<!-- STRINGS -->
 		<script src="strings/en/login.js"></script>
 
 		<!-- JS -->
-		<script src="desktop/shared/js/cover.js" type="text/javascript"></script>
-		<script src="desktop/shared/js/bar_window.js" type="text/javascript"></script>
-		<script src="desktop/login/js/bar.js" type="text/javascript"></script>
-		<script src="desktop/login/js/window.js" type="text/javascript"></script>
+		<script src="desktop/shared/assets/js/cover.js" type="text/javascript"></script>
+		<script src="desktop/shared/assets/js/bar_window.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/bar.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/window.js" type="text/javascript"></script>
 
 		<!-- AngularJS -->
-		<script src="desktop/login/js/functions.js" type="text/javascript"></script>
-		<script src="desktop/login/js/references.js" type="text/javascript"></script>
-		<script src="desktop/login/js/app.js" type="text/javascript"></script>
-		<script src="desktop/login/js/services.js" type="text/javascript"></script>
-		<script src="desktop/login/js/directives.js" type="text/javascript"></script>
-		<script src="desktop/login/js/controllers.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/functions.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/references.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/app.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/routes.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/services.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/controllers.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/directives.js" type="text/javascript"></script>
 
-		<script src="desktop/login/js/login.js" type="text/javascript"></script>
-		<script src="desktop/login/js/load.js" type="text/javascript"></script>
-		<script src="desktop/login/js/events.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/login.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/load.js" type="text/javascript"></script>
+		<script src="desktop/login/assets/js/events.js" type="text/javascript"></script>
 	</head>
-	<body>
+	<body ng-controller="body">
 		<!-- Barra superior -->
 		<div class="bar_background"></div>
 		<div id="bar_transparent">
 			<div id="bar_content">
 				<div id="bar_section_tabs">
 					<a href="/" title="">
-						<image src="desktop/shared/img/tocandtalk-logo.png" id="bar_logo_inv"></image>
+						<image src="desktop/shared/assets/img/tocandtalk-logo.png" id="bar_logo_inv"></image>
 					</a>
 				</div>
 				<div id="bar_section_user1" class="bar_section_user">
@@ -76,7 +78,7 @@
     			<t2><div class="str str_title_login"></div></t2>
     		</div>
 
-    		<form id="fLogin" name="fLogin" class="formulario" action="/login" method="post">
+    		<form id="fLogin" name="fLogin" class="formulario" ng-submit="body.onSubmit()">
 
     			<div>
 					<!-- Nombre de usuario / email -->
@@ -91,7 +93,6 @@
 						maxlength="100"
 						minlength="2"
 						pattern="[a-zA-Z0-9.@]+"
-
 						class="inputTxt"
 						oninvalid="invalidInput()">
 				</div>
@@ -115,26 +116,26 @@
 
 				<!-- Errores -->
 				<div id="eUser" class="error-login">
-					<image src="desktop/shared/img/error.png" class="img-error"></image>
+					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
 					<str class="str str_error_1"></str>
 				</div>
 				<div id="eBoxes" class="error-login">
-					<image src="desktop/shared/img/error.png" class="img-error"></image>
+					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
 					<str class="str str_error_2"></str>
 				</div>
 				<!--
 				<div id="error_username" class="error-login">
-					<image src="desktop/shared/img/error.png" class="img-error">
+					<image src="desktop/shared/assets/img/error.png" class="img-error">
 					Nombre de usuario incorrecto.
 				</div>
 
 				<div id="error_email" class="error-login">
-					<image src="desktop/shared/img/error.png" class="img-error">
+					<image src="desktop/shared/assets/img/error.png" class="img-error">
 					La dirección de correo electrónico no está asociada a Toc&Talk!.
 				</div>
 
 				<div id="error_password" class="error-login">
-					<image src="desktop/shared/img/error.png" class="img-error">
+					<image src="desktop/shared/assets/img/error.png" class="img-error">
 					Contraseña incorrecta.
 				</div>
 				-->
@@ -156,11 +157,11 @@
 
     	<div id="portada">
     		<div id="portada-contenido">
-    			<image src="desktop/login/img/tocandtalk-logo-2016.png" id="portada-logo"></image>
+    			<image src="desktop/login/assets/img/tocandtalk-logo-2016.png" id="portada-logo"></image>
     			<br>
 	    	</div>
-	    	<image src="desktop/shared/img/mundo_aviones.png" id="aviones"></image>
-    		<image src="desktop/shared/img/mundo.svg" id="mundo"></image>
+	    	<image src="desktop/shared/assets/img/mundo_aviones.png" id="aviones"></image>
+    		<image src="desktop/shared/assets/img/mundo.svg" id="mundo"></image>
     	</div>
 	</body>
 </html>

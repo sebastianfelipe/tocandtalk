@@ -5,5 +5,5 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ficheros generados por GNU/Linux y OS X
-/.directory 
-/.DS_Store
+.directory 
+.DS_Store

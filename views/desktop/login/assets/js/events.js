@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    /*
 	var frm = $('#form_login')
     frm.on('submit', function(e) {
     	var data = frm.serialize();
@@ -15,4 +16,5 @@ $(document).ready(function(){
     	}, 'json');
     	e.preventDefault();
     });
+    */
 });
