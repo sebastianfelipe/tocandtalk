@@ -1,0 +1,133 @@
+tc {
+    color: rgba(100,100,100,1);
+}
+
+ptd {
+    font-size: 12px;
+}
+
+#p_prof_foo {
+    position: absolute;
+    
+    width: 100%;
+    height: 8px;
+    
+    bottom: 0px;
+    
+    background: rgba(38,38,38,1);
+    border: 0px solid #000000;
+    
+    border-radius: 0px 0px 3px 3px;
+    -moz-border-radius: 0px 0px 3px 3px;
+    -webkit-border-radius: 0px 0px 3px 3px;
+}
+
+#p_prof_conteiner {
+    position: absolute;
+    display: inline-block;
+    
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+    width: 240px;
+    
+    top: 0px;
+    bottom: 8px;
+}
+
+#p_prof_img_cover {
+    position: relative;
+    display: inline-block;
+    
+    width: 214px;
+    height: 130px;
+    
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    
+    margin-bottom: 6px;
+    
+    text-align: center;
+    
+    font-family: FiraSansLight;
+    font-size: 16px;
+    
+    color: rgba(255,255,255,1);
+}
+
+#p_prof_img_cover_background, #p_prof_img_cover_black {
+    z-index: -1;
+    
+    position: absolute;
+    display: inline-block;
+    
+    width: 240px;
+    height: 150px;
+    
+    top: 0px;   
+}
+
+#p_prof_img_cover_background {
+    background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#p_prof_img_cover_black {
+    background: rgba(0,0,0,0.3);
+}
+
+.p_prof_img_cover_background {
+	background-size: cover;
+}
+
+#p_prof_img_usr {
+	position: relative;
+	display: inline-block;
+
+	width: 72px;
+	height: 72px;
+
+	margin-bottom: 8px;
+    
+	background-position: center;
+	background-repeat: no-repeat;
+    background-size: cover;
+    
+    background-color: rgba(50,50,50,1);
+    border: 1px solid rgba(255,255,255,1);
+    
+	border-radius:         200px 200px 200px 200px;
+	-moz-border-radius:    200px 200px 200px 200px;
+	-webkit-border-radius: 200px 200px 200px 200px;
+	
+    -webkit-box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow:    0px 0px 17px 0px rgba(0,0,0,0.3);
+	box-shadow:         0px 0px 17px 0px rgba(0,0,0,0.3);
+}
+
+.p_prof_card {
+    position: relative;
+    
+    width: 188px;
+    
+    margin-left: 10px;
+    margin-top: 4px;
+    
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    font-family: FiraSansBook;
+    font-size: 13px;
+    
+    color: rgba(50,50,50,1);
+    background: rgba(230,230,230,1);
+    border: 0px solid #000000;
+    
+	border-radius:         3px 3px 3px 3px;
+	-moz-border-radius:    3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+}

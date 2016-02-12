@@ -1,0 +1,25 @@
+<div id="p_msg_container">
+    <div id="p_msg_list">
+        
+        <div class="msg_bubble_chat" ng-repeat="message in chatPanel.messages">
+            {{message.content}}    
+        </div>
+        
+        <div class="msg_bubble_chat msg_b_chat_sender" ng-repeat="post in posts">
+            <image src="desktop/talk/img/msg_sender_arrow.svg" class="msg_b_arrow_sender"></image>
+            Hola!    
+        </div>
+        <div class="msg_bubble_chat msg_b_chat_receiver">
+            <image src="desktop/talk/img/msg_receiver_arrow.svg" class="msg_b_arrow_receiver"></image>
+            Hola!    
+        </div>
+    </div>
+</div>
+<div id="p_msg_send_container">
+    <image src="desktop/talk/img/msg_send_arrow.svg" id="msg_b_send_arrow"></image>
+    <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off">
+    <div id="msg_send_button">
+        <input type="image" src="desktop/talk/img/button_next.svg" class="msg_send_button_img" id="send-message">
+        <!-- <image src="desktop/talk/img/button_next.svg" class="msg_send_button_img"></image> -->
+    </div>
+</div>

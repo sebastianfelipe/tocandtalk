@@ -1,0 +1,31 @@
+#c_description {
+	display: block;
+}
+
+#c_location {
+	display: block;
+}
+
+#c_interest_languages {
+	display: block;
+}
+
+#c_spoken_languages {
+	display: block;
+}
+
+#c_description_edit {
+	display: none;
+}
+
+#c_location_edit {
+	display: none;
+}
+
+#c_interest_languages_edit {
+	display: none;
+}
+
+#c_spoken_languages_edit {
+	display: none;
+}
