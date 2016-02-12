@@ -1,0 +1,168 @@
+.inputTxt {
+	height: 36px;
+
+	padding: 5px 5px 5px 12px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+
+	font-family: FiraSansLight;
+	font-size: 18px;
+
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	border: 1px solid #aaaaaa;
+
+	background: rgba(255,255,255,1);
+
+	-o-transition:.6s;
+	-ms-transition:.6s;
+	-moz-transition:.6s;
+	-webkit-transition:.6s;
+	transition:.6s;
+}
+
+.inputTxt:hover {
+	border: 1px solid #d2d2d2;
+}
+
+.inputTxt:focus {
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	border: 1px solid #0ba4b9;
+}
+
+.inputTxt:active {
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
+	border: 1px solid #0ba4b9;
+}
+
+.inputGrande {
+	width: 440px;
+}
+
+.inputChico {
+	width: 208.5px;   
+}
+
+.inputFechaDia, .inputFechaMes, .inputFechaAnno {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.inputFechaDia {
+	width: 56px;
+}
+
+.inputFechaMes {
+	width: 142px;
+}
+
+.inputFechaAnno {
+	width: 86px;
+}
+
+#labelFecha {
+	position: relative;
+	display: inline;
+
+	margin-right: 5px;
+
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    cursor: default;
+
+}
+
+.inputSel {
+	height: 47.5px;
+
+	padding: 5px 5px 5px 12px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+
+	font-family: FiraSansLight;
+	font-size: 18px;
+
+	background: url('/desktop/register/img/new_arrow.png') no-repeat right rgba(215,215,215,1);
+
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	border: 1px solid #aaaaaa;
+    outline:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+
+.inputSelGrande {
+	width: 461px;
+}
+
+.inputTxtEspacio {
+	margin-top: 16px;
+}
+
+input[type=radio   ]:not(old){
+  width     : 2em;
+  margin    : 0;
+  padding   : 0;
+  font-size : 1em;
+  opacity   : 0;
+}
+
+input[type=radio   ]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -2em;
+  line-height  : 1.5em;
+}
+
+input[type=radio   ]:not(old) + label > span{
+  display          : inline-block;
+  width            : 17px;
+  height           : 17px;
+  margin           : 0.25em 0.5em 0.25em 0.25em;
+  border           : 0.0625em solid rgb(192,192,192);
+  border-radius    : 200px;
+  background       : rgb(224,224,224);
+  background-image :    -moz-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image :     -ms-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image :      -o-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image : -webkit-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image :         linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  vertical-align   : bottom;
+}
+
+input[type=radio   ]:not(old):checked + label > span{
+  background-image :    -moz-linear-gradient(rgb(224,224,224),rgb(240,240,240));
+  background-image :     -ms-linear-gradient(rgb(224,224,224),rgb(240,240,240));
+  background-image :      -o-linear-gradient(rgb(224,224,224),rgb(240,240,240));
+  background-image : -webkit-linear-gradient(rgb(224,224,224),rgb(240,240,240));
+  background-image :         linear-gradient(rgb(224,224,224),rgb(240,240,240));
+}
+
+input[type=radio]:not(old):checked +  label > span > span{
+  display          : block;
+  width            : 11px;
+  height           : 11px;
+  margin           : 0.125em;
+  border           : 0.0625em solid rgba(11,165,185,1);
+  border-radius    : 200px;
+  background       : rgba(105,212,224,1);
+  background-image :    -moz-linear-gradient(rgba(105,212,224,1),rgba(11,165,185,1));
+  background-image :     -ms-linear-gradient(rgba(105,212,224,1),rgba(11,165,185,1));
+  background-image :      -o-linear-gradient(rgba(105,212,224,1),rgba(11,165,185,1));
+  background-image : -webkit-linear-gradient(rgba(105,212,224,1),rgba(11,165,185,1));
+  background-image :         linear-gradient(rgba(105,212,224,1),rgba(11,165,185,1));
+}
+

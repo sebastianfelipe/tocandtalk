@@ -9,31 +9,31 @@ $(document).ready(function(){
 		"Crea tu cuenta Toc&Talk!"
 	);
 
-	$('#i_name').attr("placeholder",
+	$('#iName').attr("placeholder",
 		"Nombres"
 	);
 
-	$('#i_lastname').attr("placeholder",
+	$('#iLastname').attr("placeholder",
 		"Apellidos"
 	);
 
-	$('#i_username').attr("placeholder",
+	$('#iUsername').attr("placeholder",
 		"Nombre de usuario"
 	);
 
-	$('#i_email').attr("placeholder",
+	$('#iEmail').attr("placeholder",
 		"Correo electrónico"
 	);
 
-	$('#i_password').attr("placeholder",
+	$('#iPassword').attr("placeholder",
 		"Contraseña"
 	);
 
-	$('#i_password_confirmation').attr("placeholder",
+	$('#iPasswordConfirmation').attr("placeholder",
 		"Confirmar contraseña"
 	);
 
-	$('#i_password_confirmation').attr("placeholder",
+	$('#iPasswordConfirmation').attr("placeholder",
 		"Confirmar contraseña"
 	);
 
@@ -41,19 +41,19 @@ $(document).ready(function(){
 		"Cumpleaños"
 	);
 
-	$('#i_day').attr("placeholder",
+	$('#iDay').attr("placeholder",
 		"Día"
 	);
 
-	$('#i_year').attr("placeholder",
+	$('#iYear').attr("placeholder",
 		"Año"
 	);
 
-	$('#i_password_confirmation').attr("placeholder",
+	$('#iPasswordConfirmation').attr("placeholder",
 		"Confirmar contraseña"
 	);
 
-	$('#i_password_confirmation').attr("placeholder",
+	$('#iPasswordConfirmation').attr("placeholder",
 		"Confirmar contraseña"
 	);
 

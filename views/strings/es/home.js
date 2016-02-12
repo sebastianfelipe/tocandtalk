@@ -15,8 +15,4 @@ $(document).ready(function(){
 	$('#str_talk_start').val(
 		"¡Comenzar!"
 	);
-
-
-	
-
 });

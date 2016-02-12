@@ -49,24 +49,24 @@ router.get('/', authenticateRegister, function (req, res) {
 
 router.post('/',function (req, res) {
   var errors = "";
-  var username = new models.Username({username: req.body.i_username.trim().toLowerCase()});
-  var email = new models.Email({email: req.body.i_email});
+  var username = new models.Username({username: req.body.iUsername.trim().toLowerCase()});
+  var email = new models.Email({email: req.body.iEmail});
   var user = new models.User({  _username: username.username.trim().toLowerCase(),
                                 _email: email.email.trim().toLowerCase(),
-                                nationality: req.body.s_country,
-                                native_language: req.body.s_native_language,
-                                first_name: req.body.i_name,
-                                last_name: req.body.i_lastname,
-                                sex: req.body.r_sex,
-                                password: req.body.i_password,
+                                nationality: req.body.sCountry,
+                                native_language: req.body.sNativeLanguage,
+                                first_name: req.body.iName,
+                                last_name: req.body.iLastname,
+                                sex: req.body.rSex,
+                                password: req.body.iPassword,
                                 description: "",
                                 sum_valoration: 0,
                                 cant_valoration: 0
                                 });
 
-  if (req.body.i_password != req.body.i_password_confirmation)
+  if (req.body.iPassword != req.body.iPasswordConfirmation)
   {
-    errors += "error_user_password_confirmation;"; 
+    errors += "eUserPasswordConfirmation;"; 
   }
 
   // Validation step

@@ -1,18 +1,20 @@
+var capitalize = require('string-capitalize');
+
 var error_adapter = function(model_name, err) {
-  error_list = [];
+  errorList = [];
   if (err) {
     var errors = err.errors;
     for (var key in errors) {
       var pieces = [key, errors[key].kind]
-      error = 'error_' + model_name.toLowerCase();
+      error = 'e' + capitalize(model_name);
       for (var piece in pieces) {
-        error += '_' + pieces[piece].replace(' ','').replace('userdefined', errors[key].message);
+        error += capitalize(pieces[piece].replace(' ','').replace('userdefined', errors[key].message));
       }
-      error_list.push(error);
+      errorList.push(error);
     }
   }
-  error_list.push('');
-  return error_list.join(';');
+  errorList.push('');
+  return errorList.join(';');
 }
 
 module.exports.error_adapter = error_adapter;

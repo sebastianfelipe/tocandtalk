@@ -1,0 +1,31 @@
+.error_msg {
+	display: none; /* Mensaje oculto */
+
+	width: 458px;
+
+	padding-left: 12px;
+	padding-right: 8px;
+	margin-bottom: 4px;
+	
+	font-size: 13px;
+	font-family: FiraSansBook;
+	color: #ff1744;
+}
+
+.error_l {
+	text-align: left;
+}
+
+.error_c {
+	text-align: center;
+	margin-top: 5px;
+}
+
+.img_error {
+	width: 10px;
+	margin-right: 5px;
+}
+
+.error_msg_visible {
+	display: inline;
+}

@@ -31,7 +31,7 @@ router.post('/', function (req, res) {
       username: function(callback){
           setTimeout(function(){
             var errors = "";
-              models.User.findOne({_username: req.body.i_username, password: req.body.i_password}).exec(function (err, doc) {
+              models.User.findOne({_username: req.body.iUsername, password: req.body.iPassword}).exec(function (err, doc) {
                 callback(null,doc);
                   })
           }, 200);
@@ -39,7 +39,7 @@ router.post('/', function (req, res) {
       email: function(callback){
           setTimeout(function(){
             var errors = "";
-              models.User.findOne({_email: req.body.i_username, password: req.body.i_password}).exec(function (err, doc) {
+              models.User.findOne({_email: req.body.iUsername, password: req.body.iPassword}).exec(function (err, doc) {
                 callback(null,doc);
                   })
           }, 200);
@@ -58,7 +58,7 @@ router.post('/', function (req, res) {
         
       }
       //return res.req.res.redirect('/');
-      return res.send({req: req.body, errors: errors});
+      return res.send({errors: errors});
   });
 });
 

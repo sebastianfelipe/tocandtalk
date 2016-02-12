@@ -1,0 +1,46 @@
+.info {
+	z-index: 70;
+	position: absolute;
+	margin-left: 461px;
+	background: rgba(20,20,240,1);
+	display: none;
+}
+
+.info_content {
+	position: absolute;
+
+	width: 130px;
+	min-height: 40px;
+
+	margin-left: 11px;
+
+	padding: 6px 6px 6px 6px;
+
+	text-align: left;
+	font-size: 11px;
+	font-family: FiraSansBook;
+	color: rgba(100,100,100,1);
+
+	background: rgba(240,240,240,1);
+	border: 1px solid rgba(255,255,255,1);
+
+	border-radius:			4px 4px 4px 4px;
+	-moz-border-radius:		4px 4px 4px 4px;
+	-webkit-border-radius:	4px 4px 4px 4px;
+
+	-webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.4);
+	-moz-box-shadow: 	0px 0px 6px 0px rgba(0,0,0,0.4);
+	box-shadow: 		0px 0px 6px 0px rgba(0,0,0,0.4);
+}
+
+.info_tip {
+	position: absolute;
+	width: 12px;
+	margin-top: 18px;
+
+}
+
+.text_space {
+	height: 6px;
+}
+

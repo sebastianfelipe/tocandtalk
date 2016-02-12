@@ -9,15 +9,15 @@ $(document).ready(function(){
 		"Ingresar"
 	);
 
-	$('#i_username').attr("placeholder",
+	$('#iUsername').attr("placeholder",
 		"Nombre de usuario o Email"
 	);
 
-	$('#i_password').attr("placeholder",
+	$('#iPassword').attr("placeholder",
 		"Contraseña"
 	);
 
-	$('#button_login').val(
+	$('#bLogin').val(
 		"Ingresar"
 	);
 
