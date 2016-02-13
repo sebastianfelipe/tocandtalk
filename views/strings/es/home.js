@@ -1,18 +1,18 @@
 $(document).ready(function(){
 
-	$('#str_welcome_title').text(
+	$('#str-welcome-title').text(
 		"¡Bienvenido a Toc&Talk!"
 	);
 
-	$('#str_welcome_desc').text(
+	$('#str-welcome-desc').text(
 		"Pulse en comenzar para empezar a practicar un idioma."
 	);
 
-	$('#str_lang_select_title').text(
+	$('#str-lang-select-title').text(
 		"Idioma a practicar"
 	);
 
-	$('#str_talk_start').val(
+	$('#str-talk-start').val(
 		"¡Comenzar!"
 	);
 });

@@ -1,4 +1,4 @@
-#profile_content {
+#profile-content {
 	z-index: 10;
 
 	position: relative;
@@ -13,7 +13,7 @@
 	/*background: rgba(1,1,1,0.1);*/
 }
 
-#profile_section1, #profile_section2 {
+#profile-section1, #profile-section2 {
 	
 	display: inline-block;
 
@@ -27,16 +27,16 @@
 	/*background: rgba(1,1,1,0.2);*/
 }
 
-#profile_section1 {
+#profile-section1 {
 	position: relative;
 }
 
-#profile_section2 {
+#profile-section2 {
 	position: absolute;
 	margin-left: 536px;
 }
 
-.profile_card {
+.profile-card {
 	display: block;
 
 	/* Width 530px */
@@ -63,7 +63,7 @@
 
 /* Idiomas */
 
-.lang_title {
+.lang-title {
 	position: relative;
 	
 	font-family: FiraSansLight;
@@ -74,12 +74,12 @@
 	margin-bottom: 5px;
 }
 
-.lang_title, .lang_edit_button {
+.lang-title, .lang-edit-button {
 	margin-left: 20px;
 	margin-right: 20px;
 }
 
-.lang_list {
+.lang-list {
 	position: relative;
 
 	margin-left: 60px;
@@ -91,28 +91,28 @@
 	color: rgba(70,70,70,1);
 }
 
-.lang_edit_button {
+.lang-edit-button {
 	position: relative;
 	text-align: right;
 	margin-bottom: 20px;
 }
 
-#str_button_add_lang_int {
+#str-button-add-lang-int {
 	display: none;
 }
 
-.lang_empity {
+.lang-empity {
 	display: none;
 	text-align: center;
 	margin-right: 40px;
 	color: rgba(150,150,150,1);
 }
 
-#str_lang_interest_list {
+#str-lang-interest-list {
 	display: inline;
 }
 
-.add_lang {
+.add-lang {
 	display: block;
 
 	margin-left: 50px;
@@ -133,11 +133,11 @@
 	border: 0px solid #000000;
 }
 
-.subitem_lang, .subitem_lang_button, .subitem_separator {
+.subitem-lang, .subitem-lang-button, .subitem-separator {
 	display: inline-block;
 }
 
-.subitem_lang_button {
+.subitem-lang-button {
 	position: relative;
 
 	width: auto;
@@ -173,7 +173,7 @@
     cursor:pointer;
 }
 
-.subitem_lang_button:hover, .subitem_lang_button:focus {
+.subitem-lang-button:hover, .subitem-lang-button:focus {
 	background: #f44336;
 	
 	color: rgba(255,255,255,1);
@@ -185,7 +185,7 @@
 	transition:.5s;
 }
 
-.subitem_lang_button:active {
+.subitem-lang-button:active {
 	background: #f44336;
 	
 	color: rgba(255,255,255,1);
@@ -201,11 +201,11 @@
 	box-shadow: 0px 0px 6px 0px #f44336;
 }
 
-.item_lang {
+.item-lang {
 	height: 36px;
 }
 
-.button_add_lang {
+.button-add-lang {
 	position: relative;
 	display: inline;
 
@@ -241,7 +241,7 @@
     cursor:pointer;
 }
 
-.button_add_lang:hover, .button_add_lang:focus {
+.button-add-lang:hover, .button-add-lang:focus {
 	background: #f57c00;
 	
 	color: rgba(255,255,255,1);
@@ -257,7 +257,7 @@
 	transition:.7s;
 }
 
-.button_add_lang:active {
+.button-add-lang:active {
 	background: #e65100;
 	color: rgba(255,255,255,1);
 

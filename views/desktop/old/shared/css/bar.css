@@ -1,4 +1,4 @@
-#bar, #bar_transparent, .bar_background {
+#bar, #bar-transparent, .bar-background {
 	position: fixed;
 
 	width: 100%;
@@ -14,11 +14,11 @@
 	text-align: center;
 }
 
-#bar, #bar_transparent {
+#bar, #bar-transparent {
 	z-index: 90;
 }
 
-#bar, .bar_background {
+#bar, .bar-background {
 	background: rgba(11,164,185,0.96);
 
 	-webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.4);
@@ -26,12 +26,12 @@
 	box-shadow:			0px 0px 4px 0px rgba(0,0,0,0.4);
 }
 
-.bar_background {
+.bar-background {
 	z-index: 88;
 	display: none;
 }
 
-#bar_content {
+#bar-content {
 	display: inline-block;
 
 	width: 1066px;
@@ -44,7 +44,7 @@
 
 /* Sección 1: Logo y tabs */
 
-#bar_section_tabs {
+#bar-section-tabs {
 	z-index: 99;
 
 	position: absolute;
@@ -55,22 +55,22 @@
 }
 
 /* Logo: 163x40 */
-#bar_logo, #bar_logo_solo, #bar_logo_inv {
+#bar-logo, #bar-logo-solo, #bar-logo-inv {
 	position: absolute;
 
 	height: 40px;
 	margin-left: 2px;
 }
 
-#bar_logo {
+#bar-logo {
 	display: inline-block;
 }
 
-#bar_logo_solo, #bar_logo_inv {
+#bar-logo-solo, #bar-logo-inv {
 	display: none;
 }
 
-#bar_tab_container, #bar_tab_container_icon {
+#bar-tab-container, #bar-tab-container-icon {
 	position: absolute;
 
 	height: 48px;
@@ -78,27 +78,27 @@
 	margin-left: 178px;
 }
 
-#bar_tab_container {
+#bar-tab-container {
 	display: inline-block;
 }
 
-#bar_tab_container_icon {
+#bar-tab-container-icon {
 	display: none;
 }
 
-.bar_tab_element1, .bar_tab_text1 {
+.bar-tab-element1, .bar-tab-text1 {
 	width: 86px;
 }
 
-.bar_tab_element2, .bar_tab_text2 {
+.bar-tab-element2, .bar-tab-text2 {
 	width: 96px;
 }
 
-.bar_tab_element3, .bar_tab_text3 {
+.bar-tab-element3, .bar-tab-text3 {
 	width: 96px;
 }
 
-.bar_tab_element {
+.bar-tab-element {
 	display: inline-block;
 
 	text-align: center;
@@ -117,32 +117,32 @@
     user-select: none;
 }
 
-.bar_tab_text {
+.bar-tab-text {
 	position: absolute;
 
 	margin-top: 9px;
 }
 
-.bar_tab_select, .bar_tab_select_icon  {
+.bar-tab-select, .bar-tab-select-icon  {
 	height: 4px;
 	width: 100%;
 
 	background: rgba(248,248,248,1);
 }
 
-.bar_tab_select {
+.bar-tab-select {
 	margin-top: 44px;
 }
 
-.bar_tab_select_icon {
+.bar-tab-select-icon {
 	margin-top: 3px;
 }
 
-.bar_tab_icon {
+.bar-tab-icon {
 	width: 46px;
 }
 
-.bar_tab_icon_img {
+.bar-tab-icon-img {
 	position: relative;
 	display: inline-block;
 	width: 32px;
@@ -151,7 +151,7 @@
 
 /* Sección 2: Cuenta de suario */
 
-.bar_section_user {
+.bar-section-user {
 	position: absolute;
 	display: inline-block;
 
@@ -161,15 +161,15 @@
 	text-align: right;
 }
 
-#bar_section_user1 {
+#bar-section-user1 {
 	z-index: 94;
 }
 
-#bar_section_user2 {
+#bar-section-user2 {
 	z-index: 92;
 }
 
-.bar_user_img {
+.bar-user-img {
 	display: inline-block;
 
 	width: 40px;
@@ -190,7 +190,7 @@
     background-position: center;
 }
 
-#bar_user_arrow {
+#bar-user-arrow {
 	display: inline-block;
 	width: 8px;
 	height: 8px;
@@ -199,7 +199,7 @@
 	margin-right: 5px;
 }
 
-#bar_user_name_container {
+#bar-user-name-container {
 	z-index: 92;
 
 	display: inline-block;
@@ -212,7 +212,7 @@
 	/*background: rgba(248,40,40,0.3);*/
 }
 
-#bar_user_name {
+#bar-user-name {
 	display: inline-block;
 
 	margin-top: 10px;
@@ -223,7 +223,7 @@
 	color: rgba(248,248,248,1);
 }
 
-#bar_user_show {
+#bar-user-show {
 	z-index: 99;
 
 	display: inline-block;
@@ -240,7 +240,7 @@
 
 /* Menú de usuario */
 
-#user_menu {
+#user-menu {
 	z-index: 99;
 	position: fixed;
 
@@ -267,7 +267,7 @@
 	box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.4);
 }
 
-.user_menu_element {
+.user-menu-element {
 	widows: 100%;
 	height: 28px;
 
@@ -290,7 +290,7 @@
     user-select: none;
 }
 
-.user_menu_element_sel {
+.user-menu-element-sel {
 	position: absolute;
 	
 	width: 100%;
@@ -300,12 +300,12 @@
 	background: rgba(5,150,170,1);
 }
 
-.user_menu_element_text {
+.user-menu-element-text {
 	margin-top: 4px;
 	padding-left: 20px;
 }
 
-#user_menu_arrow {
+#user-menu-arrow {
 	z-index: 99;
 
 	position: fixed;

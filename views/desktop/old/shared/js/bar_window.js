@@ -6,74 +6,74 @@ $(document).ready(function(){
 
 	function resizeBar() {
         var win_width = $(window).width();
-        var name_width = $('#bar_user_name').width();
+        var name_width = $('#bar-user-name').width();
 
         if (win_width < 600) {
-            $('#bar_tab_container').css("display", "none");
-            $('#bar_tab_container_icon').css("display", "inline-block");
+            $('#bar-tab-container').css("display", "none");
+            $('#bar-tab-container-icon').css("display", "inline-block");
         } else {
-            $('#bar_tab_container').css("display", "inline-block");
-            $('#bar_tab_container_icon').css("display", "none");
+            $('#bar-tab-container').css("display", "inline-block");
+            $('#bar-tab-container-icon').css("display", "none");
         }
 
         if (win_width < 400) {
-            $('#bar_logo').css("display", "none");
-            $('#bar_logo_solo').css("display", "inline-block");
+            $('#bar-logo').css("display", "none");
+            $('#bar-logo-solo').css("display", "inline-block");
 
-            $('#bar_tab_container_icon').css("margin-left", "62px");
+            $('#bar-tab-container-icon').css("margin-left", "62px");
         } else {
-            $('#bar_logo').css("display", "inline-block");
-            $('#bar_logo_solo').css("display", "none");
+            $('#bar-logo').css("display", "inline-block");
+            $('#bar-logo-solo').css("display", "none");
 
-            $('#bar_tab_container_icon').css("margin-left", "178px");
+            $('#bar-tab-container-icon').css("margin-left", "178px");
         }
 
         if ((name_width >= (win_width - 410)) && (win_width < 1066)) {
-            $('#bar_user_name').css("display", "none");
+            $('#bar-user-name').css("display", "none");
         } else {
-            $('#bar_user_name').css("display", "inline-block");
+            $('#bar-user-name').css("display", "inline-block");
         }
 
         if (win_width < 280) {
 
-        	$('#user_menu').css("right", "30px");
-            $('#user_menu_arrow').css("right", "28px");
+        	$('#user-menu').css("right", "30px");
+            $('#user-menu-arrow').css("right", "28px");
             
-            $('#bar_content')
+            $('#bar-content')
                 .css("overflow-x", "auto")
                 .width(280);
 
-            $('.bar_section_user').width(280);
-            $('#bar_user_name_container').width(280);
+            $('.bar-section-user').width(280);
+            $('#bar-user-name-container').width(280);
 
-            $('#bar_user_show')
+            $('#bar-user-show')
                 .width(80)
                 .css("margin-left", "480px");
 
         } else if (win_width < 1066) {
 
-        	$('#user_menu').css("right", "3px");
-            $('#user_menu_arrow').css("right", "30px");
+        	$('#user-menu').css("right", "3px");
+            $('#user-menu-arrow').css("right", "30px");
 
-            $('#bar_content').width(win_width);
-            $('.bar_section_user').width(win_width);
-            $('#bar_user_name_container').width(win_width);
+            $('#bar-content').width(win_width);
+            $('.bar-section-user').width(win_width);
+            $('#bar-user-name-container').width(win_width);
 
             if (name_width >= (win_width - 550)) {
-                $('#bar_user_name').css("display", "none");
+                $('#bar-user-name').css("display", "none");
             } else {
-                $('#bar_user_name').css("display", "inline-block");
+                $('#bar-user-name').css("display", "inline-block");
             }
 
-            if ($('#bar_user_show').width() == 80) {
-                $('#bar_user_show').width(name_width + 80);
+            if ($('#bar-user-show').width() == 80) {
+                $('#bar-user-show').width(name_width + 80);
             }
 
-            if ($('#bar_user_name').is(":visible")) {
-                $('#bar_user_show').css("margin-left", (win_width - name_width - 80) + "px");
+            if ($('#bar-user-name').is(":visible")) {
+                $('#bar-user-show').css("margin-left", (win_width - name_width - 80) + "px");
                 
             } else {
-                $('#bar_user_show')
+                $('#bar-user-show')
                     .width(80)
                     .css("margin-left", (win_width - 80) + "px");
             }
@@ -81,18 +81,18 @@ $(document).ready(function(){
         } else {
             var menu_right = (win_width - 1066)/2;
 
-        	$('#user_menu').css("right", menu_right + "px");
-            $('#user_menu_arrow').css("right", 30 + menu_right + "px");
+        	$('#user-menu').css("right", menu_right + "px");
+            $('#user-menu-arrow').css("right", 30 + menu_right + "px");
 
-            $('#bar_content').width(1066);
-            $('.bar_section_user').width(1066);
-            $('#bar_user_name_container').width(1066);
+            $('#bar-content').width(1066);
+            $('.bar-section-user').width(1066);
+            $('#bar-user-name-container').width(1066);
 
-            //if ($('#bar_user_show').width() == 80) {
-            //    $('#bar_user_show').width(name_width + 80);
+            //if ($('#bar-user-show').width() == 80) {
+            //    $('#bar-user-show').width(name_width + 80);
             //}
 
-            $('#bar_user_show').css("margin-left", (986 - name_width) + "px");
+            $('#bar-user-show').css("margin-left", (986 - name_width) + "px");
 
         }
     }

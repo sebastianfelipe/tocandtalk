@@ -1,4 +1,4 @@
-.input_lang {
+.input-lang {
 	width: 95%;
 	height: 40px;
 
@@ -30,7 +30,7 @@
 	transition:.5s;
 }
 
-.input_lang:hover, .input_lang:focus {
+.input-lang:hover, .input-lang:focus {
 	-webkit-box-shadow: 0px 0px 10px 0px rgba(70,70,70,1);
 	-moz-box-shadow: 0px 0px 10px 0px rgba(70,70,70,1);
 	box-shadow: 0px 0px 10px 0px rgba(70,70,70,1);
@@ -42,7 +42,7 @@
 	transition:.8s;
 }
 
-.button_start {
+.button-start {
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
@@ -53,7 +53,7 @@
 	text-align: center;
 }
 
-.button_start input {
+.button-start input {
 	height: 80%;
 	width: auto;
 
@@ -66,7 +66,7 @@
 	transition: margin 0.3s, height 0.3s;
 }
 
-.button_start input:hover, .button_start input:focus {
+.button-start input:hover, .button-start input:focus {
 	margin: 0;
 	height: 100%;
 
@@ -76,7 +76,7 @@
 	transition: margin 0.3s, height 0.3s;
 }
 
-.str_talk_start {
+.str-talk-start {
 	margin-top: 2px;
 
 	font-family: FiraSansLight;

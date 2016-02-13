@@ -9,14 +9,14 @@ $(document).ready(function () {
 		//var last_name = capitalizeFirstLetterName(user.last_name);
 
 		console.log(user.first_name);
-		$('.str_name_user_complete').text(full_name);
-		$('.str_name_user').text(first_name);
+		$('.str_name-user_complete').text(full_name);
+		$('.str_name-user').text(first_name);
 
-		if ($('#bar_user_name').width() > 180) {
-			$('#bar_user_name')
+		if ($('#bar-user-name').width() > 180) {
+			$('#bar-user-name')
 				.css("margin-top", "5px")
 				.css("font-size", "14px");
-			$('.str_name_user').html(first_name + "<br>" + last_name);
+			$('.str_name-user').html(first_name + "<br>" + last_name);
 		}
 	}
 });

@@ -66,14 +66,14 @@ router.post('/edit_user_nationality',function (req, res) {
   function(err, results) {
     // error handling
     /*
-    error_list = [];
+    error-list = [];
     for (var key in results) {
       if (!results[key].errors)
       {
-        error_list.push(results[key].errors);
+        error-list.push(results[key].errors);
       }
     }
-    errors += error_list.join('');
+    errors += error-list.join('');
     */
     //errors = results.user.errors;
     console.log('edit_user_nationality');

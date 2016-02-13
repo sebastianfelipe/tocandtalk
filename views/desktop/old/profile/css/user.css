@@ -1,6 +1,6 @@
 /* Imagen de perfil */
 
-#usr_image_background, .usr_image_background_opacity, .usr_image_background_back {
+#usr-image-background, .usr-image-background-opacity, .usr-image-background-back {
 	position: absolute;
 	
 	height: 250px;
@@ -12,7 +12,7 @@
 	border: 0px solid #000000;
 }
 
-#usr_image_background {
+#usr-image-background {
 	z-index: 14;
 
 	background-position: center;
@@ -20,24 +20,24 @@
 	background-repeat: no-repeat;
 }
 
-.usr_image_background {
+.usr-image-background {
 	background-size: cover;
 }
 
 
-.usr_image_background_opacity {
+.usr-image-background-opacity {
 	z-index: 16;
 	background: rgba(40,40,40,0.3);
 }
 
-.usr_image_background_back {
+.usr-image-background-back {
 	z-index: 12;
 	background: rgba(180,180,180,1);
 }
 
 /* Contenedor de imagen de perfil */
 
-#usr_image_container {
+#usr-image-container {
 	position: absolute;
 	display: inline-block;
 
@@ -45,7 +45,7 @@
 	width: 520px;
 }
 
-#img_section1 {
+#img-section1 {
 	z-index: 30;
 
 	width: 230px;
@@ -53,7 +53,7 @@
 	text-align: left;
 }
 
-#img_section2 {
+#img-section2 {
 	z-index: 30;
 	position: absolute;
 
@@ -66,13 +66,13 @@
 	margin-top: 100px;
 }
 
-.name_user {
+.name-user {
 	font-family: FiraSansLight;
 	font-size: 28px;
 	color: rgba(255,255,255,1);
 }
 
-.usr_image {
+.usr-image {
 	z-index: 30;
 	position: relative;
 	display: inline-block;
@@ -101,7 +101,7 @@
 
 /* Conenedor con la información de usuario */
 
-#usr_content {
+#usr-content {
 	width: 450px;
 
 	margin-left: 35px;
@@ -117,18 +117,18 @@
 	
 }
 
-#usr_loc_container {
+#usr-loc-container {
 	margin: 0px;
 }
 
-#usr_desc_container {
+#usr-desc-container {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
 
 /* Ubicación del usuario */
 
-#usr_loc_section1 {
+#usr-loc-section1 {
 	position: relative;
 	display: inline-block;
 
@@ -136,7 +136,7 @@
 	margin-left: 0px;
 }
 
-#usr_loc_section2 {
+#usr-loc-section2 {
 	position: absolute;
 	display: inline-block;
 
@@ -144,7 +144,7 @@
 	margin-left: 180px;
 }
 
-#usr_loc_section3, #usr_desc_section3 {
+#usr-loc-section3, #usr-desc-section3 {
 	position: absolute;
 	display: inline-block;
 
@@ -153,13 +153,13 @@
 	text-align: right;
 }
 
-#usr_loc_section3 {
+#usr-loc-section3 {
 	margin-left: 370px;
 }
 
 /* Descripción del usuario */
 
-#usr_desc_section1 {
+#usr-desc-section1 {
 	position: relative;
 	display: block;
 
@@ -167,7 +167,7 @@
 	margin-left: 0px;
 }
 
-#usr_desc_section2 {
+#usr-desc-section2 {
 	position: relative;
 	display: block;
 
@@ -176,15 +176,15 @@
 	margin-top: 10px; 
 }
 
-#usr_desc_section3 {
+#usr-desc-section3 {
 	margin-left: 370px;
 }
 
-.usr_desc_text, #desc_no {
+.usr-desc-text, #desc-no {
 	font-size: 15px;
 }
 
-#desc_no {
+#desc-no {
 	display: none;
 	color: rgba(150,150,150,1);
 }

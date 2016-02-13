@@ -1,4 +1,4 @@
-.button_edit {
+.button-edit {
 	position: relative;
 	display: inline;
 
@@ -34,7 +34,7 @@
     cursor:pointer;
 }
 
-.button_edit:hover, .button_edit:focus {
+.button-edit:hover, .button-edit:focus {
 	background: rgba(11,164,185,0.8);
 	
 	color: rgba(255,255,255,1);
@@ -50,7 +50,7 @@
 	transition:.7s;
 }
 
-.button_edit:active {
+.button-edit:active {
 	background: rgba(60,205,227,1);
 	color: rgba(255,255,255,1);
 
@@ -61,19 +61,19 @@
 	border: 0px solid #000000;
 }
 
-.button_edit a:link { 
+.button-edit a:link { 
 	text-decoration: none;
 	color: rgba(255,255,255,1);
 	background: inherit;
 }
 
-.button_edit a:visited {
+.button-edit a:visited {
 	text-decoration: none;
 	color: rgba(255,255,255,1);
 	background: inherit;
 }
 
-.button_save {
+.button-save {
 	position: relative;
 	display: inline;
 
@@ -110,7 +110,7 @@
     cursor:pointer;
 }
 
-.button_save:hover, .button_save:focus {
+.button-save:hover, .button-save:focus {
 	background: #69f0ae;
 	
 	color: rgba(255,255,255,1);
@@ -126,7 +126,7 @@
 	transition:.7s;
 }
 
-.button_save:active {
+.button-save:active {
 	background: #64dd17;
 	color: rgba(255,255,255,1);
 
@@ -137,7 +137,7 @@
 	border: 0px solid #000000;
 }
 
-.button_cancel {
+.button-cancel {
 	position: relative;
 	display: inline;
 	overflow: hidden;
@@ -174,7 +174,7 @@
     cursor:pointer;
 }
 
-.button_cancel:hover, .button_cancel:focus {
+.button-cancel:hover, .button-cancel:focus {
 	background: rgba(0,208,107,1);
 	
 	color: rgba(255,255,255,1);
@@ -186,7 +186,7 @@
 	transition:.7s;
 }
 
-.button_cancel:active {
+.button-cancel:active {
 	background: rgba(0,208,107,1);
 	color: rgba(255,255,255,1);
 
@@ -201,7 +201,7 @@ textarea {
    resize: vertical; 
 }
 
-.input_desc {
+.input-desc {
 	height: 80px;
 	width: 430px;
 
@@ -226,25 +226,25 @@ textarea {
 	transition:.6s;
 }
 
-.input_desc:hover {
+.input-desc:hover {
 	border: 1px solid #d2d2d2;
 }
 
-.input_desc:focus {
+.input-desc:focus {
 	-webkit-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
 	-moz-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
 	box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
 	border: 1px solid #0ba4b9;
 }
 
-.input_desc:active {
+.input-desc:active {
 	-webkit-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
 	-moz-box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
 	box-shadow: 0px 0px 5px 0px rgba(60,205,227,1);
 	border: 1px solid #0ba4b9;
 }
 
-.input_sel_contry {
+.input-sel-contry {
 	position: relative;
 	display: inline;
 
@@ -278,7 +278,7 @@ textarea {
 	transition:.5s;
 }
 
-.input_sel_contry:hover, .input_sel_contry:focus {
+.input-sel-contry:hover, .input-sel-contry:focus {
 	-webkit-box-shadow: 0px 0px 4px 0px rgba(70,70,70,1);
 	-moz-box-shadow: 0px 0px 4px 0px rgba(70,70,70,1);
 	box-shadow: 0px 0px 4px 0px rgba(70,70,70,1);

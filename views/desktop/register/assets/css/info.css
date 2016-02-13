@@ -6,7 +6,7 @@
 	display: none;
 }
 
-.info_content {
+.info-content {
 	position: absolute;
 
 	width: 130px;
@@ -33,14 +33,14 @@
 	box-shadow: 		0px 0px 6px 0px rgba(0,0,0,0.4);
 }
 
-.info_tip {
+.info-tip {
 	position: absolute;
 	width: 12px;
 	margin-top: 18px;
 
 }
 
-.text_space {
+.text-space {
 	height: 6px;
 }
 

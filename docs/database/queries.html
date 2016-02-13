@@ -101,7 +101,7 @@ db.once(<span class="hljs-string">'open'</span>, <span class="hljs-function"><sp
 };
 
 <span class="hljs-keyword">var</span> error_adapter = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model_name, err</span>) </span>{
-	error_list = [];
+	error-list = [];
 	<span class="hljs-keyword">if</span> (err) {
 		<span class="hljs-keyword">var</span> errors = err.errors;
 		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> errors) {
@@ -110,11 +110,11 @@ db.once(<span class="hljs-string">'open'</span>, <span class="hljs-function"><sp
 			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> piece <span class="hljs-keyword">in</span> pieces) {
 				error += <span class="hljs-string">'_'</span> + pieces[piece].replace(<span class="hljs-string">' '</span>,<span class="hljs-string">''</span>).replace(<span class="hljs-string">'userdefined'</span>, errors[key].message);
 			}
-			error_list.push(error);
+			error-list.push(error);
 		}
 	}
-	error_list.push(<span class="hljs-string">''</span>);
-	<span class="hljs-keyword">return</span> error_list.join(<span class="hljs-string">';'</span>);
+	error-list.push(<span class="hljs-string">''</span>);
+	<span class="hljs-keyword">return</span> error-list.join(<span class="hljs-string">';'</span>);
 }
 
 <span class="hljs-comment">/*

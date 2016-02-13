@@ -1,18 +1,18 @@
-.save_cancel_container {
+.save-cancel-container {
 	text-align: right;
 }
 
-#edit_location_sel {
+#edit-location-sel {
 	position: absolute;
 	width: 450px;
 
 	text-align: right;
 }
 
-.str_location_edit_title {
+.str-location-edit-title {
 	margin-bottom: 22px;
 }
 
-.lang_buttons {
+.lang-buttons {
 	margin: 20px;
 }

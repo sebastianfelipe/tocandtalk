@@ -23,7 +23,7 @@ var allowCrossDomain = function(req, res, next) {
 };
 
 var error_adapter = function(model_name, err) {
-	error_list = [];
+	error-list = [];
 	if (err) {
 		var errors = err.errors;
 		for (var key in errors) {
@@ -32,11 +32,11 @@ var error_adapter = function(model_name, err) {
 			for (var piece in pieces) {
 				error += '_' + pieces[piece].replace(' ','').replace('userdefined', errors[key].message);
 			}
-			error_list.push(error);
+			error-list.push(error);
 		}
 	}
-	error_list.push('');
-	return error_list.join(';');
+	error-list.push('');
+	return error-list.join(';');
 }
 
 /*

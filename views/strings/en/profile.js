@@ -1,15 +1,15 @@
 $(document).ready(function(){
 	document.title = "Toc&Talk! - Mi Perfil";
 
-	$('.str_button_edit').text(
+	$('.str_button-edit').text(
 		"Editar"
 	);
 
-	$('.str_button_cancel').text(
+	$('.str_button-cancel').text(
 		"Cancelar"
 	);
 
-	$('.str_button_save').val(
+	$('.str_button-save').val(
 		"Guardar"
 	);
 
@@ -17,16 +17,16 @@ $(document).ready(function(){
 		"Terminar"
 	);
 
-	$('.str_button_save_lang').text(
+	$('.str_button-save_lang').text(
 		"Guardar"
 	);
 	
 
-	$('.str_button_edit_lang').text(
+	$('.str_button-edit_lang').text(
 		"Editar idiomas"
 	);
 
-	$('.str_button_add_lang').text(
+	$('.str_button-add-lang').text(
 		"Añadir idiomas"
 	);
 
@@ -34,7 +34,7 @@ $(document).ready(function(){
 		"Ubicación"
 	);
 
-	$('.str_location_edit_title').text(
+	$('.str-location-edit-title').text(
 		"Escoja su país"
 	);
 
@@ -58,7 +58,7 @@ $(document).ready(function(){
 		"nativo"
 	);
 
-	$('.str_lang_list_empity').text(
+	$('.str_lang-list_empity').text(
 		"No ha añadido ningún idioma"
 	);
 
@@ -70,7 +70,7 @@ $(document).ready(function(){
 		"Editar idiomas que me interesan"
 	);
 
-	$('.str_desc_no').text(
+	$('.str_desc-no').text(
 		"Ninguna descripción que mostrar"
 	);
 

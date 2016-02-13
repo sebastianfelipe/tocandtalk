@@ -1,4 +1,4 @@
-.error_msg {
+.error-msg {
 	display: none; /* Mensaje oculto */
 
 	width: 458px;
@@ -12,20 +12,20 @@
 	color: #ff1744;
 }
 
-.error_l {
+.error-l {
 	text-align: left;
 }
 
-.error_c {
+.error-c {
 	text-align: center;
 	margin-top: 5px;
 }
 
-.img_error {
+.img-error {
 	width: 10px;
 	margin-right: 5px;
 }
 
-.error_msg_visible {
+.error-msg-visible {
 	display: inline;
 }

@@ -15,7 +15,7 @@ t2 {
 	color: rgba(50,50,50,1);
 }
 
-#register_container {
+#register-container {
 	z-index: 60;
 	width: 100%;
 	height: auto;
@@ -59,7 +59,7 @@ t2 {
 	text-align: right;
 }
 
-#section_birthday {
+#section-birthday {
 	width: 453px;
 	text-align: right;
 

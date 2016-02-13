@@ -23,7 +23,7 @@
 				var json = $.getJSON("http://127.0.0.1:4000/test/uval/" + username);
 				var errors = json.responseJSON.errors;
 				console.log(errors);
-				if (errors.indexOf('error_username_username_unique;') > -1)
+				if (errors.indexOf('error_username-username_unique;') > -1)
 				{
 					$('#result').html("El nombre está ocupado");
 				}

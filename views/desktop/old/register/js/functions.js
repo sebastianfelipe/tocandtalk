@@ -53,12 +53,12 @@ function show_errors(errors)
 {
     // Nombre de usuario
 
-    if (errors.indexOf("error_username_username_unique;") > -1) {
-        $("#error_username_username_unique").show();
+    if (errors.indexOf("error_username-username_unique;") > -1) {
+        $("#error_username-username_unique").show();
     }
 
-    if (errors.indexOf("error_username_username_format;") > -1) {
-        $("#error_username_username_format").show();
+    if (errors.indexOf("error_username-username_format;") > -1) {
+        $("#error_username-username_format").show();
     }
 
     if (errors.indexOf("error_email_email_unique;") > -1) {
@@ -80,8 +80,8 @@ function show_errors(errors)
 
 function clear()
 {
-    $("#error_username_username_unique").hide();
-    $("#error_username_username_format").hide();
+    $("#error_username-username_unique").hide();
+    $("#error_username-username_format").hide();
     $("#error_email_email_unique").hide();
     $("#error_email_email_format").hide();
     $("#error_user_password_confirmation").hide();

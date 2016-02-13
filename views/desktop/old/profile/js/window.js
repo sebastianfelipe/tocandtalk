@@ -8,19 +8,19 @@ $(document).ready(function() {
 
         if (win_width < 1066) {
 
-            var h_section1 = $('#profile_section1').height();
+            var h_section1 = $('#profile-section1').height();
 
-            $('#profile_section2')
+            $('#profile-section2')
                 .css("margin-left", "0px")
                 .css("margin-top", h_section1 + "px");
-            $('#profile_content').width(530);
+            $('#profile-content').width(530);
 
         } else {
 
-            $('#profile_section2')
+            $('#profile-section2')
                 .css("margin-left", "536px")
                 .css("margin-top", "0px");
-            $('#profile_content').width(1066);
+            $('#profile-content').width(1066);
         }  
     }
     

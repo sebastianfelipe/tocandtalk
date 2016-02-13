@@ -1,11 +1,11 @@
-#bar_tab_select2, #bar_tab_select2_icon {
+#bar-tab-select2, #bar-tab-select2-icon {
 	display: none;
 }
 
-#bar_tab_select3, #bar_tab_select3_icon {
+#bar-tab-select3, #bar-tab-select3-icon {
 	display: none;
 }
 
-#bar_tab1, #bar_tab1_icon {
+#bar-tab1, #bar-tab1-icon {
 	cursor: default;
 }

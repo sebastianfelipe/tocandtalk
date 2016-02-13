@@ -13,9 +13,9 @@ function show_user_inf()
         $('#input_edit_desc').val(refs.user.description);
         var tmp_desc = jQuery.trim(refs.user.description);
         if (tmp_desc.length == 0) {
-            $('#desc_no').css("display", "inline-block");
+            $('#desc-no').css("display", "inline-block");
         } else {
-            $('#desc_no').css("display", "none");
+            $('#desc-no').css("display", "none");
         }
     }
 
@@ -39,10 +39,10 @@ function show_user_inf()
         for (key in s_lang)
         {
             
-            form = $('<form>', {/*id: "form_remove_spoken_language", */ name: "form_remove_spoken_language", action: "/profile/remove_spoken_language", method: "post", class: "item_lang"});
+            form = $('<form>', {/*id: "form_remove_spoken_language", */ name: "form_remove_spoken_language", action: "/profile/remove_spoken_language", method: "post", class: "item-lang"});
             form.append($('<input>', {name: "remove_spoken_language", value: s_lang[key], hidden: true}));
-            form.append($('<p>', {text: s_lang[key], class: "subitem_lang"}));
-            form.append($('<input>', {type: "submit", value: "Eliminar", class: "subitem_lang_button"}));
+            form.append($('<p>', {text: s_lang[key], class: "subitem-lang"}));
+            form.append($('<input>', {type: "submit", value: "Eliminar", class: "subitem-lang-button"}));
             $('#str_lang_spoken_list_edit').append(form);
             refs.dinamic_forms.push(form);
         }
@@ -58,16 +58,16 @@ function show_user_inf()
 
         for (key in i_lang)
         {
-            $('#str_lang_interest_list').append($('<p>', {value: i_lang[key], text: i_lang[key]}));
+            $('#str-lang-interest-list').append($('<p>', {value: i_lang[key], text: i_lang[key]}));
         }
 
         for (key in i_lang)
         {
-            form = $('<form>', {/*id: "form_remove_interest_language", */ name: "form_remove_interest_language", action: "/profile/remove_interest_language", method: "post", class: "item_lang"});
+            form = $('<form>', {/*id: "form_remove_interest_language", */ name: "form_remove_interest_language", action: "/profile/remove_interest_language", method: "post", class: "item-lang"});
             form.append($('<input>', {name: "remove_interest_language", value: i_lang[key], hidden: true}));
-            form.append($('<p>', {text: i_lang[key], class: "subitem_lang"}));
-            form.append($('<input>', {type: "submit", value: "Eliminar", class: "subitem_lang_button"}));
-            $('#str_lang_interest_list_edit').append(form);
+            form.append($('<p>', {text: i_lang[key], class: "subitem-lang"}));
+            form.append($('<input>', {type: "submit", value: "Eliminar", class: "subitem-lang-button"}));
+            $('#str-lang-interest-list_edit').append(form);
             refs.dinamic_forms.push(form);
             /*
             form.on('submit', function(e) {
@@ -106,8 +106,8 @@ function clear()
 	$('.str_lang_native').empty();
     $('#str_lang_spoken_list').empty();
     $('#str_lang_spoken_list_edit').empty();
-    $('#str_lang_interest_list').empty();
-    $('#str_lang_interest_list_edit').empty()
+    $('#str-lang-interest-list').empty();
+    $('#str-lang-interest-list_edit').empty()
     $('#input_edit_desc').val('');
 }
 
@@ -142,9 +142,9 @@ function load(req, errors)
 
     }
 
-    if ($('#img_section2').height() >= 40) {
-        var new_margin = 100 - (($('#img_section2').height() - 36) / 2);
-        $('#img_section2').css("margin-top", new_margin + "px");
+    if ($('#img-section2').height() >= 40) {
+        var new_margin = 100 - (($('#img-section2').height() - 36) / 2);
+        $('#img-section2').css("margin-top", new_margin + "px");
     }
 
     // Manejo de casos relacionados con errores de formulario e informacion que requiere ser cargada otra vez

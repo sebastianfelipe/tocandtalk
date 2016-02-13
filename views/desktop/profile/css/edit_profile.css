@@ -1,31 +1,31 @@
-#c_description {
+#c-description {
 	display: block;
 }
 
-#c_location {
+#c-location {
 	display: block;
 }
 
-#c_interest_languages {
+#c-interest-languages {
 	display: block;
 }
 
-#c_spoken_languages {
+#c-spoken-languages {
 	display: block;
 }
 
-#c_description_edit {
+#c-description-edit {
 	display: none;
 }
 
-#c_location_edit {
+#c-location-edit {
 	display: none;
 }
 
-#c_interest_languages_edit {
+#c-interest-languages-edit {
 	display: none;
 }
 
-#c_spoken_languages_edit {
+#c-spoken-languages-edit {
 	display: none;
 }
