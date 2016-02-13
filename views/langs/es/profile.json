@@ -1,0 +1,21 @@
+{
+	"title":      "Toc&Talk! - Mi Perfil",
+	"bEdit" :     "Editar",
+	"bCancel":    "Cancelar",
+	"bSave" :     "Guardar",
+	"bFinish":    "Terminar",
+	"bSaveLang":  "Guardar",
+	"bEditLang":  "Editar idiomas",
+	"bAdd" :  "Añardir",
+	"locTitle" :    "Ubicación",
+	"locEditTitle": "Escoja su páis",
+	"dTitle":     "Descripción ",
+	"dEditTitle": "Editar descripción",
+	"spokenLangTitle":"Idiomas que hablo",
+	"interestLangTitle" :"Idiomas que me interesan",
+	"nativeLangTitle": "nativo",
+	"listLangEmpity" : "No ha añadido ningún idioma",
+	"editSpokenLangTitle": "Editar idiomas que hablo",
+	"editInterestLangTitle": "Editar idiomas que me interesan",
+	"dNon"				   : "Ninguna descripción que mostrar"
+}
