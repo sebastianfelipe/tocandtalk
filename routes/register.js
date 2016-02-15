@@ -98,11 +98,11 @@ router.post('/',function (req, res) {
   },
   function(err, results) {
     // error handling
-    error-list = [];
+    errorList = [];
     for (var key in results) {
-      error-list.push(results[key]);
+      errorList.push(results[key]);
     }
-    errors += error-list.join('');
+    errors += errorList.join('');
     if (!errors) 
     {
       // Save
@@ -134,11 +134,11 @@ router.post('/',function (req, res) {
         },
         function(err, results) {
             // error handling
-            error-list = [];
+            errorList = [];
             for (var key in results) {
-              error-list.push(results[key]);
+              errorList.push(results[key]);
             }
-            errors += error-list.join('');
+            errors += errorList.join('');
             if (!errors) 
             {
               req.session.username = user._username;
@@ -203,11 +203,11 @@ router.post('/',function (req, res) {
   },
   function(err, results) {
     // error handling
-    error-list = [];
+    errorList = [];
     for (var key in results) {
-      error-list.push(results[key]);
+      errorList.push(results[key]);
     }
-    errors += error-list.join('');
+    errors += errorList.join('');
     if (errors) 
     {
       async.parallel({
@@ -262,11 +262,11 @@ router.post('/',function (req, res) {
         },
         function(err, results) {
           // error handling
-          error-list = [];
+          errorList = [];
           for (var key in results) {
-            error-list.push(results[key]);
+            errorList.push(results[key]);
           }
-          errors += error-list.join('');
+          errors += errorList.join('');
           if (errors) 
           {
             async.parallel({
