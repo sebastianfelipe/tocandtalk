@@ -24,7 +24,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             .error(function (data, status) {
                 $log.error({data: data, status: status});
             });
-	}
+	};
 
     sStage.load();
 }]);
