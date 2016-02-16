@@ -39,6 +39,7 @@ app.service('sStage', function() {
     {
         params.body.languages = params.languages;
         params.body.countries = params.countries;
+        params.body.months = params.months;
         this.showErrors(params.errors);
     };
 

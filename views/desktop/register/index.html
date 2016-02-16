@@ -261,7 +261,7 @@
 				</div>
 
 				<!-- Error contraseña -->
-				<div id="ePassword"class="error-msg">
+				<div id="ePassword" class="error-msg">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
 					Contraseña inválida. La contraseña debe poseer sólo números (0-9) o letras 
 					minúsculas (a-z) o mayúsculas (A-Z), sin espacios. 
@@ -344,18 +344,7 @@
 						name="sMonth"
 						required="">
 						<option value="" disabled="" selected="" hidden="">Mes</option>
-						<option value="enero">Enero</option>
-						<option value="febrero">Febrero</option>
-						<option value="marzo">Marzo</option>
-						<option value="abril">Abril</option>
-						<option value="mayo">Mayo</option>
-						<option value="junio">Junio</option>
-						<option value="julio">Julio</option>
-						<option value="agosto">Agosto</option>
-						<option value="septiembre">Septiembre</option>
-						<option value="octubre">Octubre</option>
-						<option value="noviembre">Noviembre</option>
-						<option value="diciembre">Diciembre</option>
+						<option ng-repeat="month in body.months" value="{{month}}">{{month}}</option>
 					</select>
 
 					<input
