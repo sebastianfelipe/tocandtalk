@@ -9,8 +9,8 @@ $(document).ready(function(){
     $('#c-interest-languages-edit').fadeIn(300);
 
     // Brillo en botón guardar
-    window.button-save_interest_lang = ButtonSaveLight;
-    window.button-save_interest_lang.init("#b-save-interest-lang");
+    window.button_save_interest_lang = ButtonSaveLight;
+    window.button_save_interest_lang.init("#b-save-interest-lang");
 
   });
 
@@ -20,8 +20,8 @@ $(document).ready(function(){
     $('#c-spoken-languages').css("display", "none");
     $('#c-spoken-languages-edit').fadeIn(300);
 
-    window.button-save_spoken_lang = ButtonSaveLight;
-    window.button-save_spoken_lang.init("#b-save-spoken-lang");
+    window.button_save_spoken_lang = ButtonSaveLight;
+    window.button_save_spoken_lang.init("#b-save-spoken-lang");
 
   });
 
@@ -39,8 +39,8 @@ $(document).ready(function(){
     }
     */
 
-    window.button-save_description = ButtonSaveLight;
-    window.button-save_description.init("#b-save-description");
+    window.button_save_description = ButtonSaveLight;
+    window.button_save_description.init("#b-save-description");
     
   });
 
@@ -52,8 +52,8 @@ $(document).ready(function(){
 
     //$('#s_country').val(user.nationality);
 
-    window.button-save_location = ButtonSaveLight;
-    window.button-save_location.init("#b-save-location");
+    window.button_save_location = ButtonSaveLight;
+    window.button_save_location.init("#b-save-location");
   });
 
 
@@ -64,8 +64,8 @@ $(document).ready(function(){
     $('#c-interest-languages').fadeIn(300);
     $('#c-interest-languages-edit').css("display", "none");
 
-    window.button-save_interest_lang.destroy();
-    window.button-save_interest_lang = null;
+    window.button_save_interest_lang.destroy();
+    window.button_save_interest_lang = null;
 
   });
 
@@ -74,8 +74,8 @@ $(document).ready(function(){
     $('#c-spoken-languages').fadeIn(300);
     $('#c-spoken-languages-edit').css("display", "none");
 
-    window.button-save_spoken_lang.destroy();
-    window.button-save_spoken_lang = null;
+    window.button_save_spoken_lang.destroy();
+    window.button_save_spoken_lang = null;
 
   });
 
@@ -84,8 +84,8 @@ $(document).ready(function(){
     $('#c-description').fadeIn(300);
     $('#c-description-edit').css("display", "none");
 
-    window.button-save_description.destroy();
-    window.button-save_description = null;
+    window.button_save_description.destroy();
+    window.button_save_description = null;
 
   });
 
@@ -94,8 +94,8 @@ $(document).ready(function(){
     $('#c-location').fadeIn(300);
     $('#c-location-edit').css("display", "none");
 
-    window.button-save_location.destroy();
-    window.button-save_location = null;
+    window.button_save_location.destroy();
+    window.button_save_location = null;
 
   });
 
@@ -106,8 +106,8 @@ $(document).ready(function(){
     $('#c-interest-languages').fadeIn(300);
     $('#c-interest-languages-edit').css("display", "none");
 
-    window.button-save_interest_lang.destroy();
-    window.button-save_interest_lang = null;
+    window.button_save_interest_lang.destroy();
+    window.button_save_interest_lang = null;
 
   });
 
@@ -116,8 +116,8 @@ $(document).ready(function(){
     $('#c-spoken-languages').fadeIn(300);
     $('#c-spoken-languages-edit').css("display", "none");
 
-    window.button-save_spoken_lang.destroy();
-    window.button-save_spoken_lang = null;
+    window.button_save_spoken_lang.destroy();
+    window.button_save_spoken_lang = null;
 
   });
 
@@ -126,8 +126,8 @@ $(document).ready(function(){
     $('#c-description').fadeIn(300);
     $('#c-description-edit').css("display", "none");
 
-    window.button-save_description.destroy();
-    window.button-save_description = null;
+    window.button_save_description.destroy();
+    window.button_save_description = null;
   });
 
   // Ubicación
@@ -135,8 +135,8 @@ $(document).ready(function(){
     $('#c-location').fadeIn(300);
     $('#c-location-edit').css("display", "none");
 
-    window.button-save_location.destroy();
-    window.button-save_location = null;
+    window.button_save_location.destroy();
+    window.button_save_location = null;
 
   });
   
