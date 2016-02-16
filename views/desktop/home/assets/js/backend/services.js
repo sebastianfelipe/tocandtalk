@@ -4,55 +4,30 @@ app.service('sStage', function() {
 
     this.showErrors = function (errors)
     {
-        // Nombre de usuario
-
-        if (errors.indexOf("eUsernameUsernameUnique;") > -1) {
-            $("#eUsernameUsernameUnique").show();
-        }
-
-        if (errors.indexOf("eUsernameUsernameFormat;") > -1) {
-            $("#eUsernameUsernameFormat").show();
-        }
-
-        if (errors.indexOf("eEmailEmailUnique;") > -1) {
-            $("#eEmailEmailUnique").show();
-        }
-
-        if (errors.indexOf("eEmailEmailFormat;") > -1) {
-            $("#eEmailEmailFormat").show();
-        }
-        if (errors.indexOf("eUserPasswordConfirmation;") > -1) {
-            $("#eUserPasswordConfirmation").show();
-        }
     };
 
     this.clear = function ()
     {
-        $("#eUsernameUsernameUnique").hide();
-        $("#eUsernameUsernameFormat").hide();
-        $("#eEmailEmailUnique").hide();
-        $("#eEmailEmailFormat").hide();
-        $("#eUserPasswordConfirmation").hide();
     };
 
-    this.load = function ()
+    this.load = function (params)
     {
-        console.log(languages);
-        console.log(countries);
-        $.each(languages, function(_, language) {
-            $('#sNativeLanguage').append(new Option(language.name, language.name));
-        });
+        //console.log($scope);
+        params.body.languages = params.languages;
 
-        $.each(countries, function(_, country) {   
-            $('#sCountry').append(new Option(country.name, country.name));
-        });
+        this.showErrors(params.errors);
 
-        this.showErrors(errors);
+    /*
+    $.each(languages, function(_, language) {
+        //$('#s_native_language').append(new Option(language.name, language._id));
+        $('#s_languages').append(new Option(language.name, language.name));
+    });
+    */
     };
 
-    this.reload = function (errors)
+    this.reload = function (params)
     {
         this.clear();
-        this.showErrors(errors);
+        this.showErrors(params.errors);
     };
 });
