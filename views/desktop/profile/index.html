@@ -189,7 +189,7 @@
 						<br>
 
 						<div class="lang-list">
-							<div class="str str_lang_native"></div> (<div class="str str_lang_native_title"></div>)
+							<div class="str str_lang_native">{{body.strUserNativeLanguage}}</div> (<div class="str str_lang_native_title"></div>)
 							<br />
 							<div class="str" id="str_lang_spoken_list"></div>
 						</div>
@@ -352,7 +352,7 @@
 								</div>
 
 								<div id="usr-loc-section2">
-									<div class="str str_profile_country"></div>
+									<div class="str str_profile_country">{{body.strUserNationality}}</div>
 								</div>
 
 								<div id="usr-loc-section1">
@@ -364,14 +364,15 @@
 								Editar Ubicación
 							-->
 							<div id="c-location-edit">
-								<form id="form_edit_user_nationality" name="form_edit_user_nationality" action="/profile/edit_user_nationality" method="post">
+								<form id="form_edit_user_nationality" name="form_edit_user_nationality" ng-submit="body.onEditUserNationality()">
 									<div id="edit-location-sel">
 										<select
+											ng-model="body.strUserNationality"
 											id="s_country"
 											name="s_country"
 											required=""
 											class="input-sel-contry">
-											<option value="" disabled="" selected="" hidden=""></option>
+											<option disabled="" selected="" hidden="" value="{{body.strUserNationality}}">{{body.strUserNationality}}</option>
 										</select>
 									</div>
 
@@ -406,7 +407,7 @@
 								</div>
 
 								<div id="usr-desc-section2">
-									<div class="str usr-desc-text str_desc_content"></div>
+									<div class="str usr-desc-text str_desc_content">{{body.strUserDescription}}</div>
 									<i><div class="str str_desc-no" id="desc-no"></div></i> 
 								</div>
 
@@ -418,8 +419,8 @@
 							<div id="c-description-edit">
 								<div class="str str_desc_edit_title"></div>:
 
-								<form id="form_edit_user_description" name="form_edit_user_description" action="/profile/edit_user_description" method="post">
-									<textarea width="430" id="input_edit_desc" name="input_edit_desc" class="input-desc"></textarea>
+								<form id="form_edit_user_description" name="form_edit_user_description" ng-submit="body.onEditUserDescription()">
+									<textarea ng-model="body.strUserDescription" ng-model="textUserDescription" width="430" id="input_edit_desc" name="input_edit_desc" class="input-desc"></textarea>
 
 									<div class="save-cancel-container">
 										<div id="b-cancel-description" class="button-cancel">
