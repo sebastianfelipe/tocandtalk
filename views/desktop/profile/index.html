@@ -219,8 +219,9 @@
 						<!-- Añadir idioma que hablo -->
 						<div class="add-lang">
 							Añadir idioma<br>
-							<form id="form_add_user_spoken_language" name="form_add_user_spoken_language" action="/profile/add_user_spoken_language" method="post">
+							<form id="form_add_user_spoken_language" name="form_add_user_spoken_language" ng-submit="body.onAddSpokenLanguage(sSpokenLanguage)">
 								<select
+									ng-model="sSpokenLanguage"
 									id="s_spoken_languages"
 									style="width:170px;"
 									name="s_spoken_languages"
@@ -291,15 +292,16 @@
 						<!-- Añadir idioma que me interesa -->
 						<div class="add-lang">
 							Añadir idioma<br>
-							<form id="form_add_user_interest_language" name="form_add_user_interest_language" action="/profile/add_user_interest_language" method="post">
+							<form id="form_add_user_interest_language" name="form_add_user_interest_language" ng-submit="body.onAddInterestLanguage(sInterestLanguge)">
 								<select
+									ng-model="sInterestLanguge"
 									id="s_interest_languages"
 									style="width:170px;"
 									name="s_interest_languages"
 									class="s_languages input-sel-contry"
 									required="">
 									<option value="" disabled="" selected="" hidden="">Idioma</option>
-								</select>
+								</select>	
 
 								<input type="submit" value="Añadir" class="button-add-lang">
 							</form>
