@@ -412,6 +412,7 @@
 						required=""
 						class="inputSel inputSelGrande">
 						<option value="" disabled="" selected="" hidden="">País</option>
+						<option ng-repeat="country in body.countries" value="{{country.name}}">{{country.name}}</option>
 					</select>
 				</div>
 
@@ -426,6 +427,7 @@
 						required=""
 						class="inputSel inputSelGrande">
 						<option value="" disabled="" selected="" hidden="">Idioma nativo</option>
+						<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
 					</select>
 				</div>
 

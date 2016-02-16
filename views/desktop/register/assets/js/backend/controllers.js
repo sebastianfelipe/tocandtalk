@@ -27,7 +27,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
                 }
                 else
                 {   
-                    sStage.reload(result.errors);
+                    sStage.reload({errors: result.errors});
                 }
             })
             .error(function (data, status) {
@@ -35,5 +35,5 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             });
 	};
 
-    sStage.load();
+    sStage.load({body: $scope.body, languages: languages, countries: countries, errors: errors});
 }]);

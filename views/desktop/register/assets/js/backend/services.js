@@ -35,24 +35,16 @@ app.service('sStage', function() {
         $("#eUserPasswordConfirmation").hide();
     };
 
-    this.load = function ()
+    this.load = function (params)
     {
-        console.log(languages);
-        console.log(countries);
-        $.each(languages, function(_, language) {
-            $('#sNativeLanguage').append(new Option(language.name, language.name));
-        });
-
-        $.each(countries, function(_, country) {   
-            $('#sCountry').append(new Option(country.name, country.name));
-        });
-
-        this.showErrors(errors);
+        params.body.languages = params.languages;
+        params.body.countries = params.countries;
+        this.showErrors(params.errors);
     };
 
-    this.reload = function (errors)
+    this.reload = function (params)
     {
         this.clear();
-        this.showErrors(errors);
+        this.showErrors(params.errors);
     };
 });

@@ -19,10 +19,10 @@ app.service('sStage', function() {
     {
     };
 
-    this.reload = function (errors)
+    this.reload = function (params)
     {
         this.clear();
-        this.showErrors(errors);
+        this.showErrors(params.errors);
     };
 
 });
