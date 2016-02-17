@@ -52,6 +52,11 @@ friends_routes = require('./routes/friends.js');
 profile_routes = require('./routes/profile.js');
 settings_routes = require('./routes/settings.js');
 
+get_routes = require('./database/api/get.js');
+//save_routes = require('./save.js');
+//update_routes = require('./update.js');
+//delete_routes = require('./delete.js');
+
 app.use('/', home_routes);
 app.use('/talk', talk_routes);
 app.use('/login', login_routes);
@@ -60,6 +65,15 @@ app.use('/logout', logout_routes);
 app.use('/friends', friends_routes);
 app.use('/profile', profile_routes);
 app.use('/settings', settings_routes);
+
+app.use('/api/get', get_routes);
+//app.use('/api/save', save_routes);
+//app.use('/api/update', update_routes);
+//app.use('/api/delete', delete_routes);
+
+
+// Extern Uses
+//var api = require('./database/api/api.js');
 
 // -----------------------------------
 // Only for development use
