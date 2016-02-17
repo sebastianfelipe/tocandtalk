@@ -13,6 +13,7 @@ var global_module = require('./modules/global.js');
 var callbacks_module = require('./modules/callbacks.js');
 
 // Middleware Configuration
+var passport = require('passport');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -51,7 +52,10 @@ logout_routes = require('./routes/logout.js');
 friends_routes = require('./routes/friends.js');
 profile_routes = require('./routes/profile.js');
 settings_routes = require('./routes/settings.js');
+auth_routes = require('./routes/auth.js');
 
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/', home_routes);
 app.use('/talk', talk_routes);
 app.use('/login', login_routes);
@@ -60,7 +64,7 @@ app.use('/logout', logout_routes);
 app.use('/friends', friends_routes);
 app.use('/profile', profile_routes);
 app.use('/settings', settings_routes);
-
+app.use('/auth', auth_routes);
 // -----------------------------------
 // Only for development use
 var queries = require('./database/queries.js');

@@ -81,7 +81,8 @@ schema.user = mongoose.Schema({
 	sex: String,
 	description: String,
 	cant_valoration: Number,
-	sum_valoration: Number
+	sum_valoration: Number,
+	facebook_id: String
 });
 
 
