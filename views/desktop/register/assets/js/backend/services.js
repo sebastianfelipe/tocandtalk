@@ -37,10 +37,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 
     this.load = function (params)
     {
-        this.loadLang(params);
-        params.body.languages = params.languages;
-        params.body.countries = params.countries;
-        params.body.months = params.months;
+        this.getSources(params);
         this.showErrors(params.errors);
     };
 
@@ -50,13 +47,30 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         this.showErrors(params.errors);
     };
 
-    this.loadLang = function (params)
+    this.getSources = function (params)
     {
-        //console.log($scope.fLogin);
         $http.get('/api/get/lang/'+params.meta.lang+'/'+params.meta.view)
             .success(function (result) {
                 params.body.lang = result;
                 document.title = params.body.lang.title;
+            })
+            .error(function (data, status) {
+                $log.error({data: data, status: status});
+            });
+            
+        $http.get('/api/get/languages')
+            .success(function (result) {
+                params.sources.languages = result.docs;
+                params.body.languages = params.sources.languages;
+            })
+            .error(function (data, status) {
+                $log.error({data: data, status: status});
+            });
+
+        $http.get('/api/get/countries')
+            .success(function (result) {
+                params.sources.countries = result.docs;
+                params.body.countries = params.sources.countries;
             })
             .error(function (data, status) {
                 $log.error({data: data, status: status});
