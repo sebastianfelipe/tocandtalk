@@ -59,4 +59,19 @@ router.get('/languages', function (req, res) {
 	});
 });
 
+router.get('/lang/:lang/:view', function (req, res) {
+  var langPath = "../../views/langs";
+  // Verificar que lang y view sean válido
+
+  // Supongamos que lang y view son válidos
+  langPath += "/" + req.params.lang;
+  langPath += "/" + req.params.view + '.json';
+  var data = require(langPath);
+  res.send(data);
+});
+
 module.exports = router;
+
+
+
+
