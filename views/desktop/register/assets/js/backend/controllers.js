@@ -3,7 +3,9 @@
 app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $http, $log, sStage) {
 	$scope.body = {};
 	scope = $scope.body;
+    refs.body = scope;
 
+    scope.lang = {};
 	scope.onSubmit = function() {
         var data = {
                      iName: $scope.iName,
@@ -36,5 +38,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             });
 	};
 
-    sStage.load({body: $scope.body, months: refs.months, languages: languages, countries: countries, errors: errors});
+    refs.languages = languages;
+    refs.countries = countries;
+    sStage.load(refs);
 }]);

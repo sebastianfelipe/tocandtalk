@@ -8,12 +8,26 @@
 	"iEmailPH": "Correo electrónico",
 	"iPasswordPH":"Contraseña",
 	"iPasswordConfirmationPH":"Confirmar contraseña",
-	"iPasswordConfirmationPH":"Confirmar contraseña",
 	"birthdayTitle":"Cumpleaños",
 	"iDayPH":"Día",
 	"iYearPH":"Año",
-	"iPasswordConfirmationPH":" Confirmar contraseña",
-	"iPasswordConfirmationPH":"Confirmar contraseña",
 	"sexMale":"Hombre",
-	"sexFamale":"Mujer"
+	"sexFemale":"Mujer",
+	"sCountry": "Seleccione su país",
+	"sNativeLanguage": "Elija su idioma nativo",
+	"bRegister": "Registrarme",
+	"months": [
+				"enero",
+				"febrero",
+				"marzo",
+				"abril",
+				"mayo",
+				"junio",
+				"julio",
+				"agosto",
+				"septiembre",
+				"octubre",
+				"noviembre",
+				"diciembre"
+			]
 }

@@ -1,6 +1,6 @@
 // SERVICES
 
-app.service('sStage', function() {
+app.service('sStage', ['$http', '$log', function($http, $log) {
 
     this.showErrors = function (errors)
     {
@@ -37,6 +37,7 @@ app.service('sStage', function() {
 
     this.load = function (params)
     {
+        this.loadLang(params);
         params.body.languages = params.languages;
         params.body.countries = params.countries;
         params.body.months = params.months;
@@ -48,4 +49,17 @@ app.service('sStage', function() {
         this.clear();
         this.showErrors(params.errors);
     };
-});
+
+    this.loadLang = function (params)
+    {
+        //console.log($scope.fLogin);
+        $http.get('/api/get/lang/'+params.meta.lang+'/'+params.meta.view)
+            .success(function (result) {
+                params.body.lang = result;
+                document.title = params.body.lang.title;
+            })
+            .error(function (data, status) {
+                $log.error({data: data, status: status});
+            });
+    };
+}]);
