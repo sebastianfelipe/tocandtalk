@@ -1,6 +1,6 @@
 // SERVICES
 
-app.service('sStage', ['$http', function($http) {
+app.service('sStage', ['$http', '$log', function($http, $log) {
 
     this.showErrors = function (errors)
     {
@@ -17,7 +17,7 @@ app.service('sStage', ['$http', function($http) {
 
     this.load = function (params)
     {
-        this.loadLang(params);
+        this.getSources(params);
     };
 
     this.reload = function (params)
@@ -26,7 +26,7 @@ app.service('sStage', ['$http', function($http) {
         this.showErrors(params.errors);
     };
 
-    this.loadLang = function (params)
+    this.getSources = function (params)
     {
         //console.log($scope.fLogin);
         $http.get('/api/get/lang/'+params.meta.lang+'/'+params.meta.view)

@@ -17,7 +17,7 @@ var error_adapter = functions_module.error_adapter;
 router.get('/', function (req, res) {
   if (!req.session.username )
   {
-    return res.render('login/index.html', {forceType: "desktop", req: req.body, errors: ""});
+    return res.render('login/index.html', {forceType: "desktop"});
   }
   else
   {

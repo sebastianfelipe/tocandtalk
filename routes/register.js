@@ -23,7 +23,7 @@ var authenticateRegister = authenticate_module.authenticateRegister;
 var error_adapter = functions_module.error_adapter;
 
 // Shared Variables
-
+/*
 router.get('/', authenticateRegister, function (req, res) {
   async.parallel({
       countries: function(callback){
@@ -45,6 +45,11 @@ router.get('/', authenticateRegister, function (req, res) {
       // results is now equals to: {one: 1, two: 2}
     return res.render('register/index.html', {forceType: "desktop", countries: results.countries, languages: results.languages, req: req.body, errors: ""});
   });
+});
+*/
+
+router.get('/', authenticateRegister, function (req, res) {
+    return res.render('register/index.html', {forceType: "desktop"});
 });
 
 router.post('/',function (req, res) {

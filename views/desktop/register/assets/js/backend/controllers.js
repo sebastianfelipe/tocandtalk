@@ -38,7 +38,6 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             });
 	};
 
-    refs.languages = languages;
-    refs.countries = countries;
+    sStage.getSources(refs);
     sStage.load(refs);
 }]);
