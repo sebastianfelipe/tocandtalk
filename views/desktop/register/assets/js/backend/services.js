@@ -37,7 +37,6 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 
     this.load = function (params)
     {
-        this.getSources(params);
         this.showErrors(params.errors);
     };
 

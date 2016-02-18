@@ -6,6 +6,10 @@ var db = require('../configuration.js');
 var schema = require('../schema.js');
 var models = require('../models.js');
 
+// Module Imports
+var authenticate_module = require('../../modules/authenticate.js');
+var authenticate = authenticate_module.authenticate;
+
 /*
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -23,6 +27,22 @@ var allowCrossDomain = function(req, res, next) {
 */
 router.get('/', function (req, res) {
 	console.log('/api/get');
+});
+
+router.get('/user', authenticate, function (req, res) {
+  async.parallel({
+      user: function(callback) {
+          setTimeout(function(){
+              models.User.findOne({_username: req.session.username}, {password: 0}).exec(function (err, doc) {
+
+                callback(null, {errors: err, doc: doc});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+     return res.send(results.user);
+  });
 });
 
 router.get('/countries', function (req, res) {
