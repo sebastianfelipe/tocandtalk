@@ -71,12 +71,12 @@
     			<t2><div class="str">{{body.lang.loginTitle}}</div></t2>
     		</div>
 
-    		<form id="fLogin" name="fLogin" class="formulario" ng-submit="body.onSubmit()">
+    		<form ng-controller="form" id="fLogin" name="fLogin" class="formulario" ng-submit="form.onSubmit()">
 
     			<div>
 					<!-- Nombre de usuario / email -->
 					<input
-						ng-model="iUsername"
+						ng-model="form.iUsername"
 						id="iUsername"
 						name="iUsername"
 
@@ -95,7 +95,7 @@
 				<div>
 					<!-- Contraseña -->
 					<input
-						ng-model="iPassword"
+						ng-model="form.iPassword"
 						id="iPassword"
 						name="iPassword"
 						type="password"

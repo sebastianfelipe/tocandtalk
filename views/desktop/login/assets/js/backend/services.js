@@ -39,3 +39,29 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
             });
     };
 }]);
+
+app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage) {
+    this.onSubmit = function(params) {
+        return function () {
+            var data = {
+                        iUsername: params.form.iUsername,
+                        iPassword: params.form.iPassword
+                       };
+            $http.post('/login', data)
+                .success(function (result) {
+                    if (!result.errors)
+                    {
+                        $(location).attr('href','/');
+                    }
+                    else
+                    {   
+                        params.errors = result.errors;
+                        sStage.reload(params);
+                    }
+                })
+                .error(function (data, status) {
+                    $log.error({data: data, status: status});
+                });
+            };
+    };
+}]);
