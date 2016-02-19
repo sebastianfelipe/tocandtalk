@@ -388,15 +388,15 @@
 								Editar Ubicación
 							-->
 							<div id="c-location-edit">
-								<form id="form_edit_user_nationality" name="form_edit_user_nationality" ng-submit="body.onEditUserNationality()">
+								<form ng-controller="fUpdateUserNationality" id="form_edit_user_nationality" name="form_edit_user_nationality" ng-submit="fUpdateUserNationality.onSubmit()">
 									<div id="edit-location-sel">
 										<select
-											ng-model="body.sUserNationality"
+											ng-model="fUpdateUserNationality.sUserNationality"
 											id="s_country"
 											name="s_country"
 											required=""
 											class="input-sel-contry">
-											<option disabled="" selected="" hidden="" value="{{body.user.nationality}}">{{body.user.nationality}}</option>
+											<option disabled="" selected="" hidden="" value="">{{body.user.nationality}}</option>
 											<option ng-repeat="country in body.countries" value="{{country.name}}">{{country.name}}</option>
 										</select>
 									</div>
