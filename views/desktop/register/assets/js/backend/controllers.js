@@ -4,6 +4,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sActions', functio
 	$scope.body = {};
 	scope = $scope.body;
     refs.body = scope;
+    
     scope.lang = {};
 
     sStage.getSources(refs);
