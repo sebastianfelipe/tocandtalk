@@ -1,42 +1,17 @@
 // SERVICES
 
-app.service('sFunctions', [function(){
-    this.capitalizeWord = function (word) {
-        var word_tmp = word;
-        if (!!word_tmp)
-        {
-            word = word_tmp[0].toUpperCase();
-            if (word_tmp.length > 1)
-            {
-                word += word_tmp.substring(1).toLowerCase();
-            }
-        }
-        return word;
-    };
-
-    this.capitalize = function (msg) {
-        var words = "";
-        if (!!msg)
-        {
-            //var msg_tmp = msg;
-            var words_list = [];
-            words = msg.split(' ');
-            
-            words.forEach(function(word) {
-                word = capitalizeWord(word);
-                words_list.push(word);
-            }); 
-
-            words = words_list.join(' ').trim();
-        }
-        return words;
-    };
-}]);
-
-
-app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFunctions) {
+app.service('sStage', ['$http', '$log', function($http, $log) {
 	var service = this;
 	this.showUserInf = function(params) {
+        params.body.user.firstName =capitalize(params.sources.user.first_name);
+        params.body.user.lastName = capitalize(params.sources.user.last_name);
+        params.body.user.fullName = params.body.user.firstName + " " + params.body.user.lastName;
+        params.body.user.nationality = params.sources.user.nationality;
+        params.body.user.username = params.sources.user._username;  
+        params.body.user.nativeLanguage = params.sources.user.native_language;
+        params.body.user.interestLanguages = params.sources.user.interest_languages;
+       	params.body.user.spokenLanguages = params.sources.user.spoken_languages;
+       	params.body.user.description = params.sources.user.description;
 		/*
 		console.log(params.user);
 		params.body.strUserNationality = params.user.nationality || "default";
@@ -67,6 +42,7 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
 
 	    /* Idiomas que hablo */
 
+	    /*
 	    if (params.user.spoken_languages.length > 0)
 	    {
 	        // Información para mostrar
@@ -81,7 +57,7 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
 	        for (key in s_lang)
 	        {
 	            
-	            form = $('<form>', {/*id: "form_remove_spoken_language", */ name: "form_remove_spoken_language", class: "item-lang"});
+	            form = $('<form>', { name: "form_remove_spoken_language", class: "item-lang"});
 	            form.append($('<input>', {name: "remove_spoken_language", value: s_lang[key], hidden: true}));
 	            form.append($('<p>', {text: s_lang[key], class: "subitem-lang"}));
 	            form.append($('<input>', {type: "submit", value: "Eliminar", class: "subitem-lang-button"}));
@@ -89,9 +65,10 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
 	            form.attr('ng-submit', 'body.onRemoveSpokenLanguage()');
 	        }
 	    }
-	    
+	    */
 	    /* Idiomas que me interesan */
 	    
+	    /*
 	    if (params.user.interest_languages.length > 0)
 	    {
 	        // Información para mostrar
@@ -105,7 +82,7 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
 
 	        for (key in i_lang)
 	        {
-	            form = $('<form>', {/*id: "form_remove_interest_language", */ name: "form_remove_interest_language", class: "item-lang"});
+	            form = $('<form>', {name: "form_remove_interest_language", class: "item-lang"});
 	            form.append($('<input>', {name: "remove_interest_language", value: i_lang[key], hidden: true}));
 	            form.append($('<p>', {text: i_lang[key], class: "subitem-lang"}));
 	            form.append($('<input>', {type: "submit", value: "Eliminar", class: "subitem-lang-button"}));
@@ -113,7 +90,7 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
 	            form.attr('ng-submit', 'body.onRemoveInterestLanguage()');
 	        }
 	    }
-
+	    */
 	};
 
     this.showErrors = function (errors)
@@ -126,7 +103,8 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
     this.clear = function (params)
     {
 	    //params.user = null;
-	    params.dinamicForms = [];
+	    //params.dinamicForms = [];
+		/*
 		$('.str_profile_country').empty();
 		$('.str_desc_content').empty();
 		$('.str_lang_native').empty();
@@ -135,30 +113,11 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
 	    $('#str-lang-interest-list').empty();
 	    $('#str-lang-interest-list_edit').empty()
 	    $('#input_edit_desc').val('');
+	    */
     };
 
     this.load = function (params)
     {
-	    /* Idiomas que hablo */
-	    /*
-	    $.each(params.countries, function(_, country) {
-	        $('#s_country').append(new Option(country.name, country.name));
-	    });
-
-	    $.each(params.languages, function (i, item) {
-	        $('#s_interest_languages').append($('<option>', {
-	            value: item.name,
-	            text : item.name 
-	        }));
-	    });
-
-	    $.each(params.languages, function (i, item) {
-	        $('#s_spoken_languages').append($('<option>', {
-	            value: item.name,
-	            text : item.name 
-	        }));
-	    });
-		*/
 	    if ($('#img-section2').height() >= 40) {
 	        var new_margin = 100 - (($('#img-section2').height() - 36) / 2);
 	        $('#img-section2').css("margin-top", new_margin + "px");
@@ -177,14 +136,14 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
 		*/
 	    //this.staticEvents(params);
 	    //this.dinamicEvents(params);
-      	this.showUserInf(params);
+      	//this.showUserInf(params);
         this.showErrors(params.errors);
     };
 
     this.reload = function (params)
     {
         this.clear(params);
-	    this.showUserInf(params);
+	    //this.showUserInf(params);
 	    //this.dinamicEvents(params);
         this.showErrors(params.errors);
     };
@@ -234,24 +193,14 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
 	    }
 	    */
 	};
+
 	this.getSources = function (params)
 	    {
 	        $http.get('/api/get/user')
 	            .success(function (result) {
 	                /* Nombre de Usuario */
-	                params.sources.user = params.body.user;
-	                console.log(result.doc);
-	                params.body.user.firstName = sFunctions.capitalize(result.doc.first_name);
-	                params.body.user.lastName = sFunctions.capitalize(result.doc.last_name);
-	                params.body.user.fullName = params.body.user.firstName + " " + params.body.user.lastName;
-	                params.body.user.nationality = result.doc.nationality;
-	                params.body.user.username = result.doc._username;
-	                params.body.user.interestLanguages = result.doc.interest_languages;
-	               	params.body.user.spokenLanguages = result.doc.spoken_languages;      
-	                params.body.user.nativeLanguage = result.doc.native_language;
-	                
-	               
-
+	                params.sources.user = result.doc;
+	                service.showUserInf(params);
 	            })
 	            .error(function (data, status) {
 	                $log.error({data: data, status: status});
@@ -287,10 +236,62 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
 	            });
     		
     };
+}]);
 
+app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage) {
+	this.onUpdateUserDescriptionSubmit = function (params) {
+        return function () {
+            var data = {
+                         input_edit_desc: params.body.user.description,
+                       };
+            
+            $http.post('/profile/edit_user_description', data)
+                .success(function (result) {
+                    params.errors = result.errors;
+                    sStage.reload(params);
+                })
+                .error(function (data, status) {
+                    $log.error({data: data, status: status});
+            });
+			
+        };
+	};
 
+	this.onSaveUserSpokenLanguageSubmit = function (params) {
+        return function () {
+            var data = {
+                         s_spoken_languages: params.fSaveUserSpokenLanguage.sSpokenLanguage,
+                       };
+            console.log(data);
+            
+            $http.post('/profile/add_user_spoken_language', data)
+                .success(function (result) {
+                    params.errors = result.errors;
+                    params.sources.user.spoken_languages.push(result.req.s_spoken_languages);
+                    sStage.reload(params);
+                })
+                .error(function (data, status) {
+                    $log.error({data: data, status: status});
+            });
+        };
+	};
 
-
-
-
+	this.onSaveUserInterestLanguageSubmit = function (params) {
+        return function () {
+            var data = {
+                         s_interest_languages: params.fSaveUserInterestLanguage.sInterestLanguage,
+                       };
+            console.log(data);
+            
+            $http.post('/profile/add_user_interest_language', data)
+                .success(function (result) {
+                    params.errors = result.errors;
+                    params.sources.user.interest_languages.push(result.req.s_interest_languages);
+                    sStage.reload(params);
+                })
+                .error(function (data, status) {
+                    $log.error({data: data, status: status});
+            });
+        };
+	};
 }]);

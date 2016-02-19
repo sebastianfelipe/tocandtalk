@@ -1,40 +1,6 @@
 // SERVICES
 
-app.service('sFunctions', [function(){
-    this.capitalizeWord = function (word) {
-        var word_tmp = word;
-        if (!!word_tmp)
-        {
-            word = word_tmp[0].toUpperCase();
-            if (word_tmp.length > 1)
-            {
-                word += word_tmp.substring(1).toLowerCase();
-            }
-        }
-        return word;
-    };
-
-    this.capitalize = function (msg) {
-        var words = "";
-        if (!!msg)
-        {
-            //var msg_tmp = msg;
-            var words_list = [];
-            words = msg.split(' ');
-            
-            words.forEach(function(word) {
-                word = capitalizeWord(word);
-                words_list.push(word);
-            }); 
-
-            words = words_list.join(' ').trim();
-        }
-        return words;
-    };
-}]);
-
-
-app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFunctions) {
+app.service('sStage', ['$http', '$log', function($http, $log) {
 
     this.showErrors = function (errors)
     {
@@ -77,8 +43,8 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
                 /* Nombre de Usuario */
                 params.sources.user = params.body.user;
                 console.log(result.doc.first_name);
-                params.body.user.firstName = sFunctions.capitalize(result.doc.first_name);
-                params.body.user.lastName = sFunctions.capitalize(result.doc.last_name);
+                params.body.user.firstName = capitalize(result.doc.first_name);
+                params.body.user.lastName = capitalize(result.doc.last_name);
                 params.body.user.fullName = params.body.user.firstName + " " + params.body.user.lastName;
             })
             .error(function (data, status) {

@@ -7,9 +7,6 @@
 
 		<!-- SERVER VARIABLES -->
 		<script>
-			
-			var user = <%- JSON.stringify(user) %>;
-			var req = <%- JSON.stringify(req) %>;
 			var errors = <%- JSON.stringify(errors) %>;
 		</script>
 
@@ -38,11 +35,14 @@
     	<!-- LIBS -->
 		<script src="desktop/shared/assets/js/libs/angularjs/angular.min.js"></script>
     	<script src="desktop/shared/assets/js/libs/jquery/jquery.min.js"></script>
+		<script src="desktop/shared/assets/js/backend/functions.js"></script>
 
 		<!-- STRINGS -->
+		
 		<script src="strings/es/shared.js"></script>
+		<!--
 		<script src="strings/es/profile.js"></script>
-
+		-->
 		<!-- JS -->
 	
   		<script src="desktop/shared/assets/js/frontend/bar-user-image.js"></script>
@@ -60,8 +60,9 @@
 		<script src="desktop/profile/assets/js/frontend/edit-profile.js"></script>
 		
 		<!--AngularJS -->
+		<!--
 		<script src="desktop/shared/assets/js/backend/load.js"></script>
-		<script src="desktop/shared/assets/js/backend/functions.js"></script>
+		-->
 
 		<script src="desktop/profile/assets/js/backend/references.js" type="text/javascript"></script>
 		<script src="desktop/profile/assets/js/backend/app.js" type="text/javascript"></script>
@@ -133,7 +134,7 @@
 					<image src="desktop/shared/assets/img/bar-arrow.png" id="bar-user-arrow"></image>
 				</div>
 				<div id="bar-user-name-container">
-					<div id="bar-user-name" class="str str_name-user"></div>
+					<div id="bar-user-name" class="str str_name-user">{{body.user.firstName}}</div>
 				</div>
 				<div id="bar-user-show"></div>
 			</div>
@@ -190,7 +191,9 @@
 						<div class="lang-list">
 							<div class="str str_lang_native">{{body.user.nativeLanguage}}</div> (<div class="str str_lang_native_title">{{body.lang.nativeLangTitle}}</div>)
 							<br />
-							<div class="str" id="str_lang_spoken_list"></div>
+							<div class="str" id="str_lang_spoken_list">
+								<p ng-repeat="language in body.user.spokenLanguages" value="language">{{language}}</p>
+							</div>
 						</div>
 						<br>
 
@@ -212,15 +215,17 @@
 						<br>
 
 						<div class="lang-list">
-							<div class="str" id="str_lang_spoken_list_edit"></div>
+							<div class="str" id="str_lang_spoken_list_edit">
+								<p ng-repeat="language in body.user.spokenLanguages" value="language">{{language}}</p>
+							</div>
 						</div>
 
 						<!-- Añadir idioma que hablo -->
 						<div class="add-lang">
 							{{body.lang.locAddLang}}<br>
-							<form id="form_add_user_spoken_language" name="form_add_user_spoken_language" ng-submit="body.onAddSpokenLanguage(sSpokenLanguage)">
+							<form ng-controller="fSaveUserSpokenLanguage" id="form_add_user_spoken_language" name="form_add_user_spoken_language" ng-submit="fSaveUserSpokenLanguage.onSubmit()">
 								<select
-									ng-model="sSpokenLanguage"
+									ng-model="fSaveUserSpokenLanguage.sSpokenLanguage"
 									id="s_spoken_languages"
 									style="width:170px;"
 									name="s_spoken_languages"
@@ -263,7 +268,9 @@
 								<i><div class="str str_lang-list_empity">{{body.lang.listLangEmpity}}</div></i>
 							</div>
 							
-							<div class="str" id="str-lang-interest-list"></div>
+							<div class="str" id="str-lang-interest-list">
+								<p ng-repeat="language in body.user.interestLanguages" value="language">{{language}}</p>
+							</div>
 							<!--<div class="str str_lang-list" id="str-lang-interest-list"></div>-->
 						</div>
 						<br>
@@ -286,15 +293,17 @@
 						</div>
 
 						<div class="lang-list">
-							<div class="str str_lang-list_edit" id="str-lang-interest-list_edit"></div>
+							<div class="str str_lang-list_edit" id="str-lang-interest-list_edit">
+								<p ng-repeat="language in body.user.interestLanguages" value="language">{{language}}</p>
+							</div>
 						</div>
 
 						<!-- Añadir idioma que me interesa -->
 						<div class="add-lang">
 							{{body.lang.locAddLang}}<br>
-							<form id="form_add_user_interest_language" name="form_add_user_interest_language" ng-submit="body.onAddInterestLanguage(sInterestLanguge)">
+							<form ng-controller="fSaveUserInterestLanguage" id="form_add_user_interest_language" name="form_add_user_interest_language" ng-submit="fSaveUserInterestLanguage.onSubmit()">
 								<select
-									ng-model="sInterestLanguge"
+									ng-model="fSaveUserInterestLanguage.sInterestLanguage"
 									id="s_interest_languages"
 									style="width:170px;"
 									name="s_interest_languages"
@@ -329,7 +338,7 @@
 						<div class="usr-image-background-opacity"></div>
 
 						<div id="img-section2">
-							<div class="str_name-user_complete name-user"></div>
+							<div class="str_name-user_complete name-user">{{body.user.fullName}}</div>
 						</div>
 
 						<div id="img-section1">
@@ -421,7 +430,7 @@
 							<div id="c-description-edit">
 								<div class="str str_desc_edit_title">{{body.lang.descEditTitle}}</div>:
 
-								<form id="form_edit_user_description" name="form_edit_user_description" ng-submit="body.onEditUserDescription()">
+								<form ng-controller="fUpdateUserDescription" id="form_edit_user_description" name="form_edit_user_description" ng-submit="fUpdateUserDescription.onSubmit()">
 									<textarea ng-model="body.user.description" width="430" id="input_edit_desc" name="input_edit_desc" class="input-desc"></textarea>
 
 									<div class="save-cancel-container">

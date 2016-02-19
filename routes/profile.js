@@ -17,32 +17,7 @@ var error_adapter = functions_module.error_adapter;
 // Shared Variables
 
 router.get('/', authenticate, function (req, res) {
-  async.parallel({
-      languages: function(callback){
-          setTimeout(function(){
-              models.Language.find().sort([['name', 1]]).exec(function (err, docs) {
-                callback(null, docs);
-              })
-          }, 200);
-      },
-      countries: function(callback){
-          setTimeout(function(){
-              models.Country.find().sort([['name', 1]]).exec(function (err, docs) {
-                callback(null, docs);
-              })
-          }, 200);
-      },
-      user: function(callback) {
-          setTimeout(function(){
-              models.User.findOne({_username: req.session.username}, {password: 0}).exec(function (err, doc) {
-                callback(null, doc);
-              })
-          }, 200);
-      }
-  },
-  function(err, results) {
-  	 return res.render('profile/index.html', {forceType: "desktop", user: results.user, languages: results.languages, countries: results.countries, req: req.body, errors: ""});
-  });
+  	return res.render('profile/index.html', {forceType: "desktop", errors: ""});
 });
 
 router.post('/edit_user_nationality',function (req, res) {

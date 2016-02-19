@@ -24,19 +24,9 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	    return o;
 	};
 
-
-	
-	/*
-	refs.languages = languages;
-	refs.countries = countries;
-	refs.errors = errors;
-	refs.dinamicForms = [];
-	refs.staticForms = [];
-	*/
 	sStage.getSources(refs);
+	//sStage.(refs);
 	/*
-	sStage.load(refs);
-	*/
 	scope.onEditUserNationality = function() {
 	    var data = {"s_country": scope.strUserNationality};
 	    console.log(data);	
@@ -67,7 +57,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	    var data = {"s_spoken_language": sSpokenLanguage};
 	    console.log(data);
 
-	    /*
+	    
 	    $http.post("/profile/add_user_spoken_language", data)
 	        .success(function (result) {
 	        	refs.user = result.user;
@@ -76,7 +66,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	        .error(function (data, status) {
 	            $log.error({data: data, status: status});
 	    	});
-		*/
+		
 	};
 
 	scope.onAddInterestLanguage = function(sInterestLanguage) {
@@ -84,7 +74,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	    //var data = $(this).serializeObject();
 	    console.log(data);
 	    console.log(scope.onAddInterestLanguage);
-	    /*
+	    
 	    $http.post("/profile/add_user_interest_language", data)
 	        .success(function (result) {
 	        	refs.user = result.user;
@@ -93,13 +83,13 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	        .error(function (data, status) {
 	            $log.error({data: data, status: status});
 	    	});
-		*/
+		
 	};
 
 	scope.onRemoveInterestLanguage = function() {
 	    var data = $(this).serializeObject();
 	    console.log(data);
-	    /*
+	    
 	    $http.post("/profile/remove_interest_language", data)
 	        .success(function (result) {
 	        	refs.user = result.user;
@@ -108,13 +98,13 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	        .error(function (data, status) {
 	            $log.error({data: data, status: status});
 	    	});
-		*/
+		
 	};
 
 	scope.onRemoveSpokenLanguage = function() {
 	    var data = $(this).serializeObject();
 	    console.log(data);
-	    /*
+	    
 	    $http.post("/profile/remove_spoken_language", data)
 	        .success(function (result) {
 	        	refs.user = result.user;
@@ -123,9 +113,9 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	        .error(function (data, status) {
 	            $log.error({data: data, status: status});
 	    	});
-		*/
+		
 	};
-	/*
+	
 	scope.onSubmit = function() {
         var data = {
                      iName: $scope.iName,
@@ -159,4 +149,31 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	};
 	*/
     
+}]);
+
+app.controller('fUpdateUserDescription', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+	$scope.fUpdateUserDescription = {};
+	scope = $scope.fUpdateUserDescription;
+    refs.fUpdateUserDescription = scope;
+
+
+    scope.onSubmit = sActions.onUpdateUserDescriptionSubmit(refs);
+}]);
+
+app.controller('fSaveUserSpokenLanguage', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+	$scope.fSaveUserSpokenLanguage = {};
+	scope = $scope.fSaveUserSpokenLanguage;
+    refs.fSaveUserSpokenLanguage = scope;
+
+
+    scope.onSubmit = sActions.onSaveUserSpokenLanguageSubmit(refs);
+}]);
+
+app.controller('fSaveUserInterestLanguage', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+	$scope.fSaveUserInterestLanguage = {};
+	scope = $scope.fSaveUserInterestLanguage;
+    refs.fSaveUserInterestLanguage = scope;
+
+
+    scope.onSubmit = sActions.onSaveUserInterestLanguageSubmit(refs);
 }]);
