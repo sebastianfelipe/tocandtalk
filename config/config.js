@@ -9,13 +9,13 @@ module.exports = {
     },
 
     twitter : {
-        key       : 'your-consumer-key-here',
-        secret   : 'your-client-secret-here'
+        key       : 'ychhKfNRGdYAaiS8KWaxHQNWl',
+        secret   : '88Uo0yeBo9AqkKNgxEY10Hpk72a3VN9RiKkrANj7k922EUPWWG'
     },
 
     google : {
-        key      : 'your-secret-clientID-here',
-        secret  : 'your-client-secret-here'
+        key      : '132159203446-2n3ugu2snep4ejn074n2cgo0fb87lda2.apps.googleusercontent.com',
+        secret  : 'Bzsb9eHnzBsfe3RE_7lQ1aCE'
     }
 
 };

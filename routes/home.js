@@ -32,4 +32,20 @@ router.get('/', authenticate, function (req, res) {
   	 return res.render('home/index.html', {forceType: "desktop", user: results.user, languages: results.languages, req: req.body, errors: ""});
   });});
 
+router.get('/perfil', isLoggedIn, function(req, res) {
+        res.render('perfil.html', {
+            user : req.user // get the user out of session and pass to template
+        });
+});
+
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
+
 module.exports = router;
