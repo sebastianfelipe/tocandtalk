@@ -37,11 +37,12 @@ app.service('sFunctions', [function(){
 app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFunctions) {
 	var service = this;
 	this.showUserInf = function(params) {
+		/*
 		console.log(params.user);
 		params.body.strUserNationality = params.user.nationality || "default";
 		params.body.strUserDescription = params.user.description || "default";
 		params.body.strUserNativeLanguage = params.user.native_language || "default";
-
+		*/
 		/*
 		if (params.user.nationality)
 	    {	
@@ -243,7 +244,14 @@ app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFun
 	                params.body.user.firstName = sFunctions.capitalize(result.doc.first_name);
 	                params.body.user.lastName = sFunctions.capitalize(result.doc.last_name);
 	                params.body.user.fullName = params.body.user.firstName + " " + params.body.user.lastName;
-	            	
+	                params.body.user.nationality = result.doc.nationality;
+	                params.body.user.username = result.doc._username;
+	                params.body.user.interestLanguages = result.doc.interest_languages;
+	               	params.body.user.spokenLanguages = result.doc.spoken_languages;      
+	                params.body.user.nativeLanguage = result.doc.native_language;
+	                
+	               
+
 	            })
 	            .error(function (data, status) {
 	                $log.error({data: data, status: status});
