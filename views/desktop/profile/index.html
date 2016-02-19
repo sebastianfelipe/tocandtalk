@@ -216,7 +216,13 @@
 
 						<div class="lang-list">
 							<div class="str" id="str_lang_spoken_list_edit">
+								<!--
 								<p ng-repeat="language in body.user.spokenLanguages" value="language">{{language}}</p>
+							-->
+		            			<div ng-controller="dRemoveUserSpokenLanguage" ng-repeat="language in body.user.spokenLanguages" name="form_remove_spoken_language" class="item-lang">
+		            				<p class="subitem-lang">{{language}}</p>
+		            				<input class="subitem-lang-button" type="submit" value="{{body.lang.bRemove}}" ng-click="dRemoveUserSpokenLanguage.onClick(language)"></input>
+		            			</div>
 							</div>
 						</div>
 
@@ -241,6 +247,7 @@
 						
 						<div class="save-cancel-container lang-buttons">
 							<div id="b-cancel-spoken-lang" class="button-cancel">
+								{{body.lang.bCancel}}
 								<!--<div class="str str_button-cancel"></div>-->
 							</div>
 							<div id="b-save-spoken-lang" class="button-save str_button_ok">{{body.lang.bFinish}}</div>
@@ -294,7 +301,13 @@
 
 						<div class="lang-list">
 							<div class="str str_lang-list_edit" id="str-lang-interest-list_edit">
+								<!--
 								<p ng-repeat="language in body.user.interestLanguages" value="language">{{language}}</p>
+		            			-->
+		            			<div ng-controller="dRemoveUserInterestLanguage" ng-repeat="language in body.user.interestLanguages" class="item-lang">
+		            				<p class="subitem-lang">{{language}}</p>
+		            				<input class="subitem-lang-button" type="submit" value="{{body.lang.bRemove}}" ng-click="dRemoveUserInterestLanguage.onClick(language)"></input>
+		            			</div>
 							</div>
 						</div>
 
@@ -319,6 +332,7 @@
 
 						<div class="save-cancel-container lang-buttons">
 							<div id="b-cancel-interest-lang" class="button-cancel">
+								{{body.lang.bCancel}}
 								<!--<div class="str str_button-cancel"></div>-->
 							</div>
 							<div id="b-save-interest-lang" class="button-save str_button_ok">{{body.lang.bFinish}}</div>

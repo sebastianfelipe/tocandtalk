@@ -267,7 +267,8 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
             $http.post('/profile/add_user_spoken_language', data)
                 .success(function (result) {
                     params.errors = result.errors;
-                    params.sources.user.spoken_languages.push(result.req.s_spoken_languages);
+                    params.sources.user = result.user;
+                    //params.sources.user.spoken_languages.push(result.req.s_spoken_languages);
                     sStage.reload(params);
                 })
                 .error(function (data, status) {
@@ -286,12 +287,53 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
             $http.post('/profile/add_user_interest_language', data)
                 .success(function (result) {
                     params.errors = result.errors;
-                    params.sources.user.interest_languages.push(result.req.s_interest_languages);
+                    params.sources.user = result.user;
+                    //params.sources.user.interest_languages.push(result.req.s_interest_languages);
                     sStage.reload(params);
                 })
                 .error(function (data, status) {
                     $log.error({data: data, status: status});
             });
+        };
+	};
+
+	this.onRemoveUserSpokenLanguageClick = function (params) {
+        return function (id) {
+            var data = {
+                         remove_spoken_language: id,
+                       };
+            console.log(data);
+            $http.post('/profile/remove_spoken_language', data)
+                .success(function (result) {
+                	console.log(result);
+                    params.errors = result.errors;
+                    params.sources.user = result.user;
+                    sStage.reload(params);
+                })
+                .error(function (data, status) {
+                    $log.error({data: data, status: status});
+            });
+        };
+	};
+
+	this.onRemoveUserInterestLanguageClick = function (params) {
+        return function (id) {
+            var data = {
+                         remove_interest_language: id,
+                       };
+            console.log(data);
+            
+            $http.post('/profile/remove_interest_language', data)
+                .success(function (result) {
+                	console.log(result);
+                    params.errors = result.errors;
+                    params.sources.user = result.user;
+                    sStage.reload(params);
+                })
+                .error(function (data, status) {
+                    $log.error({data: data, status: status});
+            });
+			
         };
 	};
 }]);

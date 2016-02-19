@@ -177,3 +177,22 @@ app.controller('fSaveUserInterestLanguage', ['$scope', '$http', '$log', 'sStage'
 
     scope.onSubmit = sActions.onSaveUserInterestLanguageSubmit(refs);
 }]);
+
+app.controller('dRemoveUserSpokenLanguage', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+	$scope.dRemoveUserSpokenLanguage = {};
+	scope = $scope.dRemoveUserSpokenLanguage;
+    refs.dRemoveUserSpokenLanguage = scope;
+
+    scope.onClick = sActions.onRemoveUserSpokenLanguageClick(refs);
+}]);
+
+app.controller('dRemoveUserInterestLanguage', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+	$scope.dRemoveUserInterestLanguage = {};
+	scope = $scope.dRemoveUserInterestLanguage;
+    refs.dRemoveUserInterestLanguage = scope;
+
+    scope.onClick = sActions.onRemoveUserInterestLanguageClick(refs);
+}]);
+
+
+
