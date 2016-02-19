@@ -2,6 +2,11 @@
 // CONTROLLERS
 
 app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $http, $log, sStage) {
+	 
+	refs.body = scope = $scope.body = {};
+	
+	scope.user = {};
+	
 	 $.fn.serializeObject = function()
 	{
 	    var o = {};
@@ -19,17 +24,19 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	    return o;
 	};
 
-	$scope.body = {};
-	scope = $scope.body;
 
-	refs.user = user;
+	
+	/*
 	refs.languages = languages;
 	refs.countries = countries;
 	refs.errors = errors;
 	refs.dinamicForms = [];
 	refs.staticForms = [];
-	refs.body = $scope.body;
-
+	*/
+	sStage.getSources(refs);
+	/*
+	sStage.load(refs);
+	*/
 	scope.onEditUserNationality = function() {
 	    var data = {"s_country": scope.strUserNationality};
 	    console.log(data);	
@@ -59,6 +66,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	scope.onAddSpokenLanguage = function(sSpokenLanguage) {
 	    var data = {"s_spoken_language": sSpokenLanguage};
 	    console.log(data);
+
 	    /*
 	    $http.post("/profile/add_user_spoken_language", data)
 	        .success(function (result) {
@@ -75,6 +83,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	    var data = {"s_interest_language": sInterestLanguage};
 	    //var data = $(this).serializeObject();
 	    console.log(data);
+	    console.log(scope.onAddInterestLanguage);
 	    /*
 	    $http.post("/profile/add_user_interest_language", data)
 	        .success(function (result) {
@@ -149,5 +158,5 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             });
 	};
 	*/
-    sStage.load(refs);
+    
 }]);

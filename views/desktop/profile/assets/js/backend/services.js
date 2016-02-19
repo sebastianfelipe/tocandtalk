@@ -1,6 +1,40 @@
 // SERVICES
 
-app.service('sStage', ['$http', '$log', function($http, $log) {
+app.service('sFunctions', [function(){
+    this.capitalizeWord = function (word) {
+        var word_tmp = word;
+        if (!!word_tmp)
+        {
+            word = word_tmp[0].toUpperCase();
+            if (word_tmp.length > 1)
+            {
+                word += word_tmp.substring(1).toLowerCase();
+            }
+        }
+        return word;
+    };
+
+    this.capitalize = function (msg) {
+        var words = "";
+        if (!!msg)
+        {
+            //var msg_tmp = msg;
+            var words_list = [];
+            words = msg.split(' ');
+            
+            words.forEach(function(word) {
+                word = capitalizeWord(word);
+                words_list.push(word);
+            }); 
+
+            words = words_list.join(' ').trim();
+        }
+        return words;
+    };
+}]);
+
+
+app.service('sStage', ['$http', '$log', 'sFunctions', function($http, $log, sFunctions) {
 	var service = this;
 	this.showUserInf = function(params) {
 		console.log(params.user);
@@ -105,6 +139,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
     this.load = function (params)
     {
 	    /* Idiomas que hablo */
+	    /*
 	    $.each(params.countries, function(_, country) {
 	        $('#s_country').append(new Option(country.name, country.name));
 	    });
@@ -122,7 +157,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 	            text : item.name 
 	        }));
 	    });
-
+		*/
 	    if ($('#img-section2').height() >= 40) {
 	        var new_margin = 100 - (($('#img-section2').height() - 36) / 2);
 	        $('#img-section2').css("margin-top", new_margin + "px");
@@ -198,4 +233,56 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 	    }
 	    */
 	};
+	this.getSources = function (params)
+	    {
+	        $http.get('/api/get/user')
+	            .success(function (result) {
+	                /* Nombre de Usuario */
+	                params.sources.user = params.body.user;
+	                console.log(result.doc);
+	                params.body.user.firstName = sFunctions.capitalize(result.doc.first_name);
+	                params.body.user.lastName = sFunctions.capitalize(result.doc.last_name);
+	                params.body.user.fullName = params.body.user.firstName + " " + params.body.user.lastName;
+	            	
+	            })
+	            .error(function (data, status) {
+	                $log.error({data: data, status: status});
+            });
+
+
+	        $http.get('/api/get/lang/'+params.meta.lang+'/'+params.meta.view)
+	            .success(function (result) {
+	                params.body.lang = result;
+	                document.title = params.body.lang.title;
+	            })
+	            .error(function (data, status) {
+	                $log.error({data: data, status: status});
+	            });
+	            
+	       
+	        $http.get('/api/get/languages')
+	            .success(function (result) {
+	                params.sources.languages = result.docs;
+	                params.body.languages = params.sources.languages;
+	            })
+	            .error(function (data, status) {
+	                $log.error({data: data, status: status});
+	            });
+
+	        $http.get('/api/get/countries')
+	            .success(function (result) {
+	                params.sources.countries = result.docs;
+	                params.body.countries = params.sources.countries;
+	            })
+	            .error(function (data, status) {
+	                $log.error({data: data, status: status});
+	            });
+    		
+    };
+
+
+
+
+
+
 }]);

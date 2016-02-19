@@ -7,8 +7,7 @@
 
 		<!-- SERVER VARIABLES -->
 		<script>
-			var languages = <%- JSON.stringify(languages) %>;
-			var countries = <%- JSON.stringify(countries) %>;
+			
 			var user = <%- JSON.stringify(user) %>;
 			var req = <%- JSON.stringify(req) %>;
 			var errors = <%- JSON.stringify(errors) %>;
@@ -184,12 +183,12 @@
 					<div id="c-spoken-languages">
 						
 						<div class="lang-title">
-							<div class="str str_lang_spoken_title"></div>
+							<div class="str str_lang_spoken_title">{{body.lang.spokenLangTitle}}</div>
 						</div>
 						<br>
 
 						<div class="lang-list">
-							<div class="str str_lang_native">{{body.strUserNativeLanguage}}</div> (<div class="str str_lang_native_title"></div>)
+							<div class="str str_lang_native">{{body.strUserNativeLanguage}}</div> (<div class="str str_lang_native_title">{{body.lang.nativeLangTitle}}</div>)
 							<br />
 							<div class="str" id="str_lang_spoken_list"></div>
 						</div>
@@ -197,7 +196,7 @@
 
 						<div class="lang-edit-button">
 							<div id="b-edit-spoken-lang" class="button-edit">
-								<div class="str str_button-edit_lang"></div>
+								<div class="str str_button-edit_lang">{{body.lang.bEditLang}}</div>
 							</div>
 						</div>
 
@@ -208,7 +207,7 @@
 					-->
 					<div id="c-spoken-languages-edit">
 						<div class="lang-title">
-							<div class="str str_edit_lang_spoken_title"></div>
+							<div class="str str_edit_lang_spoken_title">{{body.lang.editSpokenLangTitle}}</div>
 						</div>
 						<br>
 
@@ -218,7 +217,7 @@
 
 						<!-- Añadir idioma que hablo -->
 						<div class="add-lang">
-							Añadir idioma<br>
+							{{body.lang.locAddLang}}<br>
 							<form id="form_add_user_spoken_language" name="form_add_user_spoken_language" ng-submit="body.onAddSpokenLanguage(sSpokenLanguage)">
 								<select
 									ng-model="sSpokenLanguage"
@@ -227,10 +226,11 @@
 									name="s_spoken_languages"
 									class="s_languages input-sel-contry"
 									required="">
-									<option value="" disabled="" selected="" hidden="">Idioma</option>
+									<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
+									<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
 								</select>
 
-								<input type="submit" value="Añadir" class="button-add-lang">
+								<input type="submit" value="{{body.lang.bAdd}}" class="button-add-lang">
 							</form>
 						</div>
 						
@@ -238,7 +238,7 @@
 							<div id="b-cancel-spoken-lang" class="button-cancel">
 								<!--<div class="str str_button-cancel"></div>-->
 							</div>
-							<div id="b-save-spoken-lang" class="button-save str_button_ok"></div>
+							<div id="b-save-spoken-lang" class="button-save str_button_ok">{{body.lang.bFinish}}</div>
 						</div>
 
 					</div>
@@ -253,16 +253,16 @@
 					<div id="c-interest-languages">
 						
 						<div class="lang-title">
-							<div class="str str_lang_interest_title"></div>
+							<div class="str str_lang_interest_title">{{body.lang.interestLangTitle}}</div>
 						</div>
 						<br>
 
 						<div class="lang-list">
-							<!--
+							
 							<div class="lang-empity">
-								<i><div class="str str_lang-list_empity"></div></i>
+								<i><div class="str str_lang-list_empity">{{body.lang.listLangEmpity}}</div></i>
 							</div>
-							-->
+							
 							<div class="str" id="str-lang-interest-list"></div>
 							<!--<div class="str str_lang-list" id="str-lang-interest-list"></div>-->
 						</div>
@@ -270,8 +270,8 @@
 
 						<div class="lang-edit-button">
 							<div id="b-edit-interest-lang" class="button-edit">
-								<div class="str str_button-edit_lang" id="str_button-edit_lang_int"></div>
-								<div class="str str_button-add-lang" id="str-button-add-lang-int"></div>
+								<div class="str str_button-edit_lang" id="str_button-edit_lang_int">{{body.lang.bEditLang}}</div>
+								<!--<div class="str str_button-add-lang" id="str-button-add-lang-int">kfdshklflsfhkshkldhflks</div>-->
 							</div>
 						</div>
 
@@ -282,7 +282,7 @@
 					-->
 					<div id="c-interest-languages-edit">
 						<div class="lang-title">
-							<div class="str str_edit_lang_interest_title"></div>
+							<div class="str str_edit_lang_interest_title">{{body.lang.editInterestLangTitle}}</div>
 						</div>
 
 						<div class="lang-list">
@@ -291,7 +291,7 @@
 
 						<!-- Añadir idioma que me interesa -->
 						<div class="add-lang">
-							Añadir idioma<br>
+							{{body.lang.locAddLang}}<br>
 							<form id="form_add_user_interest_language" name="form_add_user_interest_language" ng-submit="body.onAddInterestLanguage(sInterestLanguge)">
 								<select
 									ng-model="sInterestLanguge"
@@ -300,10 +300,11 @@
 									name="s_interest_languages"
 									class="s_languages input-sel-contry"
 									required="">
-									<option value="" disabled="" selected="" hidden="">Idioma</option>
+									<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
+									<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
 								</select>	
 
-								<input type="submit" value="Añadir" class="button-add-lang">
+								<input type="submit" value="{{body.lang.bAdd}}" class="button-add-lang">
 							</form>
 						</div>
 
@@ -311,7 +312,7 @@
 							<div id="b-cancel-interest-lang" class="button-cancel">
 								<!--<div class="str str_button-cancel"></div>-->
 							</div>
-							<div id="b-save-interest-lang" class="button-save str_button_ok"></div>
+							<div id="b-save-interest-lang" class="button-save str_button_ok">{{body.lang.bFinish}}</div>
 						</div>
 					</div>
 				</div>
@@ -347,7 +348,7 @@
 							<div id="c-location">
 								<div id="usr-loc-section3">
 									<div id="b-edit-location" class="button-edit">
-										<div class="str str_button-edit"></div>
+										<div class="str str_button-edit">{{body.lang.bEdit}}</div>
 									</div>
 								</div>
 
@@ -356,7 +357,7 @@
 								</div>
 
 								<div id="usr-loc-section1">
-									<div class="str str_loc_title"></div>:
+									<div class="str str_loc_title">{{body.lang.locTitle}}</div>:
 								</div>
 							</div>
 
@@ -373,16 +374,17 @@
 											required=""
 											class="input-sel-contry">
 											<option disabled="" selected="" hidden="" value="{{body.strUserNationality}}">{{body.strUserNationality}}</option>
+											<option ng-repeat="country in body.countries" value="{{country.name}}">{{country.name}}</option>
 										</select>
 									</div>
 
-									<div class="str str-location-edit-title"></div>:
+									<div class="str str-location-edit-title">{{body.lang.locEditTitle}}</div>:
 
 									<div class="save-cancel-container">
 										<div id="b-cancel-location" class="button-cancel">
-											<div class="str str_button-cancel"></div>
+											<div class="str str_button-cancel">{{body.lang.bCancel}}</div>
 										</div>
-										<input type="submit" id="b-save-location" class="button-save str_button-save">
+										<input type="submit" id="b-save-location" value="{{body.lang.bSave}}" class="button-save str_button-save"></input>
 									</div>
 								</form>
 							</div>
@@ -398,12 +400,12 @@
 								
 								<div id="usr-desc-section3">
 									<div id="b-edit-description" class="button-edit">
-										<div class="str str_button-edit"></div>
+										<div class="str str_button-edit">{{body.lang.bEdit}}</div>
 									</div>
 								</div>
 
 								<div id="usr-desc-section1">
-									<div class="str str_desc_title"></div>:
+									<div class="str str_desc_title">{{body.lang.descTitle}}</div>:
 								</div>
 
 								<div id="usr-desc-section2">
@@ -417,16 +419,16 @@
 								Editar Descripción
 							-->
 							<div id="c-description-edit">
-								<div class="str str_desc_edit_title"></div>:
+								<div class="str str_desc_edit_title">{{body.lang.descEditTitle}}</div>:
 
 								<form id="form_edit_user_description" name="form_edit_user_description" ng-submit="body.onEditUserDescription()">
 									<textarea ng-model="body.strUserDescription" ng-model="textUserDescription" width="430" id="input_edit_desc" name="input_edit_desc" class="input-desc"></textarea>
 
 									<div class="save-cancel-container">
 										<div id="b-cancel-description" class="button-cancel">
-											<div class="str str_button-cancel"></div>
+											<div class="str str_button-cancel">{{body.lang.bCancel}}</div>
 										</div>
-										<input type="submit" id="b-save-description" class="button-save str_button-save">
+										<input type="submit" id="b-save-description" value="{{body.lang.bSave}}" class="button-save str_button-save"></input>
 									</div>
 								</form>
 							</div>
