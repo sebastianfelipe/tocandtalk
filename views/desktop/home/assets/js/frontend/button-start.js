@@ -1,10 +1,10 @@
-/*	Rota #button-start_img al pasar el puntero del
+/*	Rota #button-start-img al pasar el puntero del
 	mouse encima.
 	*/
 $(document).ready(function() {
 	
 	function world_start() {
-		var $this = $('#button-start_img');
+		var $this = $('#button-start-img');
 
 		var interval = null;
 	    var counter = 0;

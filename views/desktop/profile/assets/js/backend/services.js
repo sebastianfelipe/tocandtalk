@@ -51,7 +51,6 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 	                $log.error({data: data, status: status});
             });
 
-
 	        $http.get('/api/get/lang/'+params.meta.lang+'/'+params.meta.view)
 	            .success(function (result) {
 	                params.body.lang = result;
@@ -61,7 +60,6 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 	                $log.error({data: data, status: status});
 	            });
 	            
-	       
 	        $http.get('/api/get/languages')
 	            .success(function (result) {
 	                params.sources.languages = result.docs;
@@ -113,7 +111,9 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
             
             $http.post('/profile/edit_user_description', data)
                 .success(function (result) {
+                    console.log(result);
                     params.errors = result.errors;
+                    params.sources.user = result.user;
                     sStage.reload(params);
                 })
                 .error(function (data, status) {

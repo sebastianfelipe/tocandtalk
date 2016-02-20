@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html ng-app="tocandtalk">
+	<header>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Toc&Talk!</title>
+		<meta name="application-name" content="Toc&Talk!"/>
+
+		<!-- Icons -->
+		<link rel="icon" type="image/png" href="desktop/shared/assets/img/icons/favicon.png" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios.png" rel="apple-touch-icon" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-76x76.png" rel="apple-touch-icon" sizes="76x76" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-android-192x192.png" rel="icon" sizes="192x192" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
+
+		<script type="text/javascript">
+          var host_name = <%- JSON.stringify(host_name) %> ;
+          var server_ip = <%- JSON.stringify(server_ip) %> ;
+          var protocol = <%- JSON.stringify(protocol) %> ;
+          var server_ports = <%- JSON.stringify(server_ports) %> ;
+          var secure = <%- JSON.stringify(secure) %> ;
+		</script>
+        
+		<!-- CSS -->
+		<link rel="stylesheet" href="desktop/shared/assets/css/fonts.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/shared/assets/css/general.css" type="text/css"/>
+        <link rel="stylesheet" href="desktop/shared/assets/css/custom-scrollbar/jquery.mCustomScrollbar.min.css" type="text/css"/>
+		
+		<link rel="stylesheet" href="desktop/talk/assets/css/talk.css" type="text/css"/>
+        <link rel="stylesheet" href="desktop/talk/assets/css/load-screen.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/talk/assets/css/video.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/talk/assets/css/panel.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/talk/assets/css/buttons.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/talk/assets/css/buttons-dialog.css" type="text/css"/>
+        <link rel="stylesheet" href="desktop/talk/assets/css/volume.css" type="text/css"/>
+        <link rel="stylesheet" href="desktop/talk/assets/css/panel-messages.css" type="text/css"/>
+        <link rel="stylesheet" href="desktop/talk/assets/css/panel-profile.css" type="text/css"/>
+
+		<!-- LIBS -->
+        <script src="desktop/shared/assets/js/libs/jquery/jquery.min.js"></script>
+        <script src="desktop/shared/assets/js/libs/angularjs/angular.min.js"></script>
+        <script src="desktop/shared/assets/js/libs/angularjs/angular-animate.min.js"></script>
+        <script src="desktop/shared/assets/js/libs/jquery/jquery-ui.min.js"></script>
+		<script src="desktop/shared/assets/js/libs/react/react.min.js"></script>
+        <script src="desktop/shared/assets/js/libs/background-blur/background-blur.min.js"></script>
+        <script src="desktop/shared/assets/js/libs/custom-scrollbar/jquery.mCustomScrollbar.min.js"></script>
+        
+        <!-- STRINGS -->
+		<script src="strings/es/shared.js"></script>
+		<script src="strings/es/talk.js"></script>
+        
+        <!-- JS -->
+        <script src="desktop/shared/assets/js/backend/functions.js"></script>
+        <script src="desktop/talk/assets/js/frontend/load-screen-functions.js"></script>
+        <script src="desktop/talk/assets/js/frontend/chat.js"></script>
+        
+        <script src="desktop/talk/assets/js/frontend/controller.js"></script>
+
+		<script src="node_modules/webrtc-adapter-test/adapter.js"></script>
+
+		<script src="socket.io/socket.io.js"></script>
+		<script src="peer.js"></script>
+		<script src="shared/assets/js/backend/references.js"></script>
+		<script src="shared/assets/js/backend/callbacks.js"></script>
+		<script src="shared/assets/js/backend/functions.js"></script>
+		<script src="shared/assets/js/backend/main.js"></script>
+        
+        <script src="desktop/talk/assets/js/frontend/volume.js"></script>
+        <script src="desktop/talk/assets/js/frontend/buttons-dialog.js"></script>
+        <script src="desktop/talk/assets/js/frontend/buttons.js"></script>
+        <script src="desktop/talk/assets/js/frontend/panel.js"></script>
+        <script src="desktop/talk/assets/js/frontend/user-image.js"></script>
+        
+        <script src="desktop/talk/assets/js/frontend/load-screen.js"></script>
+        <script src="desktop/talk/assets/js/frontend/window.js"></script>
+        
+		<!--<script src="desktop/shared/assets/js/load.js"></script>-->
+	</header>
+
+	<body id="TalkController" ng-controller="TalkController">
+        <!-- Load -->
+        <div id="load_screen">
+            <!--
+            <button type="text" id="load_skip" style="position:absolute; top:0px; left:0px; margin:16px;">Saltar pantalla de carga</button>
+            -->
+            <div id="world_container">
+                <image src="desktop/talk/assets/img/mundo.svg" id="world"></image>
+            </div>
+            <image src="desktop/shared/assets/img/tocandtalk-logo.png" id="load_logo"></image><br>
+            <txtl>
+                Buscando usuarios
+                <div id="load_point1" class="load_point">.</div>
+                <div id="load_point2" class="load_point">.</div>
+                <div id="load_point3" class="load_point">.</div>   
+            </txtl><br>
+            
+            <div id="load_button_exit">
+                <a href="/" title="Salir">
+                    <image src="desktop/talk/assets/img/button-exit-blue.svg" id="load_b_icon_exit"></image>
+                </a>
+            </div>
+			<div id="load_video_l"></div>
+        </div>
+        
+		<!-- Video Remoto -->
+		<video id="remote-video" sources="" autoplay=""></video>
+		<!-- Video Local -->
+		<video id="local-video" muted="" sources="" autoplay=""></video>
+		<div id="video_s"></div>
+		<!-- Logo -->
+		<image src="desktop/talk/assets/img/tocandtalk-logo.png" id="logo_black"></image>
+
+		<!-- Botones -->
+		<div id="buttons_container_above">
+			<a href="/" title="Salir">
+				<div id="button_exit">
+					<image src="desktop/talk/assets/img/button-exit.svg" id="b_icon_exit"></image>
+				</div>
+			</a>
+		</div>
+        
+		<div id="buttons_container_below">
+            
+			<div id="b_dialog_container">
+				<div id="b_dialog_vol" class="b_dialog">
+					<bt>Volumen</bt>
+				</div>
+                <image src="desktop/talk/assets/img/arrow-button-dialog.svg" class="b_dialog_arrow" id="b_d_arrow_vol"></image>
+
+				<div id="b_dialog_fullscr" class="b_dialog">
+					<bt>Pantalla completa</bt>
+				</div>
+                <div id="b_dialog_fullscr_exit" class="b_dialog">
+					<bt>Salir de pantalla completa</bt>
+				</div>
+                <image src="desktop/talk/assets/img/arrow-button-dialog.svg" class="b_dialog_arrow" id="b_d_arrow_fullscr"></image>
+                <image src="desktop/talk/assets/img/arrow-button-dialog.svg" class="b_dialog_arrow" id="b_d_arrow_fullscr_exit"></image>
+
+				<div id="b_dialog_mic" class="b_dialog">
+					<bt>Deshabilitar Micrófono</bt>
+				</div>
+                <div id="b_dialog_mic_off" class="b_dialog">
+					<bt>Habilitar Micrófono</bt>
+				</div>
+                <image src="desktop/talk/assets/img/arrow-button-dialog.svg" class="b_dialog_arrow" id="b_d_arrow_mic"></image>
+                <image src="desktop/talk/assets/img/arrow-button-dialog.svg" class="b_dialog_arrow" id="b_d_arrow_mic_off"></image>
+
+				<div id="b_dialog_video" class="b_dialog">
+					<bt>Deshabilitar Webcam</bt>
+				</div>
+                <div id="b_dialog_video_off" class="b_dialog">
+					<bt>Habilitar Webcam</bt>
+				</div>
+                <image src="desktop/talk/assets/img/arrow-button-dialog.svg" class="b_dialog_arrow" id="b_d_arrow_video"></image>
+                <image src="desktop/talk/assets/img/arrow-button-dialog.svg" class="b_dialog_arrow" id="b_d_arrow_video_off"></image>
+
+				<div id="b_dialog_next" class="b-dialog">
+					<bt>Siguiente usuario</bt>
+				</div>
+                <image src="desktop/talk/assets/img/arrow-button-dialog.svg" class="b_dialog_arrow" id="b_d_arrow_next"></image>
+			</div>
+                
+			<br>
+            <div id="buttons_ctr_cont">
+                <div id="controls_bar">
+                    <!-- Volumen -->
+                    <div id="button_vol" class="control_icon_i ic01"></div>
+                    <image src="desktop/talk/assets/img/button-volume-up.svg" id="b_icon_vol" class="control_icon ic01 icon_volume_up"></image>
+                    <image src="desktop/talk/assets/img/button-volume-down.svg" id="b_icon_vol_m" class="control_icon ic01 icon_volume_down"></image>
+                    <image src="desktop/talk/assets/img/button-volume-mute.svg" id="b_icon_vol_mute" class="control_icon ic01 icon_volume_mute"></image>
+                    <image src="desktop/talk/assets/img/button-volume-off.svg" id="b_icon_vol_off" class="control_icon ic01 icon_volume_off"></image>
+                    
+                    <!-- Pantalla completa -->
+                    <image src="desktop/talk/assets/img/button-full-screen.svg" id="b_icon_fullscr" class="control_icon ic02 b_icon_click"></image>
+                    <image src="desktop/talk/assets/img/button-full-screen-exit.svg" id="b_icon_fullscr_exit" class="control_icon ic02 b_icon_click"></image>
+                    
+                    <div id="control_sep"></div>
+
+                    <!-- Micrófono -->
+                    <image src="desktop/talk/assets/img/button-mic.svg" id="b_icon_mic" class="control_icon ic03 b_icon_click"></image>
+                    <image src="desktop/talk/assets/img/button-mic-off.svg" id="b_icon_mic_off" class="control_icon ic03 b_icon_click"></image>
+                    <image src="desktop/talk/assets/img/button-mic-none.svg" id="b_icon_mic_none" class="control_icon ic03"></image>
+                    
+                    <!-- Video -->
+                    <image src="desktop/talk/assets/img/button-videocam.svg" id="b_icon_video" class="control_icon ic04 b_icon_click"></image>
+                    <image src="desktop/talk/assets/img/button-videocam-off.svg" id="b_icon_video_off" class="control_icon ic04 b_icon_click"></image>
+                    <image src="desktop/talk/assets/img/button-videocam-none.svg" id="b_icon_video_none" class="control_icon ic04"></image>
+                </div>
+                <div id="button_next">
+                    <!-- <image src="desktop/talk/assets/img/button_next.svg" id="b_icon_next" class="control_icon"></image> -->
+                    <input id="search" type="image" src="desktop/talk/assets/img/button-next.svg" class="control_icon" ng-click="nextUser()">
+                </div>
+                <div class="button_none"></div>
+            </div>
+            
+            <!-- Imagen de Perfil -->
+            <div id="usr_img"></div>
+            <div id="chat_notification"></div>
+		</div>
+        
+        <div id="b_dialog_mic_none" class="b_dialog" style="position:fixed;">
+            <div class="txt_t">Micrófono no disponible</div>
+            <div class="txt_p">Verifique si autorizó el acceso al</div>
+            <div class="txt_p">micrófono desde su navegador Web</div>
+            <div class="txt_p">o si está funcionando correctamente.</div>
+        </div>
+        
+        <div id="b_dialog_video_none" class="b_dialog" style="position:fixed;">
+            <div class="txt_t">Webcam no disponible</div>
+            <div class="txt_p">Verifique si autorizó el acceso a</div>
+            <div class="txt_p">la cámara desde su navegador Web</div>
+            <div class="txt_p">o si está funcionando correctamente.</div>
+        </div>
+        
+        <!-- Barra de volumen -->
+        <div id="volume_control">
+            <image src="desktop/talk/assets/img/button-volume-up.svg" id="vol_ctr_up" class="volume_ctr_icon vol_ctr icon_volume_up" title="Mute"></image>
+            <image src="desktop/talk/assets/img/button-volume-down.svg" id="vol_ctr_down" class="volume_ctr_icon vol_ctr icon_volume_down" title="Mute"></image>
+            <image src="desktop/talk/assets/img/button-volume-mute.svg" id="vol_ctr_mute" class="volume_ctr_icon vol_ctr icon_volume_mute" title="Mute"></image>
+            <image src="desktop/talk/assets/img/button-volume-off.svg" id="vol_ctr_off" class="volume_ctr_icon icon_volume_off"></image>
+            <section id="volume_slide">	
+                <div id="slider"></div> <!-- the Slider -->
+            </section>
+            <span class="tooltip"></span>
+        </div>
+
+		<!-- Panel de Mensajes y Perfil -->
+        <image src="desktop/talk/assets/img/panel-arrow.svg" id="panel_arrow"></image>
+        <div id="panel">
+            <div id="panel_tab_container">
+                
+                <div id="p_tab_msg" class="panel_tab_item">
+                    <div id="p_tab_msg_sel" class="panel_tab_sel"></div>
+                    <div class="panel_tab_txt">
+                        Chat
+                    </div>
+                </div>
+                
+
+                <div id="p_tab_prof" class="panel_tab_item">
+                    <div id="p_tab_prof_sel" class="panel_tab_sel"></div>
+                    <div class="panel_tab_txt">
+                        Perfil
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Chat -->
+            <div id="panel_cont_chat" class="panel_cont">
+                
+                <div id="p_msg_container">
+                    <div class="p_msg_list">
+                        
+                        <div ng-repeat="message in messages" update-chat class="animate-repeat">                                
+                            <div class="msg_bubble_chat msg_b_chat_{{message.type}}">
+                                <image src="desktop/talk/assets/img/msg-{{message.type}}-arrow.svg" class="msg_b_arrow_{{message.type}}"></image>
+                                {{message.content}}    
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="p_msg_send_container">
+                    <image src="desktop/talk/assets/img/msg-send-arrow.svg" id="msg_b_send_arrow"></image>
+
+                    <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="newMsg.content" ng-enter="sendMessage()">
+                    <div id="msg_send_button">
+                        <input type="image" src="desktop/talk/assets/img/button-next.svg" class="msg_send_button_img" id="send-message" ng-model="newMsg.content" ng-click="sendMessage()">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Perfil -->
+            <div id="panel_cont_profile" class="panel_cont">
+                <div id="p_prof_conteiner">
+  
+                    <div id="p_prof_img_cover">
+                        <image id="p_prof_img_usr"></image>
+                        <br>
+                        {{usr.first_name | capitalize}} {{usr.last_name | capitalize}}
+                    </div>
+                    
+                    <div class="p_prof_card">
+                        <div style=
+                            "position: absolute;
+                             display: inline-block;
+                             width: 80px;
+                             margin-bottom: 7px;">
+                            <tc>Ubicación:</tc>
+                        </div>
+                        <div style=
+                            "position: relative;
+                             display: inline-block;
+                             width: 108px;
+                             margin-bottom: 7px;
+                             margin-left: 80px;">
+                            {{usr.country | capitalize}}
+                        </div>
+                        
+                        <br>
+                        <div style=
+                            "position: absolute;
+                             display: inline-block;
+                             width: 80px;">
+                            <tc>Sexo:</tc>
+                        </div>
+                        <div style=
+                            "position: relative;
+                             display: inline-block;
+                             width: 108px;
+                             margin-left: 80px;">
+                            {{usr.sex | capitalize}}
+                        </div>
+                        
+                    </div>
+                    <div class="p_prof_card" ng-show='usr.description != "" && usr.description != null'>
+                        <tc>Descripción:</tc>
+                        <br>
+                        <div style=
+                            "position: relative;
+                             display: inline-block;
+                             margin-top: 6px;
+                             margin-left: 12px;">
+                            <ptd>{{usr.description}}</ptd>
+                        </div>
+                        
+                    </div>
+                    <div class="p_prof_card">
+                        <tc>Idiomas que hablo:</tc>
+                        <br>
+                        <div style=
+                            "position: relative;
+                             display: inline-block;
+                             margin-left: 12px;
+                             margin-top: 4px;">
+                            <div style="margin-top:2px; width:100%;">
+                                {{usr.native_language | capitalize}} (Nativo)
+                            </div>
+                            <div style="margin-top:3px; width:100%;" ng-repeat="spoken_language in usr.spoken_languages">
+                                {{spoken_language | capitalize}}
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="p_prof_card" ng-show="usr.interest_languages != null">
+                        <tc>Idiomas que me interesan:</tc>
+                        <br>
+                        
+                        <div style=
+                            "position: relative;
+                             display: inline-block;
+                             margin-left: 12px;
+                             margin-top: 4px;">
+                            <div style="margin-top:3px; width:100%;" ng-repeat="interest_language in usr.interest_languages">
+                                {{interest_language | capitalize}}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="position: relative;
+                                width: 188px;
+                                height: 1px;
+                                margin-left: 10px;
+                                margin-top: 8px;">
+                    </div>
+                    
+                    <div id="p_prof_img_cover_background" class="p_prof_img_cover_background"></div>
+                    <div id="p_prof_img_cover_black"></div>
+                    
+                </div>
+                
+                <div id="p_prof_foo"></div>
+            </div>
+            
+        </div>
+
+	</body>
+</html>
