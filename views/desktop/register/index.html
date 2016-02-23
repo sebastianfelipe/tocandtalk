@@ -140,13 +140,14 @@
 					<!-- Info -->
 					<div class="info" id="infoUsername">
 						<div class="info-content">
-							Ingrese un nombre de usuario.
+							<str class="str"> {{body.lang.infoUsernameStandar}}</str>
+							
 							<div class="text-space"></div>
-							Mínimo 8 caracteres.
+							<str class="str"> {{body.lang.infoUsernameLength}}</str>
 							<div class="text-space"></div>
-							Pueden ser sólo números (0-9) o letras (a-z), sin espacios.
+							<str class="str"> {{body.lang.infoUsernameFormat}}</str>
 							<div class="text-space"></div>
-							No se distinguen mayúsculas y minúsculas.
+							<str class="str"> {{body.lang.infoUsernameFormatText}}</str>
 						</div>
 						<image src="desktop/register/assets/img/info-tip.png" class="info-tip"></image>
 					</div>
@@ -172,15 +173,18 @@
 				<!-- Error Nombre de usuario -->
 				<div id="eUsernameUsernameUnique" class="error-msg error-l">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					Este nombre de usuario ya está registrado. Intente con otro.
+					<str class="str"> {{body.lang.eUsernameUsernameUnique}}</str>
 				</div>
-
+				
+				<!-- 
 				<div id="eUsernameUsernameFormat" class="error-msg error-l">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					Nombre de usuario inválido. 
+					
+					Nombre de usuario inválidoooooooooooooooo. 
 					Ingrese sólo números (0-9) o letras (a-z). 
 					Mínimo 8 caracteres y máximo 25.
 				</div>
+				-->
 
 				<!-- EMAIL -->
 
@@ -188,9 +192,10 @@
 					<!-- Info -->
 					<div class="info" id="infoEmail">
 						<div class="info-content">
-							Ingrese su dirección de correo electrónico.
-							<div class="text-space"></div>
-							Por ejemplo: hola@tocandtalk.com
+							<str class="str"> {{body.lang.infoEmailStandar}}</str>
+
+						<div class="text-space"></div>
+							<str class="str"> {{body.lang.infoEmailFormat}}</str>
 						</div>
 						<image src="desktop/register/assets/img/info-tip.png" class="info-tip"></image>
 					</div>
@@ -214,25 +219,29 @@
 				<!-- Error Email -->
 				<div id="eEmailEmailUnique" class="error-msg error-l">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					Ésta dirección de correo electrónico ya está registrada en Toc&Talk!. 
+					<str class="str"> {{body.lang.eUsernameUsernameEmail}}</str>
+
 					<!-- ¿Olvidó su contraseña? -->
 				</div>
+				<!--
 				<div id="eEmailEmailFormat" class="error-msg error-l">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
 					Dirección de correo electrónico inválida. 
 				</div>
-
+				-->
+				
 				<!-- PASSWORD -->
 
 				<div>
 					<!-- Info -->
 					<div class="info" id="infoPassword">
 						<div class="info-content">
-							Ingrese una contraseña.
+							<str class="str"> {{body.lang.infoPasswordStandar}}</str>
 							<div class="text-space"></div>
-							Mínimo 8 caracteres y máximo 25.
+							<str class="str"> {{body.lang.infoPasswordLength}}</str>
 							<div class="text-space"></div>
-							Pueden ser sólo números (0-9) o letras minúsculas (a-z) y mayúsculas (A-Z), sin espacios.
+							<str class="str"> {{body.lang.infoPasswordFormat}}</str>
+
 						</div>
 						<image src="desktop/register/assets/img/info-tip.png" class="info-tip"></image>
 					</div>
@@ -256,11 +265,13 @@
 				</div>
 
 				<!-- Error contraseña -->
-				<div id="ePassword" class="error-msg">
+				<div id="ePassword" class="error-msg">	
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
+					<!--
 					Contraseña inválida. La contraseña debe poseer sólo números (0-9) o letras 
 					minúsculas (a-z) o mayúsculas (A-Z), sin espacios. 
 					El tamaño mínimo son 8 caracteres y el máximo 25.
+					-->
 				</div>
 
 				<div>
@@ -285,7 +296,7 @@
 				<!-- Error: Contraseñas no coinciden -->
 				<div id="eUserPasswordConfirmation" class="error-msg error-l">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					Las contraseñas no coinciden.
+					<str class="str"> {{body.lang.eUsernameUsernamePassword}}</str>
 				</div>
 				
 				<div style="margin-top:4px;"></div>
@@ -297,9 +308,10 @@
 					<!-- Error: Fecha errónea -->
 					<div class="info" id="eDate">
 						<div class="info-content">
-							La fecha ingresada no es válida.
+							
+							<!-- La fecha ingresada no es válida.-->
 							<div class="text-space"></div>
-							Reeingrese una fecha correcta.
+							<!-- Reeingrese una fecha correcta. -->
 						</div>
 						<image src="desktop/register/assets/img/info-tip.png" class="info-tip"></image>
 					</div>
@@ -360,7 +372,7 @@
 
 				<div id="eDate" class="error-msg error-c">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					La fecha no es válida.
+					<!-- La fecha no es válida. -->
 				</div>
 
 				<div class="inputTxtEspacio"></div>
@@ -381,7 +393,7 @@
 				<!-- Error sexo -->
 				<div id="eSex" class="error-msg error-c">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					Seleccione un sexo.
+					<!-- Seleccione un sexo. -->
 				</div>
 
 				<div class="inputTxtEspacio"></div>
