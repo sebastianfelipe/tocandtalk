@@ -102,7 +102,8 @@ function chat_visible() {
  * Retorno: Null
  */
 function load_messages() {
-    angular.element($('#TalkController')).scope().loadMessages();
+    //angular.element($('#TalkController')).scope().loadMessages();
+    console.log("load_messages() was called");
     return;
 }
 

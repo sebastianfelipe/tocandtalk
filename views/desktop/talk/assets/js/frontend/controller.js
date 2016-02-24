@@ -1,5 +1,5 @@
 angular.module("tocandtalk", ['ngAnimate'])
-    .controller('TalkController', ["$scope", function(scope) {
+    .controller('app', ["$scope", function(scope) {
         scope.messages = []; // Arreglo de mensajes
         scope.newMsg = {}; // Mensaje enviado
         scope.rcvMsg = {}; // Mensaje recibido
