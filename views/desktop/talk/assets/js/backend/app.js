@@ -102,7 +102,7 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
 
 app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $http, $log, sStage) {
 	refs.body = scope = $scope.body = {};
-	
+	scope.lang = {};
 	scope.user = {};
 	scope.recUser = {};
     scope.messages = []; // Arreglo de mensajes
