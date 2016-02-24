@@ -1,4 +1,22 @@
 {
 	"title": "Toc&Talk! - Conversación",
-	"locSearchingUsers": "Buscando Usuarios"
+	"locSearchingUsers": "Buscando Usuarios",
+	"msgMicrophoneTitle":"Micrófono no disponible",
+	"msgMicrophone1" :"Verifique si autorizó el acceso al",
+	"msgMicrophone2" : "micrófono desde su navegador Web",
+	"msgMicrophone3" : "o si está funcionando correctamente.",
+
+	"msgWebcamTitle" : "Webcam no disponible",
+	"msgWebcam1" :"Verifique si autorizó el acceso a",
+	"msgWebcam2" :"la cámara desde su navegador Web",
+	"msgWebcam3" :"o si está funcionando correctamente.",
+
+	"infoSpokenLanguages" : "Idiomas que hablo:",
+	"infoInterestLanguages" : "Idiomas que me interesan:",
+	"infoDescription" : "Descripción de Usuario",
+	"infoLocationTitle" : "Ubicación:",
+	"infoSex": "Sexo:"
+	
+
+	
 }

@@ -213,17 +213,17 @@
         </div>
 
         <div id="b_dialog_mic_none" class="b_dialog" style="position:fixed;">
-            <div class="txt_t">Micrófono no disponible</div>
-            <div class="txt_p">Verifique si autorizó el acceso al</div>
-            <div class="txt_p">micrófono desde su navegador Web</div>
-            <div class="txt_p">o si está funcionando correctamente.</div>
+            <div class="txt_t">{{body.lang.msgMicrophoneTitle}}</div>
+            <div class="txt_p">{{body.lang.msgMicrophone1}} </div>
+            <div class="txt_p">{{body.lang.msgMicrophone2}}</div>
+            <div class="txt_p">{{body.lang.msgMicrophone3}}</div>
         </div>
         
         <div id="b_dialog_video_none" class="b_dialog" style="position:fixed;">
-            <div class="txt_t">Webcam no disponible</div>
-            <div class="txt_p">Verifique si autorizó el acceso a</div>
-            <div class="txt_p">la cámara desde su navegador Web</div>
-            <div class="txt_p">o si está funcionando correctamente.</div>
+            <div class="txt_t">{{body.lang.msgWebcamTitle}}</div>
+            <div class="txt_p">{{body.lang.msgWebcam1}}</div>
+            <div class="txt_p">{{body.lang.msgWebcam2}}</div>
+            <div class="txt_p">{{body.lang.msgWebcam3}}</div>
         </div>
         
         <!-- Barra de volumen -->
@@ -301,7 +301,7 @@
                              display: inline-block;
                              width: 80px;
                              margin-bottom: 7px;">
-                            <tc>Ubicación:</tc>
+                            <tc>{{body.lang.infoLocationTitle}}</tc>
                         </div>
                         <div style=
                             "position: relative;
@@ -317,7 +317,7 @@
                             "position: absolute;
                              display: inline-block;
                              width: 80px;">
-                            <tc>Sexo:</tc>
+                            <tc>{{body.lang.infoSex}}</tc>
                         </div>
                         <div style=
                             "position: relative;
@@ -329,7 +329,7 @@
                         
                     </div>
                     <div class="p_prof_card" ng-show='body.recUser.description != "" && body.recUser.description != null'>
-                        <tc>Descripción:</tc>
+                        <tc>{{body.lang.infoDescription}</tc>
                         <br>
                         <div style=
                             "position: relative;
@@ -341,7 +341,7 @@
                         
                     </div>
                     <div class="p_prof_card">
-                        <tc>Idiomas que hablo:</tc>
+                        <tc> {{body.lang.infoSpokenLanguages}} </tc>
                         <br>
                         <div style=
                             "position: relative;
@@ -358,7 +358,7 @@
                         
                     </div>
                     <div class="p_prof_card" ng-show="body.recUser.interest_languages != null">
-                        <tc>Idiomas que me interesan:</tc>
+                        <tc> {{body.lang.infoInterestLanguages}}</tc>
                         <br>
                         
                         <div style=
