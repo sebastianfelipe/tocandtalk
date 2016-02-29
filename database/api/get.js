@@ -90,6 +90,28 @@ router.get('/lang/:lang/:view', function (req, res) {
   res.send(data);
 });
 
+
+
+//---------------------------------------------
+
+router.get('/users', function (req, res) {
+  async.parallel({
+      user: function(callback) {
+          setTimeout(function(){
+              models.User.find().exec(function (err, docs) {
+
+                callback(null, {errors: err, docs: docs});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+     return res.send(results.user);
+  });
+});
+
+//---------------------------------------------
+
 module.exports = router;
 
 

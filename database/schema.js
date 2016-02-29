@@ -33,7 +33,6 @@ schema.email = mongoose.Schema({
        },
     code: {
         type: String,
-        required: true,
         validate: [validate.alphanumeric, 'pattern']
  }
 });
@@ -53,13 +52,6 @@ schema.country = mongoose.Schema({
         lowercase: true,
         trim: true
     }
-});
-
-schema.sex = mongoose.Schema({
-    sex: {
-        type: Boolean,
-        required: true
-}
 });
 
 schema.language = mongoose.Schema({
@@ -115,7 +107,10 @@ schema.user = mongoose.Schema({
                 trim: true,
                 validate: [validate.alphanumeric, 'pattern']
 },
-    sex: {type: ObjectId},
+    sex: {
+        type: Boolean,
+        required: true
+        },
     description: {
                 type: String,
                 maxlength: 250
@@ -210,7 +205,6 @@ schema.tUser = mongoose.Schema({
 schema.username.plugin(uniqueValidator, {message: 'unique'});
 schema.email.plugin(uniqueValidator, {message: 'unique'});
 schema.country.plugin(uniqueValidator, {message: 'unique'});
-schema.sex.plugin(uniqueValidator, {message: 'unique'});
 schema.language.plugin(uniqueValidator, {message: 'unique'});
 schema.user.plugin(uniqueValidator, {message: 'unique'});
 
