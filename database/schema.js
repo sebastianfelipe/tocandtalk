@@ -84,6 +84,18 @@ schema.user = mongoose.Schema({
 	sum_valoration: Number
 });
 
+schema.tUser = mongoose.Schema({
+	username: {
+		type: String,
+		unique: true
+	},
+	email: {
+		type: String,
+		unique: true
+	},
+	nationality: {type: ObjectId, ref: 'Country'},
+	languages: [{type: ObjectId, unique: true, ref: 'Language'}]
+});
 
 schema.username.plugin(uniqueValidator, {message: 'unique'});
 schema.email.plugin(uniqueValidator, {message: 'unique'});
@@ -92,5 +104,6 @@ schema.sex.plugin(uniqueValidator, {message: 'unique'});
 schema.language.plugin(uniqueValidator, {message: 'unique'});
 schema.user.plugin(uniqueValidator, {message: 'unique'});
 
+schema.tUser.plugin(uniqueValidator, {message: 'unique'});
 
 module.exports = schema;

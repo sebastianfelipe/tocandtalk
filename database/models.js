@@ -11,5 +11,7 @@ models.Sex = mongoose.model('Sex', schema.sex);
 models.Language = mongoose.model('Language', schema.language);
 models.User = mongoose.model('User', schema.user);
 
+models.tUser = mongoose.model('tUser', schema.tUser);
+
 module.exports = models;
 

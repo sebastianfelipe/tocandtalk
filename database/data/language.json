@@ -1,6 +1,6 @@
 [ 
-{"name": "English", "code": "EN"}, 
-{"name": "Español", "code": "ESP"}, 
-{"name": "French", "code": "Fr"}, 
-{"name": "Italiano", "code": "IT"}
+{"name": "english", "code": "en"}, 
+{"name": "español", "code": "es"}, 
+{"name": "french", "code": "fr"}, 
+{"name": "italiano", "code": "it"}
 ]
