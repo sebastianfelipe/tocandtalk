@@ -9,7 +9,7 @@ var models = require('../models.js');
 var authenticate_module = require('../../modules/authenticate.js');
 var authenticate = authenticate_module.authenticate;
 var functions_module = require('../../modules/functions.js');
-var mAux = require('./aux.js');
+var mAux = require('./auxQ.js');
 
 // Function Imports
 var errorAdapter = functions_module.error_adapter;
@@ -72,32 +72,48 @@ router.get('/user/nationality/:username/:countryCode',function (req, res) {
   });
 });
 
-router.post('/edit_user_description',function (req, res) {
-  var errors = "";
+//localhost:4080/api/update/user/description/:username/:description
+//localhost:4080/api/update/user/description/pedrito/Meencantan
+//localhost:4080/api/update/user/description/pedrito/kjdhsakdhkajkhdjkakjdhjkakjha
+router.get('/user/description/:username/:description',function (req, res) {
+	var username = req.params.username;
+	var description = req.params.description.trim();
 
-  async.parallel({
-      user: function(callback) {
-          setTimeout(function(){
-              models.User.findOne({_username: req.session.username}, {password: 0}).exec(function (err, doc) {
-                if (doc)
-                {
-                  doc.description = req.body.input_edit_desc;
-                  doc.save(function (err) {
-                    var errors_tmp = error_adapter(models.Username.modelName, err);
-                    callback(null, {doc: doc, errors: errors_tmp});
-                  });
-                }
-              })
-          }, 200);
-      }
+	  async.parallel({
+	      user: function(callback) {
+	          setTimeout(function(){
+	              models.Username
+	              .findOne({username: username})
+	              .deepPopulate('_user')
+	              .exec(function (err, doc) {
+	                var obj = null;
+	                if (doc) { obj = doc._user; }
+	                callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
+
+	              })
+	          }, 200)
+	      }
   },
   function(err, results) {
-    // error handling
-    console.log('edit_user_description');
-    return res.send({user: results.user.doc, req: req.body, errors: errors});
-    //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
+  	var user = results.user.doc;
+	var errors = "";
+	errors += results.user.errors;
+  	if (user)
+  	{
+		user.description = description;
+		user.save(function (err) {
+			if (err) { errors +='eDBUpdate' }
+			return res.send({errors: errors});
+		});
+	}
+	else
+	{
+		errors += 'eDBNotFound'
+		return res.send({errors: errors})
+	}
   });
 });
+
 
 router.post('/add_user_interest_language',function (req, res) {
   var errors = "";
