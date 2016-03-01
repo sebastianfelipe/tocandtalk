@@ -1,6 +1,7 @@
 {
 	"title": "Toc&Talk! - Registro",
 	"bLogin" :"Ingresar",
+	"bRegister": "Registrarme",
 	"titleCreate":"Crea tu cuenta Toc&Talk!",
 	"iNamePH":"Nombres",
 	"iLastnamePH": "Apellidos",
@@ -8,12 +9,41 @@
 	"iEmailPH": "Correo electrónico",
 	"iPasswordPH":"Contraseña",
 	"iPasswordConfirmationPH":"Confirmar contraseña",
-	"iPasswordConfirmationPH":"Confirmar contraseña",
 	"birthdayTitle":"Cumpleaños",
 	"iDayPH":"Día",
 	"iYearPH":"Año",
-	"iPasswordConfirmationPH":" Confirmar contraseña",
-	"iPasswordConfirmationPH":"Confirmar contraseña",
 	"sexMale":"Hombre",
-	"sexFamale":"Mujer"
+	"sexFemale":"Mujer",
+	"sCountry": "Seleccione su país",
+	"sNativeLanguage": "Elija su idioma nativo",
+
+	"infoUsernameStandar":"Ingrese un nombre de usuario.",
+	"infoUsernameFormat" : "Ingrese sólo números (0-9) o letras (a-z).",
+	"infoUsernameLength" : "Mínimo 8 caracteres.",
+	"infoUsernameFormatText": "No se distinguen mayúsculas y minúsculas.",
+
+	"infoPasswordStandar":"Ingrese una contraseña.",
+	"infoPasswordLength": "Mínimo 8 caracteres y máximo 25.",
+	"infoPasswordFormat": "Pueden ser sólo números (0-9) o letras minúsculas (a-z) y mayúsculas (A-Z), sin espacios.",
+
+	"infoEmailStandar":"Ingrese su dirección de correo electrónico.",
+	"infoEmailFormat" : "Por ejemplo: hola@tocandtalk.com ",
+
+	"eUsernameUsernameUnique": "Este nombre de usuario ya está registrado. Intente con otro.",
+	"eUsernameUsernameEmail" : "Ésta dirección de correo electrónico ya está registrada en Toc&Talk!.",
+	"eUsernameUsernamePassword": "Las contraseñas no coinciden, intente nuevamente.",
+	"months": [
+				"enero",
+				"febrero",
+				"marzo",
+				"abril",
+				"mayo",
+				"junio",
+				"julio",
+				"agosto",
+				"septiembre",
+				"octubre",
+				"noviembre",
+				"diciembre"
+			]
 }

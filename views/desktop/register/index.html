@@ -6,12 +6,6 @@
 		<meta name="application-name" content="Toc&Talk!"/>
 
 		<!-- SERVER VARIABLES -->
-		<script type="text/javascript">
-			var countries = <%- JSON.stringify(countries) %>;
-			var languages = <%- JSON.stringify(languages) %>;
-			var req = <%- JSON.stringify(req) %>;
-			var errors = <%- JSON.stringify(errors) %>;
-		</script>
 
 		<!-- ICONS -->
 		<link href="desktop/shared/assets/img/icons/favicon.png" rel="icon" type="image/png"></link>
@@ -41,7 +35,8 @@
 
 		<!-- STRINGS -->
 		<script src="strings/es/shared.js"></script>
-		<script src="strings/es/register.js"></script>
+
+		<!--<script src="strings/es/register.js"></script>-->
 
 		<!-- JS -->
 		<script src="desktop/shared/assets/js/frontend/cover.js" type="text/javascript"></script>
@@ -72,7 +67,7 @@
 				<div id="bar-section-user1" class="bar-section-user">
 					<a href="/login">
 						<div class="boton-ingresar">
-							<div class="str str_button_login"></div>
+							<div class="str">{{body.lang.bLogin}}</div>
 						</div>
 					</a>
      			</div>
@@ -89,20 +84,20 @@
 
     	<div id="#register-container">
 		<div id="register">
-			<t1><div class="str str_title"></div></t1>
+			<t1><div class="str">{{body.lang.titleCreate}}</div></t1>
 
-			<form id="fRegister" name="fRegister" class="formulario" ng-submit="body.onSubmit()">
+			<form ng-controller="form" id="fRegister" name="fRegister" class="formulario" ng-submit="form.onSubmit()">
 				
 				<!-- NAME -->
 
 				<div>
 					<!-- Nombre -->
 					<input
-						ng-model="iName"
+						ng-model="form.iName"
 						id="iName"
 						name="iName"
 						type="text"
-						placeholder=""
+						placeholder="{{body.lang.iNamePH}}"
 						
 						required="required"
 						autocomplete="on"
@@ -113,11 +108,11 @@
 
 					<!-- Apellido -->
 					<input
-						ng-model="iLastname"
+						ng-model="form.iLastname"
 						id="iLastname"
 						name="iLastname"
 						type="text"
-						placeholder=""
+						placeholder="{{body.lang.iLastnamePH}}"
 						
 						required="required"
 						autocomplete="on"
@@ -145,24 +140,25 @@
 					<!-- Info -->
 					<div class="info" id="infoUsername">
 						<div class="info-content">
-							Ingrese un nombre de usuario.
+							<str class="str"> {{body.lang.infoUsernameStandar}}</str>
+							
 							<div class="text-space"></div>
-							Mínimo 8 caracteres.
+							<str class="str"> {{body.lang.infoUsernameLength}}</str>
 							<div class="text-space"></div>
-							Pueden ser sólo números (0-9) o letras (a-z), sin espacios.
+							<str class="str"> {{body.lang.infoUsernameFormat}}</str>
 							<div class="text-space"></div>
-							No se distinguen mayúsculas y minúsculas.
+							<str class="str"> {{body.lang.infoUsernameFormatText}}</str>
 						</div>
 						<image src="desktop/register/assets/img/info-tip.png" class="info-tip"></image>
 					</div>
 
 					<!-- Nombre de usuario -->
 					<input
-						ng-model="iUsername"
+						ng-model="form.iUsername"
 						id="iUsername"
 						name="iUsername"
 						type="text"
-						placeholder=""
+						placeholder="{{body.lang.iUsernamePH}}"
 
 						required="required"
 						autocomplete="off"
@@ -177,15 +173,18 @@
 				<!-- Error Nombre de usuario -->
 				<div id="eUsernameUsernameUnique" class="error-msg error-l">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					Este nombre de usuario ya está registrado. Intente con otro.
+					<str class="str"> {{body.lang.eUsernameUsernameUnique}}</str>
 				</div>
-
+				
+				<!-- 
 				<div id="eUsernameUsernameFormat" class="error-msg error-l">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					Nombre de usuario inválido. 
+					
+					Nombre de usuario inválidoooooooooooooooo. 
 					Ingrese sólo números (0-9) o letras (a-z). 
 					Mínimo 8 caracteres y máximo 25.
 				</div>
+				-->
 
 				<!-- EMAIL -->
 
@@ -193,20 +192,21 @@
 					<!-- Info -->
 					<div class="info" id="infoEmail">
 						<div class="info-content">
-							Ingrese su dirección de correo electrónico.
-							<div class="text-space"></div>
-							Por ejemplo: hola@tocandtalk.com
+							<str class="str"> {{body.lang.infoEmailStandar}}</str>
+
+						<div class="text-space"></div>
+							<str class="str"> {{body.lang.infoEmailFormat}}</str>
 						</div>
 						<image src="desktop/register/assets/img/info-tip.png" class="info-tip"></image>
 					</div>
 
 					<!-- Correo electrónico -->
 					<input
-						ng-model="iEmail"
+						ng-model="form.iEmail"
 						id="iEmail"
 						name="iEmail"
 						type="email"
-						placeholder=""
+						placeholder="{{body.lang.iEmailPH}}"
 
 						autocomplete="on"
 						maxlength="100"
@@ -219,36 +219,40 @@
 				<!-- Error Email -->
 				<div id="eEmailEmailUnique" class="error-msg error-l">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					Ésta dirección de correo electrónico ya está registrada en Toc&Talk!. 
+					<str class="str"> {{body.lang.eUsernameUsernameEmail}}</str>
+
 					<!-- ¿Olvidó su contraseña? -->
 				</div>
+				<!--
 				<div id="eEmailEmailFormat" class="error-msg error-l">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
 					Dirección de correo electrónico inválida. 
 				</div>
-
+				-->
+				
 				<!-- PASSWORD -->
 
 				<div>
 					<!-- Info -->
 					<div class="info" id="infoPassword">
 						<div class="info-content">
-							Ingrese una contraseña.
+							<str class="str"> {{body.lang.infoPasswordStandar}}</str>
 							<div class="text-space"></div>
-							Mínimo 8 caracteres y máximo 25.
+							<str class="str"> {{body.lang.infoPasswordLength}}</str>
 							<div class="text-space"></div>
-							Pueden ser sólo números (0-9) o letras minúsculas (a-z) y mayúsculas (A-Z), sin espacios.
+							<str class="str"> {{body.lang.infoPasswordFormat}}</str>
+
 						</div>
 						<image src="desktop/register/assets/img/info-tip.png" class="info-tip"></image>
 					</div>
 
 					<!-- Contraseña -->
 					<input
-						ng-model="iPassword"
+						ng-model="form.iPassword"
 						id="iPassword"
 						name="iPassword"
 						type="password"
-						placeholder=""
+						placeholder="{{body.lang.iPasswordPH}}"
 						
 						required="required"
 						autocomplete="off"
@@ -261,21 +265,23 @@
 				</div>
 
 				<!-- Error contraseña -->
-				<div id="ePassword"class="error-msg">
+				<div id="ePassword" class="error-msg">	
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
+					<!--
 					Contraseña inválida. La contraseña debe poseer sólo números (0-9) o letras 
 					minúsculas (a-z) o mayúsculas (A-Z), sin espacios. 
 					El tamaño mínimo son 8 caracteres y el máximo 25.
+					-->
 				</div>
 
 				<div>
 					<!-- Confirmar contraseña -->
 					<input
-						ng-model="iPasswordConfirmation"
+						ng-model="form.iPasswordConfirmation"
 						id="iPasswordConfirmation"
 						name="iPasswordConfirmation"
 						type="password"
-						placeholder=""
+						placeholder="{{body.lang.iPasswordConfirmationPH}}"
 						
 						required="required"
 						autocomplete="off"
@@ -290,7 +296,7 @@
 				<!-- Error: Contraseñas no coinciden -->
 				<div id="eUserPasswordConfirmation" class="error-msg error-l">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					Las contraseñas no coinciden.
+					<str class="str"> {{body.lang.eUsernameUsernamePassword}}</str>
 				</div>
 				
 				<div style="margin-top:4px;"></div>
@@ -302,15 +308,16 @@
 					<!-- Error: Fecha errónea -->
 					<div class="info" id="eDate">
 						<div class="info-content">
-							La fecha ingresada no es válida.
+							
+							<!-- La fecha ingresada no es válida.-->
 							<div class="text-space"></div>
-							Reeingrese una fecha correcta.
+							<!-- Reeingrese una fecha correcta. -->
 						</div>
 						<image src="desktop/register/assets/img/info-tip.png" class="info-tip"></image>
 					</div>
 
 					<div id="labelFecha">
-						<t2><div class="str str_brithday_title"></div></t2>
+						<t2><div class="str">{{body.lang.birthdayTitle}}</div></t2>
 					</div>
 
 					<!-- Cumpleaños -->
@@ -323,11 +330,11 @@
 						max="2000-01-01">
 					-->
 					<input
-						ng-model="iDay"
+						ng-model="form.iDay"
 						id="iDay"
 						name="iDay"
 						type="number"
-						placeholder=""
+						placeholder="{{body.lang.iDayPH}}"
 						
 						autocomplete="off"
 						min="1"
@@ -338,32 +345,21 @@
 						oninvalid="invalidInput()">
 
 					<select
-						ng-model="sMonth"
+						ng-model="form.sMonth"
 						id="sMonth"
 						class="inputSel inputFechaMes"
 						name="sMonth"
 						required="">
 						<option value="" disabled="" selected="" hidden="">Mes</option>
-						<option value="enero">Enero</option>
-						<option value="febrero">Febrero</option>
-						<option value="marzo">Marzo</option>
-						<option value="abril">Abril</option>
-						<option value="mayo">Mayo</option>
-						<option value="junio">Junio</option>
-						<option value="julio">Julio</option>
-						<option value="agosto">Agosto</option>
-						<option value="septiembre">Septiembre</option>
-						<option value="octubre">Octubre</option>
-						<option value="noviembre">Noviembre</option>
-						<option value="diciembre">Diciembre</option>
+						<option ng-repeat="month in body.lang.months" value="{{month}}">{{month}}</option>
 					</select>
 
 					<input
-						ng-model="iYear"
+						ng-model="form.iYear"
 						id="iYear"
 						name="iYear"
 						type="number"
-						placeholder=""
+						placeholder="{{body.lang.iYearPH}}"
 						
 						autocomplete="off"
 						min="1920"
@@ -376,7 +372,7 @@
 
 				<div id="eDate" class="error-msg error-c">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					La fecha no es válida.
+					<!-- La fecha no es válida. -->
 				</div>
 
 				<div class="inputTxtEspacio"></div>
@@ -384,20 +380,20 @@
 				<!-- SEX -->
 				<div>
 					<!-- Sexo -->
-					<input ng-model="rSex" type="radio" name="rSex" value="hombre">
+					<input ng-model="form.rSex" type="radio" name="rSex" value="hombre">
 						<label for="male"><span><span></span></span>
-							<t2><div class="str str_sex_male"></div></t2>
+							<t2><div class="str">{{body.lang.sexMale}}</div></t2>
 						</label>
-					<input ng-model="rSex" type="radio" name="rSex" value="mujer" required value="1">
+					<input ng-model="form.rSex" type="radio" name="rSex" value="mujer" required value="1">
 						<label for="female"><span><span></span></span>
-							<t2><div class="str str_sex_female"></div></t2>
+							<t2><div class="str">{{body.lang.sexFemale}}</div></t2>
 						</label>
 				</div>
 
 				<!-- Error sexo -->
 				<div id="eSex" class="error-msg error-c">
 					<image src="desktop/shared/assets/img/error.png" class="img-error"></image>
-					Seleccione un sexo.
+					<!-- Seleccione un sexo. -->
 				</div>
 
 				<div class="inputTxtEspacio"></div>
@@ -406,12 +402,13 @@
 				<div>
 					<!-- Nacionalidad -->
 					<select
-						ng-model="sCountry"
+						ng-model="form.sCountry"
 						id="sCountry"
 						name="sCountry"
 						required=""
 						class="inputSel inputSelGrande">
-						<option value="" disabled="" selected="" hidden="">País</option>
+						<option value="" disabled="" selected="" hidden="">{{body.lang.sCountry}}</option>
+						<option ng-repeat="country in body.countries" value="{{country.name}}">{{country.name}}</option>
 					</select>
 				</div>
 
@@ -420,16 +417,17 @@
 				<div>
 					<!-- Idioma nativo -->
 					<select
-						ng-model="sNativeLanguage"
+						ng-model="form.sNativeLanguage"
 						id="sNativeLanguage"
 						name="sNativeLanguage"
 						required=""
 						class="inputSel inputSelGrande">
-						<option value="" disabled="" selected="" hidden="">Idioma nativo</option>
+						<option value="" disabled="" selected="" hidden="">{{body.lang.sNativeLanguage}}</option>
+						<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
 					</select>
 				</div>
 
-				<input type="submit" value="Registrarme" class="boton-registrar">
+				<input type="submit" value="{{body.lang.bRegister}}" class="boton-registrar"></input>
 			</form>
 
 		</div>

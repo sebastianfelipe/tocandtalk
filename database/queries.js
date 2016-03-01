@@ -6,6 +6,7 @@ var db = require('./configuration.js');
 var schema = require('./schema.js');
 var models = require('./models.js');
 
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
 
 var allowCrossDomain = function(req, res, next) {
@@ -162,6 +163,17 @@ router.get('/remove/:model', function(req, res) {
 	else if (req.params.model == "languages") {
 		models.Language.remove().exec();
 	}
+	else if (req.params.model == "all") {
+		models.User.remove().exec();
+		models.Username.remove().exec();
+		models.Email.remove().exec();
+		models.Messenger.remove().exec();
+		models.Appraisement.remove().exec();
+		models.Password.remove().exec();
+		models.Country.remove().exec();
+		models.Language.remove().exec();
+		models.Password.remove().exec();
+	}
 	res.send('removed');
 });
 
@@ -200,7 +212,66 @@ router.get('/valorate/:username/:value', function (req, res) {
 	});
 });
 
+router.get('/save/user/:username/:email', function (req, res) {
+	var username = req.params.username;
+	var email = req.params.email;
+  	var tUser = new models.tUser({username: req.params.username, email: req.params.email});
+  	tUser.save(function (err) {
+  		return res.send({errors: err});
+  	});
+});
 
+router.get('/get/language/:code', function (req, res) {
+  	models.Language.findOne({code: req.params.code}, function (err, doc) {
+  		return res.send({errors: err, doc: doc});
+  	});
+});
+
+router.get('/get/country/:code', function (req, res) {
+  	models.Country.findOne({code: req.params.code}, function (err, doc) {
+  		return res.send({errors: err, doc: doc});
+  	});
+});
+
+router.get('/get/user/:username', function (req, res) {
+  	models.tUser.findOne({username: req.params.username})
+  	.populate('nationality languages').exec(function (err, doc) {
+  		return res.send({errors: err, doc: doc});
+  	});
+});
+
+router.get('/save/user/:username/country/:code', function (req, res) {
+	models.tUser.findOne({username: req.params.username}, function (err1, doc1) {
+		models.Country.findOne({code: req.params.code}, function (err2, doc2) {
+			doc1.nationality = doc2._id;
+			doc1.save(function (err) {
+				return res.send({err: err, err1: err1, err2: err2, doc1: doc1, doc2: doc2});
+			})
+  		});
+	});
+});
+
+router.get('/save/user/:username/language/:code', function (req, res) {
+	models.tUser.findOne({username: req.params.username}, function (err1, doc1) {
+		models.Language.findOne({code: req.params.code}, function (err2, doc2) {
+			doc1.languages.push(doc2._id);
+			doc1.save(function (err) {
+				return res.send({err: err, err1: err1, err2: err2, doc1: doc1, doc2: doc2});
+			})
+  		});
+	});
+});
+
+router.get('/update/user/:username/country/:code', function (req, res) {
+  	models.tUser.findOne({username: req.params.username})
+  	.populate('nationality')
+  	.exec(function (err1, doc) {
+  		doc.nationality.code = req.params.code;
+		doc.nationality.save(function (err2) {
+			return res.send({err1: err1, err2: err2});
+		});
+  	});
+});
 module.exports = router;
 
 /*

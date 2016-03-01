@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+	/*
 	$('#str-welcome-title').text(
 		"¡Bienvenido a Toc&Talk!"
 	);
@@ -15,4 +16,5 @@ $(document).ready(function(){
 	$('#str-talk-start').val(
 		"¡Comenzar!"
 	);
+	*/
 });

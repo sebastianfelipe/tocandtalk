@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	/*
 	document.title = "Toc&Talk! - Mi Perfil";
 
 	$('.str_button-edit').text(
@@ -73,5 +74,5 @@ $(document).ready(function(){
 	$('.str_desc-no').text(
 		"Ninguna descripción que mostrar"
 	);
-
+*/
 });

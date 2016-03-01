@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="project">
+<html lang="es" ng-app="tocandtalk">
 	<header>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Toc&Talk!</title>
@@ -7,10 +7,6 @@
 
 		<!-- SERVER VARIABLES -->
 		<script>
-			var languages = <%- JSON.stringify(languages) %>;
-			var countries = <%- JSON.stringify(countries) %>;
-			var user = <%- JSON.stringify(user) %>;
-			var req = <%- JSON.stringify(req) %>;
 			var errors = <%- JSON.stringify(errors) %>;
 		</script>
 
@@ -24,54 +20,60 @@
 		<link href="desktop/shared/assets/img/icons/tocandtalk-android-192x192.png" rel="icon" sizes="192x192" />
 		<link href="desktop/shared/assets/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
 
-
     	<!-- CSS -->
 		<link rel="stylesheet" href="desktop/shared/assets/css/fonts.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/assets/css/general.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/assets/css/bar.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/aseets/css/bar.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/aseets/css/profile.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/aseets/css/user.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/aseets/css/inputs.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/aseets/css/edit_profile.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/aseets/css/edit.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/bar.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/profile.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/user.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/inputs.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/edit-profile.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/edit.css" type="text/css"/>
 
     
     	<!-- LIBS -->
-    	<script src="desktop/shared/assets/js/jquery/jquery.min.js"></script>
-		<script src="desktop/shared/assets/js/background-blur/background-blur.min.js"></script>
-
+		<script src="desktop/shared/assets/js/libs/angularjs/angular.min.js"></script>
+    	<script src="desktop/shared/assets/js/libs/jquery/jquery.min.js"></script>
+		<script src="desktop/shared/assets/js/backend/functions.js"></script>
 
 		<!-- STRINGS -->
+		
 		<script src="strings/es/shared.js"></script>
-		<script src="desktop/shared/assets/js/functions.js"></script>
-		<script src="desktop/profile/assets/js/classes.js"></script>
-    	
-		<script src="desktop/shared/assets/js/bar-user-image.js"></script>
-		<script src="desktop/shared/assets/js/bar-tab1.js"></script>
-		<script src="desktop/shared/assets/js/bar-tab2.js"></script>
+		<!--
 		<script src="strings/es/profile.js"></script>
-
+		-->
 		<!-- JS -->
-		<script src="desktop/shared/assets/js/user-menu-items.js"></script>
-		<script src="desktop/shared/assets/js/user-menu.js"></script>
-		<script src="desktop/shared/assets/js/load.js"></script>
-		<script src="desktop/shared/assets/js/bar-window.js"></script>
+	
+  		<script src="desktop/shared/assets/js/frontend/bar-user-image.js"></script>
+		<script src="desktop/shared/assets/js/libs/background-blur/background-blur.min.js"></script>
+
+
+		<script src="desktop/shared/assets/js/frontend/bar-tab1.js"></script>
+		<script src="desktop/shared/assets/js/frontend/bar-tab2.js"></script>
+		<script src="desktop/shared/assets/js/frontend/user-menu-items.js"></script>
+		<script src="desktop/shared/assets/js/frontend/user-menu.js"></script>
+		<script src="desktop/shared/assets/js/frontend/bar-window.js"></script>
 		<script src="desktop/profile/assets/js/frontend/user-image.js"></script>
 		<script src="desktop/profile/assets/js/frontend/window.js"></script>
-
+		<script src="desktop/profile/assets/js/frontend/classes.js"></script>
+		<script src="desktop/profile/assets/js/frontend/edit-profile.js"></script>
+		
 		<!--AngularJS -->
-		<script src="desktop/profile/assets/js/backend/edit-profile.js"></script>
-		<script src="desktop/profile/assets/js/backend/languages.js"></script>
+		<!--
+		<script src="desktop/shared/assets/js/backend/load.js"></script>
+		-->
+
 		<script src="desktop/profile/assets/js/backend/references.js" type="text/javascript"></script>
-		<script src="desktop/profile/assets/js/backend/errors.js" type="text/javascript"></script>
-		<script src="desktop/profile/assets/js/backend/functions.js" type="text/javascript"></script>
-		<script src="desktop/profile/assets/js/backend/load.js" type="text/javascript"></script>
-		<script src="desktop/profile/assets/js/backend/events.js" type="text/javascript"></script>
+		<script src="desktop/profile/assets/js/backend/app.js" type="text/javascript"></script>
+		<script src="desktop/profile/assets/js/backend/routes.js" type="text/javascript"></script>
+		<script src="desktop/profile/assets/js/backend/services.js" type="text/javascript"></script>
+		<script src="desktop/profile/assets/js/backend/controllers.js" type="text/javascript"></script>
+		<script src="desktop/profile/assets/js/backend/directives.js" type="text/javascript"></script>
 
 	</header>
 
-	<body>
+	<body ng-controller="body">
 		<!-- Barra superior -->
 		<div id="bar">
 			<div id="bar-content">
@@ -132,7 +134,7 @@
 					<image src="desktop/shared/assets/img/bar-arrow.png" id="bar-user-arrow"></image>
 				</div>
 				<div id="bar-user-name-container">
-					<div id="bar-user-name" class="str str_name-user"></div>
+					<div id="bar-user-name" class="str str_name-user">{{body.user.firstName}}</div>
 				</div>
 				<div id="bar-user-show"></div>
 			</div>
@@ -182,20 +184,22 @@
 					<div id="c-spoken-languages">
 						
 						<div class="lang-title">
-							<div class="str str_lang_spoken_title"></div>
+							<div class="str str_lang_spoken_title">{{body.lang.spokenLangTitle}}</div>
 						</div>
 						<br>
 
 						<div class="lang-list">
-							<div class="str str_lang_native"></div> (<div class="str str_lang_native_title"></div>)
+							<div class="str str_lang_native">{{body.user.nativeLanguage}}</div> (<div class="str str_lang_native_title">{{body.lang.nativeLangTitle}}</div>)
 							<br />
-							<div class="str" id="str_lang_spoken_list"></div>
+							<div class="str" id="str_lang_spoken_list">
+								<p ng-repeat="language in body.user.spokenLanguages" value="language">{{language}}</p>
+							</div>
 						</div>
 						<br>
 
 						<div class="lang-edit-button">
 							<div id="b-edit-spoken-lang" class="button-edit">
-								<div class="str str_button-edit_lang"></div>
+								<div class="str str_button-edit_lang">{{body.lang.bEditLang}}</div>
 							</div>
 						</div>
 
@@ -206,36 +210,47 @@
 					-->
 					<div id="c-spoken-languages-edit">
 						<div class="lang-title">
-							<div class="str str_edit_lang_spoken_title"></div>
+							<div class="str str_edit_lang_spoken_title">{{body.lang.editSpokenLangTitle}}</div>
 						</div>
 						<br>
 
 						<div class="lang-list">
-							<div class="str" id="str_lang_spoken_list_edit"></div>
+							<div class="str" id="str_lang_spoken_list_edit">
+								<!--
+								<p ng-repeat="language in body.user.spokenLanguages" value="language">{{language}}</p>
+							-->
+		            			<div ng-controller="dRemoveUserSpokenLanguage" ng-repeat="language in body.user.spokenLanguages" name="form_remove_spoken_language" class="item-lang">
+		            				<p class="subitem-lang">{{language}}</p>
+		            				<input class="subitem-lang-button" type="submit" value="{{body.lang.bRemove}}" ng-click="dRemoveUserSpokenLanguage.onClick(language)"></input>
+		            			</div>
+							</div>
 						</div>
 
 						<!-- Añadir idioma que hablo -->
 						<div class="add-lang">
-							Añadir idioma<br>
-							<form id="form_add_user_spoken_language" name="form_add_user_spoken_language" action="/profile/add_user_spoken_language" method="post">
+							{{body.lang.locAddLang}}<br>
+							<form ng-controller="fSaveUserSpokenLanguage" id="form_add_user_spoken_language" name="form_add_user_spoken_language" ng-submit="fSaveUserSpokenLanguage.onSubmit()">
 								<select
+									ng-model="fSaveUserSpokenLanguage.sSpokenLanguage"
 									id="s_spoken_languages"
 									style="width:170px;"
 									name="s_spoken_languages"
 									class="s_languages input-sel-contry"
 									required="">
-									<option value="" disabled="" selected="" hidden="">Idioma</option>
+									<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
+									<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
 								</select>
 
-								<input type="submit" value="Añadir" class="button-add-lang">
+								<input type="submit" value="{{body.lang.bAdd}}" class="button-add-lang">
 							</form>
 						</div>
 						
 						<div class="save-cancel-container lang-buttons">
 							<div id="b-cancel-spoken-lang" class="button-cancel">
+								{{body.lang.bCancel}}
 								<!--<div class="str str_button-cancel"></div>-->
 							</div>
-							<div id="b-save-spoken-lang" class="button-save str_button_ok"></div>
+							<div id="b-save-spoken-lang" class="button-save str_button_ok">{{body.lang.bFinish}}</div>
 						</div>
 
 					</div>
@@ -250,25 +265,27 @@
 					<div id="c-interest-languages">
 						
 						<div class="lang-title">
-							<div class="str str_lang_interest_title"></div>
+							<div class="str str_lang_interest_title">{{body.lang.interestLangTitle}}</div>
 						</div>
 						<br>
 
 						<div class="lang-list">
-							<!--
+							
 							<div class="lang-empity">
-								<i><div class="str str_lang-list_empity"></div></i>
+								<i><div class="str str_lang-list_empity">{{body.lang.listLangEmpity}}</div></i>
 							</div>
-							-->
-							<div class="str" id="str-lang-interest-list"></div>
+							
+							<div class="str" id="str-lang-interest-list">
+								<p ng-repeat="language in body.user.interestLanguages" value="language">{{language}}</p>
+							</div>
 							<!--<div class="str str_lang-list" id="str-lang-interest-list"></div>-->
 						</div>
 						<br>
 
 						<div class="lang-edit-button">
 							<div id="b-edit-interest-lang" class="button-edit">
-								<div class="str str_button-edit_lang" id="str_button-edit_lang_int"></div>
-								<div class="str str_button-add-lang" id="str-button-add-lang-int"></div>
+								<div class="str str_button-edit_lang" id="str_button-edit_lang_int">{{body.lang.bEditLang}}</div>
+								<!--<div class="str str_button-add-lang" id="str-button-add-lang-int">kfdshklflsfhkshkldhflks</div>-->
 							</div>
 						</div>
 
@@ -279,35 +296,46 @@
 					-->
 					<div id="c-interest-languages-edit">
 						<div class="lang-title">
-							<div class="str str_edit_lang_interest_title"></div>
+							<div class="str str_edit_lang_interest_title">{{body.lang.editInterestLangTitle}}</div>
 						</div>
 
 						<div class="lang-list">
-							<div class="str str_lang-list_edit" id="str-lang-interest-list_edit"></div>
+							<div class="str str_lang-list_edit" id="str-lang-interest-list_edit">
+								<!--
+								<p ng-repeat="language in body.user.interestLanguages" value="language">{{language}}</p>
+		            			-->
+		            			<div ng-controller="dRemoveUserInterestLanguage" ng-repeat="language in body.user.interestLanguages" class="item-lang">
+		            				<p class="subitem-lang">{{language}}</p>
+		            				<input class="subitem-lang-button" type="submit" value="{{body.lang.bRemove}}" ng-click="dRemoveUserInterestLanguage.onClick(language)"></input>
+		            			</div>
+							</div>
 						</div>
 
 						<!-- Añadir idioma que me interesa -->
 						<div class="add-lang">
-							Añadir idioma<br>
-							<form id="form_add_user_interest_language" name="form_add_user_interest_language" action="/profile/add_user_interest_language" method="post">
+							{{body.lang.locAddLang}}<br>
+							<form ng-controller="fSaveUserInterestLanguage" id="form_add_user_interest_language" name="form_add_user_interest_language" ng-submit="fSaveUserInterestLanguage.onSubmit()">
 								<select
+									ng-model="fSaveUserInterestLanguage.sInterestLanguage"
 									id="s_interest_languages"
 									style="width:170px;"
 									name="s_interest_languages"
 									class="s_languages input-sel-contry"
 									required="">
-									<option value="" disabled="" selected="" hidden="">Idioma</option>
-								</select>
+									<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
+									<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
+								</select>	
 
-								<input type="submit" value="Añadir" class="button-add-lang">
+								<input type="submit" value="{{body.lang.bAdd}}" class="button-add-lang">
 							</form>
 						</div>
 
 						<div class="save-cancel-container lang-buttons">
 							<div id="b-cancel-interest-lang" class="button-cancel">
+								{{body.lang.bCancel}}
 								<!--<div class="str str_button-cancel"></div>-->
 							</div>
-							<div id="b-save-interest-lang" class="button-save str_button_ok"></div>
+							<div id="b-save-interest-lang" class="button-save str_button_ok">{{body.lang.bFinish}}</div>
 						</div>
 					</div>
 				</div>
@@ -324,7 +352,7 @@
 						<div class="usr-image-background-opacity"></div>
 
 						<div id="img-section2">
-							<div class="str_name-user_complete name-user"></div>
+							<div class="str_name-user_complete name-user">{{body.user.fullName}}</div>
 						</div>
 
 						<div id="img-section1">
@@ -343,16 +371,16 @@
 							<div id="c-location">
 								<div id="usr-loc-section3">
 									<div id="b-edit-location" class="button-edit">
-										<div class="str str_button-edit"></div>
+										<div class="str str_button-edit">{{body.lang.bEdit}}</div>
 									</div>
 								</div>
 
 								<div id="usr-loc-section2">
-									<div class="str str_profile_country"></div>
+									<div class="str str_profile_country">{{body.user.nationality}}</div>
 								</div>
 
 								<div id="usr-loc-section1">
-									<div class="str str_loc_title"></div>:
+									<div class="str str_loc_title">{{body.lang.locTitle}}</div>:
 								</div>
 							</div>
 
@@ -360,24 +388,26 @@
 								Editar Ubicación
 							-->
 							<div id="c-location-edit">
-								<form id="form_edit_user_nationality" name="form_edit_user_nationality" action="/profile/edit_user_nationality" method="post">
+								<form ng-controller="fUpdateUserNationality" id="form_edit_user_nationality" name="form_edit_user_nationality" ng-submit="fUpdateUserNationality.onSubmit()">
 									<div id="edit-location-sel">
 										<select
+											ng-model="fUpdateUserNationality.sUserNationality"
 											id="s_country"
 											name="s_country"
 											required=""
 											class="input-sel-contry">
-											<option value="" disabled="" selected="" hidden=""></option>
+											<option disabled="" selected="" hidden="" value="">{{body.user.nationality}}</option>
+											<option ng-repeat="country in body.countries" value="{{country.name}}">{{country.name}}</option>
 										</select>
 									</div>
 
-									<div class="str str-location-edit-title"></div>:
+									<div class="str str-location-edit-title">{{body.lang.locEditTitle}}</div>:
 
 									<div class="save-cancel-container">
 										<div id="b-cancel-location" class="button-cancel">
-											<div class="str str_button-cancel"></div>
+											<div class="str str_button-cancel">{{body.lang.bCancel}}</div>
 										</div>
-										<input type="submit" id="b-save-location" class="button-save str_button-save">
+										<input type="submit" id="b-save-location" value="{{body.lang.bSave}}" class="button-save str_button-save"></input>
 									</div>
 								</form>
 							</div>
@@ -393,16 +423,16 @@
 								
 								<div id="usr-desc-section3">
 									<div id="b-edit-description" class="button-edit">
-										<div class="str str_button-edit"></div>
+										<div class="str str_button-edit">{{body.lang.bEdit}}</div>
 									</div>
 								</div>
 
 								<div id="usr-desc-section1">
-									<div class="str str_desc_title"></div>:
+									<div class="str str_desc_title">{{body.lang.descTitle}}</div>:
 								</div>
 
 								<div id="usr-desc-section2">
-									<div class="str usr-desc-text str_desc_content"></div>
+									<div class="str usr-desc-text str_desc_content">{{body.user.description}}</div>
 									<i><div class="str str_desc-no" id="desc-no"></div></i> 
 								</div>
 
@@ -412,16 +442,16 @@
 								Editar Descripción
 							-->
 							<div id="c-description-edit">
-								<div class="str str_desc_edit_title"></div>:
+								<div class="str str_desc_edit_title">{{body.lang.descEditTitle}}</div>:
 
-								<form id="form_edit_user_description" name="form_edit_user_description" action="/profile/edit_user_description" method="post">
-									<textarea width="430" id="input_edit_desc" name="input_edit_desc" class="input-desc"></textarea>
+								<form ng-controller="fUpdateUserDescription" id="form_edit_user_description" name="form_edit_user_description" ng-submit="fUpdateUserDescription.onSubmit()">
+									<textarea ng-model="body.user.description" width="430" id="input_edit_desc" name="input_edit_desc" class="input-desc"></textarea>
 
 									<div class="save-cancel-container">
 										<div id="b-cancel-description" class="button-cancel">
-											<div class="str str_button-cancel"></div>
+											<div class="str str_button-cancel">{{body.lang.bCancel}}</div>
 										</div>
-										<input type="submit" id="b-save-description" class="button-save str_button-save">
+										<input type="submit" id="b-save-description" value="{{body.lang.bSave}}" class="button-save str_button-save"></input>
 									</div>
 								</form>
 							</div>

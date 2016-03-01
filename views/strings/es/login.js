@@ -1,6 +1,6 @@
 $(document).ready(function(){
+	/*
 	document.title = "Toc&Talk! - Ingresar";
-
 	$('.str_button_register').text(
 		"Regístrate"
 	);
@@ -25,7 +25,7 @@ $(document).ready(function(){
 		"¿No tienes una cuenta?"
 	);
 
-	/* Errores */
+	// Errores
 
 	$('.str_error_1').text(
 		"Nombre de usuario y/o contraseña incorrecta."
@@ -34,7 +34,7 @@ $(document).ready(function(){
 	$('.str_error_2').text(
 		"Las casillas no son iguales"
 	);
-
+	*/
 
 
 });

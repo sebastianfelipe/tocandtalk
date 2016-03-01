@@ -1,5 +1,11 @@
 var refs = {
 	user: null,
-	static_forms: [],
-	dinamic_forms: []
+	staticForms: [],
+	dinamicForms: []
 }
+refs.meta = {}; 
+refs.meta.lang = "es";
+refs.meta.view = "profile";
+refs.body = {};
+refs.errors = "";
+refs.sources = {};

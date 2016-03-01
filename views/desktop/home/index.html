@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es" ng-app="tocandtalk">
 	<header>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Toc&Talk!</title>
@@ -16,15 +16,13 @@
 		<link href="desktop/shared/assets/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
 
 		<script>
-			var languages = <%- JSON.stringify(languages) %>;
-			var user = <%- JSON.stringify(user) %>;
-			var req = <%- JSON.stringify(req) %>;
 			var errors = <%- JSON.stringify(errors) %>;
 		</script>
 		
 		<!-- LIBS -->
 		<script src="desktop/shared/assets/js/libs/angularjs/angular.min.js"></script>
 		<script src="desktop/shared/assets/js/libs/jquery/jquery.min.js"></script>
+		<script src="desktop/shared/assets/js/backend/functions.js"></script>
 		
 		<!-- CSS -->
 		<link rel="stylesheet" href="desktop/shared/assets/css/fonts.css" type="text/css"/>
@@ -39,7 +37,6 @@
 		<script src="strings/es/home.js"></script>
 
 		<!-- JS -->
-		<script src="desktop/shared/assets/js/backend/functions.js"></script>
 
 		<script src="desktop/shared/assets/js/frontend/bar-user-image.js"></script>
 		<script src="desktop/shared/assets/js/frontend/bar-tab2.js"></script>
@@ -52,8 +49,10 @@
 		<script src="desktop/home/assets/js/frontend/window.js"></script>
 
 		<!-- AngularJS -->
+		<!--
 		<script src="desktop/shared/assets/js/backend/load.js"></script>
-		<script src="desktop/home/assets/js/backend/load.js"></script>
+		-->
+
 		<script src="desktop/home/assets/js/backend/references.js" type="text/javascript"></script>
 		<script src="desktop/home/assets/js/backend/app.js" type="text/javascript"></script>
 		<script src="desktop/home/assets/js/backend/routes.js" type="text/javascript"></script>
@@ -62,7 +61,7 @@
 		<script src="desktop/home/assets/js/backend/directives.js" type="text/javascript"></script>
 	</header>
 
-	<body>
+	<body ng-controller="body">
 		<!-- Barra superior -->
 		<div id="bar">
 			<div id="bar-content">
@@ -71,7 +70,7 @@
 					<a href="/" title="">
 						<image src="desktop/shared/assets/img/tocandtalk-logo.png" id="bar-logo"></image>
 						<image src="desktop/shared/assets/img/tocandtalk-logo-solo.png" id="bar-logo-solo"></image>
-					</a>
+					</a> 	
 
 					<!-- Tabs -->
 					<div id="bar-tab-container">
@@ -122,7 +121,7 @@
 					<image src="desktop/shared/assets/img/bar-arrow.png" id="bar-user-arrow"></image>
 				</div>
 				<div id="bar-user-name-container">
-					<div id="bar-user-name" class="str str_name-user"></div>
+					<div id="bar-user-name" class="str str_name-user">{{body.user.firstName}}</div>
 				</div>
 				<div id="bar-user-show"></div>
 			</div>
@@ -167,27 +166,29 @@
 						<input type="image" src="desktop/home/assets/img/tocandtalk-start.png" id="button-start-img">
 					</div>
 					<br>
-					<input type="submit" class="str str-talk-start" id="str-talk-start">
+					<input type="submit" class="str str-talk-start" id="str-talk-start" value="{{body.lang.start}}"></input>
 					
 				</div>
 
 				<div id="home-section2">
 					<div class="home-card" style="margin-top: 20px;">
-						<div class="str card-welcome-title" id="str-welcome-title"></div>
+						<div class="str card-welcome-title" id="str-welcome-title">{{body.lang.welcomeTitle}}</div>
 						<br>
-						<div class="str card-welcome-desc" id="str-welcome-desc"></div>
+						<div class="str card-welcome-desc" id="str-welcome-desc">{{body.lang.welcomeDescription}}</div>
 						
 					</div>
 					<div class="home-card">
-						<div class="str card-lang-select-title" id="str-lang-select-title"></div>
+						<div class="str card-lang-select-title" id="str-lang-select-title">{{body.lang.selectLangTitle}}</div>
 						<br>
 
 						<select
-							id="s_languages"
-							name="s_languages"
+							ng-model="sLanguage"
+							id="s-languages"
+							name="s-languages"
 							class="input-lang"
 							required="">
-							<option value="" disabled="" selected="" hidden="">Selecciona un idioma</option>
+							<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
+							<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
 						</select>
 					</div>
 				</div>

@@ -1,30 +1,19 @@
 // CONTROLLERS
 
-app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $http, $log, sStage) {
+app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
 	$scope.body = {};
 	scope = $scope.body;
+    refs.body = scope;
 
-	scope.onSubmit = function() {
-		var data = {
-                    iUsername: $scope.iUsername,
-                    iPassword: $scope.iPassword
-                   };
-        //console.log($scope.fLogin);
-        $http.post('/login', data)
-            .success(function (result) {
-                if (!result.errors)
-                {
-                    $(location).attr('href','/');
-                }
-                else
-                {   
-                    sStage.reload(result.errors);
-                }
-            })
-            .error(function (data, status) {
-                $log.error({data: data, status: status});
-            });
-	};
+    scope.lang = {};
 
-    sStage.load();
+    sStage.load(refs);
+}]);
+
+app.controller('form', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+	$scope.form = {};
+	scope = $scope.form;
+    refs.form = scope;
+
+    scope.onSubmit = sActions.onSubmit(refs);
 }]);

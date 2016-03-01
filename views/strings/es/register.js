@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	/*
 	document.title = "Toc&Talk! - Registro";
 
 	$('.str_button_login').text(
@@ -64,7 +65,5 @@ $(document).ready(function(){
 	$('.str_sex_female').text(
 		"Mujer"
 	);
-
-
-
+	*/
 });
