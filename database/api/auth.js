@@ -18,10 +18,10 @@ var saveAccount = mAux.saveAccount;
 
 //localhost:4080/api/auth/:username/:password
 //localhost:4080/api/auth/feliponcio/banana
-router.get('/:username/:password', function (req, res) {
+router.post('/', function (req, res) {
   
-  var username = req.params.username;
-  var password = req.params.password;
+  var username = req.body.username;
+  var password = req.body.password;
 
   async.parallel({
       username: function(callback){
@@ -65,6 +65,7 @@ router.get('/:username/:password', function (req, res) {
       //return res.req.res.redirect('/');
   });
 });
+
 module.exports = router;
 
 

@@ -19,8 +19,8 @@ var saveAccount = mAux.saveAccount;
 //localhost:4080/api/delete/user/spokenLanguage/:username/:code
 //localhost:4080/api/delete/user/spokenLanguage/pedrito/it
 //localhost:4080/api/delete/user/spokenLanguage/pedrito/fr
-router.get('/user/spokenLanguage/:username/:code',function (req, res) {
-  var username = req.params.username;
+router.get('/user/spokenLanguage/:username/:code', function (req, res) {
+  var username = req.session.useraname;
   var code = req.params.code;
 
     async.parallel({
@@ -140,7 +140,4 @@ router.get('/user/interestLanguage/:username/:code',function (req, res) {
 });
 
 module.exports = router;
-
-
-
 
