@@ -56,6 +56,14 @@ auth_routes = require('./routes/auth.js');
 
 app.use(passport.initialize());
 app.use(passport.session());
+get_routes = require('./database/api/get.js');
+save_routes = require('./database/api/save.js');
+auth_routes = require('./database/api/auth.js');
+update_routes = require('./database/api/update.js');
+verify_routes = require('./database/api/verify.js');
+delete_routes = require('./database/api/delete.js');
+//delete_routes = require('./delete.js');
+
 app.use('/', home_routes);
 app.use('/talk', talk_routes);
 app.use('/login', login_routes);
@@ -65,6 +73,17 @@ app.use('/friends', friends_routes);
 app.use('/profile', profile_routes);
 app.use('/settings', settings_routes);
 app.use('/auth', auth_routes);
+
+app.use('/api/get', get_routes);
+app.use('/api/save', save_routes);
+app.use('/api/auth', auth_routes);
+app.use('/api/update', update_routes);
+app.use('/api/verify', verify_routes);
+app.use('/api/delete', delete_routes);
+
+// Extern Uses
+//var api = require('./database/api/api.js');
+
 // -----------------------------------
 // Only for development use
 var queries = require('./database/queries.js');

@@ -9,7 +9,8 @@ var models = require('../models.js');
 var authenticate_module = require('../../modules/authenticate.js');
 var authenticate = authenticate_module.authenticate;
 var functions_module = require('../../modules/functions.js');
-var mAux = require('./aux.js');
+//var mAux = require('./aux.js');
+var mAux = require('./auxQ.js');
 
 // Function Imports
 var errorAdapter = functions_module.error_adapter;
@@ -55,6 +56,128 @@ router.get('/account/:username/:email/:firstName/:lastName/:countryCode/:languag
       });
       // --------------------
     }
+  });
+});
+
+
+//localhost:4080/api/save/user/spokenLanguage/:username/:code
+//localhost:4080/api/save/user/spokenLanguage/pedrito/it
+//localhost:4080/api/save/user/spokenLanguage/pedrito/fr
+router.get('/user/spokenLanguage/:username/:code',function (req, res) {
+  var username = req.params.username;
+  var code = req.params.code;
+
+    async.parallel({
+        user: function(callback) {
+            setTimeout(function(){
+                models.Username
+                .findOne({username: username})
+                .deepPopulate('_user')
+                .exec(function (err, doc) {
+                  /*
+                    doc.nationality = req.body.s_country;
+                    doc.save(function (err) {
+                      var errors_tmp = error_adapter(models.Username.modelName, err);
+                   */
+                  var obj = null;
+                  if (doc) { obj = doc._user; }
+                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
+
+                })
+            }, 200)
+        },
+        language: function(callback) {
+          setTimeout(function(){
+              models.Language.findOne({code: code}).exec(function (err, doc) {
+                callback(null, {errors: errorAdapter(models.Language.modelName, err), doc: doc});
+              })
+          }, 200);
+      },
+  },
+  function(err, results) {
+    var user = results.user.doc;
+    var language = results.language.doc;
+  var errors = "";
+  errors += results.user.errors;
+  errors += results.language.errors;
+    if (user && language)
+    {
+      if (user.spokenLanguages.indexOf(language._id) == -1)
+      {
+        user.spokenLanguages.push(language._id);
+        user.save(function (err) {
+          if (err) { errors +='eDBUpdate' }
+          return res.send({errors: errors});
+        });
+      }
+      else
+      {
+        return res.send({errors: errors});
+      }
+  }
+  else
+  {
+    errors += 'eDBNotFound'
+    return res.send({errors: errors})
+  }
+  });
+});
+
+//localhost:4080/api/save/user/interestLanguage/:username/:code
+//localhost:4080/api/save/user/interestLanguage/pedrito/it
+//localhost:4080/api/save/user/interestLanguage/pedrito/fr
+router.get('/user/interestLanguage/:username/:code',function (req, res) {
+  var username = req.params.username;
+  var code = req.params.code;
+
+    async.parallel({
+        user: function(callback) {
+            setTimeout(function(){
+                models.Username
+                .findOne({username: username})
+                .deepPopulate('_user')
+                .exec(function (err, doc) {
+                  var obj = null;
+                  if (doc) { obj = doc._user; }
+                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
+
+                })
+            }, 200)
+        },
+        language: function(callback) {
+          setTimeout(function(){
+              models.Language.findOne({code: code}).exec(function (err, doc) {
+                callback(null, {errors: errorAdapter(models.Language.modelName, err), doc: doc});
+              })
+          }, 200);
+      },
+  },
+  function(err, results) {
+    var user = results.user.doc;
+    var language = results.language.doc;
+  var errors = "";
+  errors += results.user.errors;
+  errors += results.language.errors;
+    if (user && language)
+    {
+      if (user.interestLanguages.indexOf(language._id) == -1)
+      {
+        user.interestLanguages.push(language._id);
+        user.save(function (err) {
+          if (err) { errors +='eDBUpdate' }
+          return res.send({errors: errors});
+        });
+      }
+      else
+      {
+        return res.send({errors: errors});
+      }
+  }
+  else
+  {
+    errors += 'eDBNotFound'
+    return res.send({errors: errors})
+  }
   });
 });
 

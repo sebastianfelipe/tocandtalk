@@ -9,7 +9,8 @@ var models = require('../models.js');
 var authenticate_module = require('../../modules/authenticate.js');
 var authenticate = authenticate_module.authenticate;
 var functions_module = require('../../modules/functions.js');
-var mAux = require('./aux.js');
+//var mAux = require('./aux.js');
+var mAux = require('./auxQ.js');
 
 // Function Imports
 var errorAdapter = functions_module.error_adapter;
@@ -98,6 +99,49 @@ router.post('/edit_user_description',function (req, res) {
     //return res.render('profile/index.html', {forceType: "desktop", user: results.user.doc, languages: results.languages.docs, countries: results.countries.docs, req: req.body, errors: errors});
   });
 });
+
+//localhost:4080/api/update/user/description/:username/:description
+//localhost:4080/api/update/user/description/pedrito/Meencantan
+//localhost:4080/api/update/user/description/pedrito/kjdhsakdhkajkhdjkakjdhjkakjha
+router.get('/user/description/:username/:description',function (req, res) {
+	var username = req.params.username;
+	var description = req.params.description.trim();
+
+	  async.parallel({
+	      user: function(callback) {
+	          setTimeout(function(){
+	              models.Username
+	              .findOne({username: username})
+	              .deepPopulate('_user')
+	              .exec(function (err, doc) {
+	                var obj = null;
+	                if (doc) { obj = doc._user; }
+	                callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
+
+	              })
+	          }, 200)
+	      }
+  },
+  function(err, results) {
+  	var user = results.user.doc;
+	var errors = "";
+	errors += results.user.errors;
+  	if (user)
+  	{
+		user.description = description;
+		user.save(function (err) {
+			if (err) { errors +='eDBUpdate' }
+			return res.send({errors: errors});
+		});
+	}
+	else
+	{
+		errors += 'eDBNotFound'
+		return res.send({errors: errors})
+	}
+  });
+});
+
 
 router.post('/add_user_interest_language',function (req, res) {
   var errors = "";
