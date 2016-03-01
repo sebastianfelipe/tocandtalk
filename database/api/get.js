@@ -1,4 +1,3 @@
-
 var mongoose = require('mongoose');
 var router = require('express').Router();
 var async = require('async');
@@ -110,6 +109,53 @@ router.get('/users', function (req, res) {
   });
 });
 
+router.get('/emails', function (req, res) {
+  async.parallel({
+      email: function(callback) {
+          setTimeout(function(){
+              models.Email.find().exec(function (err, docs) {
+
+                callback(null, {errors: err, docs: docs});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+     return res.send(results.email);
+  });
+});
+
+router.get('/usernames', function (req, res) {
+  async.parallel({
+      username: function(callback) {
+          setTimeout(function(){
+              models.Username.find().exec(function (err, docs) {
+
+                callback(null, {errors: err, docs: docs});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+     return res.send(results.username);
+  });
+});
+
+router.get('/passwords', function (req, res) {
+  async.parallel({
+      password: function(callback) {
+          setTimeout(function(){
+              models.Password.find().exec(function (err, docs) {
+
+                callback(null, {errors: err, docs: docs});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+     return res.send(results.password);
+  });
+});
 //---------------------------------------------
 
 module.exports = router;

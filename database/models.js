@@ -6,6 +6,7 @@ var schema = require('./schema.js');
 var models = {};
 models.Username = mongoose.model('Username', schema.username);
 models.Email = mongoose.model('Email', schema.email);
+models.Password = mongoose.model('Password', schema.password);
 models.Country = mongoose.model('Country', schema.country);
 models.Language = mongoose.model('Language', schema.language);
 models.User = mongoose.model('User', schema.user);

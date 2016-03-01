@@ -163,10 +163,16 @@ router.get('/remove/:model', function(req, res) {
 	else if (req.params.model == "languages") {
 		models.Language.remove().exec();
 	}
-	else if (req.params.model == "tAll") {
-		models.tUser.remove().exec();
+	else if (req.params.model == "all") {
+		models.User.remove().exec();
+		models.Username.remove().exec();
+		models.Email.remove().exec();
+		models.Messenger.remove().exec();
+		models.Appraisement.remove().exec();
+		models.Password.remove().exec();
 		models.Country.remove().exec();
 		models.Language.remove().exec();
+		models.Password.remove().exec();
 	}
 	res.send('removed');
 });
