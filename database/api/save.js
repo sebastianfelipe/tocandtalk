@@ -20,19 +20,22 @@ var saveAccount = mAux.saveAccount;
 //localhost:4080/api/save/account/pedrito/pedrito@tocandtalk.com/pedrito/bandolero/us/it/1/banana
 //localhost:4080/api/save/account/juanito/juanito@tocandtalk.com/juanito/bandolero/us/it/1/banana
 //localhost:4080/api/save/account/feliponcio/feliponcio@tocandtalk.com/feliponcio/bandolero/us/it/1/banana
-router.get('/account/:username/:email/:firstName/:lastName/:countryCode/:languageCode/:sexVal/:password', function (req, res) {
+router.post('/account', function (req, res) {
   var user = new models.User();
   var data = {
-              username: req.params.username,
-              email: req.params.email,
-              firstName: req.params.firstName,
-              lastName: req.params.lastName,
-              countryCode: req.params.countryCode,
-              languageCode: req.params.languageCode,
-              sexVal: req.params.sexVal,
-              password: req.params.password,
+              username: req.body.username.trim().toLowerCase(),
+              email: req.body.email.trim().toLowerCase(),
+              firstName: req.body.firstName.trim().toLowerCase(),
+              lastName: req.body.lastName.trim().toLowerCase(),
+              countryCode: req.body.countryCode.trim().toLowerCase(),
+              languageCode: req.body.nativeLanguageCode.trim().toLowerCase(),
+              sexVal: req.body.sexVal,
+              password: req.body.password,
+              passwordConfirmation: req.body.passwordConfirmation,
               user: user
             };
+  console.log(req.body);
+  console.log(data);
   validateAccount(data, function (errors, output) {
     if (errors)
     {
@@ -51,6 +54,10 @@ router.get('/account/:username/:email/:firstName/:lastName/:countryCode/:languag
       // Save
       // --------------------
       saveAccount(data, function (errors, output) {
+        if (!errors)
+        {
+          req.session.username = output.username.username;
+        }
         return res.send({errors: errors});
       });
       // --------------------

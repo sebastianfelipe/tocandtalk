@@ -380,11 +380,11 @@
 				<!-- SEX -->
 				<div>
 					<!-- Sexo -->
-					<input ng-model="form.rSex" type="radio" name="rSex" value="hombre">
+					<input ng-model="form.rSex" type="radio" name="rSex" value="1">
 						<label for="male"><span><span></span></span>
 							<t2><div class="str">{{body.lang.sexMale}}</div></t2>
 						</label>
-					<input ng-model="form.rSex" type="radio" name="rSex" value="mujer" required value="1">
+					<input ng-model="form.rSex" type="radio" name="rSex" value="0" required>
 						<label for="female"><span><span></span></span>
 							<t2><div class="str">{{body.lang.sexFemale}}</div></t2>
 						</label>
@@ -408,7 +408,7 @@
 						required=""
 						class="inputSel inputSelGrande">
 						<option value="" disabled="" selected="" hidden="">{{body.lang.sCountry}}</option>
-						<option ng-repeat="country in body.countries" value="{{country.name}}">{{country.name}}</option>
+						<option ng-repeat="country in body.countries" value="{{country.code}}">{{country.name}}</option>
 					</select>
 				</div>
 
@@ -423,7 +423,7 @@
 						required=""
 						class="inputSel inputSelGrande">
 						<option value="" disabled="" selected="" hidden="">{{body.lang.sNativeLanguage}}</option>
-						<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
+						<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name}}</option>
 					</select>
 				</div>
 

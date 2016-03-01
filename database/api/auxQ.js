@@ -14,7 +14,7 @@ var validateAccount = function (data, callback) {
           setTimeout(function(){
             var username = new models.Username({
                                                 _user: user._id,
-                                                username: data.username.trim().toLowerCase()
+                                                username: data.username
                                               });
             username.validate(function (err) {
                 callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: username})
@@ -25,7 +25,7 @@ var validateAccount = function (data, callback) {
           setTimeout(function(){
             var email = new models.Email({
                                                 _user: user._id,
-                                                email: data.email.trim().toLowerCase(),
+                                                email: data.email,
                                                 verified: false
                                               });
             email.validate(function (err) {
@@ -84,7 +84,10 @@ var validateAccount = function (data, callback) {
     errors += results.country.errors;
     errors += results.language.errors;
     //----------------------------------
-
+    if (data.password != data.passwordConfirmation)
+    {
+      errors += "eUserPasswordConfirmation;"; 
+    }
     // Worry but the error handling
     //-----------------------------------
     user._username = results.username.doc._id;
@@ -187,9 +190,9 @@ var saveAccount = function (data, callback) {
     //----------------------------------
     
     var output = {
-            errors: errors
+            username: results.username.doc
           };
-    callback(errors);
+    callback(errors, output);
   });
 }
 //---------------------------------------------

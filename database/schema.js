@@ -118,15 +118,13 @@ schema.user = mongoose.Schema({
     firstName: { type: String,
                 required: true,
                 trim: true,
-                lowercase: true,
-                validate: [validate.alpha, 'pattern']
-},
+                lowercase: true
+                },
     lastName: { type: String,
                 required: true,
                 trim: true,
-                lowercase: true,
-                validate: [validate.alpha, 'pattern']
-},
+                lowercase: true
+    },
     sex: {
         type: Boolean,
         required: true
