@@ -53,7 +53,6 @@ var _ioConnection = function(socket) {
   //console.log("IO: User Id was generated: " + userId);
   
   socket.on('ask', function (callerId, language) {
-    callerId = createCode();
     var answer = {};
     answer.call = true;
     console.log(callerId);
@@ -96,19 +95,17 @@ var _ioConnection = function(socket) {
 
     else
     {
-      if (!wasItAdded(availables, callerId, language))
+      var indexCaller = indexOfUser(availables, callerId, language);
+      if (indexCaller > -1)
       {
-        var user = {};
-        user.userId = callerId;
-        user.conversationId = createCode();
-        answer.conversationId = user.conversationId;
-        availables[language].push(user);
-        console.log('IO: Push -> ' + callerId);
+        availables[language].splice(indexCaller, 1);
       }
-      else
-      {
-        console.log('IO: The user was added before');
-      }
+      var user = {};
+      user.userId = callerId;
+      user.conversationId = createCode();
+      answer.conversationId = user.conversationId;
+      availables[language].push(user);
+      console.log('IO: Push -> ' + callerId);
     }
 
     console.log("IO: Does " + callerId + " it has to call? " + answer.call);

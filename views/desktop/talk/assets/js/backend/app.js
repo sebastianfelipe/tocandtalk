@@ -39,6 +39,10 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
                 /* Nombre de Usuario */
                 params.sources.user = result.doc;
                 service.setUser(params);
+                // Temporal
+                // ---------------------
+                params.body.nextUser(params);
+                // ---------------------
             })
             .error(function (data, status) {
                 $log.error({data: data, status: status});
@@ -98,29 +102,27 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
     scope.newMsg = {}; // Mensaje enviado
     scope.rcvMsg = {}; // Mensaje recibido
 
-	sStage.getSources(refs);
-	sStage.load(refs);
+
 
 	scope.sendMessage = function ()
 	{
 		console.log(scope.newMsg.content);
 	};
 
-    scope.nextUser = function () {
+    scope.nextUser = function (params) {
         var tUser = 'pedrito';
         var tLang =  'es';
-        refs.conn.socket.emit('ask', tUser, tLang);
+        refs.conn.socket.emit('ask', params.body.user.username, tLang);
 
     } ;
-
-
 
     refs.conn.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
     refs.conn.socket.on('ansAsk', function(answer) {
         console.log(answer);
     });
-    
-    scope.nextUser();
+
+    sStage.getSources(refs);
+    sStage.load(refs);
 	/*
 	scope.loadMessages = function() {
 	    scope.$apply();
