@@ -78,24 +78,12 @@ router.get('/user', authenticate, function (req, res) {
     user.lastName = results.user.doc.lastName;
     user.description = results.user.doc.description;
     user.sex = results.user.doc.sex;
-    user.nativeLanguage = results.user.doc._nativeLanguage.name;
-    user.nationality = results.user.doc._nationality.name;
+    user.nativeLanguage = results.user.doc._nativeLanguage;
+    user.nationality = results.user.doc._nationality;
     user.fullName = user.firstName + " " + user.lastName;
 
-    user.spokenLanguages = [];
-    user.interestLanguages = [];
-
-    for (var i = 0; i <  results.user.doc.spokenLanguages.length; i++)
-    {
-      user.spokenLanguages.push({name: results.user.doc.spokenLanguages[i].name,
-                                 code: results.user.doc.spokenLanguages[i].code});
-    }
-
-    for (var i = 0; i <  results.user.doc.interestLanguages.length; i++)
-    {
-      user.interestLanguages.push({name: results.user.doc.interestLanguages[i].name,
-                                   code: results.user.doc.interestLanguages[i].code});
-    }
+    user.spokenLanguages = results.user.doc.spokenLanguages;
+    user.interestLanguages = results.user.doc.interestLanguages;
 
      return res.send({errors: errors, doc: user});
   });

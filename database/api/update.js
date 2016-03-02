@@ -19,16 +19,16 @@ var saveAccount = mAux.saveAccount;
 //localhost:4080/api/update/user/nationality/:username/:nationality
 //localhost:4080/api/update/user/nationality/pedrito/es
 //localhost:4080/api/update/user/nationality/pedrito/it
-router.get('/user/nationality/:username/:countryCode',function (req, res) {
-	var username = req.params.username;
-	var countryCode = req.params.countryCode;
+router.post('/user/nationality', authenticate, function (req, res) {
+	var username = req.session.username;
+	var countryCode = req.body.countryCode;
 
 	  async.parallel({
 	      user: function(callback) {
 	          setTimeout(function(){
 	              models.Username
 	              .findOne({username: username})
-	              .deepPopulate('_user')
+	              .deepPopulate('_user _user._nationality')
 	              .exec(function (err, doc) {
 	              	/*
 	                  doc.nationality = req.body.s_country;
@@ -61,13 +61,13 @@ router.get('/user/nationality/:username/:countryCode',function (req, res) {
 		user._nationality = country._id;
 		user.save(function (err) {
 			if (err) { errors +='eDBUpdate' }
-			return res.send({errors: errors});
+			return res.send({errors: errors, doc: country});
 		});
 	}
 	else
 	{
-		errors += 'eDBNotFound'
-		return res.send({errors: errors})
+		errors += 'eDBNotFound';
+		return res.send({errors: errors, doc: null});
 	}
   });
 });
@@ -75,9 +75,9 @@ router.get('/user/nationality/:username/:countryCode',function (req, res) {
 //localhost:4080/api/update/user/description/:username/:description
 //localhost:4080/api/update/user/description/pedrito/Meencantan
 //localhost:4080/api/update/user/description/pedrito/kjdhsakdhkajkhdjkakjdhjkakjha
-router.get('/user/description/:username/:description',function (req, res) {
-	var username = req.params.username;
-	var description = req.params.description.trim();
+router.post('/user/description', authenticate, function (req, res) {
+	var username = req.session.username;
+	var description = req.body.description.trim();
 
 	  async.parallel({
 	      user: function(callback) {
@@ -103,18 +103,18 @@ router.get('/user/description/:username/:description',function (req, res) {
 		user.description = description;
 		user.save(function (err) {
 			if (err) { errors +='eDBUpdate' }
-			return res.send({errors: errors});
+			return res.send({errors: errors, doc: user.description});
 		});
 	}
 	else
 	{
-		errors += 'eDBNotFound'
-		return res.send({errors: errors})
+		errors += 'eDBNotFound';
+		return res.send({errors: errors, doc: null});
 	}
   });
 });
 
-
+/*
 router.post('/add_user_interest_language',function (req, res) {
   var errors = "";
   add_interest_language = req.body.s_interest_languages;
@@ -241,5 +241,5 @@ router.post('/remove_spoken_language',function (req, res) {
   });
 
 });
-
+*/
 module.exports = router;

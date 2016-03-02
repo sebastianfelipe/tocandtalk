@@ -38,7 +38,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
     this.reload = function (params)
     {
         this.clear(params);
-	    this.showUserInf(params);
+	    this.setUser(params);
         this.showErrors(params.errors);
     };
 
@@ -90,33 +90,33 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
 	this.onUpdateUserNationalitySubmit = function (params) {
         return function () {
             var data = {
-                         s_country: params.fUpdateUserNationality.sUserNationality,
+                         countryCode: params.fUpdateUserNationality.sUserNationality,
                        };
+            console.log(data);
             
-            $http.post('/profile/edit_user_nationality', data)
+            $http.post('/api/update/user/nationality', data)
                 .success(function (result) {
-                	console.log(result);
                     params.errors = result.errors;
-                    params.sources.user = result.user;
+                    params.sources.user.nationality = result.doc;
                     sStage.reload(params);
                 })
                 .error(function (data, status) {
                     $log.error({data: data, status: status});
             });
+            
         };
 	};
 
 	this.onUpdateUserDescriptionSubmit = function (params) {
         return function () {
             var data = {
-                         input_edit_desc: params.body.user.description,
+                         description: params.body.user.description,
                        };
             
-            $http.post('/profile/edit_user_description', data)
+            $http.post('/api/update/user/description', data)
                 .success(function (result) {
-                    console.log(result);
                     params.errors = result.errors;
-                    params.sources.user = result.user;
+                    params.sources.user.description = result.doc;
                     sStage.reload(params);
                 })
                 .error(function (data, status) {
@@ -129,14 +129,17 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
 	this.onSaveUserSpokenLanguageSubmit = function (params) {
         return function () {
             var data = {
-                         s_spoken_languages: params.fSaveUserSpokenLanguage.sSpokenLanguage,
+                         code: params.fSaveUserSpokenLanguage.sSpokenLanguage,
                        };
-            console.log(data);
             
-            $http.post('/profile/add_user_spoken_language', data)
+            $http.post('/api/save/user/spokenLanguage', data)
                 .success(function (result) {
+                    console.log(result);
                     params.errors = result.errors;
-                    params.sources.user = result.user;
+                    if (!result.errors)
+                    {
+                        params.sources.user.spokenLanguages = result.doc;
+                    }
                     sStage.reload(params);
                 })
                 .error(function (data, status) {
@@ -148,14 +151,19 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
 	this.onSaveUserInterestLanguageSubmit = function (params) {
         return function () {
             var data = {
-                         s_interest_languages: params.fSaveUserInterestLanguage.sInterestLanguage,
+                         code: params.fSaveUserInterestLanguage.sInterestLanguage,
                        };
+
             console.log(data);
             
-            $http.post('/profile/add_user_interest_language', data)
+            $http.post('/api/save/user/interestLanguage', data)
                 .success(function (result) {
+                    console.log(result);
                     params.errors = result.errors;
-                    params.sources.user = result.user;
+                    if (!result.errors)
+                    {
+                        params.sources.user.interestLanguages = result.doc;
+                    }
                     sStage.reload(params);
                 })
                 .error(function (data, status) {
@@ -167,14 +175,18 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
 	this.onRemoveUserSpokenLanguageClick = function (params) {
         return function (id) {
             var data = {
-                         remove_spoken_language: id,
+                         code: id,
                        };
             console.log(data);
-            $http.post('/profile/remove_spoken_language', data)
+            
+            $http.post('/api/delete/user/spokenLanguage', data)
                 .success(function (result) {
-                	console.log(result);
+                    console.log(result);
                     params.errors = result.errors;
-                    params.sources.user = result.user;
+                    if (!result.errors)
+                    {
+                        params.sources.user.spokenLanguages = result.doc;
+                    }
                     sStage.reload(params);
                 })
                 .error(function (data, status) {
@@ -186,15 +198,18 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
 	this.onRemoveUserInterestLanguageClick = function (params) {
         return function (id) {
             var data = {
-                         remove_interest_language: id,
+                         code: id,
                        };
             console.log(data);
             
-            $http.post('/profile/remove_interest_language', data)
+            $http.post('/api/delete/user/interestLanguage', data)
                 .success(function (result) {
-                	console.log(result);
+                    console.log(result);
                     params.errors = result.errors;
-                    params.sources.user = result.user;
+                    if (!result.errors)
+                    {
+                        params.sources.user.interestLanguages = result.doc;
+                    }
                     sStage.reload(params);
                 })
                 .error(function (data, status) {

@@ -189,7 +189,7 @@
 						<br>
 
 						<div class="lang-list">
-							<div class="str str_lang_native">{{body.user.nativeLanguage}}</div> (<div class="str str_lang_native_title">{{body.lang.nativeLangTitle}}</div>)
+							<div class="str str_lang_native">{{body.user.nativeLanguage.name}}</div> (<div class="str str_lang_native_title">{{body.lang.nativeLangTitle}}</div>)
 							<br />
 							<div class="str" id="str_lang_spoken_list">
 								<p ng-repeat="language in body.user.spokenLanguages" value="language.code">{{language.name}}</p>
@@ -238,7 +238,7 @@
 									class="s_languages input-sel-contry"
 									required="">
 									<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
-									<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
+									<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name}}</option>
 								</select>
 
 								<input type="submit" value="{{body.lang.bAdd}}" class="button-add-lang">
@@ -323,7 +323,7 @@
 									class="s_languages input-sel-contry"
 									required="">
 									<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
-									<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
+									<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name}}</option>
 								</select>	
 
 								<input type="submit" value="{{body.lang.bAdd}}" class="button-add-lang">
@@ -376,7 +376,7 @@
 								</div>
 
 								<div id="usr-loc-section2">
-									<div class="str str_profile_country">{{body.user.nationality}}</div>
+									<div class="str str_profile_country">{{body.user.nationality.name}}</div>
 								</div>
 
 								<div id="usr-loc-section1">
@@ -396,8 +396,8 @@
 											name="s_country"
 											required=""
 											class="input-sel-contry">
-											<option disabled="" selected="" hidden="" value="">{{body.user.nationality}}</option>
-											<option ng-repeat="country in body.countries" value="{{country.name}}">{{country.name}}</option>
+											<option disabled="" selected="" hidden="" value="">{{body.user.nationality.name}}</option>
+											<option ng-repeat="country in body.countries" value="{{country.code}}">{{country.name}}</option>
 										</select>
 									</div>
 

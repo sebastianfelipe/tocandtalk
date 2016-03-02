@@ -68,9 +68,9 @@ router.post('/account', function (req, res) {
 //localhost:4080/api/save/user/spokenLanguage/:username/:code
 //localhost:4080/api/save/user/spokenLanguage/pedrito/it
 //localhost:4080/api/save/user/spokenLanguage/pedrito/fr
-router.get('/user/spokenLanguage/:username/:code',function (req, res) {
-  var username = req.params.username;
-  var code = req.params.code;
+router.post('/user/spokenLanguage', authenticate, function (req, res) {
+  var username = req.session.username;
+  var code = req.body.code;
 
     async.parallel({
         user: function(callback) {
@@ -112,18 +112,21 @@ router.get('/user/spokenLanguage/:username/:code',function (req, res) {
         user.spokenLanguages.push(language._id);
         user.save(function (err) {
           if (err) { errors +='eDBUpdate' }
-          return res.send({errors: errors});
+          user.populate('spokenLanguages', function (err, doc) {
+            return res.send({errors: errorAdapter(models.User.modelName, err), doc: doc.spokenLanguages});
+          });
         });
       }
       else
       {
-        return res.send({errors: errors});
+        errors += 'eUserSpokenLanguagesUnique'
+        return res.send({errors: errors, doc: null});
       }
   }
   else
   {
     errors += 'eDBNotFound'
-    return res.send({errors: errors})
+    return res.send({errors: errors, doc: null});
   }
   });
 });
@@ -131,9 +134,9 @@ router.get('/user/spokenLanguage/:username/:code',function (req, res) {
 //localhost:4080/api/save/user/interestLanguage/:username/:code
 //localhost:4080/api/save/user/interestLanguage/pedrito/it
 //localhost:4080/api/save/user/interestLanguage/pedrito/fr
-router.get('/user/interestLanguage/:username/:code',function (req, res) {
-  var username = req.params.username;
-  var code = req.params.code;
+router.post('/user/interestLanguage', authenticate, function (req, res) {
+  var username = req.session.username;
+  var code = req.body.code;
 
     async.parallel({
         user: function(callback) {
@@ -170,18 +173,22 @@ router.get('/user/interestLanguage/:username/:code',function (req, res) {
         user.interestLanguages.push(language._id);
         user.save(function (err) {
           if (err) { errors +='eDBUpdate' }
-          return res.send({errors: errors});
+          user.populate('interestLanguages', function (err, doc) {
+            return res.send({errors: errorAdapter(models.User.modelName, err), doc: doc.interestLanguages});
+          });
         });
+
       }
       else
       {
-        return res.send({errors: errors});
+        errors += 'eUserInterestLanguagesUnique'
+        return res.send({errors: errors, doc: null});
       }
   }
   else
   {
     errors += 'eDBNotFound'
-    return res.send({errors: errors})
+    return res.send({errors: errors, doc: null});
   }
   });
 });
