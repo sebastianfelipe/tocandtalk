@@ -18,7 +18,7 @@ var ports = {'http': {
 var host_name = "192.168.0.134";
 var users = [];
 var availables = {};
-var limit = 1;
+var limit = 2;
 
 var bd = {};
 bd.user = [{

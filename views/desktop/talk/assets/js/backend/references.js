@@ -9,26 +9,28 @@ refs.errors = "";
 refs.sources = {};
 
 
-/*
-refs.meta.connection.serverIp = null;
-refs.meta.connection.serverPorts = {};
-refs.meta.connection.hostName = null;
-refs.meta.connection.secure = null;
-refs.meta.connection.peerKey = '6sdshp5kg3edbo6r';
-refs.meta.connection.peerPath = '6sdshp5kg3edbo6r';
+refs.meta.conn = {};
+refs.meta.conn.serverIp = null;
+refs.meta.conn.serverPorts = {};
+refs.meta.conn.hostName = 'https.tocandtalk.com';
+refs.meta.conn.secure = true;
+refs.meta.conn.url = 'http://localhost:4080';
+refs.meta.conn.peerKey = '6sdshp5kg3edbo6r';
+refs.meta.conn.peerPath = '6sdshp5kg3edbo6r';
 
-refs.connection = {};
-refs.connection.socket = null;
-refs.connection.talking = null;
-refs.connection.call = null;
-refs.connection.data = null;
-refs.connection.localStream = null;
-refs.connection.remoteStream = null;
-refs.connection.localVideo = null;
-refs.connection.remoteVideo = null;
-refs.connection.callerId = null;
-refs.connection.recUser = null;
+refs.conn = {};
+refs.conn.socket = null;
+refs.conn.talking = null;
+refs.conn.call = null;
+refs.conn.data = null;
+refs.conn.localStream = null;
+refs.conn.remoteStream = null;
+refs.conn.localVideo = null;
+refs.conn.remoteVideo = null;
+refs.conn.callerId = null;
+refs.conn.recUser = null;
 
+  /*
   box_messages: null,
   entry_message: null,
-*/
+  */

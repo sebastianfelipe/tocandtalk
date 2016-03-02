@@ -9,11 +9,11 @@ var port1 = global_module.port1;
 var port2 = global_module.port2;
 
 // Nota: Arreglar problema de baja probabildiad
-var randomSearch = function (caller_id, language) {
-  var recipient_id = availables[language][Math.floor(Math.random()*availables[language].length)];
-  console.log("randomSearch: " + recipient_id + " " + caller_id);
-  if (recipient_id == caller_id) {return randomSearch(caller_id, language);}
-  return recipient_id;
+var randomSearch = function (callerId, language) {
+  var user = availables[language][Math.floor(Math.random()*availables[language].length)];
+  console.log("randomSearch: " + user.userId + " " + callerId);
+  if (user.userId  == callerId) {return randomSearch(callerId, language);}
+  return user;
 };
 
 module.exports.randomSearch = randomSearch;

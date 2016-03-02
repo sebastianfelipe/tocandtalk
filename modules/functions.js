@@ -19,17 +19,12 @@ var error_adapter = function (model_name, err) {
   return errorList.join(';');
 }
 
-module.exports.error_adapter = error_adapter;
-
-
-
-var createCode = function (){
+var createCode = function () {
   var buf = crypto.randomBytes(32);
   var identifier = buf.toString('hex');
   var hash = crypto.createHash('md5').update(identifier).digest('hex');
   return hash;
 }
-
 
 var sendMail = function (email) { 
   var smtpTransport = nodemailer.createTransport("SMTP", {
@@ -66,5 +61,29 @@ var sendMail = function (email) {
   });
 }
 
+var indexOfUser = function (availables, userId, language) {
+  for (var i = 0; i < availables[language].length; i++)
+  {
+    if (availables[language][i].userId == userId)
+    {
+      return i;
+    }
+  }
+  return -1;
+};
+
+var wasItAdded = function (availables, userId, language) {
+  if (indexOfUser(availables, userId, language) > -1)
+  {
+    return true;
+  }
+  return false;
+};
+
+
+
+module.exports.error_adapter = error_adapter;
 module.exports.sendMail = sendMail;
 module.exports.createCode = createCode;
+module.exports.indexOfUser = indexOfUser;
+module.exports.wasItAdded = wasItAdded;

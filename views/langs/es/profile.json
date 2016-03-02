@@ -15,10 +15,10 @@
 	"descTitle":     "Descripción ",
 	"descEditTitle": "Editar descripción",
 	"spokenLangTitle":"Idiomas que hablo",
-	"interestLangTitle" :"Idiomas que me interesan",
+	"interestLangTitle" :"Idiomas que quiero practicar",
 	"nativeLangTitle": "nativo",
 	"listLangEmpity" : "No ha añadido ningún idioma",
 	"editSpokenLangTitle": "Editar idiomas que hablo",
-	"editInterestLangTitle": "Editar idiomas que me interesan",
+	"editInterestLangTitle": "Editar idiomas que quiero practicar",
 	"dNon"				   : "Ninguna descripción que mostrar"
 }

@@ -52,6 +52,15 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
             .error(function (data, status) {
                 $log.error({data: data, status: status});
             });
+    
+    refs.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
+
+
+
+
+
+
+
 
 		/*	            
         $http.get('/api/get/languages')
@@ -97,6 +106,21 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 		console.log(scope.newMsg.content);
 	};
 
+    scope.nextUser = function () {
+        var tUser = 'pedrito';
+        var tLang =  'es';
+        refs.conn.socket.emit('ask', tUser, tLang);
+
+    } ;
+
+
+
+    refs.conn.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
+    refs.conn.socket.on('ansAsk', function(answer) {
+        console.log(answer);
+    });
+    
+    scope.nextUser();
 	/*
 	scope.loadMessages = function() {
 	    scope.$apply();
@@ -123,10 +147,4 @@ app.directive('updateChat', function() {
         chat_position();
         chat_scroll_bottom();
     };
-});
-
-app.filter('capitalize', function() {
-    return function(input) {
-        return (!!input) ? capitalize(input) : '';
-    }
 });
