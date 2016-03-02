@@ -23,20 +23,19 @@ var sendMail = functions_module.sendMail;
 //localhost:4080/api/save/account/juanito/fernando.dasilva@alumnos.usm.cl/juanito/bandolero/us/it/1/banana/banana
 //localhost:4080/api/save/account/feliponcio/feliponcio@tocandtalk.com/feliponcio/bandolero/us/it/1/banana/banana
 
-//router.post('/account', function (req, res) {
-router.get('/account/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation', function (req, res) {
-
+//router.get('/account', function (req, res) {
+router.post('/account', function (req, res) {
   var user = new models.User();
   var data = {
-              username: req.params.username.trim().toLowerCase(),
-              email: req.params.email.trim().toLowerCase(),
-              firstName: req.params.firstName.trim().toLowerCase(),
-              lastName: req.params.lastName.trim().toLowerCase(),
-              countryCode: req.params.countryCode.trim().toLowerCase(),
-              languageCode: req.params.nativeLanguageCode.trim().toLowerCase(),
-              sexVal: req.params.sexVal,
-              password: req.params.password,
-              passwordConfirmation: req.params.passwordConfirmation,
+              username: req.body.username.trim().toLowerCase(),
+              email: req.body.email.trim().toLowerCase(),
+              firstName: req.body.firstName.trim().toLowerCase(),
+              lastName: req.body.lastName.trim().toLowerCase(),
+              countryCode: req.body.countryCode.trim().toLowerCase(),
+              languageCode: req.body.nativeLanguageCode.trim().toLowerCase(),
+              sexVal: req.body.sexVal,
+              password: req.body.password,
+              passwordConfirmation: req.body.passwordConfirmation,
               user: user
             };
   validateAccount(data, function (errors, output) {

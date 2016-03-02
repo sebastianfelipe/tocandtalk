@@ -24,7 +24,7 @@ module.exports.error_adapter = error_adapter;
 
 
 var createCode = function (){
-  var buf = crypto.randomBytes(16);
+  var buf = crypto.randomBytes(32);
   var identifier = buf.toString('hex');
   var hash = crypto.createHash('md5').update(identifier).digest('hex');
   return hash;
