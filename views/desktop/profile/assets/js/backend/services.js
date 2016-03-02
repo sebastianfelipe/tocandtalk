@@ -2,7 +2,9 @@
 
 app.service('sStage', ['$http', '$log', function($http, $log) {
 	var service = this;
-	this.showUserInf = function(params) {
+	this.setUser = function(params) {
+        params.body.user = params.sources.user;
+        /*
         params.body.user.firstName =capitalize(params.sources.user.first_name);
         params.body.user.lastName = capitalize(params.sources.user.last_name);
         params.body.user.fullName = params.body.user.firstName + " " + params.body.user.lastName;
@@ -12,6 +14,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         params.body.user.interestLanguages = params.sources.user.interest_languages;
        	params.body.user.spokenLanguages = params.sources.user.spoken_languages;
        	params.body.user.description = params.sources.user.description;
+        */
 	};
 
     this.showErrors = function (errors)
@@ -45,7 +48,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 	            .success(function (result) {
 	                /* Nombre de Usuario */
 	                params.sources.user = result.doc;
-	                service.showUserInf(params);
+	                service.setUser(params);
 	            })
 	            .error(function (data, status) {
 	                $log.error({data: data, status: status});
