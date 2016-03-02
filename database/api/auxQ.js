@@ -5,7 +5,9 @@ var models = require('../models.js');
 // Module Imports
 var functions_module = require('../../modules/functions.js');
 
+// Functions Imports
 var errorAdapter = functions_module.error_adapter;
+var createCode = functions_module.createCode;
 
 var validateAccount = function (data, callback) {
   var user = data.user;
@@ -26,6 +28,7 @@ var validateAccount = function (data, callback) {
             var email = new models.Email({
                                                 _user: user._id,
                                                 email: data.email,
+                                                code: createCode(),
                                                 verified: false
                                               });
             email.validate(function (err) {
@@ -190,7 +193,8 @@ var saveAccount = function (data, callback) {
     //----------------------------------
     
     var output = {
-            username: results.username.doc
+            username: results.username.doc,
+            email: results.email.doc
           };
     callback(errors, output);
   });

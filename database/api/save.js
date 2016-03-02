@@ -16,27 +16,29 @@ var mAux = require('./auxQ.js');
 var errorAdapter = functions_module.error_adapter;
 var validateAccount = mAux.validateAccount;
 var saveAccount = mAux.saveAccount;
+var sendMail = functions_module.sendMail;
 
 //localhost:4080/api/save/account/:username/:email/:firstName/:lastName/:countryCode/:languageCode/:sexVal/:password
-//localhost:4080/api/save/account/pedrito/pedrito@tocandtalk.com/pedrito/bandolero/us/it/1/banana
-//localhost:4080/api/save/account/juanito/juanito@tocandtalk.com/juanito/bandolero/us/it/1/banana
-//localhost:4080/api/save/account/feliponcio/feliponcio@tocandtalk.com/feliponcio/bandolero/us/it/1/banana
-router.post('/account', function (req, res) {
+//localhost:4080/api/save/account/pedrito/pedrito@tocandtalk.com/pedrito/bandolero/us/it/1/banana/banana
+//localhost:4080/api/save/account/juanito/fernando.dasilva@alumnos.usm.cl/juanito/bandolero/us/it/1/banana/banana
+//localhost:4080/api/save/account/feliponcio/feliponcio@tocandtalk.com/feliponcio/bandolero/us/it/1/banana/banana
+
+//router.post('/account', function (req, res) {
+router.get('/account/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation', function (req, res) {
+
   var user = new models.User();
   var data = {
-              username: req.body.username.trim().toLowerCase(),
-              email: req.body.email.trim().toLowerCase(),
-              firstName: req.body.firstName.trim().toLowerCase(),
-              lastName: req.body.lastName.trim().toLowerCase(),
-              countryCode: req.body.countryCode.trim().toLowerCase(),
-              languageCode: req.body.nativeLanguageCode.trim().toLowerCase(),
-              sexVal: req.body.sexVal,
-              password: req.body.password,
-              passwordConfirmation: req.body.passwordConfirmation,
+              username: req.params.username.trim().toLowerCase(),
+              email: req.params.email.trim().toLowerCase(),
+              firstName: req.params.firstName.trim().toLowerCase(),
+              lastName: req.params.lastName.trim().toLowerCase(),
+              countryCode: req.params.countryCode.trim().toLowerCase(),
+              languageCode: req.params.nativeLanguageCode.trim().toLowerCase(),
+              sexVal: req.params.sexVal,
+              password: req.params.password,
+              passwordConfirmation: req.params.passwordConfirmation,
               user: user
             };
-  console.log(req.body);
-  console.log(data);
   validateAccount(data, function (errors, output) {
     if (errors)
     {
@@ -57,6 +59,7 @@ router.post('/account', function (req, res) {
       saveAccount(data, function (errors, output) {
         if (!errors)
         {
+          sendMail(output.email);
           req.session.username = output.username.username;
         }
         return res.send({errors: errors});

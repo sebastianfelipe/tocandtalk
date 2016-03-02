@@ -42,6 +42,7 @@ schema.email = mongoose.Schema({
        },
     code: {
         type: String,
+        required: true,
         validate: [validate.alphanumeric, 'pattern']
  }
 });

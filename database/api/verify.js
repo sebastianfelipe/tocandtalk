@@ -26,7 +26,7 @@ router.get('/email/:email/:code', function (req, res) {
   async.parallel({
       email: function(callback) {
           setTimeout(function(){
-              models.Email.findOne({email: email}).exec(function (err, doc) {
+              models.Email.findOne({email: email, code: code}).exec(function (err, doc) {
                 callback(null, {errors: errorAdapter(models.Email.modelName, err), doc: doc});
               })
           }, 200);
