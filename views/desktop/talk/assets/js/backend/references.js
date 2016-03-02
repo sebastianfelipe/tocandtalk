@@ -11,15 +11,17 @@ refs.sources = {};
 
 refs.meta.conn = {};
 refs.meta.conn.serverIp = null;
-refs.meta.conn.serverPorts = {};
-refs.meta.conn.hostName = 'https.tocandtalk.com';
-refs.meta.conn.secure = true;
+refs.meta.conn.hostName = 'localhost',//'https.tocandtalk.com';
+refs.meta.conn.serverPort = 4080;//443;
+refs.meta.conn.secure = false;
 refs.meta.conn.url = 'http://localhost:4080';
-refs.meta.conn.peerKey = '6sdshp5kg3edbo6r';
-refs.meta.conn.peerPath = '6sdshp5kg3edbo6r';
+//refs.meta.conn.peerKey = '6sdshp5kg3edbo6r';
+refs.meta.conn.peerKey = 'peerjs';
+refs.meta.conn.peerPath = '/peerjs';
 
 refs.conn = {};
 refs.conn.socket = null;
+refs.conn.peer = null;
 refs.conn.talking = null;
 refs.conn.call = null;
 refs.conn.data = null;

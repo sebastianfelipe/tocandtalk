@@ -41,6 +41,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
                 service.setUser(params);
                 // Temporal
                 // ---------------------
+                params.body.connect(params);
                 params.body.nextUser(params);
                 // ---------------------
             })
@@ -116,9 +117,46 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 
     } ;
 
+    scope.connect = function (params) {
+      var username = params.body.user.username;
+      if (!username) {
+        $log.error('please set caller ID first');
+        return false;
+      }
+      /*
+      if ((!refs.server_ip) || (!refs.server_ports.peer))
+      {
+        logError('Problem with the server connection. Please reload the page');
+        return false;  
+      }
+      */
+
+      try {
+        var peerOptions = {key: 'peerjs',
+                            host: params.meta.conn.hostName,//refs.server_ip, //"https.tocandtalk.com",
+                            port: params.meta.conn.serverPort,//refs.server_ports.peer,
+                            secure: params.meta.conn.secure,
+                            debug: 0};
+        params.conn.peer = new Peer(username, peerOptions);
+        //params.conn.peer.on('call', _answer);
+      }
+      catch (e) {
+        params.conn.peer = null;
+        $log.error('error while connecting to server');
+      }
+    };
+
     refs.conn.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
     refs.conn.socket.on('ansAsk', function(answer) {
-        console.log(answer);
+        if (answer.call)
+        {
+
+        }
+
+        else
+        {
+
+        }
     });
 
     sStage.getSources(refs);

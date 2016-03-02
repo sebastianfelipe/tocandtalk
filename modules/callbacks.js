@@ -29,6 +29,7 @@ var _peerConnection = function (id) {
 
 var _peerDisconnect = function (id) {
   console.log('P2P: User disconnected ' + id);
+  /*
   user_index_id = users.indexOf(id);
   if (user_index_id > -1)
   {
@@ -45,6 +46,7 @@ var _peerDisconnect = function (id) {
   }
   console.log(users);
   console.log(availables);
+  */
 }
 
 var _ioConnection = function(socket) {
@@ -89,8 +91,6 @@ var _ioConnection = function(socket) {
       {
         availables[language].splice(availablesIndexRecId, 1); 
       }
-
-      //socket.emit('talk',recipient_id);
     }
 
     else
@@ -112,7 +112,6 @@ var _ioConnection = function(socket) {
     console.log('IO: Availables ');
     console.log(availables);
     socket.emit('ansAsk', answer);
-    //socket.emit('tocAnswer', wait);
   });
 
 
