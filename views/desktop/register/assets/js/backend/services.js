@@ -81,20 +81,20 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
     this.onSubmit = function(params) {
         return function () {
             var data = {
-                         iName: params.form.iName,
-                         iLastname: params.form.iLastname,
-                         iUsername: params.form.iUsername,
-                         iEmail: params.form.iEmail,
-                         iPassword: params.form.iPassword,
-                         iPasswordConfirmation: params.form.iPasswordConfirmation,
-                         iDay: params.form.iDay,
-                         sMonth: params.form.sMonth,
-                         iYear: params.form.iYear,
-                         rSex: params.form.rSex,
-                         sCountry: params.form.sCountry,
-                         sNativeLanguage: params.form.sNativeLanguage
+                         firstName: params.form.iName,
+                         lastName: params.form.iLastname,
+                         username: params.form.iUsername,
+                         email: params.form.iEmail,
+                         password: params.form.iPassword,
+                         passwordConfirmation: params.form.iPasswordConfirmation,
+                         day: params.form.iDay,
+                         month: params.form.sMonth,
+                         year: params.form.iYear,
+                         sexVal: params.form.rSex,
+                         countryCode: params.form.sCountry,
+                         nativeLanguageCode: params.form.sNativeLanguage
                        };
-            $http.post('/register', data)
+            $http.post('/api/save/account', data)
                 .success(function (result) {
                     console.log(result);
                     if (!result.errors)

@@ -8,6 +8,10 @@ var models = require('../models.js');
 // Module Imports
 var authenticate_module = require('../../modules/authenticate.js');
 var authenticate = authenticate_module.authenticate;
+var functions_module = require('../../modules/functions.js');
+
+// Function Imports
+var errorAdapter = functions_module.error_adapter;
 
 /*
 var allowCrossDomain = function(req, res, next) {
@@ -28,6 +32,7 @@ router.get('/', function (req, res) {
 	console.log('/api/get');
 });
 
+/*
 router.get('/user', authenticate, function (req, res) {
   async.parallel({
       user: function(callback) {
@@ -41,6 +46,46 @@ router.get('/user', authenticate, function (req, res) {
   },
   function(err, results) {
      return res.send(results.user);
+  });
+});
+*/
+
+router.get('/user', authenticate, function (req, res) {
+  var username = req.session.username;
+
+  async.parallel({
+        user: function(callback) {
+            setTimeout(function(){
+                models.Username
+                .findOne({username: username}, {_password: 0})
+                .deepPopulate('_user._nationality _user._nativeLanguage _user._username _user.spokenLanguages _user.interestLanguages')
+                .exec(function (err, doc) {
+                  var obj = null;
+                  if (doc) { obj = doc._user; }
+                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
+
+                })
+            }, 200)
+        }
+  },
+  function(err, results) {
+    var errors = "";
+    errors += results.user.errors;
+
+    var user = {};
+    user.username = results.user.doc._username.username;
+    user.firstName = results.user.doc.firstName;
+    user.lastName = results.user.doc.lastName;
+    user.description = results.user.doc.description;
+    user.sex = results.user.doc.sex;
+    user.nativeLanguage = results.user.doc._nativeLanguage;
+    user.nationality = results.user.doc._nationality;
+    user.fullName = user.firstName + " " + user.lastName;
+
+    user.spokenLanguages = results.user.doc.spokenLanguages;
+    user.interestLanguages = results.user.doc.interestLanguages;
+
+     return res.send({errors: errors, doc: user});
   });
 });
 

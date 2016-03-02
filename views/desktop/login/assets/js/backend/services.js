@@ -44,10 +44,10 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
     this.onSubmit = function(params) {
         return function () {
             var data = {
-                        iUsername: params.form.iUsername,
-                        iPassword: params.form.iPassword
+                        username: params.form.iUsername,
+                        password: params.form.iPassword
                        };
-            $http.post('/login', data)
+            $http.post('/api/auth', data)
                 .success(function (result) {
                     if (!result.errors)
                     {

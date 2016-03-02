@@ -98,35 +98,41 @@ schema.password = mongoose.Schema({
 schema.user = mongoose.Schema({
     _username: {
         type: ObjectId,
-        ref: 'Username'
+        ref: 'Username',
+        required: true
     },
     _email: {
         type: ObjectId,
-        ref: 'Email'
+        ref: 'Email',
+        required: true
     },
-    _password: { type: ObjectId, ref: 'Password'},
+    _password: {
+        type: ObjectId,
+        ref: 'Password',
+        required: true
+    },
     _nationality: {
         type: ObjectId,
-        ref: 'Country'
+        ref: 'Country',
+        required: true
 },
     _nativeLanguage: {
         type: ObjectId,
-        ref: 'Language'
+        ref: 'Language',
+        required: true
 },
     spokenLanguages: [{type: ObjectId, ref: 'Language'}],
     interestLanguages:  [{type: ObjectId, ref: 'Language'}],
     firstName: { type: String,
                 required: true,
                 trim: true,
-                lowercase: true,
-                validate: [validate.alpha, 'pattern']
-},
+                lowercase: true
+                },
     lastName: { type: String,
                 required: true,
                 trim: true,
-                lowercase: true,
-                validate: [validate.alpha, 'pattern']
-},
+                lowercase: true
+    },
     sex: {
         type: Boolean,
         required: true
@@ -134,15 +140,17 @@ schema.user = mongoose.Schema({
     description: {
                 type: String,
                 maxlength: 250
-},
+    },
     _appraisement: {
                 type: ObjectId,
-                ref: 'Appraisement'
-},
+                ref: 'Appraisement',
+                required: true
+    },
     _messenger: {
                 type: ObjectId,
-                ref: 'Messenger'
-}
+                ref: 'Messenger',
+                required: true
+    }
 });
 
 schema.appreciation = mongoose.Schema({
@@ -154,7 +162,7 @@ schema.appreciation = mongoose.Schema({
             type: String,
             maxlength: 125,
             trim: true
-},
+    },
    punctuation: {
             type: Number,
             min: 1,
