@@ -79,11 +79,6 @@ router.post('/user/spokenLanguage', authenticate, function (req, res) {
                 .findOne({username: username})
                 .deepPopulate('_user')
                 .exec(function (err, doc) {
-                  /*
-                    doc.nationality = req.body.s_country;
-                    doc.save(function (err) {
-                      var errors_tmp = error_adapter(models.Username.modelName, err);
-                   */
                   var obj = null;
                   if (doc) { obj = doc._user; }
                   callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
