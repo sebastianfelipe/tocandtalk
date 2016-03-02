@@ -76,7 +76,7 @@ var _ioConnection = function(socket) {
       var user = randomSearch(callerId, language);
       var recId = user.userId
       answer.recId = recId;
-      answer.conversationId = user.conversationId;
+      answer.convId = user.convId;
       console.log("IO: The get result has recipient_id: " + recId + " and caller_id: " + callerId);
 
       availablesIndexCallerId = indexOfUser(availables, callerId, language);
@@ -102,8 +102,8 @@ var _ioConnection = function(socket) {
       }
       var user = {};
       user.userId = callerId;
-      user.conversationId = createCode();
-      answer.conversationId = user.conversationId;
+      user.convId = createCode();
+      answer.convId = user.convId;
       availables[language].push(user);
       console.log('IO: Push -> ' + callerId);
     }

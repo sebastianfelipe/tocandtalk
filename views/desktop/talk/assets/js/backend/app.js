@@ -138,7 +138,19 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
                             secure: params.meta.conn.secure,
                             debug: 0};
         params.conn.peer = new Peer(username, peerOptions);
-        //params.conn.peer.on('call', _answer);
+
+        // Peer Listening
+        // ------------------------------
+        params.conn.peer.on('call', function (recId, recConvId) {
+            console.log(recId);
+            console.log(recConvId);
+        });
+
+        params.conn.peer.on('connection', function (dataConnection) {
+            params.conn.data = dataConnection;
+            params.body.onDataConnection(refs);
+        });
+        // ------------------------------
       }
       catch (e) {
         params.conn.peer = null;
@@ -146,18 +158,61 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
       }
     };
 
+    scope.onDataConnection = function (params)
+    {
+        params.conn.data.on('open', function () {
+            $log.info("A data connection was recieved");
+            if (params.meta.auth.call)
+            {
+                var data = {};
+                data.auth = {recId: params.meta.auth.recId, convId: params.meta.auth.convId};
+                data.user = params.body.user; 
+                refs.conn.data.send(data);
+            }
+        });
+        params.conn.data.on('data', function (data) {
+            $log.info("Data received");
+            if (data.auth)
+            {
+                if (params.meta.auth.convId == data.auth.convId)
+                {
+                    params.conn.data.send({'user': params.body.user});
+                }
+                //else
+                //{
+                    //params.conn.data.close();
+                //}
+            }
+
+            if (data.user)
+            {
+                params.sources.recUser = data.user;
+            }
+        });
+        params.conn.data.on('close', function () {
+            $log.info('The another peer has closed');
+        });
+    }
+
     refs.conn.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
     refs.conn.socket.on('ansAsk', function(answer) {
+        refs.meta.auth = answer;
         if (answer.call)
         {
-
-        }
-
-        else
-        {
-
+            if (refs.conn.peer)
+            {
+                $log.info('Peer exists');
+                refs.conn.data = refs.conn.peer.connect(answer.recId);
+                if (refs.conn.data)
+                {
+                    scope.onDataConnection(refs);
+                    //refs.conn.data.send(data);
+                }
+            }
         }
     });
+
+
 
     sStage.getSources(refs);
     sStage.load(refs);

@@ -172,7 +172,6 @@ router.get('/remove/:model', function(req, res) {
 		models.Password.remove().exec();
 		models.Country.remove().exec();
 		models.Language.remove().exec();
-		models.Password.remove().exec();
 	}
 	res.send('removed');
 });

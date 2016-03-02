@@ -142,7 +142,10 @@ router.get('/users', function (req, res) {
   async.parallel({
       user: function(callback) {
           setTimeout(function(){
-              models.User.find().exec(function (err, docs) {
+              models.User
+              .find()
+              .deepPopulate('_password')
+              .exec(function (err, docs) {
 
                 callback(null, {errors: err, docs: docs});
               })
