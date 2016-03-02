@@ -37,6 +37,8 @@ function hashPassword(password, callback) {
         return callback(err);
       }
 
+      console.log(hash.toString());
+
       var combined = new Buffer(hash.length + salt.length + 8);
 
       // include the size of the salt so that we can, during verification,
@@ -47,6 +49,7 @@ function hashPassword(password, callback) {
 
       salt.copy(combined, 8);
       hash.copy(combined, salt.length + 8);
+      console.log(hash.toString('hex'));
       callback(null, combined);
     });
   });
@@ -81,5 +84,8 @@ function verifyPassword(password, combined, callback) {
   });
 }
 
-exports.hashPassword = hashPassword;
-exports.verifyPassword = verifyPassword;
+hashPassword("hola", function (err, encryptedPassword) {
+  console.log(encryptedPassword.toString('binary'));
+});
+module.exports.hashPassword = hashPassword;
+module.exports.verifyPassword = verifyPassword;

@@ -9,6 +9,8 @@ var models = require('../models.js');
 var authenticate_module = require('../../modules/authenticate.js');
 var authenticate = authenticate_module.authenticate;
 var functions_module = require('../../modules/functions.js');
+var encrypt_module = require('./encrypt.js');
+
 //var mAux = require('./aux.js');
 var mAux = require('./auxQ.js');
 
@@ -16,11 +18,12 @@ var mAux = require('./auxQ.js');
 var errorAdapter = functions_module.error_adapter;
 var validateAccount = mAux.validateAccount;
 var saveAccount = mAux.saveAccount;
+var verifyPassword = encrypt_module.verifyPassword;
 
 //localhost:4080/api/auth/:username/:password
 //localhost:4080/api/auth/feliponcio/banana
 router.post('/', function (req, res) {
-  
+  console.log(req.body);
   var username = req.body.username;
   var password = req.body.password;
 
@@ -52,10 +55,15 @@ router.post('/', function (req, res) {
       var errors = "";
       var doc = results.username.doc || results.email.doc;
       if (doc)
-      {       
-        if (doc._user._password.password == password)
+      {
+        console.log(doc._user._password);
+        if (verifyPassword(password, doc._user._password.salt, doc._user._password.password))
         {
           req.session.username = doc._user._username.username;
+        }
+        else
+        {
+          errors += "eUser";
         }
       }
       else

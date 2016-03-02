@@ -4,10 +4,12 @@ var models = require('../models.js');
 
 // Module Imports
 var functions_module = require('../../modules/functions.js');
+var encrypt_module = require('./encrypt.js');
 
 // Functions Imports
 var errorAdapter = functions_module.error_adapter;
 var createCode = functions_module.createCode;
+var hashPassword = encrypt_module.hashPassword;
 
 var validateAccount = function (data, callback) {
   var user = data.user;
@@ -54,7 +56,10 @@ var validateAccount = function (data, callback) {
       },
       password: function(callback) {
           setTimeout(function(){
-            var password = new models.Password({_user: user._id, password: data.password});
+            var encryptedPassword = hashPassword(data.password);
+            console.log(data.password);
+            console.log(encryptedPassword);
+            var password = new models.Password({_user: user._id, password: encryptedPassword.hash, salt: encryptedPassword.salt});
             password.validate(function (err) {
                 callback(null, {errors: errorAdapter(models.Password.modelName, err), doc: password})
             });
