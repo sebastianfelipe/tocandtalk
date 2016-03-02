@@ -1,15 +1,14 @@
 // SERVICES
 
 app.service('sStage', ['$http', '$log', function($http, $log) {
-
+    var service = this;
     this.showErrors = function (errors)
     {
     };
 
-    this.showUserInf = function(params)
-    {
-
-    }
+    this.setUser = function(params) {
+        params.body.user = params.sources.user;
+    };
 
     this.clear = function ()
     {
@@ -33,6 +32,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
     this.reload = function (params)
     {
         this.clear();
+        this.setUser(params);
         this.showErrors(params.errors);
     };
 
@@ -41,15 +41,13 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         $http.get('/api/get/user')
             .success(function (result) {
                 /* Nombre de Usuario */
-                params.sources.user = params.body.user;
-                console.log(result.doc.first_name);
-                params.body.user.firstName = capitalize(result.doc.first_name);
-                params.body.user.lastName = capitalize(result.doc.last_name);
-                params.body.user.fullName = params.body.user.firstName + " " + params.body.user.lastName;
+                params.sources.user = result.doc;
+                console.log(result);
+                service.setUser(params);
             })
             .error(function (data, status) {
                 $log.error({data: data, status: status});
-            });
+        });
 
         $http.get('/api/get/lang/'+params.meta.lang+'/'+params.meta.view)
             .success(function (result) {

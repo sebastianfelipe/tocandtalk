@@ -188,7 +188,7 @@
 							class="input-lang"
 							required="">
 							<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
-							<option ng-repeat="language in body.languages" value="{{language.name}}">{{language.name}}</option>
+							<option ng-repeat="language in body.user.interestLanguages" value="{{language.code}}">{{language.name}}</option>
 						</select>
 					</div>
 				</div>

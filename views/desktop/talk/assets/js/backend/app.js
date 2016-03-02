@@ -6,30 +6,10 @@ var app = angular.module('tocandtalk', []);
 
 app.service('sStage', ['$http', '$log', function($http, $log) {
 	var service = this;
-	this.setUser = function(params) {
-        params.body.user.firstName =capitalize(params.sources.user.first_name);
-        params.body.user.lastName = capitalize(params.sources.user.last_name);
-        params.body.user.fullName = params.body.user.firstName + " " + params.body.user.lastName;
-        params.body.user.nationality = params.sources.user.nationality;
-        params.body.user.username = params.sources.user._username;  
-        params.body.user.nativeLanguage = params.sources.user.native_language;
-        params.body.user.interestLanguages = params.sources.user.interest_languages;
-       	params.body.user.spokenLanguages = params.sources.user.spoken_languages;
-       	params.body.user.description = params.sources.user.description;
-	};
-/*
-	this.setRecUser = function(params) {
-        params.body.recUser.firstName =capitalize(params.sources.recUser.first_name);
-        params.body.recUser.lastName = capitalize(params.sources.recUser.last_name);
-        params.body.recUser.fullName = params.body.recUser.firstName + " " + params.body.recUser.lastName;
-        params.body.recUser.nationality = params.sources.recUser.nationality;
-        params.body.recUser.username = params.sources.recUser._username;  
-        params.body.recUser.nativeLanguage = params.sources.recUser.native_language;
-        params.body.recUser.interestLanguages = params.sources.recUser.interest_languages;
-       	params.body.recUser.spokenLanguages = params.sources.recUser.spoken_languages;
-       	params.body.recUser.description = params.sources.recUser.description;
-	};
-*/
+    this.setUser = function(params) {
+        params.body.user = params.sources.user;
+    };
+
     this.showErrors = function (errors)
     {
       
@@ -56,7 +36,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         
         $http.get('/api/get/user')
             .success(function (result) {
-                // Nombre de Usuario 
+                /* Nombre de Usuario */
                 params.sources.user = result.doc;
                 service.setUser(params);
             })
