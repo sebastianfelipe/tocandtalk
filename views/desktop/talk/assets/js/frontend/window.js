@@ -153,7 +153,7 @@ $(document).ready(function ()
     if ( $(window).width() <= 550 || $(window).height() <= 370 ) resizeWin();
     
     $(window).resize(function() {
-        resizeVideo();
-        resizeWin();
+        //resizeVideo();
+        //resizeWin();
     });
 });
