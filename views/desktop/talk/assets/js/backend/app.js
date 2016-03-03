@@ -187,6 +187,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         // Peer Listening
         // ------------------------------
         params.conn.peer.on('call', function (call) {
+            $log.info('a perr.on call connection was received');
             params.conn.media = call;
             params.body.onMediaConnection(refs);
         });
