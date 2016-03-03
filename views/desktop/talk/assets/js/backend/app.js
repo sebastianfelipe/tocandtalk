@@ -10,6 +10,11 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         params.body.user = params.sources.user;
     };
 
+    this.setRecUser = function(params) {
+        params.body.recUser = params.sources.recUser;
+        console.log('yeah!');
+    };
+
     this.showErrors = function (errors)
     {
       
@@ -28,6 +33,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
     {
         this.clear(params);
 	    this.setUser(params);
+        this.setRecUser(params);
         this.showErrors(params.errors);
     };
 
@@ -102,8 +108,6 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
     scope.messages = []; // Arreglo de mensajes
     scope.newMsg = {}; // Mensaje enviado
     scope.rcvMsg = {}; // Mensaje recibido
-
-
 
 	scope.sendMessage = function ()
 	{
@@ -187,6 +191,8 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             if (data.user)
             {
                 params.sources.recUser = data.user;
+                sStage.setRecUser(params);
+                $scope.apply();
             }
         });
         params.conn.data.on('close', function () {
@@ -211,8 +217,6 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             }
         }
     });
-
-
 
     sStage.getSources(refs);
     sStage.load(refs);

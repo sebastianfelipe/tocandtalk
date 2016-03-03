@@ -293,7 +293,7 @@
                     <div id="p_prof_img_cover">
                         <image id="p_prof_img_usr"></image>
                         <br>
-                        {{body.recUser.first_name | capitalize}} {{body.recUser.last_name | capitalize}}
+                        {{body.recUser.firstName | capitalize}} {{body.recUser.lastName | capitalize}}
                     </div>
                     
                     <div class="p_prof_card">
@@ -310,7 +310,7 @@
                              width: 108px;
                              margin-bottom: 7px;
                              margin-left: 80px;">
-                            {{body.recUser.country | capitalize}}
+                            {{body.recUser.nationality | capitalize}}
                         </div>
                         
                         <br>
@@ -350,15 +350,15 @@
                              margin-left: 12px;
                              margin-top: 4px;">
                             <div style="margin-top:2px; width:100%;">
-                                {{body.recUser.native_language | capitalize}} (Nativo)
+                                {{body.recUser.nativeLanguage | capitalize}} (Nativo)
                             </div>
-                            <div style="margin-top:3px; width:100%;" ng-repeat="spoken_language in body.recUser.spoken_languages">
-                                {{spoken_language | capitalize}}
+                            <div style="margin-top:3px; width:100%;" ng-repeat="language in body.recUser.spokenLanguages">
+                                {{language.name | capitalize}}
                             </div>
                         </div>
                         
                     </div>
-                    <div class="p_prof_card" ng-show="body.recUser.interest_languages != null">
+                    <div class="p_prof_card" ng-show="body.recUser.interestLanguages != null">
                         <tc> {{body.lang.infoInterestLanguages}}</tc>
                         <br>
                         
@@ -367,8 +367,8 @@
                              display: inline-block;
                              margin-left: 12px;
                              margin-top: 4px;">
-                            <div style="margin-top:3px; width:100%;" ng-repeat="interest_language in body.recUser.interest_languages">
-                                {{interest_language | capitalize}}
+                            <div style="margin-top:3px; width:100%;" ng-repeat="language in body.recUser.interestLanguages">
+                                {{language.name | capitalize}}
                             </div>
                         </div>
                     </div>
