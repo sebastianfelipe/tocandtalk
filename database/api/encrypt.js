@@ -20,9 +20,6 @@ function hashPassword(password) {
     hash: hash.toString('hex'),
     salt: salt.toString('hex')
   }
-  console.log(hash.toString('hex'));
-  console.log(salt.toString('hex'));
-  console.log(pass);
   return pass;
 }
 
@@ -42,15 +39,16 @@ function verifyPassword(password, salt, hash) {
   var saltBytes = 32;
   var iterations = 10000;
   // verify the salt and hash against the password
-  var verify = crypto.pbkdf2Sync(password, salt, iterations, hashBytes);
-  return verify.toString('hex') === hash;
+  if (password)
+  {
+    var verify = crypto.pbkdf2Sync(password, salt, iterations, hashBytes);
+    return verify.toString('hex') === hash;
+  }
+  else
+  {
+    return false;
+  }
 }
-
-var holi = hashPassword("hola", function (err, encryptedPassword) {
-});
-console.log(holi);
-var holi2 = verifyPassword("hola", holi.salt, holi.hash);
-console.log(holi2);
 
 exports.hashPassword = hashPassword;
 exports.verifyPassword = verifyPassword;

@@ -92,7 +92,10 @@ schema.password = mongoose.Schema({
                 validate: [validate.alphanumeric, 'pattern']
 	},
 	salt: {
-		type: String
+		type: String,
+        required: true,
+        trim: true,
+        validate: [validate.alphanumeric, 'pattern']
 	}
 });
 

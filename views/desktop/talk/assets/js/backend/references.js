@@ -11,26 +11,29 @@ refs.sources = {};
 
 refs.meta.conn = {};
 refs.meta.conn.serverIp = null;
-refs.meta.conn.hostName = 'localhost',//'https.tocandtalk.com';
+refs.meta.conn.hostName = '192.168.1.109',//'https.tocandtalk.com';
 refs.meta.conn.serverPort = 4080;//443;
 refs.meta.conn.secure = false;
-refs.meta.conn.url = 'http://localhost:4080';
+refs.meta.conn.url = 'http://192.168.1.109:4080';
 //refs.meta.conn.peerKey = '6sdshp5kg3edbo6r';
 refs.meta.conn.peerKey = 'peerjs';
 refs.meta.conn.peerPath = '/peerjs';
 
+refs.meta.auth = {};
+
 refs.conn = {};
-refs.conn.socket = null;
-refs.conn.peer = null;
+refs.conn.socket = {};
+refs.conn.peer = {};
 refs.conn.talking = null;
-refs.conn.call = null;
-refs.conn.data = null;
+refs.conn.call = {};
+refs.conn.data = {};
 refs.conn.localStream = null;
 refs.conn.remoteStream = null;
 refs.conn.localVideo = null;
 refs.conn.remoteVideo = null;
 refs.conn.callerId = null;
-refs.conn.recUser = null;
+refs.conn.recUser = {};
+
 
   /*
   box_messages: null,

@@ -2,6 +2,7 @@ $(document).ready(function(){
     
     // Mostrar u ocultar panel
     $("#usr_img").click(function() {
+        
         if ($("#panel").is(":visible")) {
             $("#panel").fadeOut(160);
             $("#panel_arrow").fadeOut(160);
@@ -12,7 +13,7 @@ $(document).ready(function(){
             // Cargar mensajes y ocultar notificación si el Chat es visible
             if ($("#panel_cont_chat").is(":visible")) {
                 ChatNotification.hide();
-                load_messages();
+                //load_messages();
                 chat_scroll_bottom();
             }
         }
@@ -56,17 +57,18 @@ $(document).ready(function(){
         if (TabStatus.is_tab_prof()) {
             TabStatus.set_tab_msg();
             
-            $("#p_tab_msg_sel").css("display", "inline-block");
+            //$("#p_tab_msg_sel").css("display", "inline-block");
             $("#p_tab_prof_sel").fadeOut(200);
             
             $("#p_tab_prof").css("cursor", "pointer");
             $("#p_tab_msg").css("cursor", "default");
             
+            
             $("#panel_cont_chat").fadeIn(70);
             $("#panel_cont_profile").fadeOut(70);
             
             ChatNotification.hide();
-            load_messages();
+            //load_messages();
             chat_scroll_bottom();
         }
         
@@ -83,8 +85,10 @@ $(document).ready(function(){
             $("#p_tab_prof").css("cursor", "default");
             $("#p_tab_msg").css("cursor", "pointer");
             
+            
             $("#panel_cont_profile").fadeIn(70);
             $("#panel_cont_chat").fadeOut(70);
+            
         }
         
     });

@@ -93,12 +93,12 @@
 		<!--<script src="desktop/shared/assets/js/load.js"></script>-->
 	</header>
 
-	<body id="TalkController" ng-controller="body">
+	<body id="body" ng-controller="body">
         <!-- Load -->
         <div id="load_screen">
-            
+            <!--
             <button type="text" id="load_skip" style="position:absolute; top:0px; left:0px; margin:16px;">Saltar pantalla de carga</button>
-
+            -->
             <div id="world_container">
                 <image src="desktop/talk/assets/img/mundo.svg" id="world"></image>
             </div>
@@ -203,7 +203,7 @@
                 </div>
                 <div id="button_next">
                     <!-- <image src="desktop/talk/assets/img/button_next.svg" id="b_icon_next" class="control_icon"></image> -->
-                    <input id="search" type="image" src="desktop/talk/assets/img/button-next.svg" class="control_icon" ng-click="nextUser()">
+                    <input id="search" type="image" src="desktop/talk/assets/img/button-next.svg" class="control_icon" ng-click="body.onNextUserClick()">
                 </div>
                 <div class="button_none"></div>
             </div>
@@ -247,7 +247,7 @@
                 <div id="p_tab_msg" class="panel_tab_item">
                     <div id="p_tab_msg_sel" class="panel_tab_sel"></div>
                     <div class="panel_tab_txt">
-                        Chat
+                        <p>Chat</p>
                     </div>
                 </div>
                 
@@ -255,7 +255,7 @@
                 <div id="p_tab_prof" class="panel_tab_item">
                     <div id="p_tab_prof_sel" class="panel_tab_sel"></div>
                     <div class="panel_tab_txt">
-                        Perfil
+                        <p>Perfil</p>
                     </div>
                 </div>
 
@@ -264,7 +264,7 @@
             <!-- Chat -->
             <div id="panel_cont_chat" class="panel_cont">
                 
-                <div id="p_msg_container">
+                <div class="p_msg_container content_scroll_m">
                     <div class="p_msg_list">
                         <div ng-repeat="message in body.messages" update-chat class="animate-repeat">  
                             <div class="msg_bubble_chat msg_b_chat_{{message.type}}">
@@ -278,10 +278,10 @@
                 
                 <div id="p_msg_send_container">
                     <image src="desktop/talk/assets/img/msg-send-arrow.svg" id="msg_b_send_arrow"></image>
-                    <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="body.newMsg.content" ng-enter="body.sendMessage()">
+                    <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="body.tmpMessage" ng-enter="body.sendMessage()">
 
                     <div id="msg_send_button">
-                        <input type="image" src="desktop/talk/assets/img/button-next.svg" class="msg_send_button_img" id="send-message" ng-model="body.newMsg.content" ng-click="body.sendMessage()">
+                        <input type="image" src="desktop/talk/assets/img/button-next.svg" class="msg_send_button_img" id="send-message" ng-model="body.tmpMessage" ng-click="body.sendMessage()">
                     </div>
                 </div>
             </div>
@@ -293,7 +293,7 @@
                     <div id="p_prof_img_cover">
                         <image id="p_prof_img_usr"></image>
                         <br>
-                        {{body.recUser.first_name | capitalize}} {{body.recUser.last_name | capitalize}}
+                        {{body.recUser.firstName | capitalize}} {{body.recUser.lastName | capitalize}}
                     </div>
                     
                     <div class="p_prof_card">
@@ -310,7 +310,7 @@
                              width: 108px;
                              margin-bottom: 7px;
                              margin-left: 80px;">
-                            {{body.recUser.country | capitalize}}
+                            {{body.recUser.nationality.name | capitalize}}
                         </div>
                         
                         <br>
@@ -325,12 +325,12 @@
                              display: inline-block;
                              width: 108px;
                              margin-left: 80px;">
-                            {{body.recUser.sex | capitalize}}
+                            {{body.lang.sex[body.recUser.sex]}}
                         </div>
                         
                     </div>
-                    <div class="p_prof_card" ng-show='body.recUser.description != "" && body.recUser.description != null'>
-                        <tc>{{body.lang.infoDescription}</tc>
+                    <div class="p_prof_card" ng-show='body.recUser.description'>
+                        <tc>{{body.lang.infoDescription}}</tc>
                         <br>
                         <div style=
                             "position: relative;
@@ -350,15 +350,15 @@
                              margin-left: 12px;
                              margin-top: 4px;">
                             <div style="margin-top:2px; width:100%;">
-                                {{body.recUser.native_language | capitalize}} (Nativo)
+                                {{body.recUser.nativeLanguage.name | capitalize}} (Nativo)
                             </div>
-                            <div style="margin-top:3px; width:100%;" ng-repeat="spoken_language in body.recUser.spoken_languages">
-                                {{spoken_language | capitalize}}
+                            <div style="margin-top:3px; width:100%;" ng-repeat="language in body.recUser.spokenLanguages">
+                                {{language.name | capitalize}}
                             </div>
                         </div>
                         
                     </div>
-                    <div class="p_prof_card" ng-show="body.recUser.interest_languages != null">
+                    <div class="p_prof_card" ng-show="body.recUser.interestLanguages != null">
                         <tc> {{body.lang.infoInterestLanguages}}</tc>
                         <br>
                         
@@ -367,8 +367,8 @@
                              display: inline-block;
                              margin-left: 12px;
                              margin-top: 4px;">
-                            <div style="margin-top:3px; width:100%;" ng-repeat="interest_language in body.recUser.interest_languages">
-                                {{interest_language | capitalize}}
+                            <div style="margin-top:3px; width:100%;" ng-repeat="language in body.recUser.interestLanguages">
+                                {{language.name | capitalize}}
                             </div>
                         </div>
                     </div>

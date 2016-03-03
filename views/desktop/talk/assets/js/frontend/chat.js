@@ -60,15 +60,16 @@ var ChatNotification = {
  */
 function chat_position()
 {
-    if ( $(".p_msg_list").outerHeight() - $("#p_msg_container").height() >= 0 )
+    // if the message box is full
+    if ( $(".p_msg_list").outerHeight() - $(".p_msg_container").height() >= 0 )
     {
-        $("#p_msg_container").addClass("content_scroll_m");
+        //$("#p_msg_container").addClass("content_scroll_m");
         $(".p_msg_list").css("position", "relative");
-        $(".content_scroll_m").mCustomScrollbar({ theme: "minimal" });    
+        $(".content_scroll_m").mCustomScrollbar({ theme: "minimal" });
     }
     else
     {
-        $("#p_msg_container").removeClass("content_scroll_m");
+        //$("#p_msg_container").removeClass("content_scroll_m");
         $(".p_msg_list").css("position", "absolute");
     }
     return;
@@ -83,7 +84,8 @@ function chat_position()
  */
 function chat_scroll_bottom()
 {
-    $(".content_scroll_m").mCustomScrollbar("scrollTo","bottom",{ scrollEasing:"easeOut" });
+    //$(".content_scroll_m").mCustomScrollbar("scrollTo","bottom",{ scrollEasing:"easeOut" });
+    $(".content_scroll_m").mCustomScrollbar("scrollTo","bottom", { scrollEasing: "easeOut"});
     return;
 }
 
@@ -102,8 +104,8 @@ function chat_visible() {
  * Retorno: Null
  */
 function load_messages() {
-    //angular.element($('#TalkController')).scope().loadMessages();
-    console.log("load_messages() was called");
+    //angular.element($('#body')).scope().body.loadMessages();
+    //console.log("load_messages() was called");
     return;
 }
 

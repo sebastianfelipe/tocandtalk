@@ -68,7 +68,7 @@ router.post('/', function (req, res) {
         }
         else
         {
-          errors += "eUser";
+          errors += "eUser;";
         }
       }
       else

@@ -12,6 +12,7 @@ var createCode = functions_module.createCode;
 var hashPassword = encrypt_module.hashPassword;
 
 var validateAccount = function (data, callback) {
+  var timeout = 200;
   var user = data.user;
   async.parallel({
       username: function(callback) {
@@ -23,7 +24,7 @@ var validateAccount = function (data, callback) {
             username.validate(function (err) {
                 callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: username})
             });
-          }, 200);
+          }, timeout);
       },
       email: function(callback) {
           setTimeout(function(){
@@ -36,7 +37,7 @@ var validateAccount = function (data, callback) {
             email.validate(function (err) {
                 callback(null, {errors: errorAdapter(models.Email.modelName, err), doc: email})
             });
-          }, 200);
+          }, timeout);
       },
       appraisement: function(callback) {
           setTimeout(function(){
@@ -44,7 +45,7 @@ var validateAccount = function (data, callback) {
             appraisement.validate(function (err) {
                 callback(null, {errors: errorAdapter(models.Appraisement.modelName, err), doc: appraisement})
             });
-          }, 200);
+          }, timeout);
       },
       messenger: function(callback) {
           setTimeout(function(){
@@ -52,32 +53,30 @@ var validateAccount = function (data, callback) {
             messenger.validate(function (err) {
                 callback(null, {errors: errorAdapter(models.Messenger.modelName, err), doc: messenger})
             });
-          }, 200);
+          }, timeout);
       },
       password: function(callback) {
           setTimeout(function(){
             var encryptedPassword = hashPassword(data.password);
-            console.log(data.password);
-            console.log(encryptedPassword);
             var password = new models.Password({_user: user._id, password: encryptedPassword.hash, salt: encryptedPassword.salt});
             password.validate(function (err) {
                 callback(null, {errors: errorAdapter(models.Password.modelName, err), doc: password})
             });
-          }, 200);
+          }, timeout);
       },
       country: function(callback) {
           setTimeout(function(){
               models.Country.findOne({code: data.countryCode}).exec(function (err, doc) {
                 callback(null, {errors: errorAdapter(models.Country.modelName, err), doc: doc});
               })
-          }, 200);
+          }, timeout);
       },
       language: function(callback) {
           setTimeout(function(){
               models.Language.findOne({code: data.languageCode}).exec(function (err, doc) {
                 callback(null, {errors: errorAdapter(models.Language.modelName, err), doc: doc});
               })
-          }, 200);
+          }, timeout);
       }
   },
   function(err, results) {
@@ -115,18 +114,12 @@ var validateAccount = function (data, callback) {
     //localhost:4080/api/save/account/pedrito/pedrito@tocandtalk.com/pedrito/bandolero/us/it/banana
     errors += errorAdapter(models.User.modelName, user.validateSync());
 
-    username = results.username;
-    email = results.email;
-    password = results.password;
-    appraisement = results.appraisement;
-    messenger = results.messenger;
-
     var output = {
-            username: username.doc,
-            email: email.doc,
-            password: password.doc,
-            appraisement: appraisement.doc,
-            messenger: messenger.doc,
+            username: results.username.doc,
+            email: results.email.doc,
+            password: results.password.doc,
+            appraisement: results.appraisement.doc,
+            messenger: results.messenger.doc,
             user: user
           };
     callback(errors, output);
@@ -159,6 +152,8 @@ var saveAccount = function (data, callback) {
       password: function(callback) {
           setTimeout(function(){
             password.save(function (err) {
+              //console.log("There is an error");
+              //console.log(err);
                 callback(null, {errors: errorAdapter(models.Password.modelName, err), doc: password})
             });
           }, 200);
@@ -199,7 +194,9 @@ var saveAccount = function (data, callback) {
     
     var output = {
             username: results.username.doc,
-            email: results.email.doc
+            email: results.email.doc,
+            password: results.password.doc,
+            user: results.user.doc
           };
     callback(errors, output);
   });
