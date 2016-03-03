@@ -153,6 +153,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         {
             start_load();
             params.conn.data.close();
+            params.conn.media.close();
         }
         sStage.clear(params);
         params.conn.socket.emit('ask', params.body.user.username, tLang);
