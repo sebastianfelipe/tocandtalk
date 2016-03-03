@@ -149,6 +149,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         var tLang =  'es';
         if (params.conn.data.open)
         {
+            start_load();
             params.conn.data.close();
         }
         sStage.clear(params);
@@ -203,6 +204,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
     scope.onDataConnection = function (params)
     {
         params.conn.data.on('open', function () {
+            end_load();
             $log.info("A data connection was recieved");
             if (params.meta.auth.call)
             {
@@ -264,11 +266,10 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 
     sStage.getSources(refs);
     sStage.load(refs);
-	/*
+	
 	scope.loadMessages = function() {
-	    scope.$apply();
+	    $scope.$apply();
 	};
-	*/
 }]);
 
 app.directive('ngEnter', function () {

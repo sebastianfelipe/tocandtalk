@@ -2,6 +2,7 @@ $(document).ready(function(){
     
     // Mostrar u ocultar panel
     $("#usr_img").click(function() {
+        
         if ($("#panel").is(":visible")) {
             $("#panel").fadeOut(160);
             $("#panel_arrow").fadeOut(160);
@@ -56,7 +57,7 @@ $(document).ready(function(){
         if (TabStatus.is_tab_prof()) {
             TabStatus.set_tab_msg();
             
-            $("#p_tab_msg_sel").css("display", "inline-block");
+            //$("#p_tab_msg_sel").css("display", "inline-block");
             $("#p_tab_prof_sel").fadeOut(200);
             
             $("#p_tab_prof").css("cursor", "pointer");
