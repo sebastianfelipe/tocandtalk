@@ -136,6 +136,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         { 
             if (refs.conn.data.open)
             {
+                ChatNotification.new_msg();
                 scope.messages.push(message);
             }
             else
@@ -143,6 +144,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
                 $log.error('The connection has not been stablished');
             }
         }
+        if (chat_visible()) {$scope.$apply();};
     };
 
     scope.nextUser = function (params) {
@@ -184,9 +186,9 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 
         // Peer Listening
         // ------------------------------
-        params.conn.peer.on('call', function (recId, recConvId) {
-            console.log(recId);
-            console.log(recConvId);
+        params.conn.peer.on('call', function (call) {
+            params.conn.call = call;
+            params.body.onCall(refs);
         });
 
         params.conn.peer.on('connection', function (dataConnection) {
@@ -238,12 +240,26 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             if (data.message)
             {
                 scope.getMessage(data.message);
-                $scope.$apply();
             }
         });
         params.conn.data.on('close', function () {
             $log.info('The another peer has closed');
         });
+    }
+
+    scope.onCall = function (params)
+    {
+        $log.info('A call was received');
+        $log.info('Someone has called');
+        /*
+        params.conn.data.on('open', function () {
+        });
+        params.conn.data.on('data', function (data) {
+        });
+        params.conn.data.on('close', function () {
+            $log.info('The another peer has closed');
+        });
+        */
     }
 
     refs.conn.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
@@ -255,11 +271,23 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             if (refs.conn.peer)
             {
                 $log.info('Peer exists');
+                
                 refs.conn.data = refs.conn.peer.connect(answer.recId);
                 if (refs.conn.data)
                 {
                     scope.onDataConnection(refs);
                 }
+
+                //if (refs.conn.localStream)
+                //{
+                    $log.info('This peer will call someone');
+                    refs.conn.call = refs.conn.peer.call(answer.recId);
+                    if (refs.conn.call)
+                    {
+                        $log.info('This peer has a call')
+                        scope.onCall(refs);
+                    }
+                //}
             }
         }
     });
@@ -267,9 +295,23 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
     sStage.getSources(refs);
     sStage.load(refs);
 	
+    /*
+    scope.tabChat = true;
+
+    scope.onChatClick = function () {
+        scope.tabChat = true;
+        $log.info('onChatClick');
+    };
+
+    scope.onProfileClick = function () {
+        scope.tabChat = false;
+        $log.info('onProfileClick');
+    };
+
 	scope.loadMessages = function() {
 	    $scope.$apply();
 	};
+    */
 }]);
 
 app.directive('ngEnter', function () {

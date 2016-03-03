@@ -13,7 +13,7 @@ $(document).ready(function(){
             // Cargar mensajes y ocultar notificación si el Chat es visible
             if ($("#panel_cont_chat").is(":visible")) {
                 ChatNotification.hide();
-                load_messages();
+                //load_messages();
                 chat_scroll_bottom();
             }
         }
@@ -63,11 +63,12 @@ $(document).ready(function(){
             $("#p_tab_prof").css("cursor", "pointer");
             $("#p_tab_msg").css("cursor", "default");
             
+            
             $("#panel_cont_chat").fadeIn(70);
             $("#panel_cont_profile").fadeOut(70);
             
             ChatNotification.hide();
-            load_messages();
+            //load_messages();
             chat_scroll_bottom();
         }
         
@@ -84,8 +85,10 @@ $(document).ready(function(){
             $("#p_tab_prof").css("cursor", "default");
             $("#p_tab_msg").css("cursor", "pointer");
             
+            
             $("#panel_cont_profile").fadeIn(70);
             $("#panel_cont_chat").fadeOut(70);
+            
         }
         
     });

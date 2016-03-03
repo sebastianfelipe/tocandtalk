@@ -247,7 +247,7 @@
                 <div id="p_tab_msg" class="panel_tab_item">
                     <div id="p_tab_msg_sel" class="panel_tab_sel"></div>
                     <div class="panel_tab_txt">
-                        Chat
+                        <p>Chat</p>
                     </div>
                 </div>
                 
@@ -255,7 +255,7 @@
                 <div id="p_tab_prof" class="panel_tab_item">
                     <div id="p_tab_prof_sel" class="panel_tab_sel"></div>
                     <div class="panel_tab_txt">
-                        Perfil
+                        <p>Perfil</p>
                     </div>
                 </div>
 
@@ -264,7 +264,7 @@
             <!-- Chat -->
             <div id="panel_cont_chat" class="panel_cont">
                 
-                <div id="p_msg_container">
+                <div class="p_msg_container content_scroll_m">
                     <div class="p_msg_list">
                         <div ng-repeat="message in body.messages" update-chat class="animate-repeat">  
                             <div class="msg_bubble_chat msg_b_chat_{{message.type}}">

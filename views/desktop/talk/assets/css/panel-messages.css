@@ -21,7 +21,7 @@
     bottom: 2px;
 }
 
-#p_msg_container {
+.p_msg_container {
     position: absolute;
     
     overflow-y: hidden;
