@@ -18,12 +18,12 @@ var validateAccount = mAux.validateAccount;
 var saveAccount = mAux.saveAccount;
 var sendMail = functions_module.sendMail;
 
-//localhost:4080/api/save/account/:username/:email/:firstName/:lastName/:countryCode/:languageCode/:sexVal/:password
+//localhost:4080/api/save/account/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation
 //localhost:4080/api/save/account/pedrito/pedrito@tocandtalk.com/pedrito/bandolero/us/it/1/banana/banana
-//localhost:4080/api/save/account/juanito/fernando.dasilva@alumnos.usm.cl/juanito/bandolero/us/it/1/banana/banana
+//localhost:4080/api/save/account/juanito/juanito@tocandtalk.com/juanito/bandolero/us/it/1/banana/banana
 //localhost:4080/api/save/account/feliponcio/feliponcio@tocandtalk.com/feliponcio/bandolero/us/it/1/banana/banana
 
-//router.get('/account', function (req, res) {
+//router.get('/account/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation', function (req, res) {
 router.post('/account', function (req, res) {
   var user = new models.User();
   var data = {
@@ -58,7 +58,9 @@ router.post('/account', function (req, res) {
       saveAccount(data, function (errors, output) {
         if (!errors)
         {
-          sendMail(output.email);
+          //sendMail(output.email);
+          //console.log('The user is');
+          //console.log(output);
           req.session.username = output.username.username;
         }
         return res.send({errors: errors});

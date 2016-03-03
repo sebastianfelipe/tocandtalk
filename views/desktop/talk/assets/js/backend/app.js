@@ -22,6 +22,9 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 
     this.clear = function (params)
     {
+        params.body.messages = [];
+        params.body.recUser = params.sources.recUser = {};
+        params.meta.auth = {};
     };
 
     this.load = function (params)
@@ -66,13 +69,6 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
     
     refs.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
 
-
-
-
-
-
-
-
 		/*	            
         $http.get('/api/get/languages')
             .success(function (result) {
@@ -111,15 +107,57 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 
 	scope.sendMessage = function ()
 	{
-		console.log(scope.newMsg.content);
+        var message = {};
+        message.type = "sender";
+        message.content = scope.tmpMessage.trim();
+        if (message.content)
+        {   
+            if (refs.conn.data.open)
+            {
+                var data = {};
+                data.message = message.content;
+                refs.conn.data.send(data);
+                scope.messages.push(message);
+            }
+            else
+            {
+                $log.error('The connection has not been stablished');
+            }
+        }
+        scope.tmpMessage = "";
 	};
 
-    scope.nextUser = function (params) {
-        var tUser = 'pedrito';
-        var tLang =  'es';
-        refs.conn.socket.emit('ask', params.body.user.username, tLang);
+    scope.getMessage = function(content)
+    {
+        var message = {};
+        message.type = "receiver";
+        message.content = content.trim();
+        if (message.content)
+        { 
+            if (refs.conn.data.open)
+            {
+                scope.messages.push(message);
+            }
+            else
+            {
+                $log.error('The connection has not been stablished');
+            }
+        }
+    };
 
-    } ;
+    scope.nextUser = function (params) {
+        var tLang =  'es';
+        if (params.conn.data.open)
+        {
+            params.conn.data.close();
+        }
+        sStage.clear(params);
+        params.conn.socket.emit('ask', params.body.user.username, tLang);
+    };
+
+    scope.onNextUserClick = function () {
+        scope.nextUser(refs);
+    }
 
     scope.connect = function (params) {
       var username = params.body.user.username;
@@ -192,7 +230,13 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             {
                 params.sources.recUser = data.user;
                 sStage.setRecUser(params);
-                $scope.apply();
+                $scope.$apply();
+            }
+
+            if (data.message)
+            {
+                scope.getMessage(data.message);
+                $scope.$apply();
             }
         });
         params.conn.data.on('close', function () {
@@ -202,6 +246,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 
     refs.conn.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
     refs.conn.socket.on('ansAsk', function(answer) {
+        $log.info('The answer ansAsk was received from the server');
         refs.meta.auth = answer;
         if (answer.call)
         {
@@ -212,7 +257,6 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
                 if (refs.conn.data)
                 {
                     scope.onDataConnection(refs);
-                    //refs.conn.data.send(data);
                 }
             }
         }

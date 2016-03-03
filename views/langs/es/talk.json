@@ -15,8 +15,7 @@
 	"infoInterestLanguages" : "Idiomas que me interesan:",
 	"infoDescription" : "Descripción de Usuario",
 	"infoLocationTitle" : "Ubicación:",
-	"infoSex": "Sexo:"
-	
-
-	
+	"infoSex": "Sexo:",
+	"sex": {"true": "Hombre",
+			"false": "Mujer"}
 }

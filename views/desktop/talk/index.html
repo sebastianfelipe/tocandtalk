@@ -203,7 +203,7 @@
                 </div>
                 <div id="button_next">
                     <!-- <image src="desktop/talk/assets/img/button_next.svg" id="b_icon_next" class="control_icon"></image> -->
-                    <input id="search" type="image" src="desktop/talk/assets/img/button-next.svg" class="control_icon" ng-click="nextUser()">
+                    <input id="search" type="image" src="desktop/talk/assets/img/button-next.svg" class="control_icon" ng-click="body.onNextUserClick()">
                 </div>
                 <div class="button_none"></div>
             </div>
@@ -278,10 +278,10 @@
                 
                 <div id="p_msg_send_container">
                     <image src="desktop/talk/assets/img/msg-send-arrow.svg" id="msg_b_send_arrow"></image>
-                    <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="body.newMsg.content" ng-enter="body.sendMessage()">
+                    <input class="msg_bubble_send" id="message-entry" type="text" autocomplete="off" ng-model="body.tmpMessage" ng-enter="body.sendMessage()">
 
                     <div id="msg_send_button">
-                        <input type="image" src="desktop/talk/assets/img/button-next.svg" class="msg_send_button_img" id="send-message" ng-model="body.newMsg.content" ng-click="body.sendMessage()">
+                        <input type="image" src="desktop/talk/assets/img/button-next.svg" class="msg_send_button_img" id="send-message" ng-model="body.tmpMessage" ng-click="body.sendMessage()">
                     </div>
                 </div>
             </div>
@@ -310,7 +310,7 @@
                              width: 108px;
                              margin-bottom: 7px;
                              margin-left: 80px;">
-                            {{body.recUser.nationality | capitalize}}
+                            {{body.recUser.nationality.name | capitalize}}
                         </div>
                         
                         <br>
@@ -325,12 +325,12 @@
                              display: inline-block;
                              width: 108px;
                              margin-left: 80px;">
-                            {{body.recUser.sex | capitalize}}
+                            {{body.lang.sex[body.recUser.sex]}}
                         </div>
                         
                     </div>
-                    <div class="p_prof_card" ng-show='body.recUser.description != "" && body.recUser.description != null'>
-                        <tc>{{body.lang.infoDescription}</tc>
+                    <div class="p_prof_card" ng-show='body.recUser.description'>
+                        <tc>{{body.lang.infoDescription}}</tc>
                         <br>
                         <div style=
                             "position: relative;
@@ -350,7 +350,7 @@
                              margin-left: 12px;
                              margin-top: 4px;">
                             <div style="margin-top:2px; width:100%;">
-                                {{body.recUser.nativeLanguage | capitalize}} (Nativo)
+                                {{body.recUser.nativeLanguage.name | capitalize}} (Nativo)
                             </div>
                             <div style="margin-top:3px; width:100%;" ng-repeat="language in body.recUser.spokenLanguages">
                                 {{language.name | capitalize}}
