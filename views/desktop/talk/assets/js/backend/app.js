@@ -255,7 +255,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         $log.info('Someone has called');
         params.conn.media.on('stream', function (stream) {
             $log.info('onMediaConnection stream');
-            //params.conn.remoteStream = stream;
+            params.conn.remoteStream = stream;
             //params.body.setRemoteVideo(params);
         })
         /*
