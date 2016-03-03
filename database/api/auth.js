@@ -20,6 +20,11 @@ var validateAccount = mAux.validateAccount;
 var saveAccount = mAux.saveAccount;
 var verifyPassword = encrypt_module.verifyPassword;
 
+var passport = require('passport');
+
+require('../../config/passport')(passport);
+
+
 //localhost:4080/api/auth/:username/:password
 //localhost:4080/api/auth/feliponcio/banana
 router.post('/', function (req, res) {
@@ -74,6 +79,18 @@ router.post('/', function (req, res) {
       //return res.req.res.redirect('/');
   });
 });
+
+router.get('/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email']}));
+
+router.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: '/register', failureRedirect: '/login', scope: ['public_profile', 'email']}));
+
+router.get('/twitter', passport.authenticate('twitter'));
+
+router.get('/twitter/callback', passport.authenticate('twitter', { successRedirect: '/perfil', failureRedirect: '/login' }));
+
+router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+
+router.get('/google/callback', passport.authenticate('google', { successRedirect: '/perfil', failureRedirect: '/login' }));
 
 module.exports = router;
 

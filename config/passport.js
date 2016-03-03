@@ -65,27 +65,31 @@ module.exports = function(passport) {
     passport.use('facebook', new FacebookStrategy({
         clientID            : config.facebook.key,
         clientSecret    : config.facebook.secret,
-        callbackURL  : '/auth/facebook/callback',
-        profileFields : ['id', 'displayName', /*'provider','photos'*/]
+        callbackURL  : 'http://localhost:4080/auth/facebook/callback/',
+        profileFields : ['id', 'name','email','gender'],
     }, function(accessToken, refreshToken, profile, done) {
         // El campo 'profileFields' nos permite que los campos que almacenamos
         // se llamen igual tanto para si el usuario se autentica por Twitter o
         // por Facebook, ya que cada proveedor entrega los datos en el JSON con
         // un nombre diferente.
         // Passport esto lo sabe y nos lo pone más sencillo con ese campo
-        User.findOne({facebook_id: profile.id}, function(err, user) {
+        User.findOne({facebookId: profile.id}, function(err, user) {
             if(err) throw(err);
             if(!err && user!= null) return done(null, user);
 
             // Al igual que antes, si el usuario ya existe lo devuelve
             // y si no, lo crea y salva en la base de datos
+            console.log(profile.name.familyName);
+            console.log(profile.id);
+            console.log(profile.name.givenName);
+            console.log(profile.emails);
             var user = new User({
-                facebook_id : profile.id,
-                //provider         : profile.provider,
-                name                 : profile.displayName,
-                //photo               : profile.photos[0].value
+                facebookId : profile.id,
+                firstName: profile.name.givenName,
+                lastName: profile.name.familyName,
+                email: profile.emails[0].value
             });
-            user.save(function(err) {
+            user.saveFacebook(function(err) {
                 if(err) throw err;
                 done(null, user);
             });

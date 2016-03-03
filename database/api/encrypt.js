@@ -43,9 +43,14 @@ function verifyPassword(password, salt, hash) {
   var iterations = 10000;
   // verify the salt and hash against the password
   var verify = crypto.pbkdf2Sync(password, salt, iterations, hashBytes);
-  console.log(verify.toString('hex'));
   return verify.toString('hex') === hash;
 }
+
+var holi = hashPassword("hola", function (err, encryptedPassword) {
+});
+console.log(holi);
+var holi2 = verifyPassword("hola", holi.salt, holi.hash);
+console.log(holi2);
 
 exports.hashPassword = hashPassword;
 exports.verifyPassword = verifyPassword;

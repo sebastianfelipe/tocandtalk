@@ -52,7 +52,6 @@ logout_routes = require('./routes/logout.js');
 friends_routes = require('./routes/friends.js');
 profile_routes = require('./routes/profile.js');
 settings_routes = require('./routes/settings.js');
-auth_routes = require('./routes/auth.js');
 
 app.use(passport.initialize());
 app.use(passport.session());
