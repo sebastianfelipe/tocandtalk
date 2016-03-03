@@ -251,6 +251,10 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
     {
         $log.info('A call was received');
         $log.info('Someone has called');
+        params.conn.media.on('stream', function (stream) {
+            params.conn.remoteStream = stream;
+            params.body.setRemoteVideo(params);
+        })
         /*
         params.conn.data.on('open', function () {
         });
@@ -262,13 +266,15 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         */
     }
 
-    scope.getLocalStream = function (successCb)
+    scope.getLocalStream = function (params)
     {
+        /*
       if (refs.conn.localStream && successCb) {
           successCb(refs.conn.localStream);
       }
       else
       {
+        */
         navigator.mediaDevices = navigator.mediaDevices || ((navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia) ? {
            getUserMedia: function(c) {
              return new Promise(function(y, n) {
@@ -287,15 +293,17 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             
         navigator.mediaDevices.getUserMedia(constraints)
             .then(function(stream) {
-                refs.conn.localStream = stream;
+                params.conn.localStream = stream;
                 //$('#local-video').attr('src', window.URL.createObjectURL(refs.conn.localStream));
-                refs.body.setLocalVideo(refs);
+                params.body.setLocalVideo(refs);
                 //enable_buttons_media();
             })
             .catch(function(err) {
                 $log.error(err.name + ": " + err.message);
             });
+      /*
       }
+      */
     };
 
     scope.setLocalVideo = function (params)
@@ -305,6 +313,16 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         if (params.conn.localStream)
         {
             $('#local-video').attr('src', window.URL.createObjectURL(params.conn.localStream));
+        }
+    };
+
+    scope.setRemoteVideo = function (params)
+    {
+        $log.info('Setting the remote video');
+        console.log(params.conn.remoteStream);
+        if (params.conn.remoteStream)
+        {
+            $('#remote-video').attr('src', window.URL.createObjectURL(params.conn.remoteStream));
         }
     };
 
@@ -340,7 +358,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         }
     });
 
-    scope.getLocalStream();
+    scope.getLocalStream(refs);
     scope.setLocalVideo(refs);
     sStage.getSources(refs);
     sStage.load(refs);
