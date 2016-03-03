@@ -189,6 +189,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         params.conn.peer.on('call', function (call) {
             $log.info('a perr.on call connection was received');
             params.conn.media = call;
+            params.conn.media.answer(refs.conn.localStream);
             params.body.onMediaConnection(refs);
         });
 
@@ -253,8 +254,9 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         $log.info('A call was received');
         $log.info('Someone has called');
         params.conn.media.on('stream', function (stream) {
-            params.conn.remoteStream = stream;
-            params.body.setRemoteVideo(params);
+            $log.info('onMediaConnection stream');
+            //params.conn.remoteStream = stream;
+            //params.body.setRemoteVideo(params);
         })
         /*
         params.conn.data.on('open', function () {
