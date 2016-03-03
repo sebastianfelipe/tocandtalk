@@ -187,8 +187,8 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         // Peer Listening
         // ------------------------------
         params.conn.peer.on('call', function (call) {
-            params.conn.call = call;
-            params.body.onCall(refs);
+            params.conn.media = call;
+            params.body.onMediaConnection(refs);
         });
 
         params.conn.peer.on('connection', function (dataConnection) {
@@ -247,7 +247,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         });
     }
 
-    scope.onCall = function (params)
+    scope.onMediaConnection = function (params)
     {
         $log.info('A call was received');
         $log.info('Someone has called');
@@ -261,6 +261,52 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         });
         */
     }
+
+    scope.getLocalStream = function (successCb)
+    {
+      if (refs.conn.localStream && successCb) {
+          successCb(refs.conn.localStream);
+      }
+      else
+      {
+        navigator.mediaDevices = navigator.mediaDevices || ((navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia) ? {
+           getUserMedia: function(c) {
+             return new Promise(function(y, n) {
+               (navigator.mozGetUserMedia ||
+                navigator.webkitGetUserMedia).call(navigator, c, y, n);
+             });
+           }
+        } : null);
+
+        if (!navigator.mediaDevices) {
+          $log.error("getUserMedia() is not supported.");
+          return;
+        }
+        // Prefer camera resolution nearest to 1280x720.
+        var constraints = { audio: true, video: true };
+            
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then(function(stream) {
+                refs.conn.localStream = stream;
+                //$('#local-video').attr('src', window.URL.createObjectURL(refs.conn.localStream));
+                refs.body.setLocalVideo(refs);
+                //enable_buttons_media();
+            })
+            .catch(function(err) {
+                $log.error(err.name + ": " + err.message);
+            });
+      }
+    };
+
+    scope.setLocalVideo = function (params)
+    {
+        $log.info('Setting the local video');
+        console.log(params.conn.localStream);
+        if (params.conn.localStream)
+        {
+            $('#local-video').attr('src', window.URL.createObjectURL(params.conn.localStream));
+        }
+    };
 
     refs.conn.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
     refs.conn.socket.on('ansAsk', function(answer) {
@@ -278,20 +324,24 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
                     scope.onDataConnection(refs);
                 }
 
-                //if (refs.conn.localStream)
-                //{
+                if (refs.conn.localStream)
+                {
+                    $log.info('LocalStream is ready to go');
                     $log.info('This peer will call someone');
-                    refs.conn.call = refs.conn.peer.call(answer.recId);
-                    if (refs.conn.call)
+                    refs.conn.media = refs.conn.peer.call(answer.recId);
+                    console.log(refs.conn.media);
+                    if (refs.conn.media)
                     {
                         $log.info('This peer has a call')
-                        scope.onCall(refs);
+                        scope.onMediaConnection(refs);
                     }
-                //}
+                }
             }
         }
     });
 
+    scope.getLocalStream();
+    scope.setLocalVideo(refs);
     sStage.getSources(refs);
     sStage.load(refs);
 	
