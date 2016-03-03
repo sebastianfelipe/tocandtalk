@@ -149,8 +149,7 @@ $(document).ready(function ()
         return;
     }
     
-    resizeVideo();
-    //resizeWin();
+    //resizeVideo();
     //if ( $(window).width() <= 550 || $(window).height() <= 370 ) resizeWin();
 
     $(window).resize(function() {
