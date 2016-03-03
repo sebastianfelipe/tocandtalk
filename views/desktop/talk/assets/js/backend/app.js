@@ -253,7 +253,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         $log.info('Someone has called');
         params.conn.media.on('stream', function (stream) {
             params.conn.remoteStream = stream;
-            params.body.setRemoteVideo(params);
+            //params.body.setRemoteVideo(params);
         })
         /*
         params.conn.data.on('open', function () {
@@ -359,7 +359,6 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
     });
 
     scope.getLocalStream(refs);
-    scope.setLocalVideo(refs);
     sStage.getSources(refs);
     sStage.load(refs);
 	
