@@ -256,7 +256,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         params.conn.media.on('stream', function (stream) {
             $log.info('onMediaConnection stream');
             params.conn.remoteStream = stream;
-            //params.body.setRemoteVideo(params);
+            params.body.setRemoteVideo(params);
         })
         /*
         params.conn.data.on('open', function () {
@@ -313,7 +313,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
     {
         $log.info('Setting the local video');
         console.log(params.conn.localStream);
-        if (params.conn.localStream)
+        if (params.conn.localStream.active)
         {
             $('#local-video').attr('src', window.URL.createObjectURL(params.conn.localStream));
         }
@@ -323,7 +323,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
     {
         $log.info('Setting the remote video');
         console.log(params.conn.remoteStream);
-        if (params.conn.remoteStream)
+        if (params.conn.remoteStream.active)
         {
             $('#remote-video').attr('src', window.URL.createObjectURL(params.conn.remoteStream));
         }
@@ -345,7 +345,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
                     scope.onDataConnection(refs);
                 }
 
-                if (refs.conn.localStream)
+                if (refs.conn.localStream.active)
                 {
                     $log.info('LocalStream is ready to go');
                     $log.info('This peer will call someone');
