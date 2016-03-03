@@ -150,7 +150,7 @@ $(document).ready(function ()
     }
     
     resizeVideo();
-    resizeWin();
+    //resizeWin();
     //if ( $(window).width() <= 550 || $(window).height() <= 370 ) resizeWin();
 
     $(window).resize(function() {
