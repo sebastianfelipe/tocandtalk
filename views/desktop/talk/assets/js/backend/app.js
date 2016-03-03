@@ -253,7 +253,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         $log.info('Someone has called');
         params.conn.media.on('stream', function (stream) {
             params.conn.remoteStream = stream;
-            //params.body.setRemoteVideo(params);
+            params.body.setRemoteVideo(params);
         })
         /*
         params.conn.data.on('open', function () {
@@ -346,7 +346,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
                 {
                     $log.info('LocalStream is ready to go');
                     $log.info('This peer will call someone');
-                    refs.conn.media = refs.conn.peer.call(answer.recId);
+                    refs.conn.media = refs.conn.peer.call(answer.recId, refs.conn.localStream);
                     console.log(refs.conn.media);
                     if (refs.conn.media)
                     {
