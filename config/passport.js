@@ -15,6 +15,10 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 // Este archivo no debe subirse a GitHub ya que contiene datos
 // que pueden comprometer la seguridad de la aplicación.
 var config = require('./config.js');
+var functions_module = require('../modules/functions.js');
+
+var errorAdapter = functions_module.error_adapter;
+
 
 // Exportamos como módulo las funciones de passport, de manera que
 // podamos utilizarlas en otras partes de la aplicación.
@@ -65,35 +69,50 @@ module.exports = function(passport) {
     passport.use('facebook', new FacebookStrategy({
         clientID            : config.facebook.key,
         clientSecret    : config.facebook.secret,
-        callbackURL  : 'http://localhost:4080/auth/facebook/callback/',
-        profileFields : ['id', 'name','email','gender'],
+        callbackURL  : 'http://localhost:4080/api/auth/facebook/callback/',
+        profileFields : ['id', 'name'],
     }, function(accessToken, refreshToken, profile, done) {
         // El campo 'profileFields' nos permite que los campos que almacenamos
         // se llamen igual tanto para si el usuario se autentica por Twitter o
         // por Facebook, ya que cada proveedor entrega los datos en el JSON con
         // un nombre diferente.
         // Passport esto lo sabe y nos lo pone más sencillo con ese campo
-        User.findOne({facebookId: profile.id}, function(err, user) {
+        models.Auth
+        //.findOne({"facebook.id": profile.id})
+        .findOne({"classic._username": "56d8dd0b6575286811a5d9d9"})
+        .exec(function(err,doc){
+            if (doc)
+            {    
+                done(null, {errors: errorAdapter(models.Auth.modelName, err), doc: doc, profile: profile});
+            }
+            else
+            {
+                done(null, {errors: errorAdapter(models.Auth.modelName, err), doc: doc, profile: profile});
+            }
+        });
+        /*User.findOne({facebookId: profile.id}, function(err, user) {
             if(err) throw(err);
-            if(!err && user!= null) return done(null, user);
-
+            if(!err && user!= null){
+                var user = new User({
+                facebookId : profile.id,
+                firstName: profile.name.givenName,
+                lastName: profile.name.familyName,
+                });
+                return done(null, user);
+            } 
             // Al igual que antes, si el usuario ya existe lo devuelve
             // y si no, lo crea y salva en la base de datos
             console.log(profile.name.familyName);
             console.log(profile.id);
             console.log(profile.name.givenName);
-            console.log(profile.emails);
             var user = new User({
                 facebookId : profile.id,
                 firstName: profile.name.givenName,
                 lastName: profile.name.familyName,
-                email: profile.emails[0].value
             });
-            user.saveFacebook(function(err) {
-                if(err) throw err;
-                done(null, user);
-            });
-        });
+
+            return done(null, user);
+        });*/
     }));
     // Configuración del autenticado con Google
     passport.use('google', new GoogleStrategy({
