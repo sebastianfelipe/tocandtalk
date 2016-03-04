@@ -36,6 +36,8 @@ var _ioConnection = function(socket) {
 
   socket.on('ask', function (language) {
     var callerId = session._id;
+    console.log('The caller Id who has connected');
+    console.log(callerId);
     if (callerId)
     {
       var answer = {};
