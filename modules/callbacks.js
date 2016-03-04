@@ -96,12 +96,12 @@ var _ioConnection = function(socket) {
         user.convId = createCode();
         answer.convId = user.convId;
         availables[language].push(user);
-        console.log('IO: Push -> ' + callerId);
+        console.log('IO: Pushed on' + language);
       }
 
       //console.log("IO: Does " + callerId + " it has to call? " + answer.call);
-      //console.log('IO: Availables ');
-      //console.log(availables);
+      console.log('IO: Availables ');
+      console.log(availables);
       socket.emit('ansAsk', answer);
     }
   });
