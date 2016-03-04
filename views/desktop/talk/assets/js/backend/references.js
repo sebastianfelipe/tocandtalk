@@ -7,7 +7,9 @@ refs.meta.connection = {};
 refs.body = {};
 refs.errors = "";
 refs.sources = {};
-
+refs.sources.user = {};
+refs.sources.recUser = {};
+refs.sources.lang = {};
 
 refs.meta.conn = {};
 //refs.meta.conn.serverIp = null;

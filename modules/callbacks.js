@@ -100,8 +100,8 @@ var _ioConnection = function(socket) {
       console.log('IO: Availables ');
       console.log(availables);
       socket.emit('ansAsk', answer);
-    });
-  }
+    }
+  });
 }
 
 module.exports._peerConnection = _peerConnection;

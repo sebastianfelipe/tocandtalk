@@ -15,6 +15,11 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         console.log('yeah!');
     };
 
+    this.setLang = function (params) {
+        params.body.lang = params.sources.lang;
+        document.title = params.body.lang.title;
+    };
+
     this.showErrors = function (errors)
     {
       
@@ -60,34 +65,12 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 
         $http.get('/api/get/lang/'+params.meta.lang+'/'+params.meta.view)
             .success(function (result) {
-                params.body.lang = result;
-                document.title = params.body.lang.title;
+                params.sources.lang = result;
+                service.setLang(params);
             })
             .error(function (data, status) {
                 $log.error({data: data, status: status});
-            });
-    
-    refs.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
-
-		/*	            
-        $http.get('/api/get/languages')
-            .success(function (result) {
-                params.sources.languages = result.docs;
-                params.body.languages = params.sources.languages;
-            })
-            .error(function (data, status) {
-                $log.error({data: data, status: status});
-            });
-
-        $http.get('/api/get/countries')
-            .success(function (result) {
-                params.sources.countries = result.docs;
-                params.body.countries = params.sources.countries;
-            })
-            .error(function (data, status) {
-                $log.error({data: data, status: status});
-            });
-		*/
+        });
     };
 }]);
 
@@ -173,18 +156,11 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         $log.error('please set caller ID first');
         return false;
       }
-      /*
-      if ((!refs.server_ip) || (!refs.server_ports.peer))
-      {
-        logError('Problem with the server connection. Please reload the page');
-        return false;  
-      }
-      */
 
       try {
         var peerOptions = {key: 'peerjs',
-                            host: params.meta.conn.hostName,//refs.server_ip, //"https.tocandtalk.com",
-                            port: params.meta.conn.serverPort,//refs.server_ports.peer,
+                            host: params.meta.conn.hostName,
+                            port: params.meta.conn.serverPort,
                             secure: params.meta.conn.secure,
                             debug: 0};
         params.conn.peer = new Peer(id, peerOptions);
@@ -231,10 +207,10 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
                 {
                     params.conn.data.send({'user': params.body.user});
                 }
-                //else
-                //{
-                    //params.conn.data.close();
-                //}
+                else
+                {
+                    params.conn.data.close();
+                }
             }
 
             if (data.user)
@@ -263,26 +239,10 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             params.conn.remoteStream = stream;
             params.body.setRemoteVideo(params);
         })
-        /*
-        params.conn.data.on('open', function () {
-        });
-        params.conn.data.on('data', function (data) {
-        });
-        params.conn.data.on('close', function () {
-            $log.info('The another peer has closed');
-        });
-        */
     }
 
     scope.getLocalStream = function (params)
     {
-        /*
-      if (refs.conn.localStream && successCb) {
-          successCb(refs.conn.localStream);
-      }
-      else
-      {
-        */
         navigator.mediaDevices = navigator.mediaDevices || ((navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia) ? {
            getUserMedia: function(c) {
              return new Promise(function(y, n) {
@@ -309,9 +269,6 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             .catch(function(err) {
                 $log.error(err.name + ": " + err.message);
             });
-      /*
-      }
-      */
     };
 
     scope.setLocalVideo = function (params)
