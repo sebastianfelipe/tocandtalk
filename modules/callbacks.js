@@ -22,8 +22,7 @@ var port2 = global_module.port2;
 var _peerConnection = function (id) {
 
   console.log('P2P: User connected ' + id);
-  users.push(id);
-  console.log(users);
+  //users.push(id);
 }
 
 var _peerDisconnect = function (id) {

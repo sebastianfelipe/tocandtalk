@@ -149,10 +149,14 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 
     scope.nextUser = function (params) {
         var tLang =  'es';
+        start_load();
         if (params.conn.data.open)
         {
-            start_load();
             params.conn.data.close();
+        }
+
+        if (params.conn.media.open)
+        {
             params.conn.media.close();
         }
         sStage.clear(params);
@@ -330,6 +334,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         }
     };
 
+    scope.getLocalStream(refs);
     refs.conn.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
     refs.conn.socket.on('ansAsk', function(answer) {
         $log.info('The answer ansAsk was received from the server');
@@ -362,7 +367,6 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         }
     });
 
-    scope.getLocalStream(refs);
     sStage.getSources(refs);
     sStage.load(refs);
 	
