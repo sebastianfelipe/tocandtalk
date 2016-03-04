@@ -18,7 +18,24 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var device = require('express-device');
-var session = require('cookie-session');
+//var session = require('express-session');//require('cookie-session');
+/*  
+var session = require('cookie-session')({
+  secret: 'expresssecretalk',
+  resave: true,
+  saveUninitialized: true,
+  key: 'expresssession',
+  cookie: { secure: false },
+});
+*/
+var session = require('express-session')({
+  secret: 'expresssecretalk',
+  saveUninitialized: true,
+  key: 'expresssession',
+  cookie: { secure: false },
+});
+
+var sharedsession = require("express-socket.io-session");
 
 // App Configuration
 app.set('view engine', 'ejs');
@@ -31,13 +48,7 @@ app.use(express.static(path.join(__dirname, 'modules')));
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(session({
-  secret: 'secretalk',
-  resave: true,
-  saveUninitialized: true,
-  key: 'session',
-  cookie: { secure: true },
-}));
+app.use(session);
 app.use(device.capture());
 device.enableViewRouting(app, {
   "noPartials": true
@@ -146,8 +157,10 @@ servers.http.web.listen(ports.http.web, function(){
                 ip.address() + ':' + ports.http.web);
 });
 
-
-servers.http.io.listen(servers.http.web)
+servers.http.io.listen(servers.http.web);
+servers.http.io.use(sharedsession(session, {
+    autoSave:true
+})); 
 servers.http.io.on('connection',_ioConnection);
 
 servers.http.peer = ExpressPeerServer(servers.http.web, {debug: true});

@@ -21,7 +21,7 @@ var saveAccount = mAux.saveAccount;
 //localhost:4080/api/update/user/nationality/pedrito/es
 //localhost:4080/api/update/user/nationality/pedrito/it
 router.post('/user/nationality', authenticate, function (req, res) {
-	var id = req.session.id;
+	var id = req.session._id;
 	var countryCode = req.body.countryCode;
 
 	  async.parallel({
@@ -70,7 +70,7 @@ router.post('/user/nationality', authenticate, function (req, res) {
 //localhost:4080/api/update/user/description/pedrito/Meencantan
 //localhost:4080/api/update/user/description/pedrito/kjdhsakdhkajkhdjkakjdhjkakjha
 router.post('/user/description', authenticate, function (req, res) {
-	var id = req.session.id;
+	var id = req.session._id;
 	var description = req.body.description.trim();
 
 	  async.parallel({

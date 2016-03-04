@@ -64,7 +64,7 @@ router.post('/account/classic', function (req, res) {
         if (!errors)
         {
           //sendMail(output.email);
-          req.session.id = output.user._id;
+          req.session._id = output.user._id;
         }
         return res.send({errors: errors});
       });
@@ -77,7 +77,7 @@ router.post('/account/classic', function (req, res) {
 //localhost:4080/api/save/user/spokenLanguage/pedrito/it
 //localhost:4080/api/save/user/spokenLanguage/pedrito/fr
 router.post('/user/spokenLanguage', authenticate, function (req, res) {
-  var id = req.session.id;
+  var id = req.session._id;
   var code = req.body.code;
 
     async.parallel({
@@ -135,7 +135,7 @@ router.post('/user/spokenLanguage', authenticate, function (req, res) {
 //localhost:4080/api/save/user/interestLanguage/pedrito/it
 //localhost:4080/api/save/user/interestLanguage/pedrito/fr
 router.post('/user/interestLanguage', authenticate, function (req, res) {
-  var id = req.session.id;
+  var id = req.session._id;
   var code = req.body.code;
 
     async.parallel({

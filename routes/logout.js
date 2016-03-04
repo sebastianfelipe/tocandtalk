@@ -2,13 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function (req, res) {
-  if (req.session.username)
+  console.log(req.session);
+  console.log(req.session._id);
+  if (req.session._id)
   {
-    delete req.session.username;
-  }
-  if (req.session.id)
-  {
-    delete req.session.id;
+    delete req.session._id;
   }
   return res.redirect('/');
 });

@@ -20,7 +20,7 @@ var saveAccount = mAux.saveAccount;
 //localhost:4080/api/save/user/spokenLanguage/pedrito/it
 //localhost:4080/api/save/user/spokenLanguage/pedrito/fr
 router.post('/user/spokenLanguage', authenticate, function (req, res) {
-  var id = req.session.id;
+  var id = req.session._id;
   var code = req.body.code;
 
     async.parallel({
@@ -82,7 +82,7 @@ router.post('/user/spokenLanguage', authenticate, function (req, res) {
 //localhost:4080/api/save/user/interestLanguage/pedrito/it
 //localhost:4080/api/save/user/interestLanguage/pedrito/fr
 router.post('/user/interestLanguage', authenticate, function (req, res) {
-  var id = req.session.id;
+  var id = req.session._id;
   var code = req.body.code;
 
     async.parallel({

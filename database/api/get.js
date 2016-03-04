@@ -51,7 +51,7 @@ router.get('/user', authenticate, function (req, res) {
 */
 
 router.get('/user', authenticate, function (req, res) {
-  var id = req.session.id;
+  var id = req.session._id;
 
   async.parallel({
         user: function(callback) {
@@ -70,7 +70,6 @@ router.get('/user', authenticate, function (req, res) {
     var errors = "";
     errors += results.user.errors;
 
-    console.log(results.user.doc);
     var user = {};
     //user.username = results.user.doc._auth.classic.username || results.user.doc._auth.facebook.id || results.user.doc._auth.twitter.id || results.user.doc._auth.google.id;
     user.id = id;

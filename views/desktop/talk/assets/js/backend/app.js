@@ -156,7 +156,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             params.conn.media.close();
         }
         sStage.clear(params);
-        params.conn.socket.emit('ask', params.body.user.id, tLang);
+        params.conn.socket.emit('ask', tLang);
     };
 
     scope.onNextUserClick = function () {

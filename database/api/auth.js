@@ -61,10 +61,9 @@ router.post('/', function (req, res) {
       var doc = results.username.doc || results.email.doc;
       if (doc)
       {
-        console.log(doc._user._auth.classic._password);
         if (verifyPassword(password, doc._user._auth.classic._password.salt, doc._user._auth.classic._password.password))
         {
-          req.session.id = doc._user._id;
+          req.session._id = doc._user._id;
         }
         else
         {
