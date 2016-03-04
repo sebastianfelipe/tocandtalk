@@ -94,7 +94,7 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
                          countryCode: params.form.sCountry,
                          nativeLanguageCode: params.form.sNativeLanguage
                        };
-            $http.post('/api/save/account', data)
+            $http.post('/api/save/account/classic', data)
                 .success(function (result) {
                     console.log(result);
                     if (!result.errors)

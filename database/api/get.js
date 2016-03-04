@@ -144,7 +144,7 @@ router.get('/users', function (req, res) {
           setTimeout(function(){
               models.User
               .find()
-              .deepPopulate('_password')
+              .deepPopulate('_auth.classic')
               .exec(function (err, docs) {
 
                 callback(null, {errors: err, docs: docs});
@@ -204,6 +204,23 @@ router.get('/passwords', function (req, res) {
      return res.send(results.password);
   });
 });
+
+router.get('/auths', function (req, res) {
+  async.parallel({
+      password: function(callback) {
+          setTimeout(function(){
+              models.Auth.find().exec(function (err, docs) {
+
+                callback(null, {errors: err, docs: docs});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+     return res.send(results.auth);
+  });
+});
+
 //---------------------------------------------
 
 module.exports = router;

@@ -16,6 +16,8 @@ var mAux = require('./auxQ.js');
 var errorAdapter = functions_module.error_adapter;
 var validateAccount = mAux.validateAccount;
 var saveAccount = mAux.saveAccount;
+var validateClassicAccount = mAux.validateClassicAccount;
+var saveClassicAccount = mAux.saveClassicAccount;
 var sendMail = functions_module.sendMail;
 
 //localhost:4080/api/save/account/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation
@@ -24,6 +26,53 @@ var sendMail = functions_module.sendMail;
 //localhost:4080/api/save/account/feliponcio/feliponcio@tocandtalk.com/feliponcio/bandolero/us/it/1/banana/banana
 
 //router.get('/account/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation', function (req, res) {
+//router.get('/account/classic/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation', function (req, res) {
+//localhost:4080/api/save/account/classic/pedrito/pedrito@tocandtalk.com/pedrito/bandolero/us/it/1/banana/banana
+router.post('/account/classic', function (req, res) {
+  var user = new models.User();
+  var data = {
+              username: req.body.username.trim().toLowerCase(),
+              email: req.body.email.trim().toLowerCase(),
+              firstName: req.body.firstName.trim().toLowerCase(),
+              lastName: req.body.lastName.trim().toLowerCase(),
+              countryCode: req.body.countryCode.trim().toLowerCase(),
+              languageCode: req.body.nativeLanguageCode.trim().toLowerCase(),
+              sexVal: req.body.sexVal,
+              password: req.body.password,
+              passwordConfirmation: req.body.passwordConfirmation,
+              user: user
+            };
+  validateClassicAccount(data, function (errors, output) {
+    if (errors)
+    {
+      return res.send({errors: errors});
+    }
+    else
+    {
+      var data = {
+                  user: output.user,
+                  username: output.username,
+                  email: output.email,
+                  appraisement: output.appraisement,
+                  messenger: output.messenger,
+                  password: output.password,
+                  auth: output.auth
+                 };
+      // Save
+      // --------------------
+      saveClassicAccount(data, function (errors, output) {
+        if (!errors)
+        {
+          //sendMail(output.email);
+          req.session.username = output.username.username;
+        }
+        return res.send({errors: errors});
+      });
+      // --------------------
+    }
+  });
+});
+/*
 router.post('/account', function (req, res) {
   var user = new models.User();
   var data = {
@@ -69,7 +118,7 @@ router.post('/account', function (req, res) {
     }
   });
 });
-
+*/
 
 //localhost:4080/api/save/user/spokenLanguage/:username/:code
 //localhost:4080/api/save/user/spokenLanguage/pedrito/it

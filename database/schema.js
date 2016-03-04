@@ -100,31 +100,31 @@ schema.password = mongoose.Schema({
 });
 
 schema.user = mongoose.Schema({
-    _username: {
-        type: ObjectId,
-        ref: 'Username',
-        required: true
-    },
-    _email: {
-        type: ObjectId,
-        ref: 'Email',
-        required: true
-    },
-    _password: {
-        type: ObjectId,
-        ref: 'Password',
-        required: true
-    },
+    //_username: {
+    //    type: ObjectId,
+    //    ref: 'Username',
+    //    required: true
+    //},
+    //_email: {
+    //    type: ObjectId,
+    //    ref: 'Email',
+    //    required: true
+    //},
+    //_password: {
+    //    type: ObjectId,
+    //    ref: 'Password',
+    //    required: true
+    //},
     _nationality: {
         type: ObjectId,
         ref: 'Country',
         required: true
-},
+    },
     _nativeLanguage: {
         type: ObjectId,
         ref: 'Language',
         required: true
-},
+    },
     spokenLanguages: [{type: ObjectId, ref: 'Language'}],
     interestLanguages:  [{type: ObjectId, ref: 'Language'}],
     facebookId: {type: String,
@@ -157,6 +157,50 @@ schema.user = mongoose.Schema({
                 type: ObjectId,
                 ref: 'Messenger',
                 required: true
+    },
+    _auth: {
+        type: ObjectId,
+        ref: 'Auth',
+        required: true
+    }
+});
+
+schema.auth = mongoose.Schema({
+    _user: {
+            type: ObjectId,
+            ref: 'User'
+    },
+    classic: {
+        _username: {
+            type: ObjectId,
+            ref: 'Username',
+        },
+        _email: {
+            type: ObjectId,
+            ref: 'Email',
+        },
+        _password: {
+            type: ObjectId,
+            ref: 'Password',
+        }
+    },
+    facebook: {
+        id: {
+            type: String,
+            unique: true
+        }
+    },
+    twitter: {
+        id: {
+            type: String,
+            unique: true
+        }
+    },
+    google: {
+        id: {
+            type: String,
+            unique: true
+        }
     }
 });
 
@@ -248,6 +292,7 @@ schema.conversation.plugin(uniqueValidator, {message: 'unique'});
 schema.message.plugin(uniqueValidator, {message: 'unique'});
 schema.appraisement.plugin(uniqueValidator, {message: 'unique'});
 schema.appreciation.plugin(uniqueValidator, {message: 'unique'});
+schema.auth.plugin(uniqueValidator, {message: 'unique'});
 
 schema.username.plugin(deepPopulate);
 schema.email.plugin(deepPopulate);
@@ -260,6 +305,7 @@ schema.conversation.plugin(deepPopulate);
 schema.message.plugin(deepPopulate);
 schema.appraisement.plugin(deepPopulate);
 schema.appreciation.plugin(deepPopulate);
+schema.auth.plugin(deepPopulate);
 
 schema.tUser.plugin(uniqueValidator, {message: 'unique'});
 

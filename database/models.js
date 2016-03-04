@@ -16,6 +16,7 @@ models.Conversation = mongoose.model('Conversation', schema.conversation);
 models.Message = mongoose.model('Message', schema.message);
 models.Appraisement = mongoose.model('Appraisement', schema.appraisement);
 models.Appreciation = mongoose.model('Appreciation', schema.appreciation);
+models.Auth = mongoose.model('Auth', schema.auth);
 
 models.tUser = mongoose.model('tUser', schema.tUser);
 
