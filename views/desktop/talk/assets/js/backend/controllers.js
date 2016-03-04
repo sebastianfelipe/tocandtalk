@@ -8,13 +8,17 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sAction
 	scope.recUser = {};
     scope.messages = [];
 
+    scope.loadMessages = function () {
+        $scope.$apply();
+    };
+
 	scope.sendMessage = function () {
         sActions.onSendMessage(refs, scope.tmpMessage);
 	};
 
     scope.getMessage = function(content) {
         sActions.onGetMessage(refs, content);
-        if (chat_visible()) {$scope.$apply();};
+        if (chat_visible()) {scope.loadMessages()};
     };
 
     scope.connect = function () {

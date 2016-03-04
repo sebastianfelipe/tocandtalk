@@ -13,7 +13,7 @@ $(document).ready(function(){
             // Cargar mensajes y ocultar notificación si el Chat es visible
             if ($("#panel_cont_chat").is(":visible")) {
                 ChatNotification.hide();
-                //load_messages();
+                angular.element($('#body')).scope().body.loadMessages();
                 chat_scroll_bottom();
             }
         }
@@ -68,7 +68,7 @@ $(document).ready(function(){
             $("#panel_cont_profile").fadeOut(70);
             
             ChatNotification.hide();
-            //load_messages();
+            angular.element($('#body')).scope().body.loadMessages();
             chat_scroll_bottom();
         }
         
@@ -90,7 +90,6 @@ $(document).ready(function(){
             $("#panel_cont_chat").fadeOut(70);
             
         }
-        
     });
     
     // Tabs:

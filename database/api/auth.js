@@ -11,7 +11,6 @@ var authenticate = authenticate_module.authenticate;
 var functions_module = require('../../modules/functions.js');
 var encrypt_module = require('./encrypt.js');
 
-//var mAux = require('./aux.js');
 var mAux = require('./auxQ.js');
 
 // Function Imports
