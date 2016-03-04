@@ -11,6 +11,7 @@ Equipo: * Nibaldo González Salgado
 		* Felipe Mancilla Sepúlveda
 		* Sebastián Torres Garfe
 		* Víctor Torres Varas
+		* Fernando Da Silva Retamales
 
 Jefe de Proyecto: Sebastián Torres Garfe
 
