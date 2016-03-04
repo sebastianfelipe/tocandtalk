@@ -19,8 +19,13 @@ var limit = global_module.limit;
 var port1 = global_module.port1;
 var port2 = global_module.port2;
 
+// Key Languages
+// ----------------------------------------
+var DEFAULT_LANGUAGE = 'en';
+var languages = ['es', 'it', 'fr', 'en']; // It needs to be import from a json file or something
+// ----------------------------------------
+
 var _ioConnection = function(socket) {
-  
   var session = socket.handshake.session;
   console.log('IO: User connected');
 
@@ -29,6 +34,11 @@ var _ioConnection = function(socket) {
     console.log('IO: on Ask');
     //console.log('The caller Id who has connected');
     //console.log(callerId);
+    if (languages.indexOf(language) == -1)
+    {
+      language = DEFAULT_LANGUAGE;
+    }
+
     if (callerId)
     {
       var answer = {};
