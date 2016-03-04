@@ -82,7 +82,27 @@ router.post('/', function (req, res) {
 
 router.get('/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email']}));
 
-router.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: '/register', failureRedirect: '/login', scope: ['public_profile', 'email']}));
+router.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login', scope: ['public_profile']}),
+  function(req, res) {
+    // successful auth, user is set at req.user.  redirect as necessary.
+    //if (req.user.isNew) { return res.redirect('/register'); }
+    //res.redirect('/profile');
+    if (req.user.doc)
+    {
+        req.user.doc.populate('_user', function (err, doc) {
+            if (doc)
+            {
+                req.session.username = doc._user._id;
+                return res.send({result: "ok", profile: req.user.profile});
+            }
+        });
+    }
+    else
+    {
+      
+      return res.send({result: "nope", profile: req.user.profile});
+    }
+  });
 
 router.get('/twitter', passport.authenticate('twitter'));
 
