@@ -24,7 +24,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
     {
         params.body.messages = [];
         params.body.recUser = params.sources.recUser = {};
-        params.meta.auth = {};
+        params.conn.auth = {};
     };
 
     this.load = function (params)
@@ -215,10 +215,10 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
         params.conn.data.on('open', function () {
             end_load();
             $log.info("A data connection was recieved");
-            if (params.meta.auth.call)
+            if (params.conn.auth.call)
             {
                 var data = {};
-                data.auth = {recId: params.meta.auth.recId, convId: params.meta.auth.convId};
+                data.auth = {recId: params.conn.auth.recId, convId: params.conn.auth.convId};
                 data.user = params.body.user; 
                 refs.conn.data.send(data);
             }
@@ -227,7 +227,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             $log.info("Data received");
             if (data.auth)
             {
-                if (params.meta.auth.convId == data.auth.convId)
+                if (params.conn.auth.convId == data.auth.convId)
                 {
                     params.conn.data.send({'user': params.body.user});
                 }
@@ -338,7 +338,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
     refs.conn.socket = io(refs.meta.conn.url, {secure: refs.meta.conn.secure});
     refs.conn.socket.on('ansAsk', function(answer) {
         $log.info('The answer ansAsk was received from the server');
-        refs.meta.auth = answer;
+        refs.conn.auth = answer;
         if (answer.call)
         {
             if (refs.conn.peer)

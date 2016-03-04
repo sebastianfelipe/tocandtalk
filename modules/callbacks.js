@@ -30,73 +30,78 @@ var _peerDisconnect = function (id) {
 }
 
 var _ioConnection = function(socket) {
+  
   var session = socket.handshake.session;
   console.log('IO: User connected');
+
   socket.on('ask', function (language) {
     var callerId = session._id;
-    var answer = {};
-    answer.call = true;
-    console.log(callerId);
-    console.log(language);
-    console.log('IO: ' + callerId + ' wants to verify if has to wait (be called) or is available (to call)');
-
-    if (!(language in availables))
+    if (callerId)
     {
-      availables[language] = [];
-    }
+      var answer = {};
+      answer.call = true;
+      console.log(callerId);
+      console.log(language);
+      console.log('IO: ' + callerId + ' wants to verify if has to wait (be called) or is available (to call)');
 
-    if (availables[language].length < limit)
-    {
+      if (!(language in availables))
+      {
+        availables[language] = [];
+      }
+
+      if (availables[language].length < limit)
+      {
+          answer.call = false;
+      }
+
+      if (limit < 2 && (wasItAdded(availables, callerId, language)))
+      {
         answer.call = false;
-    }
+      }
+          
+      if (answer.call)
+      {
+        var user = randomSearch(callerId, language);
+        var recId = user.userId
+        answer.recId = recId;
+        answer.convId = user.convId;
+        console.log("IO: The get result has recipient_id: " + recId + " and caller_id: " + callerId);
 
-    if (limit < 2 && (wasItAdded(availables, callerId, language)))
-    {
-      answer.call = false;
-    }
-        
-    if (answer.call)
-    {
-      var user = randomSearch(callerId, language);
-      var recId = user.userId
-      answer.recId = recId;
-      answer.convId = user.convId;
-      console.log("IO: The get result has recipient_id: " + recId + " and caller_id: " + callerId);
+        availablesIndexCallerId = indexOfUser(availables, callerId, language);
+        availablesIndexRecId = indexOfUser(availables, recId, language);
+        console.log('Availables before be removed:');
+        console.log(availables);
+        if (availablesIndexCallerId > -1)
+        {
+          availables[language].splice(availablesIndexCallerId, 1); 
+        }
+        if (availablesIndexRecId > -1)
+        {
+          availables[language].splice(availablesIndexRecId, 1); 
+        }
+      }
 
-      availablesIndexCallerId = indexOfUser(availables, callerId, language);
-      availablesIndexRecId = indexOfUser(availables, recId, language);
-      console.log('Availables before be removed:');
+      else
+      {
+        var indexCaller = indexOfUser(availables, callerId, language);
+        if (indexCaller > -1)
+        {
+          availables[language].splice(indexCaller, 1);
+        }
+        var user = {};
+        user.userId = callerId;
+        user.convId = createCode();
+        answer.convId = user.convId;
+        availables[language].push(user);
+        console.log('IO: Push -> ' + callerId);
+      }
+
+      console.log("IO: Does " + callerId + " it has to call? " + answer.call);
+      console.log('IO: Availables ');
       console.log(availables);
-      if (availablesIndexCallerId > -1)
-      {
-        availables[language].splice(availablesIndexCallerId, 1); 
-      }
-      if (availablesIndexRecId > -1)
-      {
-        availables[language].splice(availablesIndexRecId, 1); 
-      }
-    }
-
-    else
-    {
-      var indexCaller = indexOfUser(availables, callerId, language);
-      if (indexCaller > -1)
-      {
-        availables[language].splice(indexCaller, 1);
-      }
-      var user = {};
-      user.userId = callerId;
-      user.convId = createCode();
-      answer.convId = user.convId;
-      availables[language].push(user);
-      console.log('IO: Push -> ' + callerId);
-    }
-
-    console.log("IO: Does " + callerId + " it has to call? " + answer.call);
-    console.log('IO: Availables ');
-    console.log(availables);
-    socket.emit('ansAsk', answer);
-  });
+      socket.emit('ansAsk', answer);
+    });
+  }
 }
 
 module.exports._peerConnection = _peerConnection;
