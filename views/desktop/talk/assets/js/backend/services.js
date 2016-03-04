@@ -72,7 +72,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
                 // Temporal
                 // ---------------------
                 params.body.connect(params);
-                params.body.nextUser(params);
+                params.body.onNextUserClick(params);
                 // ---------------------
             })
             .error(function (data, status) {
@@ -182,7 +182,7 @@ app.service('sListen', ['$http', '$log', 'sStage', function ($http, $log, sStage
             }
         });
     };
-    
+
     this.onPeer = function (params)
     {
         params.conn.peer.on('call', function (call) {
@@ -199,8 +199,140 @@ app.service('sListen', ['$http', '$log', 'sStage', function ($http, $log, sStage
     };
 }]);
 
-app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage) {
+app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $log, sStage, sListen) {
 	var service = this;
-	
+
+    this.onGetLocalStream = function (params)
+    {
+        navigator.mediaDevices = navigator.mediaDevices || ((navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia) ? {
+           getUserMedia: function(c) {
+             return new Promise(function(y, n) {
+               (navigator.mozGetUserMedia ||
+                navigator.webkitGetUserMedia).call(navigator, c, y, n);
+             });
+           }
+        } : null);
+
+        if (!navigator.mediaDevices) {
+          $log.error("getUserMedia() is not supported.");
+          return;
+        }
+        // Prefer camera resolution nearest to 1280x720.
+        var constraints = { audio: true, video: true };
+            
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then(function(stream) {
+                params.conn.localStream = stream;
+                //$('#local-video').attr('src', window.URL.createObjectURL(refs.conn.localStream));
+                sStage.setLocalVideo(refs);
+                //enable_buttons_media();
+            })
+            .catch(function(err) {
+                $log.error(err.name + ": " + err.message);
+            });
+    };
+
+    this.onConnect = function (params) {
+        var id = params.body.user.id;
+
+        if (!id) {
+            $log.error("There is no id to connect to the server");
+            return false;
+        }
+
+        // Socket.io Connection
+        // --------------------------------------------------------
+        try {
+            var socketOptions = {secure: params.meta.conn.secure};
+            params.conn.socket = io(params.meta.conn.url);
+            // Peer Listening
+            // ------------------------------
+            sListen.onSocket(params);
+            // ------------------------------
+        }
+        catch (e) {
+            params.conn.socket = {};
+            $log.error('An error occurred while connecting with the Socket Server: ' + e);
+        }
+        // --------------------------------------------------------
+
+        // P2P Connection
+        // --------------------------------------------------------
+        try {
+            var peerOptions = {key: 'peerjs',
+                                host: params.meta.conn.hostName,
+                                port: params.meta.conn.serverPort,
+                                secure: params.meta.conn.secure,
+                                debug: 0};
+            params.conn.peer = new Peer(id, peerOptions);
+            // Peer Listening
+            // ------------------------------
+            sListen.onPeer(params);
+            // ------------------------------
+        }
+        catch (e) {
+            params.conn.peer = {};
+            $log.error('An error occurred while connecting with the P2P Server: ' + e);
+        }
+        // --------------------------------------------------------
+    };
+
+    this.onNextUser = function (params) {
+        var tLang =  'es';
+        start_load();
+        if (params.conn.data.open)
+        {
+            params.conn.data.close();
+        }
+
+        if (params.conn.media.open)
+        {
+            params.conn.media.close();
+        }
+        sStage.clear(params);
+        console.log('nextUser in action');
+        params.conn.socket.emit('ask', tLang);
+    };
+
+    this.onSendMessage = function (params, content)
+    {
+        var message = {};
+        message.type = "sender";
+        message.content = content.trim();
+        if (message.content)
+        {   
+            if (params.conn.data.open)
+            {
+                var data = {};
+                data.message = message.content;
+                params.conn.data.send(data);
+                params.body.messages.push(message);
+            }
+            else
+            {
+                $log.error('The connection has not been stablished');
+            }
+        }
+        params.body.tmpMessage = "";
+    };
+
+    this.onGetMessage = function (params, content)
+    {
+        var message = {};
+        message.type = "receiver";
+        message.content = content.trim();
+        if (message.content)
+        { 
+            if (params.conn.data.open)
+            {
+                ChatNotification.new_msg();
+                params.body.messages.push(message);
+            }
+            else
+            {
+                $log.error('The connection has not been stablished');
+            }
+        }
+    };
 }]);
 
