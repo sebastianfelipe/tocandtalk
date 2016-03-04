@@ -20,24 +20,17 @@ var saveAccount = mAux.saveAccount;
 //localhost:4080/api/save/user/spokenLanguage/pedrito/it
 //localhost:4080/api/save/user/spokenLanguage/pedrito/fr
 router.post('/user/spokenLanguage', authenticate, function (req, res) {
-  var username = req.session.username;
+  var id = req.session.id;
   var code = req.body.code;
 
     async.parallel({
         user: function(callback) {
             setTimeout(function(){
-                models.Username
-                .findOne({username: username})
+                models.User
+                .findOne({_id: id})
                 .deepPopulate('_user')
                 .exec(function (err, doc) {
-                  /*
-                    doc.nationality = req.body.s_country;
-                    doc.save(function (err) {
-                      var errors_tmp = error_adapter(models.Username.modelName, err);
-                   */
-                  var obj = null;
-                  if (doc) { obj = doc._user; }
-                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
+                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: doc});
 
                 })
             }, 200)
@@ -89,24 +82,17 @@ router.post('/user/spokenLanguage', authenticate, function (req, res) {
 //localhost:4080/api/save/user/interestLanguage/pedrito/it
 //localhost:4080/api/save/user/interestLanguage/pedrito/fr
 router.post('/user/interestLanguage', authenticate, function (req, res) {
-  var username = req.session.username;
+  var id = req.session.id;
   var code = req.body.code;
 
     async.parallel({
         user: function(callback) {
             setTimeout(function(){
-                models.Username
-                .findOne({username: username})
+                models.User
+                .findOne({_id: id})
                 .deepPopulate('_user')
                 .exec(function (err, doc) {
-                  /*
-                    doc.nationality = req.body.s_country;
-                    doc.save(function (err) {
-                      var errors_tmp = error_adapter(models.Username.modelName, err);
-                   */
-                  var obj = null;
-                  if (doc) { obj = doc._user; }
-                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
+                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: doc});
 
                 })
             }, 200)
@@ -153,136 +139,6 @@ router.post('/user/interestLanguage', authenticate, function (req, res) {
   }
   });
 });
-
-
-
-
-
-
-
-
-
-//localhost:4080/api/delete/user/spokenLanguage/:username/:code
-//localhost:4080/api/delete/user/spokenLanguage/pedrito/it
-//localhost:4080/api/delete/user/spokenLanguage/pedrito/fr
-/*
-router.get('/user/spokenLanguage/:username/:code', function (req, res) {
-  var username = req.session.useraname;
-  var code = req.params.code;
-
-    async.parallel({
-        user: function(callback) {
-            setTimeout(function(){
-                models.Username
-                .findOne({username: username})
-                .deepPopulate('_user')
-                .exec(function (err, doc) {
-                  var obj = null;
-                  if (doc) { obj = doc._user; }
-                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
-
-                })
-            }, 200)
-        },
-        language: function(callback) {
-          setTimeout(function(){
-              models.Language.findOne({code: code}).exec(function (err, doc) {
-                callback(null, {errors: errorAdapter(models.Language.modelName, err), doc: doc});
-              })
-          }, 200);
-      },
-  },
-  function(err, results) {
-    var user = results.user.doc;
-    var language = results.language.doc;
-  var errors = "";
-  errors += results.user.errors;
-  errors += results.language.errors;
-    if (user && language)
-    {
-      var spokenLanguageId = user.spokenLanguages.indexOf(language._id);
-      if (spokenLanguageId > -1)
-      {
-        user.spokenLanguages.splice(spokenLanguageId, 1);
-        user.save(function (err) {
-          if (err) { errors +='eDBUpdate' }
-          return res.send({errors: errors});
-        });
-      }
-      else
-      {
-        return res.send({errors: errors});
-      }
-  }
-  else
-  {
-    errors += 'eDBNotFound'
-    return res.send({errors: errors})
-  }
-  });
-});
-*/
-
-//localhost:4080/api/delete/user/interestLanguage/:username/:code
-//localhost:4080/api/delete/user/interestLanguage/pedrito/it
-//localhost:4080/api/delete/user/interestLanguage/pedrito/fr
-/*
-router.get('/user/interestLanguage/:username/:code',function (req, res) {
-  var username = req.params.username;
-  var code = req.params.code;
-
-    async.parallel({
-        user: function(callback) {
-            setTimeout(function(){
-                models.Username
-                .findOne({username: username})
-                .deepPopulate('_user')
-                .exec(function (err, doc) {
-                  var obj = null;
-                  if (doc) { obj = doc._user; }
-                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
-
-                })
-            }, 200)
-        },
-        language: function(callback) {
-          setTimeout(function(){
-              models.Language.findOne({code: code}).exec(function (err, doc) {
-                callback(null, {errors: errorAdapter(models.Language.modelName, err), doc: doc});
-              })
-          }, 200);
-      },
-  },
-  function(err, results) {
-    var user = results.user.doc;
-    var language = results.language.doc;
-  var errors = "";
-  errors += results.user.errors;
-  errors += results.language.errors;
-    if (user && language)
-    {
-      var interestLanguageId = user.interestLanguages.indexOf(language._id);
-      if (interestLanguageId > -1)
-      {
-        user.interestLanguages.splice(interestLanguageId, 1);
-        user.save(function (err) {
-          if (err) { errors +='eDBUpdate' }
-          return res.send({errors: errors});
-        });
-      }
-      else
-      {
-        return res.send({errors: errors});
-      }
-  }
-  else
-  {
-    errors += 'eDBNotFound'
-    return res.send({errors: errors})
-  }
-  });
-});
-*/
 
 module.exports = router;
 

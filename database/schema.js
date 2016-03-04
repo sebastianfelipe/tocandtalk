@@ -118,7 +118,7 @@ schema.user = mongoose.Schema({
     _nationality: {
         type: ObjectId,
         ref: 'Country',
-        required: true
+        //required: true
     },
     _nativeLanguage: {
         type: ObjectId,
@@ -142,7 +142,7 @@ schema.user = mongoose.Schema({
     },
     sex: {
         type: Boolean,
-        required: true
+        //required: true
         },
     description: {
                 type: String,
@@ -156,12 +156,12 @@ schema.user = mongoose.Schema({
     _messenger: {
                 type: ObjectId,
                 ref: 'Messenger',
-                required: true
+                //required: true
     },
     _auth: {
         type: ObjectId,
         ref: 'Auth',
-        required: true
+        //required: true
     }
 });
 

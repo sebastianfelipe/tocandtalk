@@ -64,7 +64,7 @@ router.post('/account/classic', function (req, res) {
         if (!errors)
         {
           //sendMail(output.email);
-          req.session.username = output.username.username;
+          req.session.id = output.user._id;
         }
         return res.send({errors: errors});
       });
@@ -72,71 +72,21 @@ router.post('/account/classic', function (req, res) {
     }
   });
 });
-/*
-router.post('/account', function (req, res) {
-  var user = new models.User();
-  var data = {
-              username: req.body.username.trim().toLowerCase(),
-              email: req.body.email.trim().toLowerCase(),
-              firstName: req.body.firstName.trim().toLowerCase(),
-              lastName: req.body.lastName.trim().toLowerCase(),
-              countryCode: req.body.countryCode.trim().toLowerCase(),
-              languageCode: req.body.nativeLanguageCode.trim().toLowerCase(),
-              sexVal: req.body.sexVal,
-              password: req.body.password,
-              passwordConfirmation: req.body.passwordConfirmation,
-              user: user
-            };
-  validateAccount(data, function (errors, output) {
-    if (errors)
-    {
-      return res.send({errors: errors});
-    }
-    else
-    {
-      var data = {
-                  user: output.user,
-                  username: output.username,
-                  email: output.email,
-                  appraisement: output.appraisement,
-                  messenger: output.messenger,
-                  password: output.password
-                 };
-      // Save
-      // --------------------
-      saveAccount(data, function (errors, output) {
-        if (!errors)
-        {
-          //sendMail(output.email);
-          //console.log('The user is');
-          //console.log(output);
-          req.session.username = output.username.username;
-        }
-        return res.send({errors: errors});
-      });
-      // --------------------
-    }
-  });
-});
-*/
 
 //localhost:4080/api/save/user/spokenLanguage/:username/:code
 //localhost:4080/api/save/user/spokenLanguage/pedrito/it
 //localhost:4080/api/save/user/spokenLanguage/pedrito/fr
 router.post('/user/spokenLanguage', authenticate, function (req, res) {
-  var username = req.session.username;
+  var id = req.session.id;
   var code = req.body.code;
 
     async.parallel({
         user: function(callback) {
             setTimeout(function(){
-                models.Username
-                .findOne({username: username})
-                .deepPopulate('_user')
+                models.User
+                .findOne({_id: id})
                 .exec(function (err, doc) {
-                  var obj = null;
-                  if (doc) { obj = doc._user; }
-                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
+                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: doc});
 
                 })
             }, 200)
@@ -185,19 +135,17 @@ router.post('/user/spokenLanguage', authenticate, function (req, res) {
 //localhost:4080/api/save/user/interestLanguage/pedrito/it
 //localhost:4080/api/save/user/interestLanguage/pedrito/fr
 router.post('/user/interestLanguage', authenticate, function (req, res) {
-  var username = req.session.username;
+  var id = req.session.id;
   var code = req.body.code;
 
     async.parallel({
         user: function(callback) {
             setTimeout(function(){
-                models.Username
-                .findOne({username: username})
+                models.User
+                .findOne({_id: id})
                 .deepPopulate('_user')
                 .exec(function (err, doc) {
-                  var obj = null;
-                  if (doc) { obj = doc._user; }
-                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
+                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: doc});
 
                 })
             }, 200)
