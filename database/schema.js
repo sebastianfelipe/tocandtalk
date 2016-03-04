@@ -127,9 +127,6 @@ schema.user = mongoose.Schema({
     },
     spokenLanguages: [{type: ObjectId, ref: 'Language'}],
     interestLanguages:  [{type: ObjectId, ref: 'Language'}],
-    facebookId: {type: String,
-                unique: true
-    },
     firstName: { type: String,
                 required: true,
                 trim: true,

@@ -59,14 +59,11 @@ router.post('/', function (req, res) {
   function(err, results) {
       var errors = "";
       var doc = results.username.doc || results.email.doc;
-      console.log('This one is the doc');
-      console.log(doc._user._auth.classic._password);
       if (doc)
       {
         console.log(doc._user._auth.classic._password);
         if (verifyPassword(password, doc._user._auth.classic._password.salt, doc._user._auth.classic._password.password))
         {
-          console.log('The user is registering');
           req.session.id = doc._user._id;
         }
         else

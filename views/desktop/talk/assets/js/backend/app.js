@@ -156,7 +156,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
             params.conn.media.close();
         }
         sStage.clear(params);
-        params.conn.socket.emit('ask', params.body.user.username, tLang);
+        params.conn.socket.emit('ask', params.body.user.id, tLang);
     };
 
     scope.onNextUserClick = function () {
@@ -164,8 +164,8 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
     }
 
     scope.connect = function (params) {
-      var username = params.body.user.username;
-      if (!username) {
+      var id = params.body.user.id;
+      if (!id) {
         $log.error('please set caller ID first');
         return false;
       }
@@ -183,7 +183,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
                             port: params.meta.conn.serverPort,//refs.server_ports.peer,
                             secure: params.meta.conn.secure,
                             debug: 0};
-        params.conn.peer = new Peer(username, peerOptions);
+        params.conn.peer = new Peer(id, peerOptions);
 
         // Peer Listening
         // ------------------------------
