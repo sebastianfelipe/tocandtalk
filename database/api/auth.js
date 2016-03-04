@@ -27,7 +27,6 @@ require('../../config/passport')(passport);
 //localhost:4080/api/auth/:username/:password
 //localhost:4080/api/auth/feliponcio/banana
 router.post('/', function (req, res) {
-  console.log(req.body);
   var username = req.body.username;
   var password = req.body.password;
 

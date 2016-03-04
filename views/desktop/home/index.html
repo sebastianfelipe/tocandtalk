@@ -159,7 +159,7 @@
 
 		<!-- Contenido -->
 
-		<form class="" action="/talk" onsubmit="" method="post">
+		<form ng-controller="form" class="" action="/talk" method="post">
 			<div id="home-content">
 
 				<div id="home-section1">
@@ -183,8 +183,8 @@
 						<br>
 
 						<select
-							ng-model="sLanguage"
-							id="s-languages"
+							ng-model="form.sLanguage"
+							id="language"
 							name="s-languages"
 							class="input-lang"
 							required="">

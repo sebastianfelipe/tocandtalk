@@ -70,41 +70,27 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 }]);
 
 app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage) {
-    /*
     this.onSubmit = function(params) {
-        return function () {
-            var data = {
-                         iName: params.form.iName,
-                         iLastname: params.form.iLastname,
-                         iUsername: params.form.iUsername,
-                         iEmail: params.form.iEmail,
-                         iPassword: params.form.iPassword,
-                         iPasswordConfirmation: params.form.iPasswordConfirmation,
-                         iDay: params.form.iDay,
-                         sMonth: params.form.sMonth,
-                         iYear: params.form.iYear,
-                         rSex: params.form.rSex,
-                         sCountry: params.form.sCountry,
-                         sNativeLanguage: params.form.sNativeLanguage
-                       };
-            $http.post('/register', data)
-                .success(function (result) {
-                    console.log(result);
-                    if (!result.errors)
-                    {
-                        $(location).attr('href','/');
-                    }
-                    else
-                    {   
-                        params.errors = result.errors;
-                        sStage.reload(params);
-                    }
-                })
-                .error(function (data, status) {
-                    $log.error({data: data, status: status});
-                });
-        };
-        
+        var data = {
+                     language: params.form.sLanguage
+                   };
+        $http.post('/talk', data)
+            .success(function (result) {
+                console.log(result);
+                /*
+                if (!result.errors)
+                {
+                    $(location).attr('href','/');
+                }
+                else
+                {   
+                    params.errors = result.errors;
+                    sStage.reload(params);
+                }
+                */
+            })
+            .error(function (data, status) {
+                $log.error({data: data, status: status});
+        });
     };
-    */
 }]);

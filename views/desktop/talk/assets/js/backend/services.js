@@ -278,7 +278,6 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
     };
 
     this.onNextUser = function (params) {
-        var tLang =  'es';
         start_load();
         if (params.conn.data.open)
         {
@@ -291,7 +290,7 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
         }
         sStage.clear(params);
         console.log('nextUser in action');
-        params.conn.socket.emit('ask', tLang);
+        params.conn.socket.emit('ask', params.body.language);
     };
 
     this.onSendMessage = function (params, content)

@@ -7,6 +7,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sAction
 	scope.user = {};
 	scope.recUser = {};
     scope.messages = [];
+    scope.language = language || 'en';
 
     scope.loadMessages = function () {
         $scope.$apply();
