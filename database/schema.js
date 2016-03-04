@@ -184,19 +184,19 @@ schema.auth = mongoose.Schema({
     facebook: {
         id: {
             type: String,
-            unique: true
+            //unique: true
         }
     },
     twitter: {
         id: {
             type: String,
-            unique: true
+            //unique: true
         }
     },
     google: {
         id: {
             type: String,
-            unique: true
+            //unique: true
         }
     }
 });
