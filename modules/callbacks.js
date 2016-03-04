@@ -123,6 +123,7 @@ var _ioConnection = function(socket) {
     socket.on('disconnect', function() {
         console.log('IO: User disconnected');
         deleteUser(session._id);
+        console.log(availables);
     });
   }
 };
