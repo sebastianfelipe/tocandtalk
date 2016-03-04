@@ -19,16 +19,6 @@ var limit = global_module.limit;
 var port1 = global_module.port1;
 var port2 = global_module.port2;
 
-var _peerConnection = function (id) {
-
-  console.log('P2P: User connected ' + id);
-  //users.push(id);
-}
-
-var _peerDisconnect = function (id) {
-  console.log('P2P: User disconnected ' + id);
-}
-
 var _ioConnection = function(socket) {
   
   var session = socket.handshake.session;
@@ -36,15 +26,16 @@ var _ioConnection = function(socket) {
 
   socket.on('ask', function (language) {
     var callerId = session._id;
-    console.log('The caller Id who has connected');
-    console.log(callerId);
+    console.log('IO: on Ask');
+    //console.log('The caller Id who has connected');
+    //console.log(callerId);
     if (callerId)
     {
       var answer = {};
       answer.call = true;
-      console.log(callerId);
-      console.log(language);
-      console.log('IO: ' + callerId + ' wants to verify if has to wait (be called) or is available (to call)');
+      //console.log(callerId);
+      //console.log(language);
+      //console.log('IO: ' + callerId + ' wants to verify if has to wait (be called) or is available (to call)');
 
       if (!(language in availables))
       {
@@ -67,12 +58,12 @@ var _ioConnection = function(socket) {
         var recId = user.userId
         answer.recId = recId;
         answer.convId = user.convId;
-        console.log("IO: The get result has recipient_id: " + recId + " and caller_id: " + callerId);
+        //console.log("IO: The get result has recipient_id: " + recId + " and caller_id: " + callerId);
+        //console.log('Availables before be removed:');
+        //console.log(availables);
 
         availablesIndexCallerId = indexOfUser(availables, callerId, language);
         availablesIndexRecId = indexOfUser(availables, recId, language);
-        console.log('Availables before be removed:');
-        console.log(availables);
         if (availablesIndexCallerId > -1)
         {
           availables[language].splice(availablesIndexCallerId, 1); 
@@ -98,14 +89,38 @@ var _ioConnection = function(socket) {
         console.log('IO: Push -> ' + callerId);
       }
 
-      console.log("IO: Does " + callerId + " it has to call? " + answer.call);
-      console.log('IO: Availables ');
-      console.log(availables);
+      //console.log("IO: Does " + callerId + " it has to call? " + answer.call);
+      //console.log('IO: Availables ');
+      //console.log(availables);
       socket.emit('ansAsk', answer);
     }
   });
-}
 
+  socket.on('disconnect', function() {
+      console.log('IO: User disconnected');
+      console.log(availables);
+      for (var lang in availables)
+      {
+        var indexId = indexOfUser(availables, id, lang);
+        if (indexId > -1)
+        {
+          availables[language].splice(indexId, 1);
+        }
+      }
+      console.log(availables);
+  });
+};
+
+var _peerConnection = function (id) {
+
+  console.log('P2P: User connected ' + id);
+  //users.push(id);
+};
+
+var _peerDisconnect = function (id) {
+  console.log('P2P: User disconnected ' + id);
+};
+
+module.exports._ioConnection = _ioConnection;
 module.exports._peerConnection = _peerConnection;
 module.exports._peerDisconnect = _peerDisconnect;
-module.exports._ioConnection = _ioConnection;
