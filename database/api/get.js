@@ -73,6 +73,7 @@ router.get('/user', authenticate, function (req, res) {
     console.log(results.user.doc);
     var user = {};
     //user.username = results.user.doc._auth.classic.username || results.user.doc._auth.facebook.id || results.user.doc._auth.twitter.id || results.user.doc._auth.google.id;
+    user.id = id;
     user.firstName = results.user.doc.firstName;
     user.lastName = results.user.doc.lastName;
     user.description = results.user.doc.description;
