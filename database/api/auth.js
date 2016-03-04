@@ -38,7 +38,7 @@ router.post('/', function (req, res) {
             var errors = "";
               models.Username
               .findOne({username: username})
-              .deepPopulate('_user._username _user._password')
+              .deepPopulate('_user._auth.classic._password')
               .exec(function (err, doc) {
                 callback(null, {errors: errorAdapter(models.User.modelName, err), doc: doc});
               });
@@ -49,7 +49,7 @@ router.post('/', function (req, res) {
             var errors = "";
               models.Email
               .findOne({email: username})
-              .deepPopulate('_user._username _user._password')
+              .deepPopulate('_user._auth.classic._password')
               .exec(function (err, doc) {
                 callback(null, {errors: errorAdapter(models.User.modelName, err), doc: doc});
               });
@@ -59,12 +59,15 @@ router.post('/', function (req, res) {
   function(err, results) {
       var errors = "";
       var doc = results.username.doc || results.email.doc;
+      console.log('This one is the doc');
+      console.log(doc._user._auth.classic._password);
       if (doc)
       {
-        console.log(doc._user._password);
-        if (verifyPassword(password, doc._user._password.salt, doc._user._password.password))
+        console.log(doc._user._auth.classic._password);
+        if (verifyPassword(password, doc._user._auth.classic._password.salt, doc._user._auth.classic._password.password))
         {
-          req.session.username = doc._user._username.username;
+          console.log('The user is registering');
+          req.session.id = doc._user._id;
         }
         else
         {

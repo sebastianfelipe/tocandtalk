@@ -1,6 +1,6 @@
 var authenticate = function (req, res, next)
 {
-	if (!req.session.username)
+	if (!req.session.id)
 	{
 		return res.redirect('/login');
 		//return res.render('login/index.html', {forceType: "desktop", errors: ""});
@@ -13,7 +13,7 @@ var authenticate = function (req, res, next)
 
 var authenticateRegister = function (req, res, next)
 {
-	if (req.session.username)
+	if (req.session.id)
 	{
 		return res.redirect('/');
 	}

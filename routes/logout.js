@@ -6,6 +6,10 @@ router.get('/', function (req, res) {
   {
     delete req.session.username;
   }
+  if (req.session.id)
+  {
+    delete req.session.id;
+  }
   return res.redirect('/');
 });
 

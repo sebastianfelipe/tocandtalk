@@ -51,18 +51,16 @@ router.get('/user', authenticate, function (req, res) {
 */
 
 router.get('/user', authenticate, function (req, res) {
-  var username = req.session.username;
+  var id = req.session.id;
 
   async.parallel({
         user: function(callback) {
             setTimeout(function(){
-                models.Username
-                .findOne({username: username}, {_password: 0})
-                .deepPopulate('_user._nationality _user._nativeLanguage _user._username _user.spokenLanguages _user.interestLanguages')
+                models.User
+                .findOne({"_id": id})
+                .deepPopulate('_nationality _nativeLanguage _auth spokenLanguages interestLanguages')
                 .exec(function (err, doc) {
-                  var obj = null;
-                  if (doc) { obj = doc._user; }
-                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: obj});
+                  callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: doc});
 
                 })
             }, 200)
@@ -72,8 +70,9 @@ router.get('/user', authenticate, function (req, res) {
     var errors = "";
     errors += results.user.errors;
 
+    console.log(results.user.doc);
     var user = {};
-    user.username = results.user.doc._username.username;
+    //user.username = results.user.doc._auth.classic.username || results.user.doc._auth.facebook.id || results.user.doc._auth.twitter.id || results.user.doc._auth.google.id;
     user.firstName = results.user.doc.firstName;
     user.lastName = results.user.doc.lastName;
     user.description = results.user.doc.description;
