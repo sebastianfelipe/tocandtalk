@@ -111,7 +111,7 @@ var _ioConnection = function(socket) {
       console.log(availables);
       for (var lang in availables)
       {
-        var indexId = indexOfUser(availables, id, lang);
+        var indexId = indexOfUser(availables, session._id, lang);
         if (indexId > -1)
         {
           availables[language].splice(indexId, 1);
