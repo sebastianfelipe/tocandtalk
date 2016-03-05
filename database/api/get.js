@@ -220,7 +220,64 @@ router.get('/auths', function (req, res) {
   });
 });
 
-//---------------------------------------------
+router.get('/test/appraisements', function (req, res) {
+  async.parallel({
+      appraisements: function(callback) {
+          setTimeout(function(){
+              models.Appraisement.find().exec(function (err, docs) {
+
+                callback(null, {errors: err, docs: docs});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+     return res.send(results.appraisements);
+  });
+});
+
+router.get('/test/appreciations', function (req, res) {
+  async.parallel({
+      appreciations: function(callback) {
+          setTimeout(function(){
+              models.Appreciation.find().exec(function (err, docs) {
+
+                callback(null, {errors: err, docs: docs});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+     return res.send(results.appreciations);
+  });
+});
+
+router.get('/appraisement', authenticate, function (req, res) {
+  var id = req.session._id;
+  async.parallel({
+      appraisement: function(callback) {
+          setTimeout(function(){
+              models.User
+              .findOne({_id: id})
+              .deepPopulate('_appraisement.appreciations')
+              .exec(function (err, doc) {
+                console.log('This is the doc');
+                console.log(doc);
+                if (doc)
+                {
+                  doc = doc._appraisement;
+                }
+                callback(null, {errors: err, doc: doc});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+    var errors = "";
+    errors += results.appraisement.errors;
+    return res.send({errors: errors, doc: results.appraisement.doc});
+  });
+});//---------------------------------------------
 
 module.exports = router;
 

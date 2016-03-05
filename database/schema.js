@@ -202,6 +202,14 @@ schema.auth = mongoose.Schema({
 });
 
 schema.appreciation = mongoose.Schema({
+    _userA: {
+        type: ObjectId,
+        ref: 'User'
+    },
+    _userB: {
+        type: ObjectId,
+        ref: 'User'
+    },
     _appraisement: {
                 type: ObjectId,
                 ref: 'Appraisement'

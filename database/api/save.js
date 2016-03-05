@@ -191,6 +191,97 @@ router.post('/user/interestLanguage', authenticate, function (req, res) {
   });
 });
 
+//localhost:4080/api/save/appreciation/56da4846791be1c802218f52/56da4875791be1c802218f59/3/meencantooooo
+router.get('/appreciation/:idUserA/:idUserB/:punctuation/:comment', function (req, res) {
+    var idUserA = req.params.idUserA;
+    var idUserB = req.params.idUserB;
+    var punctuation = req.params.punctuation;
+    var comment = req.params.comment.trim();
+
+    console.log(req.params);
+    async.parallel({
+        appraisement: function(callback) {
+            setTimeout(function(){
+                models.User
+                .findOne({_id: idUserB})
+                .deepPopulate('_appraisement')
+                .exec(function (err, doc) {
+                  // Need to be validated
+                  callback(null, {errors: errorAdapter(models.Appraisement.modelName, err), doc: doc._appraisement});
+
+                });
+            }, 200)
+        },
+        appreciation: function(callback) {
+            setTimeout(function(){
+                models.Appreciation
+                .findOne({_userA: idUserA, _userB: idUserB})
+                .exec(function (err, doc) {
+                    callback(null, {errors: errorAdapter(models.Appraisement.modelName, err), doc: doc});                 
+                });
+            }, 200)
+        }
+  },
+  function(err, results) {
+    console.log(results);
+    var errors = "";
+    errors += results.appraisement.errors;
+    errors += results.appreciation.errors;
+
+    var appraisement = results.appraisement.doc;
+    var appreciation = results.appreciation.doc;
+    var exists = true;
+    if (!errors)
+    {
+      if (!appreciation)
+      {
+        exists = false;
+        appreciation = new models.Appreciation({_userA: idUserA, _userB: idUserB});
+      }
+      appreciation.punctuation = punctuation;
+      appreciation.comment = comment;
+      appreciation.save(function (err) {
+        if (!err)
+        {
+          if (!exists)
+          {
+            appraisement.appreciations.push(appreciation._id);
+            appraisement.save(function (err) {
+              if (!err)
+              {
+                // Here we have to recalculate the mean
+
+                return res.send({errors: errors});
+              }
+              else
+              {
+                errors += "eDBSave;";
+                return res.send({errors: errors});
+              }
+            });
+          }
+          else
+          {
+            // Here we have to recalculate the mean
+
+            return res.send({errors: errors});
+          }
+        }
+        else
+        {
+          errors += "eDBSave;";
+           return res.send({errors: errors});
+        }
+      });
+    }
+    else
+    {
+      errors += "eDBSave;";
+      return res.send({errors: errors});
+    }
+  });
+});
+
 module.exports = router;
 
 
