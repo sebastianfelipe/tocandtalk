@@ -36,6 +36,32 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         }
     };
 
+    this.showTranscript = function (params)
+    {
+        params.body.apply();
+    };
+
+    this.showRecTranscript = function (params)
+    {
+        params.body.apply();
+    };
+
+    this.setTranscript = function (params)
+    {
+        params.body.ranscript = params.sources.transcript;
+    };
+
+    this.setRecTranscript = function (params)
+    {
+        params.body.recTranscript = params.sources.recTranscript;
+    }
+    /*this.showTranscript = function (params)
+    {
+        console.log(params.body.transcript);
+        //params.body.transcript = {sentence: 'Este es un mensaje de prueba :D'};
+    };
+    */
+
     this.showErrors = function (errors)
     {
       
@@ -133,13 +159,11 @@ app.service('sListen', ['$http', '$log', 'sStage', function ($http, $log, sStage
                 params.body.getMessage(data.message);
             }
 
-            if (data.recognition)
+            if (data.transcript)
             {
-                console.log('There is a recognition :D');
-                if (data.recognition.final)
-                {
-                    console.log(data.recognition);
-                }
+                params.sources.recTranscript = data.transcript;
+                sStage.setRecTranscript(params);
+                sStage.showRecTranscript(params);
             }
         });
         params.conn.data.on('close', function () {
@@ -353,17 +377,63 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
         if ('webkitSpeechRecognition' in window)
         {
             var recognition = params.conn.recognition = new webkitSpeechRecognition();
-            recognition.continuous = true;
+            recognition.continuous = false;
             recognition.interimResults = true;
             //recognition.maxAlternatives = 1;
-            recognition.lang = 'es-CL';
+            recognition.lang = refs.meta.transcript.lang + (refs.meta.transcript.dialect ? ('-' + refs.meta.transcript.dialect) : '' );
+            sStage.setTranscript(params);
 
+            recognition.restart = function () {
+                /*
+                if (params.meta.recognizing)
+                {
+                    recognition.stop();
+                    recognition.start();
+                }
+                */
+            };
             recognition.onstart = function() {
                 $log.info('Speech recognition on start');
+                params.meta.recognizing = true;
                 /*
                 recognizing = true;
                 showInfo('info_speak_now');
                 start_img.src = '/desktop/samples/wsd/mic-animate.gif';
+                */
+            };
+
+            recognition.onend = function() {
+                $log.info('Speech recognition on end');
+                console.log(params.meta.recognizing);
+                if (params.meta.recognizing)
+                {
+                    recognition.stop();
+                    params.meta.recognizing = false;
+                    recognition.start();
+                }
+                
+                //recognition.start();
+                /*
+                recognizing = false;
+                if (ignore_onend) {
+                  return;
+                }
+                start_img.src = '/desktop/samples/wsd/mic.gif';
+                if (!final_transcript) {
+                  showInfo('info_start');
+                  return;
+                }
+                showInfo('');
+                if (window.getSelection) {
+                  window.getSelection().removeAllRanges();
+                  var range = document.createRange();
+                  range.selectNode(document.getElementById('final_span'));
+                  window.getSelection().addRange(range);
+                }
+                if (create_email) {
+                  create_email = false;
+                  createEmail();
+                }
                 */
             };
 
@@ -380,7 +450,7 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                 final.words = [];
                 final.confidence = 0;
 
-                for (var i = event.resultIndex; i < event.results.length; i++)
+                for (var i = 0; i < event.results.length; i++)
                 {
                     if (!event.results[i].isFinal)
                     {
@@ -407,31 +477,41 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                     final.confidence /= final.words.length;
                 }
 
-                if (params.conn.data.open)
+                interim.confidence = interim.confidence || 0.0;
+                final.confidence = final.confidence || 0.0;
+
+                var data = {};
+                if (final.sentence)
                 {
-                    var data = {};
-                    if (final.sentence)
-                    {
-                        data.recognition = {
-                            sentence: final.sentence,
-                            words: final.words,
-                            confidence: final.confidence,
-                            final: true
-                        };
-                        params.conn.data.send(data);
-                    }
-                    else
-                    {
-                        data.recognition = {
-                            sentence: interim.sentence,
-                            words: final.words,
-                            confidence: interim.confidence,
-                            final: false
-                        };
-                        params.conn.data.send(data);
-                    }
+                    data.transcript = {
+                        sentence: final.sentence,
+                        words: final.words,
+                        confidence: final.confidence,
+                        final: true
+                    };
+                    //recognition.stop();
+                }
+                else
+                {
+                    data.transcript = {
+                        sentence: interim.sentence,
+                        words: interim.words,
+                        confidence: interim.confidence,
+                        final: false
+                    };
                 }
 
+                params.sources.transcript.sentence = data.transcript.sentence;
+                params.sources.transcript.words = data.transcript.words;
+                params.sources.transcript.confidence = data.transcript.confidence;
+                params.sources.transcript.final = data.transcript.final;
+
+                if (params.conn.data.open)
+                {
+                    params.conn.data.send(data);
+                }
+
+                sStage.showTranscript(refs);
                 //console.log(interim);
                 //console.log(final)
                 /*
@@ -452,35 +532,32 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                 */
             };
 
-            recognition.onend = function() {
-                $log.info('Speech recognition on end');
-                //recognition.start();
-                /*
-                recognizing = false;
-                if (ignore_onend) {
-                  return;
-                }
-                start_img.src = '/desktop/samples/wsd/mic.gif';
-                if (!final_transcript) {
-                  showInfo('info_start');
-                  return;
-                }
-                showInfo('');
-                if (window.getSelection) {
-                  window.getSelection().removeAllRanges();
-                  var range = document.createRange();
-                  range.selectNode(document.getElementById('final_span'));
-                  window.getSelection().addRange(range);
-                }
-                if (create_email) {
-                  create_email = false;
-                  createEmail();
-                }
-                */
+
+            /*
+            recognition.onaudiostart = function () {
+                console.log('On audio start!')
+            };
+            recognition.onaudioend = function () {
+                console.log('On audio end!')
             };
 
+            recognition.onsoundstart = function () {
+                console.log('On sound start!')
+            };
+
+            recognition.onsoundend = function () {
+                console.log('On sound end!')
+            };
+            recognition.onspeechstart = function () {
+                console.log('On speech start!')
+            };
+
+            recognition.onspeechend = function () {
+                console.log('On speech end!')
+            };
+            */
             recognition.onerror = function(event) {
-                $log.info('Speech recognition on error');
+                $log.error(event);
                 if (event.error == 'no-speech') {
                     /*
                     start_img.src = '/desktop/samples/wsd/mic.gif';

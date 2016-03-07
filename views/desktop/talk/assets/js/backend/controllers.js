@@ -7,7 +7,13 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sAction
 	scope.user = {};
 	scope.recUser = {};
     scope.messages = [];
+    scope.transcript = {};
+    scope.recTranscript = {};
     scope.language = language || 'en';
+
+    scope.apply = function () {
+        $scope.$apply();
+    };
 
     scope.loadMessages = function () {
         $scope.$apply();

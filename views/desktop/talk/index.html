@@ -92,9 +92,9 @@
         <!-- Load -->
         <div id="load_screen">
             
-            <!--
+            
             <button type="text" id="load_skip" style="position:absolute; top:0px; left:0px; margin:16px;">Saltar pantalla de carga</button>
-            -->
+            
             <div id="world_container">
                 <image src="desktop/talk/assets/img/mundo.svg" id="world"></image>
             </div>
@@ -122,6 +122,14 @@
         <!-- Logo -->
         <image src="desktop/talk/assets/img/tocandtalk-logo.png" id="logo_black"></image>
 
+        <p>Transcript: {{body.recTranscript.final}}</p>
+        <p>{{body.recTranscript.confidence}}</p>
+        <div ng-show="body.transcript.confidence > 0.5">
+            <p>{{body.recTranscript.sentence}}</p>
+        </div>
+        <div ng-show="!body.transcript.final">
+            <p>{{body.recTranscript.sentence}}</p>
+        </div>
         <!-- Botones -->
         <div id="buttons_container_above">
             <a href="/" title="Salir">
