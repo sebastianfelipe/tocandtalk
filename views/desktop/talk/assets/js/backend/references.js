@@ -36,7 +36,8 @@ refs.conn.data = {};
 refs.conn.localStream = {};
 refs.conn.remoteStream = {};
 refs.conn.auth = {};
-
+refs.conn.recognition = {};
+refs.conn.recognizing = false; 
   /*
   box_messages: null,
   entry_message: null,

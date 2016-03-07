@@ -24,17 +24,22 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sAction
 
     scope.connect = function () {
         sActions.onConnect(refs);
-    }
+    };
 
     scope.getLocalStream = function () {
         sActions.onGetLocalStream(refs);
-    }
+    };
 
     scope.onNextUserClick = function () {
         sActions.onNextUser(refs);
-    }
+    };
+
+    scope.onSpeechRecognition = function () {
+        sActions.onSpeechRecognition(refs);
+    };
 
     scope.getLocalStream();
     sStage.getSources(refs);
+    scope.onSpeechRecognition(refs);
     sStage.load(refs);
 }]);

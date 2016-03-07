@@ -132,6 +132,12 @@ app.service('sListen', ['$http', '$log', 'sStage', function ($http, $log, sStage
             {
                 params.body.getMessage(data.message);
             }
+
+            if (data.recognition)
+            {
+                console.log('There is a recognition :D');
+                console.log(data.recognition);
+            }
         });
         params.conn.data.on('close', function () {
             $log.info('The another peer has closed');
@@ -225,6 +231,11 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                 params.conn.localStream = stream;
                 //$('#local-video').attr('src', window.URL.createObjectURL(refs.conn.localStream));
                 sStage.setLocalVideo(refs);
+                // ------------------------
+                // Speech Recognition
+
+                params.body.onSpeechRecognition(params);
+                // ------------------------
                 //enable_buttons_media();
             })
             .catch(function(err) {
@@ -331,6 +342,147 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
             {
                 $log.error('The connection has not been stablished');
             }
+        }
+    };
+
+    this.onSpeechRecognition = function (params)
+    {
+        if ('webkitSpeechRecognition' in window)
+        {
+            var recognition = params.conn.recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            //recognition.maxAlternatives = 1;
+            recognition.lang = 'es-CL';
+
+            recognition.onstart = function() {
+                $log.info('Speech recognition on start');
+                /*
+                recognizing = true;
+                showInfo('info_speak_now');
+                start_img.src = '/desktop/samples/wsd/mic-animate.gif';
+                */
+            };
+
+            recognition.onresult = function(event) {
+                //$log.info('Speech recognition on result');
+                var phrase = '';
+                var result = [];
+                var tmpPhrase = '';
+                var tmpResult = [];
+
+                for (var i = event.resultIndex; i < event.results.length; i++)
+                {
+                    if (event.results[i].isFinal)
+                    {
+                        result.push(event.results[i][0].transcript);
+                    }
+                    else
+                    {
+                        tmpResult.push(event.results[i][0].transcript);
+                    }
+                }
+                phrase = result.join(' ');
+                tmpPhrase = tmpResult.join(' ');
+
+                console.log(tmpPhrase);
+                if (params.conn.data.open)
+                {
+                    var data = {};
+                    if (phrase)
+                    {
+                        data.recognition = {
+                            phrase: phrase,
+                            final: true
+                        };
+                        params.conn.data.send(data);
+                    }
+                    else
+                    {
+                        data.recognition = {
+                            phrase: tmpPhrase,
+                            final: false
+                        };
+                        params.conn.data.send(data);
+                    }
+                }
+                /*
+                var interim_transcript = '';
+                for (var i = event.resultIndex; i < event.results.length; ++i) {
+                  if (event.results[i].isFinal) {
+                    final_transcript += event.results[i][0].transcript;
+                  } else {
+                    interim_transcript += event.results[i][0].transcript;
+                  }
+                }
+                final_transcript = capitalize(final_transcript);
+                final_span.innerHTML = linebreak(final_transcript);
+                interim_span.innerHTML = linebreak(interim_transcript);
+                if (final_transcript || interim_transcript) {
+                  showButtons('inline-block');
+                }
+                */
+            };
+
+            recognition.onend = function() {
+                $log.info('Speech recognition on end');
+                /*
+                recognizing = false;
+                if (ignore_onend) {
+                  return;
+                }
+                start_img.src = '/desktop/samples/wsd/mic.gif';
+                if (!final_transcript) {
+                  showInfo('info_start');
+                  return;
+                }
+                showInfo('');
+                if (window.getSelection) {
+                  window.getSelection().removeAllRanges();
+                  var range = document.createRange();
+                  range.selectNode(document.getElementById('final_span'));
+                  window.getSelection().addRange(range);
+                }
+                if (create_email) {
+                  create_email = false;
+                  createEmail();
+                }
+                */
+            };
+
+            recognition.onerror = function(event) {
+                $log.info('Speech recognition on error');
+                if (event.error == 'no-speech') {
+                    /*
+                    start_img.src = '/desktop/samples/wsd/mic.gif';
+                    showInfo('info_no_speech');
+                    ignore_onend = true;
+                    */
+                }
+                if (event.error == 'audio-capture') {
+                    /*
+                    start_img.src = '/desktop/samples/wsd/mic.gif';
+                    showInfo('info_no_microphone');
+                    ignore_onend = true;
+                    */
+                }
+                if (event.error == 'not-allowed') {
+                    /*
+                    if (event.timeStamp - start_timestamp < 100) {
+                        showInfo('info_blocked');
+                    } else {
+                        showInfo('info_denied');
+                    }
+                    ignore_onend = true;
+                    */
+                }
+            };
+            recognition.start();
+            //recognition.stop();
+        }
+        else
+        {
+            $log.error("This browser dowsn't support speech recognition");
         }
     };
 }]);
