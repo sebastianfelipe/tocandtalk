@@ -398,12 +398,12 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                 interim.sentence = interim.words.join(' ');
                 final.sentence = final.words.join(' ');
 
-                if (interim.words)
+                if (interim.words.length)
                 {
                     interim.confidence /= interim.words.length;
                 }
 
-                if (final.words)
+                if (final.words.length)
                 {
                     final.confidence /= final.words.length;
                 }
@@ -411,7 +411,7 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                 if (params.conn.data.open)
                 {
                     var data = {};
-                    if (final.phrase)
+                    if (final.sentence)
                     {
                         data.recognition = {
                             sentence: final.sentence,
