@@ -261,7 +261,7 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                 // ------------------------
                 // Speech Recognition
 
-                params.body.onSpeechRecognition(params);
+                //params.body.onSpeechRecognition(params);
                 // ------------------------
                 //enable_buttons_media();
             })
