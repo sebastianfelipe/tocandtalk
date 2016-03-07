@@ -136,7 +136,10 @@ app.service('sListen', ['$http', '$log', 'sStage', function ($http, $log, sStage
             if (data.recognition)
             {
                 console.log('There is a recognition :D');
-                console.log(data.recognition);
+                if (data.recognition.final)
+                {
+                    console.log(data.recognition);
+                }
             }
         });
         params.conn.data.on('close', function () {
@@ -366,10 +369,6 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
 
             recognition.onresult = function(event) {
                 //$log.info('Speech recognition on result');
-                var phrase = '';
-                var result = [];
-                var tmpPhrase = '';
-                var tmpResult = [];
 
                 var interim = {};
                 interim.sentence = '';
