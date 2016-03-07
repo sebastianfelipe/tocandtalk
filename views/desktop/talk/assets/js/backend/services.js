@@ -455,6 +455,7 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
 
             recognition.onend = function() {
                 $log.info('Speech recognition on end');
+                //recognition.start();
                 /*
                 recognizing = false;
                 if (ignore_onend) {
