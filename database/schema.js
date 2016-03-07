@@ -159,6 +159,10 @@ schema.user = mongoose.Schema({
         type: ObjectId,
         ref: 'Auth',
         //required: true
+    },
+    _friendship: {
+        type: ObjectId,
+        ref: 'Friend'
     }
 });
 
@@ -239,6 +243,10 @@ schema.appraisement = mongoose.Schema({
 });
 
 schema.message = mongoose.Schema({
+    _user: {
+        type: ObjectId,
+        ref: 'User'
+    },
     _conversation: {
             type: ObjectId,
             ref: 'Conversation'
@@ -247,7 +255,7 @@ schema.message = mongoose.Schema({
             type: String,
             maxlength: 125,
             trim: true
-},
+    }
 });
 
 schema.conversation = mongoose.Schema({
@@ -259,7 +267,7 @@ schema.conversation = mongoose.Schema({
    messages: [{
                 type: ObjectId,
                 ref: 'Message'
-}]
+    }]
 });
 
 schema.messenger = mongoose.Schema({
@@ -270,7 +278,41 @@ schema.messenger = mongoose.Schema({
     conversations: [{
                 type: ObjectId,
                 ref: 'Conversation'
-}]
+    }]
+});
+
+schema.friend = mongoose.Schema({
+    _userA: {
+        type: ObjectId,
+        ref: 'User'
+    },
+    _userB: {
+        type: ObjectId,
+        ref: 'User'
+    },
+    accepted: {
+        type: Boolean,
+        required: true
+    }
+});
+
+schema.friendship = mongoose.Schema({
+    _user: {
+        type: ObjectId,
+        ref: 'User'
+    },
+    friends: [{
+        type: ObjectId,
+        ref: 'Friend'
+    }],
+    receivedRequests: [{
+        type: ObjectId,
+        refs: 'Friend'
+    }],
+    sentRequests: [{
+        type: ObjectId,
+        refs: 'Friend'
+    }]
 });
 
 schema.tUser = mongoose.Schema({
@@ -298,6 +340,8 @@ schema.message.plugin(uniqueValidator, {message: 'unique'});
 schema.appraisement.plugin(uniqueValidator, {message: 'unique'});
 schema.appreciation.plugin(uniqueValidator, {message: 'unique'});
 schema.auth.plugin(uniqueValidator, {message: 'unique'});
+schema.friend.plugin(uniqueValidator, {message: 'unique'});
+schema.friendship.plugin(uniqueValidator, {message: 'unique'});
 
 schema.username.plugin(deepPopulate);
 schema.email.plugin(deepPopulate);
@@ -311,6 +355,8 @@ schema.message.plugin(deepPopulate);
 schema.appraisement.plugin(deepPopulate);
 schema.appreciation.plugin(deepPopulate);
 schema.auth.plugin(deepPopulate);
+schema.friend.plugin(deepPopulate);
+schema.friendship.plugin(deepPopulate);
 
 schema.tUser.plugin(uniqueValidator, {message: 'unique'});
 

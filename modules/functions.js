@@ -14,6 +14,7 @@ var error_adapter = function (model_name, err) {
       }
       errorList.push(error);
     }
+    //errorList.push("eDBErrorAdapter;");
   }
   errorList.push('');
   return errorList.join(';');

@@ -277,7 +277,103 @@ router.get('/appraisement', authenticate, function (req, res) {
     errors += results.appraisement.errors;
     return res.send({errors: errors, doc: results.appraisement.doc});
   });
-});//---------------------------------------------
+});
+
+router.get('/test/friend/requests', function (req, res) {
+  async.parallel({
+      friends: function(callback) {
+          setTimeout(function(){
+              models.Friend
+              .find()
+              .exec(function (err, doc) {
+                callback(null, {errors: err, doc: doc});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+    var errors = "";
+    errors += results.friends.errors;
+    return res.send({errors: errors, doc: results.friends.doc});
+  });
+});
+
+router.get('/test/friendships', function (req, res) {
+  async.parallel({
+      friendships: function(callback) {
+          setTimeout(function(){
+              models.Friendship
+              .find()
+              .exec(function (err, doc) {
+                callback(null, {errors: err, doc: doc});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+    var errors = "";
+    errors += results.friendships.errors;
+    return res.send({errors: errors, doc: results.friendships.doc});
+  });
+});
+
+router.get('/test/messengers', function (req, res) {
+  async.parallel({
+      messengers: function(callback) {
+          setTimeout(function(){
+              models.Messenger
+              .find()
+              .exec(function (err, doc) {
+                callback(null, {errors: err, doc: doc});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+    var errors = "";
+    errors += results.messengers.errors;
+    return res.send({errors: errors, doc: results.messengers.doc});
+  });
+});
+
+router.get('/test/conversations', function (req, res) {
+  async.parallel({
+      conversations: function(callback) {
+          setTimeout(function(){
+              models.Conversation
+              .find()
+              .exec(function (err, doc) {
+                callback(null, {errors: err, doc: doc});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+    var errors = "";
+    errors += results.conversations.errors;
+    return res.send({errors: errors, doc: results.conversations.doc});
+  });
+});
+
+router.get('/test/friends', function (req, res) {
+  async.parallel({
+      friends: function(callback) {
+          setTimeout(function(){
+              models.Friend
+              .find()
+              .exec(function (err, doc) {
+                callback(null, {errors: err, doc: doc});
+              })
+          }, 200);
+      }
+  },
+  function(err, results) {
+    var errors = "";
+    errors += results.friends.errors;
+    return res.send({errors: errors, doc: results.friends.doc});
+  });
+});
+//---------------------------------------------
 
 module.exports = router;
 

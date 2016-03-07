@@ -73,6 +73,7 @@ auth_routes = require('./database/api/auth.js');
 update_routes = require('./database/api/update.js');
 verify_routes = require('./database/api/verify.js');
 delete_routes = require('./database/api/delete.js');
+task_routes = require('./database/api/task.js');
 //delete_routes = require('./delete.js');
 
 app.use('/', home_routes);
@@ -91,6 +92,7 @@ app.use('/api/auth', auth_routes);
 app.use('/api/update', update_routes);
 app.use('/api/verify', verify_routes);
 app.use('/api/delete', delete_routes);
+app.use('/api/task', task_routes);
 
 // Extern Uses
 //var api = require('./database/api/api.js');
