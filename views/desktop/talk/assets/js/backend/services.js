@@ -414,7 +414,7 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                     if (final.phrase)
                     {
                         data.recognition = {
-                            phrase: final.phrase,
+                            sentence: final.sentence,
                             words: final.words,
                             confidence: final.confidence,
                             final: true
@@ -424,7 +424,7 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                     else
                     {
                         data.recognition = {
-                            phrase: interim.phrase,
+                            sentence: interim.sentence,
                             words: final.words,
                             confidence: interim.confidence,
                             final: false
@@ -433,8 +433,8 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                     }
                 }
 
-                console.log(interim);
-                console.log(final)
+                //console.log(interim);
+                //console.log(final)
                 /*
                 var interim_transcript = '';
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
