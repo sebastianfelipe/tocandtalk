@@ -63,6 +63,7 @@ logout_routes = require('./routes/logout.js');
 friends_routes = require('./routes/friends.js');
 profile_routes = require('./routes/profile.js');
 settings_routes = require('./routes/settings.js');
+samples_routes = require('./routes/samples.js');
 //auth_routes = require('./routes/auth.js');
 
 app.use(passport.initialize());
@@ -84,6 +85,7 @@ app.use('/logout', logout_routes);
 app.use('/friends', friends_routes);
 app.use('/profile', profile_routes);
 app.use('/settings', settings_routes);
+app.use('/samples', samples_routes);
 //app.use('/auth', auth_routes);
 
 app.use('/api/get', get_routes);
