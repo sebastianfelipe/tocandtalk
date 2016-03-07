@@ -371,28 +371,52 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                 var tmpPhrase = '';
                 var tmpResult = [];
 
+                var interim = {};
+                interim.sentence = '';
+                interim.words = [];
+                interim.confidences = 0;
+
+                var final = {};
+                final.sentence = '';
+                final.words = [];
+                final.confidence = 0;
+
                 for (var i = event.resultIndex; i < event.results.length; i++)
                 {
-                    if (event.results[i].isFinal)
+                    if (!event.results[i].isFinal)
                     {
-                        result.push(event.results[i][0].transcript);
+                        interim.words.push(event.results[i][0].transcript);
+                        interim.confidence += event.results[i][0].confidence;
                     }
                     else
                     {
-                        tmpResult.push(event.results[i][0].transcript);
+                        final.words.push(event.results[i][0].transcript);
+                        final.confidence += event.results[i][0].confidence;
                     }
                 }
-                phrase = result.join(' ');
-                tmpPhrase = tmpResult.join(' ');
 
-                console.log(tmpPhrase);
+                interim.sentence = interim.words.join(' ');
+                final.sentence = final.words.join(' ');
+
+                if (interim.words)
+                {
+                    interim.confidence /= interim.words.length;
+                }
+
+                if (final.words)
+                {
+                    final.confidence /= final.words.length;
+                }
+
                 if (params.conn.data.open)
                 {
                     var data = {};
-                    if (phrase)
+                    if (final.phrase)
                     {
                         data.recognition = {
-                            phrase: phrase,
+                            phrase: final.phrase,
+                            words: final.words,
+                            confidence: final.confidence,
                             final: true
                         };
                         params.conn.data.send(data);
@@ -400,12 +424,17 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                     else
                     {
                         data.recognition = {
-                            phrase: tmpPhrase,
+                            phrase: interim.phrase,
+                            words: final.words,
+                            confidence: interim.confidence,
                             final: false
                         };
                         params.conn.data.send(data);
                     }
                 }
+
+                console.log(interim);
+                console.log(final)
                 /*
                 var interim_transcript = '';
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
