@@ -46,6 +46,6 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sAction
 
     scope.getLocalStream();
     sStage.getSources(refs);
-    scope.onSpeechRecognition(refs);
+    //scope.onSpeechRecognition(refs);
     sStage.load(refs);
 }]);
