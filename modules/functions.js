@@ -20,6 +20,16 @@ var error_adapter = function (model_name, err) {
   return errorList.join(';');
 }
 
+var authenticateUser = function (req, user)
+{
+  req.session.user = {};
+  req.session.user._id = user._id;
+  req.session.user._appraisement = user._appraisement;
+  req.session.user._messenger = user._messenger;
+  req.session.user._friendship = user._friendship;
+  return;
+};
+
 var createCode = function () {
   var buf = crypto.randomBytes(32);
   var identifier = buf.toString('hex');
@@ -81,9 +91,8 @@ var wasItAdded = function (availables, userId, language) {
   return false;
 };
 
-
-
 module.exports.error_adapter = error_adapter;
+module.exports.authenticateUser = authenticateUser;
 module.exports.sendMail = sendMail;
 module.exports.createCode = createCode;
 module.exports.indexOfUser = indexOfUser;

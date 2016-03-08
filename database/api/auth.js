@@ -15,6 +15,7 @@ var mAux = require('./auxQ.js');
 
 // Function Imports
 var errorAdapter = functions_module.error_adapter;
+var authenticateUser = functions_module.authenticateUser;
 var verifyPassword = encrypt_module.verifyPassword;
 var saveSocialAccount = mAux.saveSocialAccount;
 
@@ -60,7 +61,8 @@ router.post('/classic', function (req, res) {
       {
         if (verifyPassword(password, doc._user._auth.classic._password.salt, doc._user._auth.classic._password.password))
         {
-          req.session._id = doc._user._id;
+          //req.session._id = doc._user._id;
+          authenticateUser(req, doc._user);
         }
         else
         {
@@ -88,8 +90,8 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
         req.user.doc.populate('_user', function (err, doc) {
             if (doc)
             {
-                req.session._id = doc._user._id;
-                return res.send({errors: errors, profile: req.user.profile});
+              authenticateUser(req, doc._user);
+              return res.send({errors: errors, profile: req.user.profile});
             }
             else
             {
@@ -149,7 +151,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
         saveSocialAccount(data, function (errors, output) {
             if (!errors)
             {
-              req.session._id = output.user._id;
+              authenticateUser(req, output.user);
             }
             return res.send({errors: errors, output: output});
           });

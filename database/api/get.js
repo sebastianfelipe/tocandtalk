@@ -51,7 +51,7 @@ router.get('/user', authenticate, function (req, res) {
 */
 
 router.get('/user', authenticate, function (req, res) {
-  var id = req.session._id;
+  var id = req.session.user._id;
 
   async.parallel({
         user: function(callback) {
@@ -253,7 +253,7 @@ router.get('/test/appreciations', function (req, res) {
 });
 
 router.get('/appraisement', authenticate, function (req, res) {
-  var id = req.session._id;
+  var id = req.session.user._id;
   async.parallel({
       appraisement: function(callback) {
           setTimeout(function(){

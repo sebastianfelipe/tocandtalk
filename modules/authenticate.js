@@ -1,25 +1,40 @@
 var authenticate = function (req, res, next)
 {
-	if (!req.session._id)
+	if (req.session.user)
 	{
-		return res.redirect('/login');
-		//return res.render('login/index.html', {forceType: "desktop", errors: ""});
+		if (req.session.user._id)
+		{
+			next();
+			//return res.render('login/index.html', {forceType: "desktop", errors: ""});
+		}
+		else
+		{
+			return res.redirect('/login');
+		}
 	}
 	else
 	{
-		next();
+		return res.redirect('/login');
 	}
 }
 
 var authenticateRegister = function (req, res, next)
 {
-	if (req.session._id)
+	if (req.session.user)
 	{
-		return res.redirect('/');
+		if (req.session.user._id)
+		{
+			next();
+			//return res.render('login/index.html', {forceType: "desktop", errors: ""});
+		}
+		else
+		{
+			return res.redirect('/');
+		}
 	}
 	else
 	{
-		next();
+		return res.redirect('/');
 	}
 }
 

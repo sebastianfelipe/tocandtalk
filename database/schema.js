@@ -37,14 +37,15 @@ schema.email = mongoose.Schema({
         unique: true,
         validate: [validate.email, 'pattern']
     },
-    verified: { 
-       type: Boolean
-       },
     code: {
         type: String,
         required: true,
         validate: [validate.alphanumeric, 'pattern']
- }
+    },
+    verified: { 
+       type: Boolean,
+       required: true
+    }
 });
 
 schema.country = mongoose.Schema({
@@ -100,21 +101,6 @@ schema.password = mongoose.Schema({
 });
 
 schema.user = mongoose.Schema({
-    //_username: {
-    //    type: ObjectId,
-    //    ref: 'Username',
-    //    required: true
-    //},
-    //_email: {
-    //    type: ObjectId,
-    //    ref: 'Email',
-    //    required: true
-    //},
-    //_password: {
-    //    type: ObjectId,
-    //    ref: 'Password',
-    //    required: true
-    //},
     _nationality: {
         type: ObjectId,
         ref: 'Country',
