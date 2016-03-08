@@ -30,6 +30,16 @@ var authenticateUser = function (req, user)
   return;
 };
 
+var signOut = function (req, user)
+{
+  delete req.session.user._id;
+  delete req.session.user._appraisement;
+  delete req.session.user._messenger;
+  delete req.session.user._friendship;
+  delete req.session.user;
+  return;
+};
+
 var createCode = function () {
   var buf = crypto.randomBytes(32);
   var identifier = buf.toString('hex');
@@ -93,6 +103,7 @@ var wasItAdded = function (availables, userId, language) {
 
 module.exports.error_adapter = error_adapter;
 module.exports.authenticateUser = authenticateUser;
+module.exports.signOut = signOut;
 module.exports.sendMail = sendMail;
 module.exports.createCode = createCode;
 module.exports.indexOfUser = indexOfUser;

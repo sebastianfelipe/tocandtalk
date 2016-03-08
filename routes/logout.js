@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
+var functionsModule = require('../modules/functions.js');
+var signOut = functionsModule.signOut;
+
 router.get('/', function (req, res) {
-  console.log(req.session);
-  console.log(req.session._id);
-  if (req.session._id)
+  if (req.session.user)
   {
-    delete req.session._id;
+    signOut(req);
   }
   return res.redirect('/');
 });
