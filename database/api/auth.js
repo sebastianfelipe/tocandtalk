@@ -15,9 +15,8 @@ var mAux = require('./auxQ.js');
 
 // Function Imports
 var errorAdapter = functions_module.error_adapter;
-var validateAccount = mAux.validateAccount;
-var saveAccount = mAux.saveAccount;
 var verifyPassword = encrypt_module.verifyPassword;
+var saveSocialAccount = mAux.saveSocialAccount;
 
 var passport = require('passport');
 
@@ -89,17 +88,77 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
         req.user.doc.populate('_user', function (err, doc) {
             if (doc)
             {
-                req.session.username = doc._user._id;
+                req.session._id = doc._user._id;
                 return res.send({result: "ok", profile: req.user.profile});
+            }
+            else{
+              return res.send({result: "nope", profile: req.user.profile});
             }
         });
     }
     else
-    {
-      
-      return res.send({result: "nope", profile: req.user.profile});
+    { 
+
+      var errors = '';
+      // Object Creation
+      var user = new models.User();
+      user.firstName = profile.name.givenName.trim().toLowerCase();
+      user.lastName = profile.name.familyName.trim().toLowerCase();
+
+      var appraisement = new models.Appraisement();
+      appraisement._user = user._id;
+      appraisement.mean = 0;
+
+      var messenger = new models.Messenger();
+      messenger._user = user._id;
+
+      var friendship = new models.Friendship():
+      friendship._user = user._id;
+
+      var auth = new models.Auth();
+      auth.facebook = {};
+      auth.facebook.id = profile.id;
+
+      user._appraisement = appraisement._id;
+      user._messenger = messenger._id;
+      user._friendship = friendship._id;
+      user._auth = auth._id;
+
+      // Validation
+      // ------------
+      errors += errorAdapter(models.User.modelName, user.validateSync());
+      errors += errorAdapter(models.Appraisement.modelName, appraisement.validateSync());
+      errors += errorAdapter(models.Messenger.modelName, messenger.validateSync());
+      errors += errorAdapter(models.Friendship.modelName, friendship.validateSync());
+      errors += errorAdapter(models.Auth.modelName, auth.validateSync());
+
+      if (!errors)
+      {
+        var data = {};
+        data.user = user;
+        data.appraisement = appraisement;
+        data.messenger = messenger;
+        data.friendship = friendship;
+        data.auth = auth;
+
+        // Save
+        // ------------
+        saveFacebookAccount(data, function (errors, output) {
+            if (!errors)
+            {
+              req.session._id = output.user._id;
+            }
+            return res.send({errors: errors, output: output});
+          });
+     
+      }
+      else
+      {
+        return res.send({errors: errors});
+      }
+
     }
-  });
+});
 
 router.get('/twitter', passport.authenticate('twitter'));
 

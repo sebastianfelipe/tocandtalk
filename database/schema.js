@@ -123,7 +123,7 @@ schema.user = mongoose.Schema({
     _nativeLanguage: {
         type: ObjectId,
         ref: 'Language',
-        required: true
+        //required: true
     },
     spokenLanguages: [{type: ObjectId, ref: 'Language'}],
     interestLanguages:  [{type: ObjectId, ref: 'Language'}],

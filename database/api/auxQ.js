@@ -470,6 +470,73 @@ var saveClassicAccount = function (data, callback) {
 }
 //---------------------------------------------
 
+var saveSocialAccount = function (data, callback) {
+  var user = data.user;
+  var appraisement = data.appraisement;
+  var messenger = data.messenger;
+  var friendship = data.friendship;
+  var auth = data.auth;
+  var timeout = 200;
+  
+  async.parallel({
+      appraisement: function(callback) {
+          setTimeout(function(){
+            appraisement.validate(function (err) {
+                callback(null, {errors: errorAdapter(models.Appraisement.modelName, err), doc: appraisement})
+            });
+          }, timeout);
+      },
+      messenger: function(callback) {
+          setTimeout(function(){
+            messenger.validate(function (err) {
+                callback(null, {errors: errorAdapter(models.Messenger.modelName, err), doc: messenger})
+            });
+          }, timeout);
+      },
+      friendship: function(callback) {
+          setTimeout(function(){
+            friendship.validate(function (err) {
+                callback(null, {errors: errorAdapter(models.Friendship.modelName, err), doc: friendship})
+            });
+          }, timeout);
+      },
+      user: function(callback) {
+          setTimeout(function(){
+            user.validate(function (err) {
+                callback(null, {errors: errorAdapter(models.User.modelName, err), doc: user})
+            });
+          }, timeout);
+      },
+      auth: function(callback) {
+          setTimeout(function(){
+            auth.validate(function (err) {
+                callback(null, {errors: errorAdapter(models.Auth.modelName, err), doc: auth})
+            });
+          }, timeout);
+      } 
+  },
+  function(err, results) {
+    //----------------------------------
+    // Si hay un error devolver error
+    var errors = "";
+    errors += results.appraisement.errors;
+    errors += results.messenger.errors;
+    errors += results.friendship.errors;
+    errors += results.user.errors;
+    errors += results.auth.errors;
+    //----------------------------------
+    
+    var output = {
+            messenger: results.messenger.doc,
+            appraisement: results.appraisement.doc,
+            friendship: results.friendship.doc,
+            user: results.user.doc,
+            auth: results.auth.doc
+          };
+    callback(errors, output);
+  });
+};
+
 var saveFriendRequest = function (data, callback) {
   var friend = data.friend;
   var friendshipUserA = data.friendshipUserA;
@@ -642,6 +709,7 @@ module.exports = {}
 //module.exports.saveAccount = saveAccount;
 module.exports.validateClassicAccount = validateClassicAccount;
 module.exports.saveClassicAccount = saveClassicAccount;
+module.exports.saveSocialAccount = saveSocialAccount;
 module.exports.saveFriendRequest = saveFriendRequest;
 module.exports.saveFriend = saveFriend;
 module.exports.saveMessage = saveMessage;
