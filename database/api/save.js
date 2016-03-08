@@ -250,7 +250,6 @@ router.get('/appreciation/:idUserA/:idUserB/:punctuation/:comment', function (re
               if (!err)
               {
                 // Here we have to recalculate the mean
-
                 return res.send({errors: errors});
               }
               else

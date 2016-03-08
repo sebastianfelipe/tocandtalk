@@ -32,7 +32,7 @@ var session = require('express-session')({
   secret: 'expresssecretalk',
   saveUninitialized: true,
   key: 'expresssession',
-  cookie: { secure: false },
+  cookie: { secure: false }
 });
 
 var sharedsession = require("express-socket.io-session");

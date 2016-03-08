@@ -479,37 +479,37 @@ var saveSocialAccount = function (data, callback) {
   var timeout = 200;
   
   async.parallel({
+      user: function(callback) {
+          setTimeout(function(){
+            user.save(function (err) {
+                callback(null, {errors: errorAdapter(models.User.modelName, err), doc: user})
+            });
+          }, timeout);
+      },
       appraisement: function(callback) {
           setTimeout(function(){
-            appraisement.validate(function (err) {
+            appraisement.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Appraisement.modelName, err), doc: appraisement})
             });
           }, timeout);
       },
       messenger: function(callback) {
           setTimeout(function(){
-            messenger.validate(function (err) {
+            messenger.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Messenger.modelName, err), doc: messenger})
             });
           }, timeout);
       },
       friendship: function(callback) {
           setTimeout(function(){
-            friendship.validate(function (err) {
+            friendship.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Friendship.modelName, err), doc: friendship})
-            });
-          }, timeout);
-      },
-      user: function(callback) {
-          setTimeout(function(){
-            user.validate(function (err) {
-                callback(null, {errors: errorAdapter(models.User.modelName, err), doc: user})
             });
           }, timeout);
       },
       auth: function(callback) {
           setTimeout(function(){
-            auth.validate(function (err) {
+            auth.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Auth.modelName, err), doc: auth})
             });
           }, timeout);
@@ -527,10 +527,10 @@ var saveSocialAccount = function (data, callback) {
     //----------------------------------
     
     var output = {
-            messenger: results.messenger.doc,
-            appraisement: results.appraisement.doc,
-            friendship: results.friendship.doc,
             user: results.user.doc,
+            appraisement: results.appraisement.doc,
+            messenger: results.messenger.doc,
+            friendship: results.friendship.doc,
             auth: results.auth.doc
           };
     callback(errors, output);

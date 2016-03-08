@@ -25,7 +25,7 @@ require('../../config/passport')(passport);
 
 //localhost:4080/api/auth/:username/:password
 //localhost:4080/api/auth/feliponcio/banana
-router.post('/', function (req, res) {
+router.post('/classic', function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
 
@@ -80,30 +80,32 @@ router.get('/facebook', passport.authenticate('facebook', { scope: ['public_prof
 
 router.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login', scope: ['public_profile']}),
   function(req, res) {
-    // successful auth, user is set at req.user.  redirect as necessary.
-    //if (req.user.isNew) { return res.redirect('/register'); }
-    //res.redirect('/profile');
+
+    var errors = "";
+
     if (req.user.doc)
     {
         req.user.doc.populate('_user', function (err, doc) {
             if (doc)
             {
                 req.session._id = doc._user._id;
-                return res.send({result: "ok", profile: req.user.profile});
+                return res.send({errors: errors, profile: req.user.profile});
             }
-            else{
-              return res.send({result: "nope", profile: req.user.profile});
+            else
+            {
+              errors += 'eDBNotFound;';
+              return res.send({errors: errors, profile: req.user.profile});
             }
         });
     }
     else
     { 
 
-      var errors = '';
+
       // Object Creation
       var user = new models.User();
-      user.firstName = profile.name.givenName.trim().toLowerCase();
-      user.lastName = profile.name.familyName.trim().toLowerCase();
+      user.firstName = req.user.profile.name.givenName.trim().toLowerCase();
+      user.lastName = req.user.profile.name.familyName.trim().toLowerCase();
 
       var appraisement = new models.Appraisement();
       appraisement._user = user._id;
@@ -112,12 +114,13 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
       var messenger = new models.Messenger();
       messenger._user = user._id;
 
-      var friendship = new models.Friendship():
+      var friendship = new models.Friendship();
       friendship._user = user._id;
 
       var auth = new models.Auth();
+      auth._user = user._id;
       auth.facebook = {};
-      auth.facebook.id = profile.id;
+      auth.facebook.id = req.user.profile.id;
 
       user._appraisement = appraisement._id;
       user._messenger = messenger._id;
@@ -143,7 +146,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
 
         // Save
         // ------------
-        saveFacebookAccount(data, function (errors, output) {
+        saveSocialAccount(data, function (errors, output) {
             if (!errors)
             {
               req.session._id = output.user._id;
@@ -156,7 +159,6 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
       {
         return res.send({errors: errors});
       }
-
     }
 });
 

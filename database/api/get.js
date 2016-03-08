@@ -206,7 +206,7 @@ router.get('/passwords', function (req, res) {
 
 router.get('/auths', function (req, res) {
   async.parallel({
-      password: function(callback) {
+      auths: function(callback) {
           setTimeout(function(){
               models.Auth.find().exec(function (err, docs) {
 
@@ -216,7 +216,7 @@ router.get('/auths', function (req, res) {
       }
   },
   function(err, results) {
-     return res.send(results.auth);
+     return res.send(results.auths);
   });
 });
 

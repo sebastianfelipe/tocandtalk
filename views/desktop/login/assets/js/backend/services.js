@@ -47,7 +47,7 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
                         username: params.form.iUsername,
                         password: params.form.iPassword
                        };
-            $http.post('/api/auth', data)
+            $http.post('/api/auth/classic', data)
                 .success(function (result) {
                     if (!result.errors)
                     {

@@ -41,7 +41,7 @@ module.exports = function(passport) {
     passport.use('twitter', new TwitterStrategy({
         consumerKey      : config.twitter.key,
         consumerSecret  : config.twitter.secret,
-        callbackURL      : '/auth/twitter/callback'
+        callbackURL      : '/api/auth/twitter/callback'
     }, function(accessToken, refreshToken, profile, done) {
         // Busca en la base de datos si el usuario ya se autenticó en otro
         // momento y ya está almacenado en ella
@@ -69,7 +69,7 @@ module.exports = function(passport) {
     passport.use('facebook', new FacebookStrategy({
         clientID            : config.facebook.key,
         clientSecret    : config.facebook.secret,
-        callbackURL  : 'http://localhost:4080/api/auth/facebook/callback/',
+        callbackURL  : '/api/auth/facebook/callback',
         profileFields : ['id', 'name'],
     }, function(accessToken, refreshToken, profile, done) {
         // El campo 'profileFields' nos permite que los campos que almacenamos
@@ -79,7 +79,7 @@ module.exports = function(passport) {
         // Passport esto lo sabe y nos lo pone más sencillo con ese campo
         models.Auth
         //.findOne({"facebook.id": profile.id})
-        .findOne({"classic._username": "56d8dd0b6575286811a5d9d9"})
+        .findOne({"facebook.id": profile.id})
         .exec(function(err,doc){
             if (doc)
             {    
@@ -118,7 +118,7 @@ module.exports = function(passport) {
     passport.use('google', new GoogleStrategy({
         clientID      : config.google.key,
         clientSecret  : config.google.secret,
-        callbackURL      : '/auth/google/callback'
+        callbackURL      : '/api/auth/google/callback'
     }, function(accessToken, refreshToken, profile, done) {
         // Busca en la base de datos si el usuario ya se autenticó en otro
         // momento y ya está almacenado en ella
