@@ -21,6 +21,7 @@ var functions_module = require('../modules/functions.js');
 // Function Imports
 var authenticateRegister = authenticate_module.authenticateRegister;
 var error_adapter = functions_module.error_adapter;
+var authenticateUser = functions_module.authenticateUser;
 
 // Shared Variables
 /*
@@ -146,7 +147,7 @@ router.post('/',function (req, res) {
             errors += errorList.join('');
             if (!errors) 
             {
-              req.session.username = user._username;
+              authenticateUser(req, user);
             }
             return res.send({req: req.body, errors: errors});
       });

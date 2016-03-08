@@ -15,7 +15,7 @@ var authenticate = authenticate_module.authenticate;
 var error_adapter = functions_module.error_adapter;
 
 router.get('/', function (req, res) {
-  if (!req.session._id )
+  if (!req.session.user._id )
   {
     return res.render('login/index.html', {forceType: "desktop"});
   }
