@@ -24,7 +24,9 @@ var error_adapter = functions_module.error_adapter;
 var authenticateUser = functions_module.authenticateUser;
 
 router.get('/', authenticateRegister, function (req, res) {
-    return res.render('register/index.html', {forceType: "desktop"});
+	var errors = "";
+	var lang = req.session.lang || 'es';
+    return res.render('register/index.html', {forceType: "desktop", errors: errors, lang: lang});
 });
 
 module.exports = router;

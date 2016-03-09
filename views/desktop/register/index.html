@@ -6,7 +6,10 @@
 		<meta name="application-name" content="Toc&Talk!"/>
 
 		<!-- SERVER VARIABLES -->
-
+		<script>
+			var errors = <%- JSON.stringify(errors) %>;
+			var lang = <%- JSON.stringify(lang) %>;
+		</script>
 		<!-- ICONS -->
 		<link href="desktop/shared/assets/img/icons/favicon.png" rel="icon" type="image/png"></link>
 		<link href="desktop/shared/assets/img/icons/tocandtalk-ios.png" rel="apple-touch-icon"></link>

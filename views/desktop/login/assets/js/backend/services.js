@@ -37,6 +37,16 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
             .error(function (data, status) {
                 $log.error({data: data, status: status});
             });
+            
+        $http.get('/api/get/languages')
+            .success(function (result) {
+                params.sources.languages = result.docs;
+                params.body.languages = params.sources.languages;
+            })
+            .error(function (data, status) {
+                $log.error({data: data, status: status});
+            });
+
     };
 }]);
 

@@ -15,6 +15,8 @@ var authenticate = authenticate_module.authenticate;
 var error_adapter = functions_module.error_adapter;
 
 router.get('/', function (req, res) {
+	var errors = "";
+	var lang = req.session.lang || 'es';
 	if (req.session.user)
 	{
 		if (req.session.user._id)
@@ -23,7 +25,7 @@ router.get('/', function (req, res) {
 		}
 	}
 	
-	return res.render('login/index.html', {forceType: "desktop"});
+	return res.render('login/index.html', {forceType: "desktop", errors: errors, lang: lang});
 });
 
 module.exports = router;
