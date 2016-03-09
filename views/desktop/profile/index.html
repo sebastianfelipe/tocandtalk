@@ -189,7 +189,14 @@
 						<br>
 
 						<div class="lang-list">
-							<div class="str str_lang_native">{{body.user.nativeLanguage.name | capitalize}}</div> (<div class="str str_lang_native_title">{{body.lang.nativeLangTitle}}</div>)
+							<div ng-show="body.user.nativeLanguage.name">
+								<p class="str str_lang_native">
+									{{body.user.nativeLanguage.name | capitalize}}
+								</p>
+								<p class="str str_lang_native_title">
+									({{body.lang.nativeLangTitle}})
+								</p>
+							</div>
 							<br />
 							<div class="str" id="str_lang_spoken_list">
 								<p ng-repeat="language in body.user.spokenLanguages" value="language.code">{{language.name | capitalize}}</p>
