@@ -61,8 +61,8 @@ router.post('/account/classic', function (req, res) {
 
     var password = new models.Password();
     password._user = user._id;
-    password.password = encryptedPassword.hash;
-    password.salt = encryptedPassword.salt;
+    password.password = data.encryptedPassword.hash;
+    password.salt = data.encryptedPassword.salt;
 
     var appraisement = new models.Appraisement();
     appraisement._user = user._id;
@@ -102,7 +102,7 @@ router.post('/account/classic', function (req, res) {
     {
       errors += "ePasswordPasswordConfirmation;";
     }
-
+    
     if (!errors)
     {
       var data = {};
@@ -122,6 +122,7 @@ router.post('/account/classic', function (req, res) {
           {
             authenticateUser(req, output.user);
           }
+          console.log({errors: errors, output: output});
           return res.send({errors: errors, output: output});
         });
    

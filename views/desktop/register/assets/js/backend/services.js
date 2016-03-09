@@ -21,7 +21,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         if (errors.indexOf("eEmailEmailFormat;") > -1) {
             $("#eEmailEmailFormat").show();
         }
-        if (errors.indexOf("eUserPasswordConfirmation;") > -1) {
+        if (errors.indexOf("ePasswordPasswordConfirmation;") > -1) {
             $("#eUserPasswordConfirmation").show();
         }
     };

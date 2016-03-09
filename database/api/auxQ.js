@@ -25,57 +25,56 @@ var saveClassicAccount = function (data, callback) {
   async.parallel({
       user: function(callback) {
           setTimeout(function(){
-            user.validate(function (err) {
+            user.save(function (err) {
                 callback(null, {errors: errorAdapter(models.User.modelName, err), doc: user})
             });
           }, timeout);
       },
       username: function(callback) {
           setTimeout(function(){
-            username.validate(function (err) {
+            username.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: username})
             });
           }, timeout);
       },
       email: function(callback) {
           setTimeout(function(){
-            email.validate(function (err) {
+            email.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Email.modelName, err), doc: email})
             });
           }, timeout);
       },
       password: function(callback) {
           setTimeout(function(){
-            password.validate(function (err) {
+            password.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Password.modelName, err), doc: password})
             });
           }, timeout);
       },
       appraisement: function(callback) {
           setTimeout(function(){
-            appraisement.validate(function (err) {
+            appraisement.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Appraisement.modelName, err), doc: appraisement})
             });
           }, timeout);
       },
       messenger: function(callback) {
           setTimeout(function(){
-            messenger.validate(function (err) {
+            messenger.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Messenger.modelName, err), doc: messenger})
             });
           }, timeout);
       },
       friendship: function(callback) {
           setTimeout(function(){
-            var friendship = new models.Friendship({_user: user._id});
-            friendship.validate(function (err) {
+            friendship.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Friendship.modelName, err), doc: friendship})
             });
           }, timeout);
       },
       auth: function(callback) {
           setTimeout(function(){
-            auth.validate(function (err) {
+            auth.save(function (err) {
                 callback(null, {errors: errorAdapter(models.Auth.modelName, err), doc: auth})
             });
           }, timeout);

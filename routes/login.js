@@ -15,15 +15,15 @@ var authenticate = authenticate_module.authenticate;
 var error_adapter = functions_module.error_adapter;
 
 router.get('/', function (req, res) {
-  if (!req.session.user._id )
-  {
-    return res.render('login/index.html', {forceType: "desktop"});
-  }
-  else
-  {
-
-    return res.redirect('/');
-  }
+	if (req.session.user)
+	{
+		if (req.session.user._id)
+		{
+			return res.redirect('/');
+		}
+	}
+	
+	return res.render('login/index.html', {forceType: "desktop"});
 });
 
 module.exports = router;
