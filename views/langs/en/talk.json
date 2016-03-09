@@ -1,0 +1,33 @@
+{
+	"title": "Toc&Talk! - Conversation",
+	"locSearchingUsers": "Searching Users",
+	"bVolumen" : "Volume",
+	"bMicrophone": "Enable Microphone",
+	"bUnMicrophone": "Microphone disable",
+	"bWebcam"    : "Enable WebCam",
+	"bUnWebcam"  : "Webcam disable",
+	"bFullscreen": "Full screen",
+	"bOutfull": "Exit full screen",
+	"bNext" : "Next User",
+
+	"panelChat" : "Chat",
+	"panelProfile": "Profile",
+
+	"msgMicrophoneTitle":"Microphone not available",
+	"msgMicrophone1" :"Verifique si autorizó el acceso al",
+	"msgMicrophone2" : "micrófono desde su navegador Web",
+	"msgMicrophone3" : "o si está funcionando correctamente.",
+
+	"msgWebcamTitle" : "Webcam not available",
+	"msgWebcam1" :"Verifique si autorizó el acceso a",
+	"msgWebcam2" :"la cámara desde su navegador Web",
+	"msgWebcam3" :"o si está funcionando correctamente.",
+
+	"infoSpokenLanguages" : "Languages that I talk:",
+	"infoInterestLanguages" : "Languages that interest me:",
+	"infoDescription" : "User description",
+	"infoLocationTitle" : "Location:",
+	"infoSex": "Sex:",
+	"sex": {"true": "Male",
+			"false": "Famale"}
+}

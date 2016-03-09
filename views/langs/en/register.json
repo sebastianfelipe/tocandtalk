@@ -1,0 +1,50 @@
+{
+	"title": "Toc&Talk! - signup",
+	"bLogin" :"Sign in",
+	"bRegister": "Sign up",
+	"titleCreate":"Create your account Toc&Talk!",
+	"iNamePH":"Names",
+	"iLastnamePH": "Surname",
+	"iUsernamePH" : "Username",
+	"iEmailPH": "Email",
+	"iPasswordPH":"Password",
+	"iPasswordConfirmationPH":"Password Confirmation",
+	"birthdayTitle":"Birthday",
+	"iDayPH":"Day",
+	"iYearPH":"Year",
+	"sexMale":"Male",
+	"sexFemale":"Female",
+	"sCountry": "Choose your country",
+	"sNativeLanguage": "Pick your native language",
+
+	"infoUsernameStandar":"Enter a username.",
+	"infoUsernameFormat" : "Enter just numbers (0-9) and letters (a-z).",
+	"infoUsernameLength" : "Minimum of 8 characters.",
+	"infoUsernameFormatText": "Not distinguish between minuscule and majuscule",
+
+	"infoPasswordStandar":"Enter a password.",
+	"infoPasswordLength": "Minimum 8 characters and maximum 25.",
+	"infoPasswordFormat": "Can be just numbers (0-9) or lower case letters (a-z) and upper case letters (A-Z), without space.",
+
+	"infoEmailStandar":"Enter your Email .",
+	"infoEmailFormat" : "For example: hello@tocandtalk.com ",
+
+	"eUsernameUsernameUnique": "This username is already registered. Try another.",
+	"eUsernameUsernameEmail" : "This Email is already registered in Toc&Talk!.",
+	"eUsernameUsernamePassword": "The passwords don't match, try again.",
+	"month" : "Month",
+	"months": [
+				"January",
+				"February",
+				"March",
+				"April",
+				"May",
+				"June",
+				"July",
+				"August",
+				"September",
+				"October",
+				"November",
+				"December"
+			]
+}
