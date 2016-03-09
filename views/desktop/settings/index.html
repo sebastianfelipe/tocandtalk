@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="tocandtalk">
+	<header>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Toc&Talk!</title>
+		<meta name="application-name" content="Toc&Talk!"/>
+
+		<!-- SERVER VARIABLES -->
+		<script>
+			var errors = <%- JSON.stringify(errors) %>;
+		</script>
+
+		<!-- ICONS -->
+		<link rel="icon" type="image/png" href="desktop/shared/assets/img/icons/favicon.png" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios.png" rel="apple-touch-icon" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-76x76.png" rel="apple-touch-icon" sizes="76x76" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-android-192x192.png" rel="icon" sizes="192x192" />
+		<link href="desktop/shared/assets/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128" />
+
+    	<!-- CSS -->
+		<link rel="stylesheet" href="desktop/shared/assets/css/fonts.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/shared/assets/css/general.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/shared/assets/css/bar.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/bar.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/profile.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/user.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/inputs.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/edit-profile.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/profile/assets/css/edit.css" type="text/css"/>
+
+    
+    	<!-- LIBS -->
+		<script src="desktop/shared/assets/js/libs/angularjs/angular.min.js"></script>
+    	<script src="desktop/shared/assets/js/libs/jquery/jquery.min.js"></script>
+		<script src="desktop/shared/assets/js/backend/functions.js"></script>
+
+		<!-- STRINGS -->
+		
+		<script src="strings/es/shared.js"></script>
+		<!--
+		<script src="strings/es/profile.js"></script>
+		-->
+		<!-- JS -->
+	
+  		<script src="desktop/shared/assets/js/frontend/bar-user-image.js"></script>
+		<script src="desktop/shared/assets/js/libs/background-blur/background-blur.min.js"></script>
+
+
+		<script src="desktop/shared/assets/js/frontend/bar-tab1.js"></script>
+		<script src="desktop/shared/assets/js/frontend/bar-tab2.js"></script>
+		<script src="desktop/shared/assets/js/frontend/user-menu-items.js"></script>
+		<script src="desktop/shared/assets/js/frontend/user-menu.js"></script>
+		<script src="desktop/shared/assets/js/frontend/bar-window.js"></script>
+		<script src="desktop/profile/assets/js/frontend/user-image.js"></script>
+		<script src="desktop/profile/assets/js/frontend/window.js"></script>
+		<script src="desktop/profile/assets/js/frontend/classes.js"></script>
+		<script src="desktop/profile/assets/js/frontend/edit-profile.js"></script>
+		
+		<!--AngularJS -->
+		<!--
+		<script src="desktop/shared/assets/js/backend/load.js"></script>
+		-->
+
+		<script src="desktop/profile/assets/js/backend/references.js" type="text/javascript"></script>
+		<script src="desktop/profile/assets/js/backend/app.js" type="text/javascript"></script>
+		<script src="desktop/profile/assets/js/backend/routes.js" type="text/javascript"></script>
+		<script src="desktop/profile/assets/js/backend/services.js" type="text/javascript"></script>
+		<script src="desktop/profile/assets/js/backend/controllers.js" type="text/javascript"></script>
+		<script src="desktop/profile/assets/js/backend/directives.js" type="text/javascript"></script>
+		<script src="desktop/home/assets/js/backend/filters.js" type="text/javascript"></script>
+	</header>
+
+	<body ng-controller="body">
+		<!-- Barra superior -->
+		<div id="bar">
+			<div id="bar-content">
+				<div id="bar-section-tabs">
+					<!-- Logo -->
+					<a href="/" title="">
+						<image src="desktop/shared/assets/img/tocandtalk-logo.png" id="bar-logo"></image>
+						<image src="desktop/shared/assets/img/tocandtalk-logo-solo.png" id="bar-logo-solo"></image>
+					</a>
+
+					<!-- Tabs -->
+					<div id="bar-tab-container">
+						<a href="/" title="">
+							<div id="bar-tab1" class="bar-tab-element bar-tab-element1">
+								<div class="str_tab1 bar-tab-text bar-tab-text1"></div>
+								<div id="bar-tab-select1" class="bar-tab-select"></div>
+							</div>
+						</a>
+						<a href="/friends" title="">
+							<div id="bar-tab2" class="bar-tab-element bar-tab-element2">
+								<div class="str_tab2 bar-tab-text bar-tab-text2"></div>
+								<div id="bar-tab-select2" class="bar-tab-select"></div>
+							</div>
+						</a>
+						<div id="bar-tab3" class="bar-tab-element bar-tab-element3">
+							<div class="str_tab3 bar-tab-text bar-tab-text3"></div>
+							<div id="bar-tab-select3" class="bar-tab-select"></div>
+						</div>
+					</div>
+
+					<div id="bar-tab-container-icon">
+						<a href="/" title="">
+							<div id="bar-tab1-icon" class="bar-tab-element bar-tab-icon">
+								<image src="desktop/shared/assets/img/bar-icon-home.png" class="bar-tab-icon-img"></image>
+								<div id="bar-tab-select1-icon" class="bar-tab-select-icon"></div>
+							</div>
+						</a>
+						<a href="/friends" title="">
+							<div id="bar-tab2-icon" class="bar-tab-element bar-tab-icon">
+								<image src="desktop/shared/assets/img/bar-icon-friends.png" class="bar-tab-icon-img"></image>
+								<div id="bar-tab-select2-icon" class="bar-tab-select-icon"></div>
+							</div>
+						</a>
+						
+						<div id="bar-tab3-icon" class="bar-tab-element bar-tab-icon">
+							<image src="desktop/shared/assets/img/bar-icon-profile.png" class="bar-tab-icon-img"></image>
+							<div id="bar-tab-select3-icon" class="bar-tab-select-icon"></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Sección de usuario -->
+				<div id="bar-section-user1" class="bar-section-user">
+					
+					<div class="bar-user-img"></div>
+				</div>
+				<div id="bar-section-user2" class="bar-section-user">
+					<image src="desktop/shared/assets/img/bar-arrow.png" id="bar-user-arrow"></image>
+				</div>
+				<div id="bar-user-name-container">
+					<div id="bar-user-name" class="str str_name-user">{{body.user.firstName | capitalize}}</div>
+				</div>
+				<div id="bar-user-show"></div>
+			</div>
+		</div>
+
+		<!-- Menú de usuario -->
+
+		<div id="user-menu">
+			<image src="desktop/shared/assets/img/user-menu-arrow.png" id="user-menu-arrow"></image>
+			
+			<!-- Opciones -->
+			<a href="settings" title="">
+				<div class="user-menu-element" id="user-menu-element1">
+					<div class="user-menu-element-sel" id="user-menu-element-sel1"></div>
+					<div class="str str_menu_item1 user-menu-element-text"></div>
+				</div>
+			</a>
+
+			<!-- Ayuda -->
+			<div class="user-menu-element" id="user-menu-element2">
+				<div class="user-menu-element-sel" id="user-menu-element-sel2"></div>
+				<div class="str str_menu_item2 user-menu-element-text"></div>
+				
+			</div>
+
+			<!-- Cerrar sesión -->
+			<a href="logout" title="">
+				<div class="user-menu-element" id="user-menu-element3">
+					<div class="user-menu-element-sel" id="user-menu-element-sel3"></div>
+					<div class="str str_menu_item3 user-menu-element-text"></div>
+				</div>
+			</a>
+		</div>
+
+		<!-- Contenido -->
+
+		<div id="profile-content">
+
+			<div id="profile-section2">
+		
+				<!-- Idiomas que hablo -->
+				<div id="card_spoken_lang" class="profile-card" style="overflow: hidden;">
+
+					<!--
+						Lista de idiomas que hablo
+					-->
+					<div id="c-spoken-languages">
+						
+						<div class="lang-title">
+							<div class="str str_lang_spoken_title">{{body.lang.spokenLangTitle}}</div>
+						</div>
+						<br>
+
+						<div class="lang-list">
+							<div ng-show="body.user.nativeLanguage.name">
+								<p class="str str_lang_native">
+									{{body.user.nativeLanguage.name | capitalize}}
+								</p>
+								<p class="str str_lang_native_title">
+									({{body.lang.nativeLangTitle}})
+								</p>
+							</div>
+							<br />
+							<div class="str" id="str_lang_spoken_list">
+								<p ng-repeat="language in body.user.spokenLanguages" value="language.code">{{language.name | capitalize}}</p>
+							</div>
+						</div>
+						<br>
+
+						<div class="lang-edit-button">
+							<div id="b-edit-spoken-lang" class="button-edit">
+								<div class="str str_button-edit_lang">{{body.lang.bEditLang}}</div>
+							</div>
+						</div>
+
+					</div>
+
+					<!--
+						Editar idiomas que hablo
+					-->
+					<div id="c-spoken-languages-edit">
+						<div class="lang-title">
+							<div class="str str_edit_lang_spoken_title">{{body.lang.editSpokenLangTitle}}</div>
+						</div>
+						<br>
+
+						<div class="lang-list">
+							<div class="str" id="str_lang_spoken_list_edit">
+								<!--
+								<p ng-repeat="language in body.user.spokenLanguages" value="language">{{language}}</p>
+							-->
+		            			<div ng-controller="dRemoveUserSpokenLanguage" ng-repeat="language in body.user.spokenLanguages" name="form_remove_spoken_language" class="item-lang">
+		            				<p class="subitem-lang">{{language.name | capitalize}}</p>
+		            				<input class="subitem-lang-button" type="submit" value="{{body.lang.bRemove}}" ng-click="dRemoveUserSpokenLanguage.onClick(language.code)"></input>
+		            			</div>
+							</div>
+						</div>
+
+						<!-- Añadir idioma que hablo -->
+						<div class="add-lang">
+							{{body.lang.locAddLang}}<br>
+							<form ng-controller="fSaveUserSpokenLanguage" id="form_add_user_spoken_language" name="form_add_user_spoken_language" ng-submit="fSaveUserSpokenLanguage.onSubmit()">
+								<select
+									ng-model="fSaveUserSpokenLanguage.sSpokenLanguage"
+									id="s_spoken_languages"
+									style="width:170px;"
+									name="s_spoken_languages"
+									class="s_languages input-sel-contry"
+									required="">
+									<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
+									<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name | capitalize}}</option>
+								</select>
+
+								<input type="submit" value="{{body.lang.bAdd}}" class="button-add-lang">
+							</form>
+						</div>
+						
+						<div class="save-cancel-container lang-buttons">
+							<div id="b-cancel-spoken-lang" class="button-cancel">
+								{{body.lang.bCancel}}
+								<!--<div class="str str_button-cancel"></div>-->
+							</div>
+							<div id="b-save-spoken-lang" class="button-save str_button_ok">{{body.lang.bFinish}}</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Idiomas que me interesan -->
+				<div id="card_interest_lang" class="profile-card" style="overflow: hidden;">
+
+					<!--
+						Lista de idiomas que me interesan
+					-->
+					<div id="c-interest-languages">
+						
+						<div class="lang-title">
+							<div class="str str_lang_interest_title">{{body.lang.interestLangTitle}}</div>
+						</div>
+						<br>
+
+						<div class="lang-list">
+							
+							<div class="lang-empity">
+								<i><div class="str str_lang-list_empity">{{body.lang.listLangEmpity}}</div></i>
+							</div>
+							
+							<div class="str" id="str-lang-interest-list">
+								<p ng-repeat="language in body.user.interestLanguages" value="language.code">{{language.name | capitalize}}</p>
+							</div>
+							<!--<div class="str str_lang-list" id="str-lang-interest-list"></div>-->
+						</div>
+						<br>
+
+						<div class="lang-edit-button">
+							<div id="b-edit-interest-lang" class="button-edit">
+								<div class="str str_button-edit_lang" id="str_button-edit_lang_int">{{body.lang.bEditLang}}</div>
+								<!--<div class="str str_button-add-lang" id="str-button-add-lang-int">kfdshklflsfhkshkldhflks</div>-->
+							</div>
+						</div>
+
+					</div>
+
+					<!--
+						Editar idiomas que me interesan
+					-->
+					<div id="c-interest-languages-edit">
+						<div class="lang-title">
+							<div class="str str_edit_lang_interest_title">{{body.lang.editInterestLangTitle}}</div>
+						</div>
+
+						<div class="lang-list">
+							<div class="str str_lang-list_edit" id="str-lang-interest-list_edit">
+								<!--
+								<p ng-repeat="language in body.user.interestLanguages" value="language">{{language}}</p>
+		            			-->
+		            			<div ng-controller="dRemoveUserInterestLanguage" ng-repeat="language in body.user.interestLanguages" class="item-lang">
+		            				<p class="subitem-lang">{{language.name | capitalize}}</p>
+		            				<input class="subitem-lang-button" type="submit" value="{{body.lang.bRemove}}" ng-click="dRemoveUserInterestLanguage.onClick(language.code)"></input>
+		            			</div>
+							</div>
+						</div>
+
+						<!-- Añadir idioma que me interesa -->
+						<div class="add-lang">
+							{{body.lang.locAddLang}}<br>
+							<form ng-controller="fSaveUserInterestLanguage" id="form_add_user_interest_language" name="form_add_user_interest_language" ng-submit="fSaveUserInterestLanguage.onSubmit()">
+								<select
+									ng-model="fSaveUserInterestLanguage.sInterestLanguage"
+									id="s_interest_languages"
+									style="width:170px;"
+									name="s_interest_languages"
+									class="s_languages input-sel-contry"
+									required="">
+									<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
+									<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name | capitalize}}</option>
+								</select>	
+
+								<input type="submit" value="{{body.lang.bAdd}}" class="button-add-lang">
+							</form>
+						</div>
+
+						<div class="save-cancel-container lang-buttons">
+							<div id="b-cancel-interest-lang" class="button-cancel">
+								{{body.lang.bCancel}}
+								<!--<div class="str str_button-cancel"></div>-->
+							</div>
+							<div id="b-save-interest-lang" class="button-save str_button_ok">{{body.lang.bFinish}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="profile-section1">
+
+				<!-- Perfil -->
+				<div class="profile-card" style="padding-bottom: 20px;">
+
+					<div id="usr-image-container">
+						<div class="usr-image-background-back"></div>
+						<div id="usr-image-background" class="usr-image-background"></div>
+						<div class="usr-image-background-opacity"></div>
+
+						<div id="img-section2">
+							<div class="str_name-user_complete name-user">{{body.user.fullName | capitalize}}</div>
+						</div>
+
+						<div id="img-section1">
+							<div class="usr-image"></div>
+						</div>
+					</div>
+					<br>
+
+					<div id="usr-content">
+
+						<div id="usr-loc-container">
+
+							<!--
+								Mostrar Ubicación
+							-->
+							<div id="c-location">
+								<div id="usr-loc-section3">
+									<div id="b-edit-location" class="button-edit">
+										<div class="str str_button-edit">{{body.lang.bEdit}}</div>
+									</div>
+								</div>
+
+								<div id="usr-loc-section2">
+									<div class="str str_profile_country">{{body.user.nationality.name | capitalize}}</div>
+								</div>
+
+								<div id="usr-loc-section1">
+									<div class="str str_loc_title">{{body.lang.locTitle}}</div>:
+								</div>
+							</div>
+
+							<!--
+								Editar Ubicación
+							-->
+							<div id="c-location-edit">
+								<form ng-controller="fUpdateUserNationality" id="form_edit_user_nationality" name="form_edit_user_nationality" ng-submit="fUpdateUserNationality.onSubmit()">
+									<div id="edit-location-sel">
+										<select
+											ng-model="fUpdateUserNationality.sUserNationality"
+											id="s_country"
+											name="s_country"
+											required=""
+											class="input-sel-contry">
+											<option disabled="" selected="" hidden="" value="">{{body.user.nationality.name | capitalize}}</option>
+											<option ng-repeat="country in body.countries" value="{{country.code}}">{{country.name | capitalize}}</option>
+										</select>
+									</div>
+
+									<div class="str str-location-edit-title">{{body.lang.locEditTitle}}</div>:
+
+									<div class="save-cancel-container">
+										<div id="b-cancel-location" class="button-cancel">
+											<div class="str str_button-cancel">{{body.lang.bCancel}}</div>
+										</div>
+										<input type="submit" id="b-save-location" value="{{body.lang.bSave}}" class="button-save str_button-save"></input>
+									</div>
+								</form>
+							</div>
+						</div>
+						<br>
+
+						<div id="usr-desc-container">
+
+							<!--
+								Mostrar Descripción
+							-->
+							<div id="c-description">
+								
+								<div id="usr-desc-section3">
+									<div id="b-edit-description" class="button-edit">
+										<div class="str str_button-edit">{{body.lang.bEdit}}</div>
+									</div>
+								</div>
+
+								<div id="usr-desc-section1">
+									<div class="str str_desc_title">{{body.lang.descTitle}}</div>:
+								</div>
+
+								<div id="usr-desc-section2">
+									<div class="str usr-desc-text str_desc_content">{{body.user.description}}</div>
+									<i><div class="str str_desc-no" id="desc-no"></div></i> 
+								</div>
+
+							</div>
+
+							<!--
+								Editar Descripción
+							-->
+							<div id="c-description-edit">
+								<div class="str str_desc_edit_title">{{body.lang.descEditTitle}}</div>:
+
+								<form ng-controller="fUpdateUserDescription" id="form_edit_user_description" name="form_edit_user_description" ng-submit="fUpdateUserDescription.onSubmit()">
+									<textarea ng-model="body.user.description" width="430" id="input_edit_desc" name="input_edit_desc" class="input-desc"></textarea>
+
+									<div class="save-cancel-container">
+										<div id="b-cancel-description" class="button-cancel">
+											<div class="str str_button-cancel">{{body.lang.bCancel}}</div>
+										</div>
+										<input type="submit" id="b-save-description" value="{{body.lang.bSave}}" class="button-save str_button-save"></input>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</body>
+</html>
