@@ -8,6 +8,7 @@
 		<!-- SERVER VARIABLES -->
 
 		<!-- ICONS -->
+		
 		<link href="desktop/shared/assets/img/icons/favicon.png" rel="icon" type="image/png"></link>
 		<link href="desktop/shared/assets/img/icons/tocandtalk-ios.png" rel="apple-touch-icon"></link>
 		<link href="desktop/shared/assets/img/icons/tocandtalk-ios-76x76.png" rel="apple-touch-icon" sizes="76x76"></link>
@@ -23,7 +24,6 @@
 		<link href="desktop/shared/assets/css/bar.css" rel="stylesheet" type="text/css"></link>
 		<link href="desktop/login/assets/css/login.css" rel="stylesheet" type="text/css"></link>
 		<link href="desktop/login/assets/css/cover.css" rel="stylesheet" type="text/css"></link>
-
 		<!-- LIBS -->
 		<script src="desktop/shared/assets/js/libs/angularjs/angular.min.js"></script>
 		<script src="desktop/shared/assets/js/libs/jquery/jquery.min.js"></script>
@@ -61,6 +61,12 @@
 							<div class="str">{{body.lang.bRegister}}</div>
 						</div>
 					</a>
+					<select > 
+						<option value="oli">oli</option>
+						<option ng-repeat="oli"value="oli">oli</option>
+						<option value="oli">oli</option>
+
+					</select>
      			</div>
 			</div>
 		</div>
@@ -134,8 +140,7 @@
 				-->
 				<input type="submit" id="bLogin" class="boton-ingresar" value="{{body.lang.bLogin}}">
     		</form>
-
-    		<t3><div class="str">{{body.lang.login1}}</div></t3>
+			
     		<div>
     			<a href="/register">
     				<div class="str leLink">{{body.lang.bRegister}}</div>
@@ -143,7 +148,7 @@
     		</div>
     	</div>
     	</div>
-
+    	
     	<!-- Portada -->
     	<div id="portada-fondo"></div>
     	<div id="portada-nubes"></div>
