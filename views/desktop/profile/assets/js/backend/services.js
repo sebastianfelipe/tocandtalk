@@ -4,17 +4,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 	var service = this;
 	this.setUser = function(params) {
         params.body.user = params.sources.user;
-        /*
-        params.body.user.firstName =capitalize(params.sources.user.first_name);
-        params.body.user.lastName = capitalize(params.sources.user.last_name);
-        params.body.user.fullName = params.body.user.firstName + " " + params.body.user.lastName;
-        params.body.user.nationality = params.sources.user.nationality;
-        params.body.user.username = params.sources.user._username;  
-        params.body.user.nativeLanguage = params.sources.user.native_language;
-        params.body.user.interestLanguages = params.sources.user.interest_languages;
-       	params.body.user.spokenLanguages = params.sources.user.spoken_languages;
-       	params.body.user.description = params.sources.user.description;
-        */
+        params.fUpdateUserNationality.sUserNationality = params.body.user.nationality.code;
 	};
 
     this.showErrors = function (errors)

@@ -20,3 +20,10 @@ app.controller('form', ['$scope', '$http', '$log', 'sStage', 'sActions', functio
 
     scope.onSubmit = sActions.onSubmit(refs);
 }]);
+
+app.controller('fChangeLang', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+    var scope = refs.fChangeLang = $scope.fChangeLang = {};
+    scope.sLang = lang || refs.meta.lang;
+
+    scope.onClick = sActions.onChangeLangClick(refs);
+}]);

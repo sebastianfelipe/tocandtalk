@@ -71,10 +71,14 @@
 				</div>
 				<div id="bar-section-user1" class="bar-section-user">
 					<a href="/login">
-						<div class="boton-ingresar">
+						<div class="button-bar">
 							<div class="str">{{body.lang.bLogin}}</div>
 						</div>
 					</a>
+					<select ng-controller="fChangeLang" class="button-bar" ng-model="fChangeLang.sLang" ng-change="fChangeLang.onClick(fChangeLang.lang)">
+						<option value="" disabled="" selected="" hidden="">Language</option>
+						<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name | capitalize}}</option>
+					</select>
      			</div>
 			</div>
 		</div>

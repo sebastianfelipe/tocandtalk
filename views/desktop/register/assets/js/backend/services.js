@@ -78,6 +78,8 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 }]);
 
 app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage) {
+    var service =  this;
+    
     this.onSubmit = function(params) {
         return function () {
             var data = {
@@ -110,6 +112,23 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
                 .error(function (data, status) {
                     $log.error({data: data, status: status});
                 });
+        };
+    };
+
+    this.onChangeLangClick = function (params) {
+        return function (code) {
+            var data = {
+                         code: params.fChangeLang.sLang,
+                       };
+            params.meta.lang = data.code;
+            $http.get('/api/get/lang/'+params.meta.lang+'/'+params.meta.view)
+                .success(function (result) {
+                    params.body.lang = result;
+                    document.title = params.body.lang.title;
+                })
+                .error(function (data, status) {
+                    $log.error({data: data, status: status});
+            });
         };
     };
 }]);
