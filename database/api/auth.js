@@ -103,11 +103,16 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
     else
     { 
 
-
+      var lang = DEFAULT_LANGUAGE;
+      if (req.session.meta)
+      {
+        lang = req.session.meta.lang || DEFAULT_LANGUAGE;
+      }
       // Object Creation
       var user = new models.User();
       user.firstName = req.user.profile.name.givenName.trim().toLowerCase();
       user.lastName = req.user.profile.name.familyName.trim().toLowerCase();
+      user.lang = lang;
 
       var appraisement = new models.Appraisement();
       appraisement._user = user._id;
