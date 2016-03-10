@@ -4,7 +4,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 	var service = this;
 	this.setUser = function(params) {
         params.body.user = params.sources.user;
-        params.fUpdateUserNationality.sUserNationality = params.body.user.nationality.code;
+        params.fUpdateUserNationality.sUserNationality = params.body.user.nationality.code || "";
 	};
 
     this.showErrors = function (errors)

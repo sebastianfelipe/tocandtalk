@@ -9,6 +9,7 @@ var models = require('../models.js');
 var authenticate_module = require('../../modules/authenticate.js');
 var authenticate = authenticate_module.authenticate;
 var functions_module = require('../../modules/functions.js');
+var global_module = require('../../modules/global.js');
 var encrypt_module = require('./encrypt.js');
 //var mAux = require('./aux.js');
 var mAux = require('./auxQ.js');
@@ -21,10 +22,10 @@ var saveAccount = mAux.saveAccount;
 var validateClassicAccount = mAux.validateClassicAccount;
 var saveClassicAccount = mAux.saveClassicAccount;
 var sendMail = functions_module.sendMail;
+var DEFAULT_LANGUAGE = global_module.DEFAULT_LANGUAGE;
 
 var createCode = functions_module.createCode;
 var hashPassword = encrypt_module.hashPassword;
-var DEFAULT_LANGUAGE = require('../../modules/global.js').DEFAULT_LANGUAGE;
 //localhost:4080/api/save/account/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation
 //localhost:4080/api/save/account/pedrito/pedrito@tocandtalk.com/pedrito/bandolero/us/it/1/banana/banana
 //localhost:4080/api/save/account/juanito/juanito@tocandtalk.com/juanito/bandolero/us/it/1/banana/banana

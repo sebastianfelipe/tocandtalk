@@ -9,6 +9,7 @@ var models = require('../models.js');
 var authenticate_module = require('../../modules/authenticate.js');
 var authenticate = authenticate_module.authenticate;
 var functions_module = require('../../modules/functions.js');
+var global_module = require('../../modules/global.js')
 var encrypt_module = require('./encrypt.js');
 
 var mAux = require('./auxQ.js');
@@ -18,7 +19,7 @@ var errorAdapter = functions_module.error_adapter;
 var authenticateUser = functions_module.authenticateUser;
 var verifyPassword = encrypt_module.verifyPassword;
 var saveSocialAccount = mAux.saveSocialAccount;
-
+var DEFAULT_LANGUAGE = global_module.DEFAULT_LANGUAGE;
 var passport = require('passport');
 
 require('../../config/passport')(passport);
