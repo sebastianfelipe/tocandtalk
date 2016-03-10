@@ -22,14 +22,10 @@ var functions_module = require('../modules/functions.js');
 var authenticateRegister = authenticate_module.authenticateRegister;
 var error_adapter = functions_module.error_adapter;
 var authenticateUser = functions_module.authenticateUser;
+var setPageLang = functions_module.setPageLang;
 
-router.get('/', authenticateRegister, function (req, res) {
-	var lang = "es";
-	if (req.session.meta)
-	{
-		var lang = req.session.meta.lang || lang;
-	}
-    return res.render('register/index.html', {forceType: "desktop", errors: "", lang: lang});
+router.get('/', authenticateRegister, setPageLang, function (req, res) {
+    return res.render('register/index.html', {forceType: "desktop", errors: "", lang: req.session.meta.lang});
 });
 
 module.exports = router;

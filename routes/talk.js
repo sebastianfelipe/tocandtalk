@@ -15,15 +15,11 @@ var functions_module = require('../modules/functions.js');
 // Functions
 var authenticate = authenticate_module.authenticate;
 var error_adapter = functions_module.error_adapter;
+var setPageLang = functions_module.setPageLang;
 
-router.post('/', authenticate, function (req, res) {
+router.post('/', authenticate, setPageLang, function (req, res) {
 	var language = req.body.language || 'en';
-	var lang = "es";
-	if (req.session.meta)
-	{
-		var lang = req.session.meta.lang || lang;
-	}
-  	return res.render('talk/index.html', {forceType: "desktop", lang: lang, language: language});
+  	return res.render('talk/index.html', {forceType: "desktop", lang: req.session.meta.lang, language: language});
 });
 
 /*

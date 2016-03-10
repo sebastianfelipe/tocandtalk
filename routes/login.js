@@ -13,15 +13,9 @@ var functions_module = require('../modules/functions.js');
 
 var authenticate = authenticate_module.authenticate;
 var error_adapter = functions_module.error_adapter;
+var setPageLang = functions_module.setPageLang;
 
-router.get('/', function (req, res) {
-	var errors = "";
-	var lang = "es";
-	if (req.session.meta)
-	{
-		var lang = req.session.meta.lang || lang;
-	}
-	
+router.get('/', setPageLang, function (req, res) {
 	if (req.session.user)
 	{
 		if (req.session.user._id)
@@ -29,8 +23,7 @@ router.get('/', function (req, res) {
 			return res.redirect('/');
 		}
 	}
-	
-	return res.render('login/index.html', {forceType: "desktop", errors: errors, lang: lang});
+	return res.render('login/index.html', {forceType: "desktop", errors: "", lang: req.session.meta.lang});
 });
 
 module.exports = router;

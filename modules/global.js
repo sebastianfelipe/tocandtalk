@@ -14,6 +14,8 @@ var ports = {'http': {
                         'peer':       4443
                       }
             };
+
+var DEFAULT_LANGUAGE = 'en';
 //var host_name = "https.tocandtalk.com";
 var host_name = "192.168.0.134";
 var users = [];
@@ -77,3 +79,4 @@ module.exports.port2 = port2;
 module.exports.port3 = port3;
 module.exports.ports = ports;
 module.exports.host_name = host_name;
+module.exports.DEFAULT_LANGUAGE = DEFAULT_LANGUAGE;

@@ -1,6 +1,7 @@
 var capitalize = require('string-capitalize');
 var nodemailer = require("nodemailer");
 var crypto = require('crypto');
+var DEFAULT_LANGUAGE = require('./global.js').DEFAULT_LANGUAGE;
 
 var error_adapter = function (model_name, err) {
   errorList = [];
@@ -22,11 +23,13 @@ var error_adapter = function (model_name, err) {
 
 var authenticateUser = function (req, user)
 {
+  var lang = DEFAULT_LANGUAGE;
   req.session.user = {};
   req.session.user._id = user._id;
   req.session.user._appraisement = user._appraisement;
   req.session.user._messenger = user._messenger;
   req.session.user._friendship = user._friendship;
+  req.session.user.lang = user.lang || lang;
   return;
 };
 
@@ -36,9 +39,31 @@ var signOut = function (req, user)
   delete req.session.user._appraisement;
   delete req.session.user._messenger;
   delete req.session.user._friendship;
+  delete req.session.user.lang;
   delete req.session.user;
   return;
 };
+
+var setPageLang = function (req, res, next)
+{
+  var lang = DEFAULT_LANGUAGE;
+  if (req.session.meta)
+  {
+    lang = req.session.meta.lang || lang;
+  }
+  else
+  {
+    req.session.meta = {};
+  }
+
+  if (req.session.user)
+  {
+    lang = req.session.user.lang || lang;
+  }
+
+  req.session.meta.lang = lang;
+  return next();
+}
 
 var createCode = function () {
   var buf = crypto.randomBytes(32);
@@ -105,6 +130,7 @@ module.exports.error_adapter = error_adapter;
 module.exports.authenticateUser = authenticateUser;
 module.exports.signOut = signOut;
 module.exports.sendMail = sendMail;
+module.exports.setPageLang = setPageLang;
 module.exports.createCode = createCode;
 module.exports.indexOfUser = indexOfUser;
 module.exports.wasItAdded = wasItAdded;

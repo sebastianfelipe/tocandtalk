@@ -13,16 +13,11 @@ var functions_module = require('../modules/functions.js');
 // Functions
 var authenticate = authenticate_module.authenticate;
 var error_adapter = functions_module.error_adapter;
-
+var setPageLang = functions_module.setPageLang;
 // Shared Variables
 
 router.get('/', authenticate, function (req, res) {
-	var lang = "es";
-	if (req.session.meta)
-	{
-		var lang = req.session.meta.lang || lang;
-	}
-  	return res.render('profile/index.html', {forceType: "desktop", lang: lang, errors: ""});
+  	return res.render('profile/index.html', {forceType: "desktop", lang: req.session.meta.lang, errors: ""});
 });
 
 module.exports = router;

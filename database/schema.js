@@ -111,6 +111,10 @@ schema.user = mongoose.Schema({
         ref: 'Language',
         //required: true
     },
+    lang: {
+        type: 'String',
+        required: true
+    },
     spokenLanguages: [{type: ObjectId, ref: 'Language'}],
     interestLanguages:  [{type: ObjectId, ref: 'Language'}],
     firstName: { type: String,

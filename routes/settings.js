@@ -9,6 +9,8 @@ var models = require('../database/models.js');
 
 // Module Imports
 var authenticate_module = require('../modules/authenticate.js');
+var functions_module = require('../modules/functions.js');
+
 var authenticate = authenticate_module.authenticate;
 
 router.get('/', authenticate, function (req, res) {

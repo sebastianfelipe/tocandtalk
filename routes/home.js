@@ -9,15 +9,12 @@ var models = require('../database/models.js');
 
 // Module Imports
 var authenticate_module = require('../modules/authenticate.js');
-var authenticate = authenticate_module.authenticate;
+var functions_module = require('../modules/functions.js');
 
-router.get('/', authenticate, function (req, res) {
-    var lang = "es";
-    if (req.session.meta)
-    {
-        var lang = req.session.meta.lang || lang;
-    }
-  	 return res.render('home/index.html', {forceType: "desktop", lang: lang, errors: ""});
+var authenticate = authenticate_module.authenticate;
+var setPageLang = functions_module.setPageLang;
+router.get('/', authenticate, setPageLang, function (req, res) {
+  	 return res.render('home/index.html', {forceType: "desktop", lang: req.session.meta.lang, errors: ""});
 });
 
 function isLoggedIn(req, res, next) {

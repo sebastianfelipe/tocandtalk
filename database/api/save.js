@@ -24,7 +24,7 @@ var sendMail = functions_module.sendMail;
 
 var createCode = functions_module.createCode;
 var hashPassword = encrypt_module.hashPassword;
-
+var DEFAULT_LANGUAGE = require('../../modules/global.js').DEFAULT_LANGUAGE;
 //localhost:4080/api/save/account/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation
 //localhost:4080/api/save/account/pedrito/pedrito@tocandtalk.com/pedrito/bandolero/us/it/1/banana/banana
 //localhost:4080/api/save/account/juanito/juanito@tocandtalk.com/juanito/bandolero/us/it/1/banana/banana
@@ -34,20 +34,27 @@ var hashPassword = encrypt_module.hashPassword;
 //router.get('/account/classic/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation', function (req, res) {
 //localhost:4080/api/save/account/classic/pedrito/pedrito@tocandtalk.com/pedrito/bandolero/us/it/1/banana/banana
 router.post('/account/classic', function (req, res) {
-  var data = {};
-  data.username = req.body.username.trim().toLowerCase();
-  data.email = req.body.email.trim().toLowerCase();
-  data.firstName = req.body.firstName.trim().toLowerCase();
-  data.lastName = req.body.lastName.trim().toLowerCase();
-  data.password = req.body.password;
-  data.passwordConfirmation = req.body.passwordConfirmation;
-  data.encryptedPassword = hashPassword(data.password);
-  data.emailCode = createCode();
+    var lang = DEFAULT_LANGUAGE;
+    if (req.session.meta)
+    {
+      lang = req.session.meta.lang || DEFAULT_LANGUAGE;
+    }
+    var data = {};
+    data.username = req.body.username.trim().toLowerCase();
+    data.email = req.body.email.trim().toLowerCase();
+    data.firstName = req.body.firstName.trim().toLowerCase();
+    data.lastName = req.body.lastName.trim().toLowerCase();
+    data.password = req.body.password;
+    data.passwordConfirmation = req.body.passwordConfirmation;
+    data.encryptedPassword = hashPassword(data.password);
+    data.emailCode = createCode();
+    data.lang = lang;
 
     // Object Creation
     var user = new models.User();
     user.firstName = data.firstName;
     user.lastName = data.lastName;
+    user.lang = data.lang;
 
     var username = new models.Username();
     username._user = user._id;
