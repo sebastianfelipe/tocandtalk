@@ -64,6 +64,7 @@ router.post('/classic', function (req, res) {
         {
           //req.session._id = doc._user._id;
           authenticateUser(req, doc._user);
+          return res.send({errors: errors})
         }
         else
         {
@@ -92,12 +93,12 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
             if (doc)
             {
               authenticateUser(req, doc._user);
-              return res.send({errors: errors, profile: req.user.profile});
+              return res.send({errors: errors});
             }
             else
             {
               errors += 'eDBNotFound;';
-              return res.send({errors: errors, profile: req.user.profile});
+              return res.send({errors: errors});
             }
         });
     }
@@ -159,7 +160,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
             {
               authenticateUser(req, output.user);
             }
-            return res.send({errors: errors, output: output});
+            return res.send({errors: errors});
           });
      
       }
@@ -170,7 +171,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
     }
 });
 
-router.get('/twitter', passport.authenticate('twitter'));
+router.get('/twitter', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/' }));
 
 router.get('/twitter/callback', passport.authenticate('twitter', { successRedirect: '/perfil', failureRedirect: '/login' }));
 

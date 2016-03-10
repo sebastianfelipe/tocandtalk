@@ -96,6 +96,15 @@ app.use('/api/verify', verify_routes);
 app.use('/api/delete', delete_routes);
 app.use('/api/task', task_routes);
 
+/*
+app.all("/api/*", function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+    return next();
+});
+*/
+
 // Extern Uses
 //var api = require('./database/api/api.js');
 

@@ -10,6 +10,7 @@
 			var errors = <%- JSON.stringify(errors) %>;
 			var lang = <%- JSON.stringify(lang) %>;
 		</script>
+
 		<!-- ICONS -->
 		
 		<link href="desktop/shared/assets/img/icons/favicon.png" rel="icon" type="image/png"></link>
@@ -22,6 +23,9 @@
 		<link href="desktop/shared/assets/img/icons/tocandtalk-android-128x128.png" rel="icon" sizes="128x128"></link>
 
 		<!-- CSS -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
 		<link href="desktop/shared/assets/css/fonts.css" rel="stylesheet" type="text/css"></link>
 		<link href="desktop/shared/assets/css/general.css" rel="stylesheet" type="text/css"></link>
 		<link href="desktop/shared/assets/css/bar.css" rel="stylesheet" type="text/css"></link>
@@ -79,9 +83,12 @@
     		<div class="titulo">
     			<t2><div class="str">{{body.lang.loginTitle}}</div></t2>
     		</div>
-
+    		<div ng-controller="dSocial">
+				<a ng-click="dSocial.onClick('facebook')" class="btn btn-primary"><span class="fa fa-facebook"></span></a>
+	        	<a ng-click="dSocial.onClick('twitter')" class="btn btn-primary"><span class="fa fa-twitter"></span></a>
+	        	<a ng-click="dSocial.onClick('google')" class="btn btn-danger"><span class="fa fa-google-plus"></span></a>
+    		</div>
     		<form ng-controller="form" id="fLogin" name="fLogin" class="formulario" ng-submit="form.onSubmit()">
-
     			<div>
 					<!-- Nombre de usuario / email -->
 					<input

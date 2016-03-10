@@ -22,6 +22,14 @@ app.controller('form', ['$scope', '$http', '$log', 'sStage', 'sActions', functio
     scope.onSubmit = sActions.onSubmit(refs);
 }]);
 
+app.controller('dSocial', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+    $scope.dSocial = {};
+    scope = $scope.dSocial;
+    refs.dSocial = scope;
+
+    scope.onClick = sActions.onSocialClick(refs);
+}]);
+
 app.controller('fChangeLang', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
     var scope = refs.fChangeLang = $scope.fChangeLang = {};
     scope.sLang = lang || refs.meta.lang;

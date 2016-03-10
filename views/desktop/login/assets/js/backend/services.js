@@ -77,6 +77,26 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
             };
     };
 
+    this.onSocialClick = function(params) {
+        return function (social) {
+            $http.get('/api/auth/' + social)
+                .success(function (result) {
+                    if (!result.errors)
+                    {
+                        $(location).attr('href','/');
+                    }
+                    else
+                    {   
+                        params.errors = result.errors;
+                        sStage.reload(params);
+                    }
+                })
+                .error(function (data, status) {
+                    $log.error({data: data, status: status});
+                });
+            };
+    };
+
     this.onChangeLangClick = function (params) {
         return function (code) {
             var data = {
