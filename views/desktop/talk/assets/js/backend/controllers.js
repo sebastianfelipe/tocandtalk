@@ -3,6 +3,7 @@
 
 app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sActions', function ($scope, $http, $log, sStage, sListen, sActions) {
 	refs.body = scope = $scope.body = {};
+    refs.meta.lang = lang || refs.meta.lang;
 	scope.lang = {};
 	scope.user = {};
 	scope.recUser = {};

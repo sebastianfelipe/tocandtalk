@@ -4,6 +4,7 @@
 app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $http, $log, sStage) {
 	 
 	refs.body = scope = $scope.body = {};
+	refs.meta.lang = lang || refs.meta.lang;
 	
 	scope.user = {};
 	

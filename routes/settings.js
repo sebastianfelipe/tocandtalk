@@ -29,7 +29,12 @@ router.get('/', authenticate, function (req, res) {
       }
   },
   function(err, results) {
-  	 return res.render('settings/index.html', {forceType: "desktop", user: results.user, languages: results.languages, req: req.body, errors: ""});
+  var lang = "es";
+  if (req.session.meta)
+  {
+    var lang = req.session.meta.lang || lang;
+  }
+  	 return res.render('settings/index.html', {forceType: "desktop", lang: lang, user: results.user, languages: results.languages, req: req.body, errors: ""});
   });});
 
 module.exports = router;

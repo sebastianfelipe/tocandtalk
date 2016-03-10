@@ -130,6 +130,14 @@ router.get('/lang/:lang/:view', function (req, res) {
   langPath += "/" + req.params.lang;
   langPath += "/" + req.params.view + '.json';
   var data = require(langPath);
+  if (data)
+  {
+    if (!req.session.meta)
+    {
+      req.session.meta = {};
+    }
+    req.session.meta.lang = req.params.lang;
+  }
   res.send(data);
 });
 

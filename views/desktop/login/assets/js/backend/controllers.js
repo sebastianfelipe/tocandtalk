@@ -4,10 +4,9 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sActions', functio
 	$scope.body = {};
 	scope = $scope.body;
     refs.body = scope;
+    refs.meta.lang = lang || refs.meta.lang;
 
     scope.languages = [];
-    scope.metaLang = refs.meta.lang;
-    refs.meta.lang = lang || scope.metaLang;
     
     scope.lang = {};
 
@@ -23,14 +22,9 @@ app.controller('form', ['$scope', '$http', '$log', 'sStage', 'sActions', functio
     scope.onSubmit = sActions.onSubmit(refs);
 }]);
 
-app.controller('dMetaLang', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
-    $scope.dMetaLang = {};
-    scope = $scope.dMetaLang;
-    refs.dMetaLang = scope;
+app.controller('fChangeLang', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+    var scope = refs.fChangeLang = $scope.fChangeLang = {};
+    scope.sLang = lang || refs.meta.lang;
 
-    scope.foo = function ()
-    {
-        console.log('kjdhsajkdhakjdjha');
-    };
-    //scope.onSubmit = sActions.onSubmit(refs);
+    scope.onClick = sActions.onChangeLangClick(refs);
 }]);

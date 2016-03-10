@@ -30,6 +30,7 @@
 		<!-- LIBS -->
 		<script src="desktop/shared/assets/js/libs/angularjs/angular.min.js"></script>
 		<script src="desktop/shared/assets/js/libs/jquery/jquery.min.js"></script>
+		<script src="desktop/shared/assets/js/backend/functions.js"></script>
 
 		<!-- STRINGS -->
 		<!-- <script src="strings/es/login.js"></script> -->
@@ -65,10 +66,10 @@
 							<div class="str">{{body.lang.bRegister}}</div>
 						</div>
 					</a>
-					<div ng-controller="dMetaLang" class="button-bar">
-						<select>
+					<div ng-controller="fChangeLang" class="button-bar">
+						<select ng-model="fChangeLang.sLang" ng-change="fChangeLang.onClick(fChangeLang.lang)">
 							<option value="" disabled="" selected="" hidden="">Language</option>
-							<option ng-repeat="language in body.languages" ng-click="dMetaLang.foo(language.code)" value="{{language.code}}">{{language.name}}</option>
+							<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name | capitalize}}</option>
 						</select>
 					</div>					
      			</div>

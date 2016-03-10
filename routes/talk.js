@@ -18,7 +18,12 @@ var error_adapter = functions_module.error_adapter;
 
 router.post('/', authenticate, function (req, res) {
 	var language = req.body.language || 'en';
-  	return res.render('talk/index.html', {forceType: "desktop", language: language});
+	var lang = "es";
+	if (req.session.meta)
+	{
+		var lang = req.session.meta.lang || lang;
+	}
+  	return res.render('talk/index.html', {forceType: "desktop", lang: lang, language: language});
 });
 
 /*

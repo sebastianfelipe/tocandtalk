@@ -16,7 +16,12 @@ var error_adapter = functions_module.error_adapter;
 
 router.get('/', function (req, res) {
 	var errors = "";
-	var lang = req.session.lang || 'es';
+	var lang = "es";
+	if (req.session.meta)
+	{
+		var lang = req.session.meta.lang || lang;
+	}
+	
 	if (req.session.user)
 	{
 		if (req.session.user._id)
