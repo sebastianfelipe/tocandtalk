@@ -115,6 +115,12 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
         };
     };
 
+    this.onSocialClick = function(params) {
+        return function (social) {
+            $(location).attr('href','/api/auth/' + social);
+            };
+    };
+
     this.onChangeLangClick = function (params) {
         return function (code) {
             var data = {

@@ -53,6 +53,23 @@
 		<script src="desktop/login/assets/js/backend/controllers.js" type="text/javascript"></script>
 		<script src="desktop/login/assets/js/backend/directives.js" type="text/javascript"></script>
 		<script src="desktop/login/assets/js/backend/filters.js" type="text/javascript"></script>
+		<style>
+			hr {
+			   display: block;
+			   position: relative;
+			   padding: 0;
+			   margin: 8px auto;
+			   height: 0;
+			   width: 80%;
+			   max-height: 0;
+			   font-size: 1px;
+			   line-height: 0;
+			   clear: both;
+			   border: none;
+			   border-top: 1px solid #aaaaaa;
+			   border-bottom: 1px solid #ffffff;
+			}
+		</style>
 	</head>
 	<body ng-controller="body">
 		<!-- Barra superior -->
@@ -65,12 +82,12 @@
 					</a>
 				</div>
 				<div id="bar-section-user1" class="bar-section-user">
-					
 					<a href="/register">
 						<div class="button-bar">
 							<div class="str">{{body.lang.bRegister}}</div>
 						</div>
 					</a>
+					
 					<select ng-controller="fChangeLang" class="button-bar" ng-model="fChangeLang.sLang" ng-change="fChangeLang.onClick(fChangeLang.lang)">
 						<option value="" disabled="" selected="" hidden="">Language</option>
 						<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name | capitalize}}</option>
@@ -84,11 +101,15 @@
     		<div class="titulo">
     			<t2><div class="str">{{body.lang.loginTitle}}</div></t2>
     		</div>
+    		<hr>
+    		<p class="str">Ingresa con tu cuenta social</p>
     		<div ng-controller="dSocial">
 				<a ng-click="dSocial.onClick('facebook')" class="btn btn-primary"><span class="fa fa-facebook"></span></a>
 	        	<a ng-click="dSocial.onClick('twitter')" class="btn btn-primary"><span class="fa fa-twitter"></span></a>
 	        	<a ng-click="dSocial.onClick('google')" class="btn btn-danger"><span class="fa fa-google-plus"></span></a>
     		</div>
+    		<hr>
+    		<p class="str">O de la forma tradicional</p>
     		<form ng-controller="form" id="fLogin" name="fLogin" class="formulario" ng-submit="form.onSubmit()">
     			<div>
 					<!-- Nombre de usuario / email -->
@@ -152,11 +173,13 @@
 				<input type="submit" id="bLogin" class="boton-ingresar" value="{{body.lang.bLogin}}">
     		</form>
 			
+			<!--
     		<div>
     			<a href="/register">
     				<div class="str leLink">{{body.lang.bRegister}}</div>
     			</a>
     		</div>
+    	-->
     	</div>
     	</div>
     	

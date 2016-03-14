@@ -13,6 +13,14 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sActions', functio
 
 }]);
 
+app.controller('dSocial', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+    $scope.dSocial = {};
+    scope = $scope.dSocial;
+    refs.dSocial = scope;
+
+    scope.onClick = sActions.onSocialClick(refs);
+}]);
+
 app.controller('form', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
 	$scope.form = {};
 	scope = $scope.form;

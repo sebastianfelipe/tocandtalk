@@ -15,7 +15,7 @@ var ports = {'http': {
                       }
             };
 
-var DEFAULT_LANGUAGE = 'en';
+var DEFAULT_LANGUAGE = 'es';
 //var host_name = "https.tocandtalk.com";
 var host_name = "192.168.0.134";
 var users = [];
