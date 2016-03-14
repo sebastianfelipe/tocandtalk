@@ -10,6 +10,7 @@ refs.meta.transcript.lang = 'es';
 refs.meta.transcript.dialect = 'CL';
 
 refs.body = {};
+refs.media = {};
 refs.errors = "";
 refs.sources = {};
 refs.sources.user = {};

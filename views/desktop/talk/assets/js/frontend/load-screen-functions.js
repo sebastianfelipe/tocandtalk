@@ -174,26 +174,35 @@ function end_load() {
  * Retorno: Null.
  */
 function enable_buttons_media() {
-    if ( !!refs.localStream.getVideoTracks()[0].enabled ) {
-        $("#b_icon_video_off").css("display", "none");
-        $("#b_icon_video_none").css("display", "none");
-        $("#b_icon_video").css("display", "inline-block");
-    }
-    else {
-        $("#b_icon_video_none").css("display", "inline-block");
-        $("#b_icon_video_off").css("display", "none");
-        $("#b_icon_video").css("display", "none");
-    }
+    if (refs.conn.localStream)
+    {
+        if (refs.conn.localStream.getVideoTracks)
+        {
+            if ( refs.conn.localStream.getVideoTracks()[0].enabled ) {
+                $("#b_icon_video_off").css("display", "none");
+                $("#b_icon_video_none").css("display", "none");
+                $("#b_icon_video").css("display", "inline-block");
+            }
+            else {
+                $("#b_icon_video_none").css("display", "inline-block");
+                $("#b_icon_video_off").css("display", "none");
+                $("#b_icon_video").css("display", "none");
+            }
+        }
 
-    if ( !!refs.localStream.getAudioTracks()[0].enabled ) {
-        $("#b_icon_mic_off").css("display", "none");
-        $("#b_icon_mic_none").css("display", "none");
-        $("#b_icon_mic").css("display", "inline-block");
-    }
-    else {
-        $("#b_icon_mic_none").css("display", "inline-block");
-        $("#b_icon_mic_off").css("display", "none");
-        $("#b_icon_mic").css("display", "none");
+        if (refs.conn.localStream.getAudioTracks)
+        {
+            if ( refs.conn.localStream.getAudioTracks()[0].enabled ) {
+                $("#b_icon_mic_off").css("display", "none");
+                $("#b_icon_mic_none").css("display", "none");
+                $("#b_icon_mic").css("display", "inline-block");
+            }
+            else {
+                $("#b_icon_mic_none").css("display", "inline-block");
+                $("#b_icon_mic_off").css("display", "none");
+                $("#b_icon_mic").css("display", "none");
+            }
+        }
     }
     
     return;
@@ -205,17 +214,29 @@ function enable_buttons_media() {
  *         audio: (Boolean) True si el micrófono está disponible, false para desactivar control.
  * Retorno: Null.
  */
-function disable_buttons_media(video, audio) {
-    if (!video) {
-        $("#b_icon_video_none").css("display", "inline-block");
-        $("#b_icon_video_off").css("display", "none");
-        $("#b_icon_video").css("display", "none");
+//function disable_buttons_media(video, audio) {
+function disable_buttons_media() {
+    if (refs.conn.localStream)
+    {
+        if (refs.conn.localStream.getVideoTracks)
+        {
+            if (!refs.conn.localStream.getVideoTracks()[0].enabled) {
+                $("#b_icon_video_none").css("display", "inline-block");
+                $("#b_icon_video_off").css("display", "none");
+                $("#b_icon_video").css("display", "none");
+            }
+        }
+
+        if (refs.conn.localStream.getAudioTracks)
+        {
+            if (!refs.conn.localStream.getAudioTracks()[0].enabled) {    
+                $("#b_icon_mic_none").css("display", "inline-block");
+                $("#b_icon_mic_off").css("display", "none");
+                $("#b_icon_mic").css("display", "none");
+            }
+        }
     }
-    if (!audio) {    
-        $("#b_icon_mic_none").css("display", "inline-block");
-        $("#b_icon_mic_off").css("display", "none");
-        $("#b_icon_mic").css("display", "none");
-    }
+
     return;
 }
 

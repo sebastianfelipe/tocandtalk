@@ -36,6 +36,16 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         }
     };
 
+    this.enableMediaButtons = function ()
+    {
+        enable_buttons_media();
+    }
+
+    this.disableMediaButtons = function ()
+    {
+        disable_buttons_media();
+    }
+
     this.showTranscript = function (params)
     {
         params.body.apply();
@@ -264,6 +274,8 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                 //params.body.onSpeechRecognition(params);
                 // ------------------------
                 //enable_buttons_media();
+                params.body.enableMediaButtons();
+                params.body.disableMediaButtons();
             })
             .catch(function(err) {
                 $log.error(err.name + ": " + err.message);

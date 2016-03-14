@@ -184,7 +184,7 @@
                 <image src="desktop/talk/assets/img/arrow-button-dialog.svg" class="b_dialog_arrow" id="b_d_arrow_next"></image>
             </div>
             <br>
-            <div id="buttons_ctr_cont">
+            <div ng-controller="media" id="buttons_ctr_cont">
                 <div id="controls_bar">
                     <!-- Volumen -->
                     <div id="button_vol" class="control_icon_i ic01"></div>
@@ -200,18 +200,18 @@
                     <div id="control_sep"></div>
 
                     <!-- Micrófono -->
-                    <image src="desktop/talk/assets/img/button-mic.svg" id="b_icon_mic" class="control_icon ic03 b_icon_click"></image>
-                    <image src="desktop/talk/assets/img/button-mic-off.svg" id="b_icon_mic_off" class="control_icon ic03 b_icon_click"></image>
-                    <image src="desktop/talk/assets/img/button-mic-none.svg" id="b_icon_mic_none" class="control_icon ic03"></image>
+                    <image ng-click="media.onMicClick()" src="desktop/talk/assets/img/button-mic.svg" id="b_icon_mic" class="control_icon ic03 b_icon_click"></image>
+                    <image ng-click="media.onMicClick()" src="desktop/talk/assets/img/button-mic-off.svg" id="b_icon_mic_off" class="control_icon ic03 b_icon_click"></image>
+                    <image ng-click="media.onMicClick()" src="desktop/talk/assets/img/button-mic-none.svg" id="b_icon_mic_none" class="control_icon ic03"></image>
                     
                     <!-- Video -->
-                    <image src="desktop/talk/assets/img/button-videocam.svg" id="b_icon_video" class="control_icon ic04 b_icon_click"></image>
-                    <image src="desktop/talk/assets/img/button-videocam-off.svg" id="b_icon_video_off" class="control_icon ic04 b_icon_click"></image>
-                    <image src="desktop/talk/assets/img/button-videocam-none.svg" id="b_icon_video_none" class="control_icon ic04"></image>
+                    <image ng-click="media.onVideoClick()" src="desktop/talk/assets/img/button-videocam.svg" id="b_icon_video" class="control_icon ic04 b_icon_click"></image>
+                    <image ng-click="media.onVideoClick()" src="desktop/talk/assets/img/button-videocam-off.svg" id="b_icon_video_off" class="control_icon ic04 b_icon_click"></image>
+                    <image ng-click="media.onVideoClick()" src="desktop/talk/assets/img/button-videocam-none.svg" id="b_icon_video_none" class="control_icon ic04"></image>
                 </div>
                 <div id="button_next">
                     <!-- <image src="desktop/talk/assets/img/button_next.svg" id="b_icon_next" class="control_icon"></image> -->
-                    <input id="search" type="image" src="desktop/talk/assets/img/button-next.svg" class="control_icon" ng-click="body.onNextUserClick()">
+                    <input id="search" type="image" src="desktop/talk/assets/img/button-next.svg" class="control_icon" ng-click="media.onNextUserClick()">
                 </div>
                 <div class="button_none"></div>
             </div>
