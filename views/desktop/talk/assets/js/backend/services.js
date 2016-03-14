@@ -8,7 +8,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 
     this.setRecUser = function(params) {
         params.body.recUser = params.sources.recUser;
-        console.log('yeah!');
+        params.body.apply();
     };
 
     this.setLang = function (params) {
@@ -345,6 +345,8 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
 
     this.onSendMessage = function (params, content)
     {
+        console.log('onSendMessage');
+        console.log(content);
         var message = {};
         message.type = "sender";
         message.content = content.trim();

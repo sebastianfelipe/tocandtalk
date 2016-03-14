@@ -190,7 +190,7 @@ servers.http.io.use(sharedsession(session, {
 })); 
 servers.http.io.on('connection',_ioConnection);
 
-servers.http.peer = ExpressPeerServer(servers.http.web, {debug: true});
+servers.http.peer = ExpressPeerServer(servers.http.web, {debug: false});
 app.use('/', servers.http.peer);
 servers.http.peer.on('connection', _peerConnection);
 servers.http.peer.on('disconnect', _peerDisconnect);

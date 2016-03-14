@@ -2,7 +2,8 @@
 // CONTROLLERS
 
 app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sActions', function ($scope, $http, $log, sStage, sListen, sActions) {
-	refs.body = scope = $scope.body = {};
+	var scope = {};
+    refs.body = scope = $scope.body = {};
     refs.meta.lang = lang || refs.meta.lang;
 	scope.lang = {};
 	scope.user = {};
@@ -10,6 +11,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sAction
     scope.messages = [];
     scope.transcript = {};
     scope.recTranscript = {};
+    scope.tmpMessage = "";
     scope.language = language || 'en';
 
     scope.apply = function () {
@@ -53,6 +55,10 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sAction
         sStage.disableMediaButtons();
     };
 
+    scope.onHome = function () {
+        $(location).attr('href','/');
+    };
+
     scope.getLocalStream();
     sStage.getSources(refs);
     //scope.onSpeechRecognition(refs);
@@ -63,6 +69,7 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sAction
 // CONTROLLERS
 
 app.controller('media', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sActions', function ($scope, $http, $log, sStage, sListen, sActions) {
+    var scope = {};
     refs.media = scope = $scope.media = {};
 
     scope.onNextUserClick = function () {
