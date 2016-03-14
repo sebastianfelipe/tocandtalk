@@ -93,12 +93,12 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
             if (doc)
             {
               authenticateUser(req, doc._user);
-              return res.send({errors: errors});
+              return res.redirect('/');
             }
             else
             {
               errors += 'eDBNotFound;';
-              return res.send({errors: errors});
+              return res.render('login/index.html', {errors: errors});
             }
         });
     }
@@ -160,13 +160,13 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
             {
               authenticateUser(req, output.user);
             }
-            return res.send({errors: errors});
+            return res.redirect('/');
           });
      
       }
       else
       {
-        return res.send({errors: errors});
+        return res.render('register/index.html', {errors: errors});
       }
     }
 });

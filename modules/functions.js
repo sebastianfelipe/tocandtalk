@@ -126,6 +126,26 @@ var wasItAdded = function (availables, userId, language) {
   return false;
 };
 
+var access = function (req, res, next)
+{
+  console.log("Access :D");
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
+  next();
+};
+
 module.exports.error_adapter = error_adapter;
 module.exports.authenticateUser = authenticateUser;
 module.exports.signOut = signOut;
@@ -134,3 +154,4 @@ module.exports.setPageLang = setPageLang;
 module.exports.createCode = createCode;
 module.exports.indexOfUser = indexOfUser;
 module.exports.wasItAdded = wasItAdded;
+module.exports.access = access;

@@ -79,6 +79,8 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
 
     this.onSocialClick = function(params) {
         return function (social) {
+            $(location).attr('href','/api/auth/' + social);
+            /*
             $http.get('/api/auth/' + social)
                 .success(function (result) {
                     if (!result.errors)
@@ -94,6 +96,7 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
                 .error(function (data, status) {
                     $log.error({data: data, status: status});
                 });
+                */
             };
     };
 

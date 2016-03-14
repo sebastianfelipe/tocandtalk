@@ -39,92 +39,96 @@ var deleteUser =  function(id) {
 var _ioConnection = function(socket) {
   var session = socket.handshake.session;
   console.log('IO: User connected');
-
-  if (session._id)
+  if (session.user)
   {
-    socket.on('ask', function (language) {
-      var callerId = session._id;
-      deleteUser(callerId);
-      console.log('IO: on Ask');
-      //console.log('The caller Id who has connected');
-      //console.log(callerId);
-      if (languages.indexOf(language) == -1)
-      {
-        language = DEFAULT_LANGUAGE;
-      }
-
-      if (callerId)
-      {
-        var answer = {};
-        answer.call = true;
+    if (session.user._id)
+    {
+      var userId = session.user._id;
+      socket.on('ask', function (language) {
+        console.log('on ask :D');
+        var callerId = userId;
+        deleteUser(callerId);
+        console.log('IO: on Ask');
+        //console.log('The caller Id who has connected');
         //console.log(callerId);
-        //console.log(language);
-        //console.log('IO: ' + callerId + ' wants to verify if has to wait (be called) or is available (to call)');
-
-        if (!(language in availables))
+        if (languages.indexOf(language) == -1)
         {
-          availables[language] = [];
+          language = DEFAULT_LANGUAGE;
         }
 
-        if (availables[language].length < limit)
+        if (callerId)
         {
+          var answer = {};
+          answer.call = true;
+          //console.log(callerId);
+          //console.log(language);
+          //console.log('IO: ' + callerId + ' wants to verify if has to wait (be called) or is available (to call)');
+
+          if (!(language in availables))
+          {
+            availables[language] = [];
+          }
+
+          if (availables[language].length < limit)
+          {
+              answer.call = false;
+          }
+
+          if (limit < 2 && (wasItAdded(availables, callerId, language)))
+          {
             answer.call = false;
-        }
-
-        if (limit < 2 && (wasItAdded(availables, callerId, language)))
-        {
-          answer.call = false;
-        }
-            
-        if (answer.call)
-        {
-          var user = randomSearch(callerId, language);
-          var recId = user.userId
-          answer.recId = recId;
-          answer.convId = user.convId;
-          //console.log("IO: The get result has recipient_id: " + recId + " and caller_id: " + callerId);
-          //console.log('Availables before be removed:');
-          //console.log(availables);
-
-          availablesIndexCallerId = indexOfUser(availables, callerId, language);
-          availablesIndexRecId = indexOfUser(availables, recId, language);
-          if (availablesIndexCallerId > -1)
-          {
-            availables[language].splice(availablesIndexCallerId, 1); 
           }
-          if (availablesIndexRecId > -1)
+              
+          if (answer.call)
           {
-            availables[language].splice(availablesIndexRecId, 1); 
-          }
-        }
+            var user = randomSearch(callerId, language);
+            var recId = user.userId
+            answer.recId = recId;
+            answer.convId = user.convId;
+            //console.log("IO: The get result has recipient_id: " + recId + " and caller_id: " + callerId);
+            //console.log('Availables before be removed:');
+            //console.log(availables);
 
-        else
-        {
-          var indexCaller = indexOfUser(availables, callerId, language);
-          if (indexCaller > -1)
+            availablesIndexCallerId = indexOfUser(availables, callerId, language);
+            availablesIndexRecId = indexOfUser(availables, recId, language);
+            if (availablesIndexCallerId > -1)
+            {
+              availables[language].splice(availablesIndexCallerId, 1); 
+            }
+            if (availablesIndexRecId > -1)
+            {
+              availables[language].splice(availablesIndexRecId, 1); 
+            }
+          }
+
+          else
           {
-            availables[language].splice(indexCaller, 1);
+            var indexCaller = indexOfUser(availables, callerId, language);
+            if (indexCaller > -1)
+            {
+              availables[language].splice(indexCaller, 1);
+            }
+            var user = {};
+            user.userId = callerId;
+            user.convId = createCode();
+            answer.convId = user.convId;
+            availables[language].push(user);
+            console.log('IO: Pushed on ' + language);
           }
-          var user = {};
-          user.userId = callerId;
-          user.convId = createCode();
-          answer.convId = user.convId;
-          availables[language].push(user);
-          console.log('IO: Pushed on ' + language);
+
+          //console.log("IO: Does " + callerId + " it has to call? " + answer.call);
+          console.log('IO: Availables ');
+          console.log(availables);
+          socket.emit('ansAsk', answer);
         }
+      });
 
-        //console.log("IO: Does " + callerId + " it has to call? " + answer.call);
-        console.log('IO: Availables ');
-        console.log(availables);
-        socket.emit('ansAsk', answer);
-      }
-    });
-
-    socket.on('disconnect', function() {
-        console.log('IO: User disconnected');
-        deleteUser(session._id);
-        console.log(availables);
-    });
+      socket.on('disconnect', function() {
+          console.log('IO: User disconnected');
+          deleteUser(userId);
+          console.log(availables);
+      });
+    }
   }
 };
 

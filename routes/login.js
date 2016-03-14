@@ -14,6 +14,7 @@ var functions_module = require('../modules/functions.js');
 var authenticate = authenticate_module.authenticate;
 var error_adapter = functions_module.error_adapter;
 var setPageLang = functions_module.setPageLang;
+//var access = functions_module.access;
 
 router.get('/', setPageLang, function (req, res) {
 	if (req.session.user)
