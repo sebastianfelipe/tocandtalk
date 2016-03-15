@@ -184,6 +184,8 @@ router.post('/user/spokenLanguage', authenticate, function (req, res) {
         user.save(function (err) {
           if (err) { errors +='eDBUpdate' }
           user.populate('spokenLanguages', function (err, doc) {
+            console.log('spokenLanguages');
+            console.log(doc);
             return res.send({errors: errorAdapter(models.User.modelName, err), doc: doc.spokenLanguages});
           });
         });

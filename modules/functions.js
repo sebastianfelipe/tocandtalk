@@ -48,7 +48,7 @@ var signOut = function (req, user)
   delete req.session.user._appraisement;
   delete req.session.user._messenger;
   delete req.session.user._friendship;
-  delete req.session.user._lang;
+  delete req.session.user.lang;
   delete req.session.user;
   return;
 };
@@ -61,6 +61,10 @@ var setPageLang = function (req, res, next)
     {
       return next();
     }
+  }
+  else
+  {
+    req.session.meta = {};
   }
 
   async.parallel({
@@ -75,10 +79,6 @@ var setPageLang = function (req, res, next)
   },
   function (err, results)
   {
-    if (!req.session.meta)
-    {
-      req.session.meta = {};
-    }
     req.session.meta.lang = results.lang.doc;
     return next();
   });
