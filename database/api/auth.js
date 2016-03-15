@@ -66,7 +66,7 @@ router.post('/classic', function (req, res) {
         {
           //req.session._id = doc._user._id;
           authenticateUser(req, doc._user);
-          return res.send({errors: errors})
+          return res.send({errors: errors});
         }
         else
         {
@@ -159,12 +159,12 @@ router.get('/facebook/callback', setPageLang, passport.authenticate('facebook', 
               output.user.populate('_lang', function (err, doc) {
                 authenticateUser(req, doc);
                 output.user = doc;
-                return res.redirect('/');
+                return res.redirect('/profile');
               });
             }
             else
             {
-              return res.redirect('/');
+               return res.render('register/index.html', {errors: errors});
             }
 
           });
@@ -263,12 +263,13 @@ router.get('/twitter/callback', setPageLang, passport.authenticate('twitter', { 
               output.user.populate('_lang', function (err, doc) {
                 authenticateUser(req, doc);
                 output.user = doc;
-                return res.redirect('/');
+                return res.redirect('/profile');
               });
             }
             else
             {
-              return res.redirect('/');
+              //return res.redirect('/');
+               return res.render('register/index.html', {errors: errors});
             }
 
           });
@@ -283,7 +284,100 @@ router.get('/twitter/callback', setPageLang, passport.authenticate('twitter', { 
 
 router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
-router.get('/google/callback', passport.authenticate('google', { successRedirect: '/perfil', failureRedirect: '/login' }));
+router.get('/google/callback', setPageLang, passport.authenticate('google', { failureRedirect: '/login' }),
+ function(req, res) {
+
+    var errors = "";
+
+    if (req.user.doc)
+    {
+        req.user.doc.deepPopulate('_user _user._lang', function (err, doc) {
+            if (doc)
+            {
+              authenticateUser(req, doc._user);
+              return res.redirect('/');
+            }
+            else
+            {
+              errors += 'eDBNotFound;';
+              return res.render('login/index.html', {errors: errors});
+            }
+        });
+    }
+    else
+    { 
+      var lang = req.session.meta.lang;
+      
+      // Object Creation
+      var user = new models.User();
+      user.firstName = req.user.profile.name.givenName.trim().toLowerCase();
+      user.lastName = req.user.profile.name.familyName.trim().toLowerCase();
+      user._lang = lang._id;
+
+      var appraisement = new models.Appraisement();
+      appraisement._user = user._id;
+      appraisement.mean = 0;
+
+      var messenger = new models.Messenger();
+      messenger._user = user._id;
+
+      var friendship = new models.Friendship();
+      friendship._user = user._id;
+
+      var auth = new models.Auth();
+      auth._user = user._id;
+      auth.google = {};
+      auth.google.id = req.user.profile.id;
+
+      user._appraisement = appraisement._id;
+      user._messenger = messenger._id;
+      user._friendship = friendship._id;
+      user._auth = auth._id;
+
+      // Validation
+      // ------------
+      errors += errorAdapter(models.User.modelName, user.validateSync());
+      errors += errorAdapter(models.Appraisement.modelName, appraisement.validateSync());
+      errors += errorAdapter(models.Messenger.modelName, messenger.validateSync());
+      errors += errorAdapter(models.Friendship.modelName, friendship.validateSync());
+      errors += errorAdapter(models.Auth.modelName, auth.validateSync());
+
+      if (!errors)
+      {
+        var data = {};
+        data.user = user;
+        data.appraisement = appraisement;
+        data.messenger = messenger;
+        data.friendship = friendship;
+        data.auth = auth;
+
+        // Save
+        // ------------
+        saveSocialAccount(data, function (errors, output) {
+            if (!errors)
+            {
+              output.user._lang = req.session.meta.lang;
+              output.user.populate('_lang', function (err, doc) {
+                authenticateUser(req, doc);
+                output.user = doc;
+                return res.redirect('/profile');
+              });
+            }
+            else
+            {
+              return res.render('register/index.html', {errors: errors});
+            }
+
+          });
+     
+      }
+      else
+      {
+        return res.render('register/index.html', {errors: errors});
+      }
+    }
+  }
+);
 
 module.exports = router;
 

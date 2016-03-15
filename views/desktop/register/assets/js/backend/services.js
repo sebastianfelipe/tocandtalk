@@ -102,7 +102,7 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
                     console.log(result);
                     if (!result.errors)
                     {
-                        $(location).attr('href','/');
+                        $(location).attr('href','/profile');
                     }
                     else
                     {   

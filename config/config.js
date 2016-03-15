@@ -14,8 +14,9 @@ module.exports = {
     },
 
     google : {
-        key      : '132159203446-2n3ugu2snep4ejn074n2cgo0fb87lda2.apps.googleusercontent.com',
-        secret  : 'Bzsb9eHnzBsfe3RE_7lQ1aCE'
+        key      : '1039309719411-bnse686g4vp3s0glv2anj6ol5tih9hu1.apps.googleusercontent.com',
+        secret  : 'Kif8tklu0gf5egZmJap_41NY'
     }
 
 };
+
