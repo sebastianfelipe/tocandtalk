@@ -32,7 +32,7 @@ var authenticateUser = function (req, user)
   req.session.user._appraisement = user._appraisement;
   req.session.user._messenger = user._messenger;
   req.session.user._friendship = user._friendship;
-  req.session.user.lang = user.lang;
+  req.session.user.lang = user._lang;
   return;
 };
 

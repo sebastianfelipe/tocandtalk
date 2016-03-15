@@ -39,7 +39,7 @@ router.post('/classic', function (req, res) {
             var errors = "";
               models.Username
               .findOne({username: username})
-              .deepPopulate('_user._auth.classic._password')
+              .deepPopulate('_user._auth.classic._password _user._lang')
               .exec(function (err, doc) {
                 callback(null, {errors: errorAdapter(models.User.modelName, err), doc: doc});
               });
@@ -50,7 +50,7 @@ router.post('/classic', function (req, res) {
             var errors = "";
               models.Email
               .findOne({email: username})
-              .deepPopulate('_user._auth.classic._password')
+              .deepPopulate('_user._auth.classic._password _user._lang')
               .exec(function (err, doc) {
                 callback(null, {errors: errorAdapter(models.User.modelName, err), doc: doc});
               });
@@ -91,7 +91,7 @@ router.get('/facebook/callback', setPageLang, passport.authenticate('facebook', 
 
     if (req.user.doc)
     {
-        req.user.doc.populate('_user', function (err, doc) {
+        req.user.doc.deepPopulate('_user _user._lang', function (err, doc) {
             if (doc)
             {
               authenticateUser(req, doc._user);
