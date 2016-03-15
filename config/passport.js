@@ -45,23 +45,18 @@ module.exports = function(passport) {
     }, function(accessToken, refreshToken, profile, done) {
         // Busca en la base de datos si el usuario ya se autenticó en otro
         // momento y ya está almacenado en ella
-        User.findOne({twitter_id: profile.id}, function(err, user) {
-            if(err) throw(err);
-            // Si existe en la Base de Datos, lo devuelve
-            if(!err && user!= null) return done(null, user);
-
-            // Si no existe crea un nuevo objecto usuario
-            var user = new User({
-                provider_id : profile.id,
-               // provider         : profile.provider,
-                name                 : profile.displayName,
-                //photo               : profile.photos[0].value
-            });
-            //...y lo almacena en la base de datos
-            user.save(function(err) {
-                if(err) throw err;
-                done(null, user);
-            });
+        models.Auth
+        //.findOne({"facebook.id": profile.id})
+        .findOne({"twitter.id": profile.id})
+        .exec(function(err,doc){
+            if (doc)
+            {    
+                done(null, {errors: errorAdapter(models.Auth.modelName, err), doc: doc, profile: profile._json});
+            }
+            else
+            {
+                done(null, {errors: errorAdapter(models.Auth.modelName, err), doc: doc, profile: profile._json});
+            }
         });
     }));
 

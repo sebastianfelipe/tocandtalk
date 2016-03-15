@@ -179,7 +179,107 @@ router.get('/facebook/callback', setPageLang, passport.authenticate('facebook', 
 
 router.get('/twitter', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/' }));
 
-router.get('/twitter/callback', passport.authenticate('twitter', { successRedirect: '/perfil', failureRedirect: '/login' }));
+router.get('/twitter/callback', setPageLang, passport.authenticate('twitter', { failureRedirect: '/login' }),
+  function(req, res) {
+
+    var errors = "";
+
+    if (req.user.doc)
+    {
+        req.user.doc.deepPopulate('_user _user._lang', function (err, doc) {
+            if (doc)
+            {
+              authenticateUser(req, doc._user);
+              return res.redirect('/');
+            }
+            else
+            {
+              errors += 'eDBNotFound;';
+              return res.render('login/index.html', {errors: errors});
+            }
+        });
+    }
+    else
+    { 
+      var lang = req.session.meta.lang;
+      // Object Creation
+      var lName = req.user.profile.name.split(' ');
+      var firstName = "";
+      var lastName = "";
+      firstName = lName[0].trim().toLowerCase();
+      if (lName.length > 1)
+      {
+        lastName = lName.splice(1, lName.length).join(' ').trim().toLowerCase();
+      }
+
+      var user = new models.User();
+      user.firstName = firstName;
+      user.lastName = lastName;
+      user._lang = lang._id;
+
+      var appraisement = new models.Appraisement();
+      appraisement._user = user._id;
+      appraisement.mean = 0;
+
+      var messenger = new models.Messenger();
+      messenger._user = user._id;
+
+      var friendship = new models.Friendship();
+      friendship._user = user._id;
+
+      var auth = new models.Auth();
+      auth._user = user._id;
+      auth.twitter = {};
+      auth.twitter.id = req.user.profile.id_str;
+
+      user._appraisement = appraisement._id;
+      user._messenger = messenger._id;
+      user._friendship = friendship._id;
+      user._auth = auth._id;
+
+      // Validation
+      // ------------
+      errors += errorAdapter(models.User.modelName, user.validateSync());
+      errors += errorAdapter(models.Appraisement.modelName, appraisement.validateSync());
+      errors += errorAdapter(models.Messenger.modelName, messenger.validateSync());
+      errors += errorAdapter(models.Friendship.modelName, friendship.validateSync());
+      errors += errorAdapter(models.Auth.modelName, auth.validateSync());
+
+      if (!errors)
+      {
+        var data = {};
+        data.user = user;
+        data.appraisement = appraisement;
+        data.messenger = messenger;
+        data.friendship = friendship;
+        data.auth = auth;
+
+        // Save
+        // ------------
+        saveSocialAccount(data, function (errors, output) {
+            if (!errors)
+            {
+              output.user._lang = req.session.meta.lang;
+              output.user.populate('_lang', function (err, doc) {
+                authenticateUser(req, doc);
+                output.user = doc;
+                return res.redirect('/');
+              });
+            }
+            else
+            {
+              return res.redirect('/');
+            }
+
+          });
+     
+      }
+      else
+      {
+        return res.render('register/index.html', {errors: errors});
+      }
+    }
+});
 
 router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 

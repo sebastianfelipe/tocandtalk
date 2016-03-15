@@ -141,7 +141,6 @@ schema.user = mongoose.Schema({
                 lowercase: true
                 },
     lastName: { type: String,
-                required: true,
                 trim: true,
                 lowercase: true
     },
