@@ -33,7 +33,13 @@ var authenticateUser = function (req, user)
   req.session.user._messenger = user._messenger;
   req.session.user._friendship = user._friendship;
   req.session.user.lang = user._lang;
-  return;
+
+  if (!req.session.meta)
+  {
+    req.session.meta = {};
+  }
+
+  req.session.meta.lang = req.session.user.lang;
 };
 
 var signOut = function (req, user)
@@ -42,13 +48,21 @@ var signOut = function (req, user)
   delete req.session.user._appraisement;
   delete req.session.user._messenger;
   delete req.session.user._friendship;
-  delete req.session.user.lang;
+  delete req.session.user._lang;
   delete req.session.user;
   return;
 };
 
 var setPageLang = function (req, res, next)
 {
+  if (req.session.meta)
+  {
+    if (req.session.meta.lang)
+    {
+      return next();
+    }
+  }
+
   async.parallel({
       lang: function(callback){
             setTimeout(function(){
@@ -61,26 +75,13 @@ var setPageLang = function (req, res, next)
   },
   function (err, results)
   {
-    var lang = results.lang.doc;
-    if (req.session.meta)
-    {
-
-      lang = req.session.meta.lang || lang;
-    }
-    else
+    if (!req.session.meta)
     {
       req.session.meta = {};
     }
-
-    if (req.session.user)
-    {
-      lang = req.session.user.lang || lang;
-    }
-
-    req.session.meta.lang = lang;
-    console.log(req.session.meta.lang);
+    req.session.meta.lang = results.lang.doc;
     return next();
-  })
+  });
 };
 
 var createCode = function () {

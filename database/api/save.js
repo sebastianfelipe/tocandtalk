@@ -124,10 +124,17 @@ router.post('/account/classic', setPageLang, function (req, res) {
       saveClassicAccount(data, function (errors, output) {
           if (!errors)
           {
-            authenticateUser(req, output.user);
+            output.user._lang = req.session.meta.lang;
+            output.user.populate('_lang', function (err, doc) {
+              authenticateUser(req, doc);
+              output.user = doc;
+              return res.send({errors: errors, output: output});
+            });
           }
-          console.log({errors: errors, output: output});
-          return res.send({errors: errors, output: output});
+          else
+          {
+            return res.send({errors: errors, output: output});
+          }
         });
    
     }

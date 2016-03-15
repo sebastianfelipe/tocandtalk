@@ -107,8 +107,6 @@ router.get('/facebook/callback', setPageLang, passport.authenticate('facebook', 
     else
     { 
       var lang = req.session.meta.lang;
-      console.log('Social Account');
-      console.log(lang);
       // Object Creation
       var user = new models.User();
       user.firstName = req.user.profile.name.givenName.trim().toLowerCase();
@@ -157,9 +155,18 @@ router.get('/facebook/callback', setPageLang, passport.authenticate('facebook', 
         saveSocialAccount(data, function (errors, output) {
             if (!errors)
             {
-              authenticateUser(req, output.user);
+              output.user._lang = req.session.meta.lang;
+              output.user.populate('_lang', function (err, doc) {
+                authenticateUser(req, doc);
+                output.user = doc;
+                return res.redirect('/');
+              });
             }
-            return res.redirect('/');
+            else
+            {
+              return res.redirect('/');
+            }
+
           });
      
       }
