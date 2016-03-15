@@ -14,7 +14,7 @@ var functions_module = require('../modules/functions.js');
 var authenticate = authenticate_module.authenticate;
 var setPageLang = functions_module.setPageLang;
 router.get('/', authenticate, setPageLang, function (req, res) {
-  	 return res.render('home/index.html', {forceType: "desktop", lang: req.session.meta.lang, errors: ""});
+  	 return res.render('home/index.html', {forceType: "desktop", lang: req.session.meta.lang.code, errors: ""});
 });
 
 function isLoggedIn(req, res, next) {

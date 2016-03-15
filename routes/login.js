@@ -24,7 +24,7 @@ router.get('/', setPageLang, function (req, res) {
 			return res.redirect('/');
 		}
 	}
-	return res.render('login/index.html', {forceType: "desktop", errors: "", lang: req.session.meta.lang});
+	return res.render('login/index.html', {forceType: "desktop", errors: "", lang: req.session.meta.lang.code});
 });
 
 module.exports = router;

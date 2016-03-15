@@ -10,6 +10,7 @@ models.Email = mongoose.model('Email', schema.email);
 models.Password = mongoose.model('Password', schema.password);
 models.Country = mongoose.model('Country', schema.country);
 models.Language = mongoose.model('Language', schema.language);
+models.Lang = mongoose.model('Lang', schema.lang);
 models.User = mongoose.model('User', schema.user);
 
 models.Messenger = mongoose.model('Messenger', schema.messenger);

@@ -86,13 +86,21 @@ var trySync = function(name) {
 
 
 router.get('/push', function(req, res) {
-	var country = require('./data/country.json');
-	var language = require('./data/language.json');
-	models.Country.collection.insert(country, function(err, docs) {
+	var countries = require('./data/country.json');
+	var languages = require('./data/language.json');
+	var langs = require('./data/lang.json');
+
+	models.Country.collection.insert(countries, function(err, docs) {
 		console.log(err);
 		console.log(docs);
 	});
-	models.Language.collection.insert(language, function(err, docs) {
+
+	models.Language.collection.insert(languages, function(err, docs) {
+		console.log(err);
+		console.log(docs);
+	});
+	
+	models.Lang.collection.insert(langs, function(err, docs) {
 		console.log(err);
 		console.log(docs);
 	});

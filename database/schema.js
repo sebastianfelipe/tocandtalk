@@ -82,6 +82,23 @@ schema.language = mongoose.Schema({
     }
 });
 
+schema.lang = mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true
+    },
+    code: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true
+    }
+});
+
 schema.password = mongoose.Schema({
     _user: {
             type: ObjectId,
@@ -111,8 +128,9 @@ schema.user = mongoose.Schema({
         ref: 'Language',
         //required: true
     },
-    lang: {
-        type: 'String',
+    _lang: {
+        type: 'ObjectId',
+        ref: 'Lang',
         required: true
     },
     spokenLanguages: [{type: ObjectId, ref: 'Language'}],
@@ -323,6 +341,7 @@ schema.email.plugin(uniqueValidator, {message: 'unique'});
 schema.password.plugin(uniqueValidator, {message: 'unique'});
 schema.country.plugin(uniqueValidator, {message: 'unique'});
 schema.language.plugin(uniqueValidator, {message: 'unique'});
+schema.lang.plugin(uniqueValidator, {message: 'unique'});
 schema.user.plugin(uniqueValidator, {message: 'unique'});
 schema.messenger.plugin(uniqueValidator, {message: 'unique'});
 schema.conversation.plugin(uniqueValidator, {message: 'unique'});
@@ -338,6 +357,7 @@ schema.email.plugin(deepPopulate);
 schema.password.plugin(deepPopulate);
 schema.country.plugin(deepPopulate);
 schema.language.plugin(deepPopulate);
+schema.lang.plugin(deepPopulate);
 schema.user.plugin(deepPopulate);
 schema.messenger.plugin(deepPopulate);
 schema.conversation.plugin(deepPopulate);

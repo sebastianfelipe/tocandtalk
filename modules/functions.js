@@ -3,6 +3,9 @@ var nodemailer = require("nodemailer");
 var crypto = require('crypto');
 var DEFAULT_LANGUAGE = require('./global.js').DEFAULT_LANGUAGE;
 
+var async = require('async');
+var models = require('../database/models.js');
+
 var error_adapter = function (model_name, err) {
   errorList = [];
   if (err) {
@@ -23,13 +26,13 @@ var error_adapter = function (model_name, err) {
 
 var authenticateUser = function (req, user)
 {
-  var lang = DEFAULT_LANGUAGE;
+  //var lang = DEFAULT_LANGUAGE;
   req.session.user = {};
   req.session.user._id = user._id;
   req.session.user._appraisement = user._appraisement;
   req.session.user._messenger = user._messenger;
   req.session.user._friendship = user._friendship;
-  req.session.user.lang = user.lang || lang;
+  req.session.user.lang = user.lang;
   return;
 };
 
@@ -46,24 +49,39 @@ var signOut = function (req, user)
 
 var setPageLang = function (req, res, next)
 {
-  var lang = DEFAULT_LANGUAGE;
-  if (req.session.meta)
+  async.parallel({
+      lang: function(callback){
+            setTimeout(function(){
+              models.Lang.findOne({code: DEFAULT_LANGUAGE}).sort([['name', 1]]).exec(function (err, doc) {
+                  var results = {errors: err, doc: doc}
+                  callback(null, results);
+                });
+            }, 200);
+        }
+  },
+  function (err, results)
   {
-    lang = req.session.meta.lang || lang;
-  }
-  else
-  {
-    req.session.meta = {};
-  }
+    var lang = results.lang.doc;
+    if (req.session.meta)
+    {
 
-  if (req.session.user)
-  {
-    lang = req.session.user.lang || lang;
-  }
+      lang = req.session.meta.lang || lang;
+    }
+    else
+    {
+      req.session.meta = {};
+    }
 
-  req.session.meta.lang = lang;
-  return next();
-}
+    if (req.session.user)
+    {
+      lang = req.session.user.lang || lang;
+    }
+
+    req.session.meta.lang = lang;
+    console.log(req.session.meta.lang);
+    return next();
+  })
+};
 
 var createCode = function () {
   var buf = crypto.randomBytes(32);

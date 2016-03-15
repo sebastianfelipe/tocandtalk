@@ -25,7 +25,7 @@ var authenticateUser = functions_module.authenticateUser;
 var setPageLang = functions_module.setPageLang;
 
 router.get('/', authenticateRegister, setPageLang, function (req, res) {
-    return res.render('register/index.html', {forceType: "desktop", errors: "", lang: req.session.meta.lang});
+    return res.render('register/index.html', {forceType: "desktop", errors: "", lang: req.session.meta.lang.code});
 });
 
 module.exports = router;

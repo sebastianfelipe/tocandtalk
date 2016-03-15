@@ -23,6 +23,7 @@ var validateClassicAccount = mAux.validateClassicAccount;
 var saveClassicAccount = mAux.saveClassicAccount;
 var sendMail = functions_module.sendMail;
 var DEFAULT_LANGUAGE = global_module.DEFAULT_LANGUAGE;
+var setPageLang = functions_module.setPageLang;
 
 var createCode = functions_module.createCode;
 var hashPassword = encrypt_module.hashPassword;
@@ -34,12 +35,7 @@ var hashPassword = encrypt_module.hashPassword;
 //router.get('/account/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation', function (req, res) {
 //router.get('/account/classic/:username/:email/:firstName/:lastName/:countryCode/:nativeLanguageCode/:sexVal/:password/:passwordConfirmation', function (req, res) {
 //localhost:4080/api/save/account/classic/pedrito/pedrito@tocandtalk.com/pedrito/bandolero/us/it/1/banana/banana
-router.post('/account/classic', function (req, res) {
-    var lang = DEFAULT_LANGUAGE;
-    if (req.session.meta)
-    {
-      lang = req.session.meta.lang || DEFAULT_LANGUAGE;
-    }
+router.post('/account/classic', setPageLang, function (req, res) {
     var data = {};
     data.username = req.body.username.trim().toLowerCase();
     data.email = req.body.email.trim().toLowerCase();
@@ -49,13 +45,13 @@ router.post('/account/classic', function (req, res) {
     data.passwordConfirmation = req.body.passwordConfirmation;
     data.encryptedPassword = hashPassword(data.password);
     data.emailCode = createCode();
-    data.lang = lang;
+    data.lang = req.session.meta.lang;
 
     // Object Creation
     var user = new models.User();
     user.firstName = data.firstName;
     user.lastName = data.lastName;
-    user.lang = data.lang;
+    user._lang = data.lang._id;
 
     var username = new models.Username();
     username._user = user._id;

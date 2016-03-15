@@ -17,6 +17,8 @@ var mAux = require('./auxQ.js');
 // Function Imports
 var errorAdapter = functions_module.error_adapter;
 var authenticateUser = functions_module.authenticateUser;
+var setPageLang = functions_module.setPageLang;
+
 var verifyPassword = encrypt_module.verifyPassword;
 var saveSocialAccount = mAux.saveSocialAccount;
 var DEFAULT_LANGUAGE = global_module.DEFAULT_LANGUAGE;
@@ -82,7 +84,7 @@ router.post('/classic', function (req, res) {
 
 router.get('/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email']}));
 
-router.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login', scope: ['public_profile']}),
+router.get('/facebook/callback', setPageLang, passport.authenticate('facebook', { failureRedirect: '/login', scope: ['public_profile']}),
   function(req, res) {
 
     var errors = "";
@@ -104,17 +106,14 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
     }
     else
     { 
-
-      var lang = DEFAULT_LANGUAGE;
-      if (req.session.meta)
-      {
-        lang = req.session.meta.lang || DEFAULT_LANGUAGE;
-      }
+      var lang = req.session.meta.lang;
+      console.log('Social Account');
+      console.log(lang);
       // Object Creation
       var user = new models.User();
       user.firstName = req.user.profile.name.givenName.trim().toLowerCase();
       user.lastName = req.user.profile.name.familyName.trim().toLowerCase();
-      user.lang = lang;
+      user._lang = lang._id;
 
       var appraisement = new models.Appraisement();
       appraisement._user = user._id;

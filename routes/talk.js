@@ -19,7 +19,7 @@ var setPageLang = functions_module.setPageLang;
 
 router.post('/', authenticate, setPageLang, function (req, res) {
 	var language = req.body.language || 'en';
-  	return res.render('talk/index.html', {forceType: "desktop", lang: req.session.meta.lang, language: language});
+  	return res.render('talk/index.html', {forceType: "desktop", lang: req.session.meta.lang.code, language: language});
 });
 
 /*

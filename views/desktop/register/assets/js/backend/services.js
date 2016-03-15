@@ -57,7 +57,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
                 $log.error({data: data, status: status});
             });
             
-        $http.get('/api/get/languages')
+        $http.get('/api/get/langs')
             .success(function (result) {
                 params.sources.languages = result.docs;
                 params.body.languages = params.sources.languages;
@@ -65,7 +65,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
             .error(function (data, status) {
                 $log.error({data: data, status: status});
             });
-
+        /*
         $http.get('/api/get/countries')
             .success(function (result) {
                 params.sources.countries = result.docs;
@@ -74,6 +74,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
             .error(function (data, status) {
                 $log.error({data: data, status: status});
             });
+        */
     };
 }]);
 

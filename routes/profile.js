@@ -16,8 +16,8 @@ var error_adapter = functions_module.error_adapter;
 var setPageLang = functions_module.setPageLang;
 // Shared Variables
 
-router.get('/', authenticate, function (req, res) {
-  	return res.render('profile/index.html', {forceType: "desktop", lang: req.session.meta.lang, errors: ""});
+router.get('/', authenticate, setPageLang, function (req, res) {
+  	return res.render('profile/index.html', {forceType: "desktop", lang: req.session.meta.lang.code, errors: ""});
 });
 
 module.exports = router;

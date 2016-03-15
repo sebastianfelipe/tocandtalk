@@ -122,26 +122,58 @@ router.get('/languages', function (req, res) {
 	});
 });
 
-router.get('/lang/:lang/:view', function (req, res) {
-  var langPath = "../../views/langs";
-  // Verificar que lang y view sean válido
-
-  // Supongamos que lang y view son válidos
-  langPath += "/" + req.params.lang;
-  langPath += "/" + req.params.view + '.json';
-  var data = require(langPath);
-  if (data)
+router.get('/langs', function (req, res) {
+  async.parallel({
+      langs: function(callback){
+            setTimeout(function(){
+              models.Lang.find().sort([['name', 1]]).exec(function (err, docs) {
+                  var results = {errors: err, docs: docs}
+                  callback(null, results);
+                });
+            }, 200);
+        }
+  },
+  function (err, results)
   {
-    if (!req.session.meta)
-    {
-      req.session.meta = {};
-    }
-    req.session.meta.lang = req.params.lang;
-  }
-  res.send(data);
+    res.send(results.langs);
+  });
 });
 
+router.get('/lang/:code/:view', function (req, res) {
+  var code = req.params.code;
+  var view = req.params.view;
+  var langPath = "../../views/langs";
+  // Verificar que lang y view sean válidos
 
+  // Supongamos que lang y view son válidos
+  langPath += "/" + code;
+  langPath += "/" + view + '.json';
+
+  async.parallel({
+      lang: function(callback){
+            setTimeout(function(){
+              models.Lang.findOne({code: code}).sort([['name', 1]]).exec(function (err, doc) {
+                  var results = {errors: err, doc: doc}
+                  callback(null, results);
+                });
+            }, 200);
+        }
+  },
+  function (err, results)
+  {
+    var lang = results.lang.doc;
+    if (lang)
+    {
+      if (!req.session.meta)
+      {
+        req.session.meta = {};
+      }
+      req.session.meta.lang = lang;
+    }
+    var data = require(langPath);
+    return res.send(data);
+  });
+});
 
 //---------------------------------------------
 

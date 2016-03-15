@@ -36,7 +36,7 @@ router.get('/', authenticate, function (req, res) {
   {
     var lang = req.session.meta.lang || lang;
   }
-  	 return res.render('settings/index.html', {forceType: "desktop", lang: lang, user: results.user, languages: results.languages, req: req.body, errors: ""});
+  	 return res.render('settings/index.html', {forceType: "desktop", lang: req.session.meta.lang.code, user: results.user, languages: results.languages, req: req.body, errors: ""});
   });});
 
 module.exports = router;
