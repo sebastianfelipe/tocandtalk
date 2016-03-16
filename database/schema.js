@@ -152,6 +152,9 @@ schema.user = mongoose.Schema({
                 type: String,
                 maxlength: 250
     },
+    birthday: {
+        type: Date
+    },
     _appraisement: {
                 type: ObjectId,
                 ref: 'Appraisement',

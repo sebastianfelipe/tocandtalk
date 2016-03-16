@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var router = require('express').Router();
 var async = require('async');
+var dateFormat = require('dateformat');
+
 var db = require('../configuration.js');
 var schema = require('../schema.js');
 var models = require('../models.js');
@@ -82,13 +84,12 @@ router.post('/classic', function (req, res) {
   });
 });
 
-router.get('/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email']}));
+router.get('/facebook', passport.authenticate('facebook'));
 
 router.get('/facebook/callback', setPageLang, passport.authenticate('facebook', { failureRedirect: '/login', scope: ['public_profile']}),
   function(req, res) {
 
     var errors = "";
-
     if (req.user.doc)
     {
         req.user.doc.deepPopulate('_user _user._lang', function (err, doc) {
@@ -109,9 +110,19 @@ router.get('/facebook/callback', setPageLang, passport.authenticate('facebook', 
       var lang = req.session.meta.lang;
       // Object Creation
       var user = new models.User();
-      user.firstName = req.user.profile.name.givenName.trim().toLowerCase();
-      user.lastName = req.user.profile.name.familyName.trim().toLowerCase();
+      user.firstName = req.user.profile.first_name.trim().toLowerCase();
+      user.lastName = req.user.profile.last_name.trim().toLowerCase();
       user._lang = lang._id;
+      if (req.user.profile.gender)
+      {
+        user.sex = (req.user.profile.gender == 'male') ? 1 : 0;
+      }
+
+      if (req.user.profile.birthday)
+      {
+        var birthday = req.user.profile.birthday.split('/');
+        user.birthday =  new Date(dateFormat([birthday[2], birthday[0], birthday[1]].join(' ')));
+      }
 
       var appraisement = new models.Appraisement();
       appraisement._user = user._id;
@@ -183,7 +194,7 @@ router.get('/twitter/callback', setPageLang, passport.authenticate('twitter', { 
   function(req, res) {
 
     var errors = "";
-
+    return res.send(req.user);
     if (req.user.doc)
     {
         req.user.doc.deepPopulate('_user _user._lang', function (err, doc) {
@@ -288,7 +299,7 @@ router.get('/google/callback', setPageLang, passport.authenticate('google', { fa
  function(req, res) {
 
     var errors = "";
-
+    return res.send(req.user);
     if (req.user.doc)
     {
         req.user.doc.deepPopulate('_user _user._lang', function (err, doc) {

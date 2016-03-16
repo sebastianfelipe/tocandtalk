@@ -65,7 +65,8 @@ module.exports = function(passport) {
         clientID            : config.facebook.key,
         clientSecret    : config.facebook.secret,
         callbackURL  : '/api/auth/facebook/callback',
-        profileFields : ['id', 'name'],
+        scope: ['public_profile', 'email', 'user_birthday'],
+        profileFields : ['id', 'name', 'birthday', 'gender', 'about', 'age_range','location', 'locale']
     }, function(accessToken, refreshToken, profile, done) {
         // El campo 'profileFields' nos permite que los campos que almacenamos
         // se llamen igual tanto para si el usuario se autentica por Twitter o
@@ -78,11 +79,11 @@ module.exports = function(passport) {
         .exec(function(err,doc){
             if (doc)
             {    
-                done(null, {errors: errorAdapter(models.Auth.modelName, err), doc: doc, profile: profile});
+                done(null, {errors: errorAdapter(models.Auth.modelName, err), doc: doc, profile: profile._json});
             }
             else
             {
-                done(null, {errors: errorAdapter(models.Auth.modelName, err), doc: doc, profile: profile});
+                done(null, {errors: errorAdapter(models.Auth.modelName, err), doc: doc, profile: profile._json});
             }
         });
         /*User.findOne({facebookId: profile.id}, function(err, user) {
