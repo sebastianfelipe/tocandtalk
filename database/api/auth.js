@@ -194,7 +194,7 @@ router.get('/twitter/callback', setPageLang, passport.authenticate('twitter', { 
   function(req, res) {
 
     var errors = "";
-    return res.send(req.user);
+    //return res.send(req.user);
     if (req.user.doc)
     {
         req.user.doc.deepPopulate('_user _user._lang', function (err, doc) {
@@ -217,16 +217,22 @@ router.get('/twitter/callback', setPageLang, passport.authenticate('twitter', { 
       var lName = req.user.profile.name.split(' ');
       var firstName = "";
       var lastName = "";
+      var description = "";
       firstName = lName[0].trim().toLowerCase();
       if (lName.length > 1)
       {
         lastName = lName.splice(1, lName.length).join(' ').trim().toLowerCase();
+      }
+      if (req.user.profile.description)
+      {
+        description = req.user.profile.description;
       }
 
       var user = new models.User();
       user.firstName = firstName;
       user.lastName = lastName;
       user._lang = lang._id;
+      user.description = description;
 
       var appraisement = new models.Appraisement();
       appraisement._user = user._id;
@@ -299,7 +305,6 @@ router.get('/google/callback', setPageLang, passport.authenticate('google', { fa
  function(req, res) {
 
     var errors = "";
-    return res.send(req.user);
     if (req.user.doc)
     {
         req.user.doc.deepPopulate('_user _user._lang', function (err, doc) {

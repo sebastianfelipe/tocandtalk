@@ -33,6 +33,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         if (params.conn.remoteStream.active)
         {
             $('#remote-video').attr('src', window.URL.createObjectURL(params.conn.remoteStream));
+            console.log('setRemoteVideo');
         }
     };
 
@@ -58,7 +59,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 
     this.setTranscript = function (params)
     {
-        params.body.ranscript = params.sources.transcript;
+        params.body.transcript = params.sources.transcript;
     };
 
     this.setRecTranscript = function (params)
@@ -174,6 +175,7 @@ app.service('sListen', ['$http', '$log', 'sStage', function ($http, $log, sStage
                 params.sources.recTranscript = data.transcript;
                 sStage.setRecTranscript(params);
                 sStage.showRecTranscript(params);
+                console.log(data.transcript.sentence);
             }
         });
         params.conn.data.on('close', function () {
@@ -524,7 +526,7 @@ app.service('sActions', ['$http', '$log', 'sStage', 'sListen', function($http, $
                 {
                     params.conn.data.send(data);
                 }
-
+                console.log(data.transcript.sentence);
                 sStage.showTranscript(refs);
                 //console.log(interim);
                 //console.log(final)

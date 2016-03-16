@@ -149,8 +149,8 @@ schema.user = mongoose.Schema({
         //required: true
         },
     description: {
-                type: String,
-                maxlength: 250
+                type: String
+                //maxlength: 250
     },
     birthday: {
         type: Date
