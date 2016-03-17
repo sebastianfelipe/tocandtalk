@@ -33,6 +33,11 @@ var resize = function ()
             $("#remote-video").height(win_h);
             //$("#remote-video").width('auto');
         }
+
+        if (diff_h > 0)
+        {
+            $("#remote-video").top('auto');
+        }
     }
 
     return;
