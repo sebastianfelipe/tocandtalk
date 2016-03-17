@@ -4,36 +4,53 @@
  *  Retorno: Null.
  */
 
+var expand = function ()
+{
+    var video_w = $("#remote-video").width();
+    var video_h = $("#remote-video").height();
+    var win_w = $(window).width();
+    var win_h = $(window).height();
+
+    if (video_w > video_h)
+    {
+        $("#remote-video").height('auto');
+        $("#remote-video").width("100%");
+    }
+    else
+    {
+        $("#remote-video").width('auto');
+        $("#remote-video").height("100%");
+    }
+}
+
 var resize = function ()
 {
-    //for (var i = 0; i < 2; i++)
-    //{
-        var video_w = $("#remote-video").width();
-        var video_h = $("#remote-video").height();
-        var win_w = $(window).width();
-        var win_h = $(window).height();
-        
-        // Alto del video al reescalar el video al ancho de la ventana
-        var diff_w = win_w - video_w;
-        var diff_h = win_h - video_h;
+    var video_w = $("#remote-video").width();
+    var video_h = $("#remote-video").height();
+    var win_w = $(window).width();
+    var win_h = $(window).height();
+    
+    // Alto del video al reescalar el video al ancho de la ventana
+    var diff_w = win_w - video_w;
+    var diff_h = win_h - video_h;
 
-        if (diff_w < diff_h)
-        {
-            $("#remote-video").height('auto');
-            $("#remote-video").width(win_w);
-            //$("#remote-video").height('auto');
-        }
-        else
-        {
-            $("#remote-video").width('auto');
-            $("#remote-video").height(win_h);
-            //$("#remote-video").width('auto');
-        }
+    if (diff_w < diff_h)
+    {
+        $("#remote-video").height('auto');
+        $("#remote-video").width(win_w);
+        //$("#remote-video").width("100%");
+    }
+    else
+    {
+        $("#remote-video").width('auto');
+        $("#remote-video").height(win_h);
+        //$("#remote-video").height("100%");
+    }
 
-    //}
-
+    expand();
     return;
 }
+
 
 /*
 var resizeVideo = function ()
