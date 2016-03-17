@@ -1,14 +1,15 @@
 #remote-video {
 	z-index: -1;
 
-	position: fixed;
+	/*position: fixed;*/
 	overflow: hidden;
 
+	position: relative;
 	/* width: 100%; */
 	width: auto;
 	height: auto;
 
-	top: 0px;
+	/*top: 0px;*/
 	left: 0px;
 	right: 0px;
 

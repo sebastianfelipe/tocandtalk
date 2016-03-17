@@ -6,17 +6,13 @@
 
 var resize = function ()
 {
-    for (var i = 0; i < 2; i++)
-    {
+    //for (var i = 0; i < 2; i++)
+    //{
         var video_w = $("#remote-video").width();
         var video_h = $("#remote-video").height();
         var win_w = $(window).width();
         var win_h = $(window).height();
         
-        console.log(video_w);
-        console.log(video_h);
-        console.log(win_w);
-        console.log(win_h);
         // Alto del video al reescalar el video al ancho de la ventana
         var diff_w = win_w - video_w;
         var diff_h = win_h - video_h;
@@ -34,11 +30,7 @@ var resize = function ()
             //$("#remote-video").width('auto');
         }
 
-        if (diff_h > 0)
-        {
-            $("#remote-video").top('auto');
-        }
-    }
+    //}
 
     return;
 }
