@@ -18,7 +18,6 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
     {
         //console.log($scope);
         //params.body.languages = params.languages;
-
         this.showErrors(params.errors);
 
     /*

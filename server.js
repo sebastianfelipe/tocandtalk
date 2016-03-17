@@ -28,9 +28,11 @@ var session = require('cookie-session')({
   cookie: { secure: false },
 });
 */
+
 var session = require('express-session')({
   secret: 'expresssecretalk',
   saveUninitialized: true,
+  resave: true,
   key: 'expresssession',
   cookie: { secure: false }
 });
@@ -38,6 +40,8 @@ var session = require('express-session')({
 var sharedsession = require("express-socket.io-session");
 
 // App Configuration
+
+//app.set('trust proxy', 1);
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 app.set('views', path.join(__dirname, 'views'));
@@ -116,10 +120,6 @@ app.use('/api/update', update_routes);
 app.use('/api/verify', verify_routes);
 app.use('/api/delete', delete_routes);
 app.use('/api/task', task_routes);
-
-
-
-
 
 // Extern Uses
 //var api = require('./database/api/api.js');
