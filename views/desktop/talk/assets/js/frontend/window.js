@@ -16,11 +16,13 @@ var expand = function ()
         $("#remote-video").height('auto');
         $("#remote-video").width("100%");
     }
+    /*
     else
     {
         $("#remote-video").width('auto');
         $("#remote-video").height("100%");
     }
+    */
 }
 
 var resize = function ()
