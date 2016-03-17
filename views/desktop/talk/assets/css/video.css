@@ -4,15 +4,20 @@
 	position: fixed;
 	overflow: hidden;
 
-	width: 100%;
+	/* width: 100%; */
+	width: auto;
 	height: auto;
 
 	top: 0px;
 	left: 0px;
 	right: 0px;
+	margin-left: 0 auto;
+	margin-right: 0 auto;
+	margin-top: 0 auto;
+	margin-bottom: 0 auto;
 
-	/* background: rgba(4,4,4,1); */
-    background: rgba(120,120,120,1);
+	background: rgba(4,4,4,1);
+    /* background: rgba(120,120,120,1) */;
 }
 
 #local-video {

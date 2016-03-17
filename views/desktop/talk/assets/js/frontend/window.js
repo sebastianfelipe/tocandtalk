@@ -6,9 +6,39 @@
 
 var resize = function ()
 {
+    //for (var i = 0; i < 2; i++)
+    //{
+        var video_w = $("#remote-video").width();
+        var video_h = $("#remote-video").height();
+        var win_w = $(window).width();
+        var win_h = $(window).height();
+        
+        console.log(video_w);
+        console.log(video_h);
+        console.log(win_w);
+        console.log(win_h);
+        // Alto del video al reescalar el video al ancho de la ventana
+        var diff_w = win_w - video_w;
+        var diff_h = win_h - video_h;
 
+        if (diff_w < diff_h)
+        {
+            $("#remote-video").height('auto');
+            $("#remote-video").width(win_w);
+            //$("#remote-video").height('auto');
+        }
+        else
+        {
+            $("#remote-video").width('auto');
+            $("#remote-video").height(win_h);
+            //$("#remote-video").width('auto');
+        }
+    //}
+
+    return;
 }
 
+/*
 var resizeVideo = function ()
 {
     var video_w = $("#remote-video").width();
@@ -43,6 +73,7 @@ var resizeVideo = function ()
     
     return;
 };
+*/
 
 /* Función resizeWin:
  *  Reescala el contenido de la ventana según su tamaño.
@@ -155,18 +186,22 @@ var resizeWin = function ()
 
 $(document).ready(function ()
 {    
-    resizeVideo();
+    //resizeVideo();
     resizeWin();
+    resize();
     if ( $(window).width() <= 550 || $(window).height() <= 370 ) resizeWin();
 
     $(window).resize(function() {
-        resizeVideo();
+        //resizeVideo();
         resizeWin();
+        //resize();
     });
 
     $('#remote-video').resize(function () {
         console.log('on resize remote video')
-        resizeVideo();
+        //resizeWin();
+        resize();
+        //resizeVideo();
         //resizeWin();
     });
 });
