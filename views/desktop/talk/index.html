@@ -280,7 +280,7 @@
                         <div ng-repeat="message in body.messages" update-chat class="animate-repeat">  
                             <div class="msg_bubble_chat msg_b_chat_{{message.type}}">
                                 <image src="desktop/talk/assets/img/msg-{{message.type}}-arrow.svg" class="msg_b_arrow_{{message.type}}"></image>
-                                {{message.content}}
+                                {{message.content | messageFormat}}
                             </div>
                         </div>
                         
@@ -304,7 +304,7 @@
                     <div id="p_prof_img_cover">
                         <image id="p_prof_img_usr"></image>
                         <br>
-                        {{body.recUser.firstName | capitalize}} {{body.recUser.lastName | capitalize}}
+                        {{body.recUser.firstName | capitalize | userNameFormat}} {{body.recUser.lastName | capitalize | userNameFormat}}
                     </div>
                     
                     <div class="p_prof_card">
@@ -348,7 +348,7 @@
                              display: inline-block;
                              margin-top: 6px;
                              margin-left: 12px;">
-                            <ptd>{{body.recUser.description}}</ptd>
+                            <ptd>{{body.recUser.description | userDescriptionFormat}}</ptd>
                         </div>
                         
                     </div>

@@ -126,31 +126,15 @@ app.controller('media', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sActio
 
     scope.onFullScreenClick = function (command)
     {
-        if (command == 'on')
-        {
-            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement )
-            {
-                $("#b_icon_fullscr").css("display", "none");
-                $("#b_icon_fullscr_exit").css("display", "inline-block");
-                console.log('It will put full');
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement.requestFullscreen();
-                } else if (document.documentElement.msRequestFullscreen) {
-                    document.documentElement.msRequestFullscreen();
-                } else if (document.documentElement.mozRequestFullScreen) {
-                    document.documentElement.mozRequestFullScreen();
-                } else if (document.documentElement.webkitRequestFullscreen) {
-                    document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-                }
-            }
-        }
+        var isFullScreen = window.fullScreen || 
+                 document.mozFullscreenEnabled || 
+                 document.webkitIsFullScreen || 
+                 document.msFullscreenEnabled;
 
-        if (command == 'off')
+        if ( isFullScreen )
         {
             $("#b_icon_fullscr_exit").css("display", "none");
             $("#b_icon_fullscr").css("display", "inline-block");
-            console.log('It will set the small screen');
-            
             if (document.exitFullscreen) {
                 document.exitFullscreen();
             } else if (document.msExitFullscreen) {
@@ -160,7 +144,29 @@ app.controller('media', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sActio
             } else if (document.webkitExitFullscreen) {
                 document.webkitExitFullscreen();
             }
-            
+
+            console.log('it turned off the screen');
         }
+        
+        else if (!document.fullscreenElement &&
+            !document.mozFullScreenElement &&
+            !document.webkitFullscreenElement &&
+            !document.msFullscreenElement )
+        {
+            
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+            console.log('it turned on the screen');
+            $("#b_icon_fullscr").css("display", "none");
+            $("#b_icon_fullscr_exit").css("display", "inline-block");
+        }
+        
     };
 }]);
