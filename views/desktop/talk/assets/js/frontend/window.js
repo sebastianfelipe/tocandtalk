@@ -160,6 +160,5 @@ $(document).ready(function ()
 
     $('#remote-video').resize(function () {
         resizeVideo();
-        resizeWin();
     });
 });
