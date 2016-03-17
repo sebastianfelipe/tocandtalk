@@ -6,8 +6,8 @@
 
 var resize = function ()
 {
-    //for (var i = 0; i < 2; i++)
-    //{
+    for (var i = 0; i < 2; i++)
+    {
         var video_w = $("#remote-video").width();
         var video_h = $("#remote-video").height();
         var win_w = $(window).width();
@@ -33,7 +33,7 @@ var resize = function ()
             $("#remote-video").height(win_h);
             //$("#remote-video").width('auto');
         }
-    //}
+    }
 
     return;
 }
@@ -187,12 +187,13 @@ var resizeWin = function ()
 $(document).ready(function ()
 {    
     //resizeVideo();
-    resizeWin();
     resize();
+    resizeWin();
     if ( $(window).width() <= 550 || $(window).height() <= 370 ) resizeWin();
 
     $(window).resize(function() {
         //resizeVideo();
+        resize();
         resizeWin();
         //resize();
     });
@@ -202,6 +203,6 @@ $(document).ready(function ()
         //resizeWin();
         resize();
         //resizeVideo();
-        //resizeWin();
+        resizeWin();
     });
 });
