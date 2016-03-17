@@ -2,7 +2,13 @@
  *  Reescala el vídeo remoto según el tamaño de la ventana.
  *  Parám.: Nada.
  *  Retorno: Null.
- */   
+ */
+
+var resize = function ()
+{
+
+}
+
 var resizeVideo = function ()
 {
     var video_w = $("#remote-video").width();
@@ -161,6 +167,6 @@ $(document).ready(function ()
     $('#remote-video').resize(function () {
         console.log('on resize remote video')
         resizeVideo();
-        resizeWin();
+        //resizeWin();
     });
 });
