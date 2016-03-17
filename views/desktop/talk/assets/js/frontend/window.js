@@ -47,7 +47,7 @@ var resize = function ()
         //$("#remote-video").height("100%");
     }
 
-    expand();
+    //expand();
     return;
 }
 

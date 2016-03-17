@@ -38,10 +38,11 @@ refs.meta.conn.serverPort = '443';
 refs.meta.conn.secure = true;
 */
 
+/*
 refs.meta.conn.hostName = 'localhost';
 refs.meta.conn.serverPort = '4080';
 refs.meta.conn.secure = false;
-
+*/
 refs.meta.conn.url = (refs.meta.conn.secure ? 'https' : 'http') + '://' + refs.meta.conn.hostName + ':' + refs.meta.conn.serverPort;
 
 //refs.meta.conn.peerKey = '6sdshp5kg3edbo6r';
