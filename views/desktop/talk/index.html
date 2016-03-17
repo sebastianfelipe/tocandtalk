@@ -307,36 +307,39 @@
                         {{body.recUser.firstName | capitalize | userNameFormat}} {{body.recUser.lastName | capitalize | userNameFormat}}
                     </div>
                     
-                    <div class="p_prof_card">
-                        <div style=
-                            "position: absolute;
-                             display: inline-block;
-                             width: 80px;
-                             margin-bottom: 7px;">
-                            <tc>{{body.lang.infoLocationTitle}}</tc>
-                        </div>
-                        <div style=
-                            "position: relative;
-                             display: inline-block;
-                             width: 108px;
-                             margin-bottom: 7px;
-                             margin-left: 80px;">
-                            {{body.recUser.nationality.name | capitalize}}
+                    <div ng-show="body.lang.sex[body.recUser.sex] || body.recUser.nationality.name" class="p_prof_card">
+                        <div ng-show="body.recUser.nationality.name">
+                            <div style=
+                                "position: absolute;
+                                 display: inline-block;
+                                 width: 80px;
+                                 margin-bottom: 7px;">
+                                <tc>{{body.lang.infoLocationTitle}}</tc>
+                            </div>
+                            <div style=
+                                "position: relative;
+                                 display: inline-block;
+                                 width: 108px;
+                                 margin-bottom: 7px;
+                                 margin-left: 80px;">
+                                {{body.recUser.nationality.name | capitalize}}
+                            </div>
                         </div>
                         
-                        <br>
-                        <div style=
-                            "position: absolute;
-                             display: inline-block;
-                             width: 80px;">
-                            <tc>{{body.lang.infoSex}}</tc>
-                        </div>
-                        <div style=
-                            "position: relative;
-                             display: inline-block;
-                             width: 108px;
-                             margin-left: 80px;">
-                            {{body.lang.sex[body.recUser.sex]}}
+                        <div ng-show="body.lang.sex[body.recUser.sex]">
+                            <div style=
+                                "position: absolute;
+                                 display: inline-block;
+                                 width: 80px;">
+                                <tc>{{body.lang.infoSex}}</tc>
+                            </div>
+                            <div style=
+                                "position: relative;
+                                 display: inline-block;
+                                 width: 108px;
+                                 margin-left: 80px;">
+                                {{body.lang.sex[body.recUser.sex]}}
+                            </div>
                         </div>
                         
                     </div>
@@ -352,7 +355,7 @@
                         </div>
                         
                     </div>
-                    <div class="p_prof_card">
+                    <div ng-show="body.recUser.nativeLanguage.name || (body.recUser.spokenLanguages.length > 0)" class="p_prof_card">
                         <tc> {{body.lang.infoSpokenLanguages}} </tc>
                         <br>
                         <div style=
@@ -360,16 +363,15 @@
                              display: inline-block;
                              margin-left: 12px;
                              margin-top: 4px;">
-                            <div style="margin-top:2px; width:100%;">
+                            <div ng-show="body.recUser.nativeLanguage.name" style="margin-top:2px; width:100%;">
                                 {{body.recUser.nativeLanguage.name | capitalize}} (Nativo)
                             </div>
-                            <div style="margin-top:3px; width:100%;" ng-repeat="language in body.recUser.spokenLanguages">
+                            <div ng-show="body.recUser.spokenLanguages.length > 0" style="margin-top:3px; width:100%;" ng-repeat="language in body.recUser.spokenLanguages">
                                 {{language.name | capitalize}}
                             </div>
                         </div>
-                        
                     </div>
-                    <div class="p_prof_card" ng-show="body.recUser.interestLanguages != null">
+                    <div class="p_prof_card" ng-show="body.recUser.interestLanguages > 0">
                         <tc> {{body.lang.infoInterestLanguages}}</tc>
                         <br>
                         
