@@ -148,12 +148,17 @@ var resizeWin = function ()
 };
 
 $(document).ready(function ()
-{
+{    
     resizeVideo();
     resizeWin();
     if ( $(window).width() <= 550 || $(window).height() <= 370 ) resizeWin();
 
     $(window).resize(function() {
+        resizeVideo();
+        resizeWin();
+    });
+
+    $('#remote-video').resize(function () {
         resizeVideo();
         resizeWin();
     });
