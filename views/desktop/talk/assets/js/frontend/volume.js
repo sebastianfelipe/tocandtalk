@@ -8,7 +8,7 @@ var volume_value = 100;
  */
 function set_volume(value) {
     if (value > 100) { value = 100 }
-    else if (value < 0) {value = 1}
+    else if (value < 0) {value = 0}
     
     if (value == 0) {
         // Mute
@@ -80,7 +80,7 @@ $(document).ready(function () {
         // Llamar al slider
         slider.slider({
             range: "min",
-            min: 1,
+            min: 0,
             value: 100,
 
             start: function(event,ui) {

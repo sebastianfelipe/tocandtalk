@@ -82,10 +82,22 @@ app.controller('media', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sActio
             if (refs.conn.localStream.getAudioTracks)
             {
                 refs.conn.localStream.getAudioTracks()[0].enabled = !refs.conn.localStream.getAudioTracks()[0].enabled;
+                if (refs.conn.localStream.getAudioTracks()[0].enabled)
+                {
+                    $("#b_icon_mic_none").css("display", "none");
+                    $("#b_icon_mic_off").css("display", "none");
+                    $("#b_icon_mic").css("display", "inline-block");
+                }
+                else
+                {
+                    $("#b_icon_mic_none").css("display", "none");
+                    $("#b_icon_mic").css("display", "none");
+                    $("#b_icon_mic_off").css("display", "inline-block"); 
+                }
             }
         }
-        sStage.enableMediaButtons();
-        sStage.disableMediaButtons();
+        //sStage.enableMediaButtons();
+        //sStage.disableMediaButtons();
     };
     
     scope.onVideoClick = function () {
@@ -94,9 +106,61 @@ app.controller('media', ['$scope', '$http', '$log', 'sStage', 'sListen', 'sActio
             if (refs.conn.localStream.getVideoTracks)
             {
                 refs.conn.localStream.getVideoTracks()[0].enabled = !refs.conn.localStream.getVideoTracks()[0].enabled;
+                if (refs.conn.localStream.getVideoTracks()[0].enabled)
+                {
+                    $("#b_icon_video_none").css("display", "none");
+                    $("#b_icon_video_off").css("display", "none");
+                    $("#b_icon_video").css("display", "inline-block");
+                }
+                else
+                {
+                    $("#b_icon_video_none").css("display", "none");
+                    $("#b_icon_video").css("display", "none");
+                    $("#b_icon_video_off").css("display", "inline-block"); 
+                }
             }
         }
-        sStage.enableMediaButtons();
-        sStage.disableMediaButtons();
+        //sStage.enableMediaButtons();
+        //sStage.disableMediaButtons();
+    };
+
+    scope.onFullScreenClick = function (command)
+    {
+        if (command == 'on')
+        {
+            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement )
+            {
+                $("#b_icon_fullscr").css("display", "none");
+                $("#b_icon_fullscr_exit").css("display", "inline-block");
+                console.log('It will put full');
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+            }
+        }
+
+        if (command == 'off')
+        {
+            $("#b_icon_fullscr_exit").css("display", "none");
+            $("#b_icon_fullscr").css("display", "inline-block");
+            console.log('It will set the small screen');
+            
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+            
+        }
     };
 }]);

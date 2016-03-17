@@ -81,9 +81,12 @@ $(document).ready(function () {
         }
 	});
     
+    /*
     // Activar pantalla completa
-    $("#b_icon_fullscr").click(function() { 
-        if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {
+    $("#b_icon_fullscr").click(function() {
+        
+        if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement )
+        {
             if (document.documentElement.requestFullscreen) {
                 document.documentElement.requestFullscreen();
             } else if (document.documentElement.msRequestFullscreen) {
@@ -99,7 +102,7 @@ $(document).ready(function () {
 	});
     
     // Salir de pantalla completa  
-    $("#b_icon_fullscr_exit").click(function() { 
+    $("#b_icon_fullscr_exit").click(function() {
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.msExitFullscreen) {
@@ -109,20 +112,22 @@ $(document).ready(function () {
         } else if (document.webkitExitFullscreen) {
             document.webkitExitFullscreen();
         }
+
         $("#b_icon_fullscr_exit").css("display", "none");
         $("#b_icon_fullscr").css("display", "inline-block");
 	});
-    
+    */
     $(window).resize(function() {  
         detect_fullscreen();
     });
     
     // Deshabilitar micrófono
+    /*
     $("#b_icon_mic").click(function() {
         try {    
             //refs.localStream.getAudioTracks()[0].stop();
-            if ( !!refs.localStream.getAudioTracks()[0].enabled ) {
-                refs.localStream.getAudioTracks()[0].enabled = !refs.localStream.getAudioTracks()[0].enabled;
+            if ( refs.localStream.getAudioTracks()[0].enabled ) {
+                //refs.localStream.getAudioTracks()[0].enabled = !refs.localStream.getAudioTracks()[0].enabled;
                 
                 $("#b_icon_mic_none").css("display", "none");
                 $("#b_icon_mic").css("display", "none");
@@ -139,6 +144,7 @@ $(document).ready(function () {
 	});
     
     // Habilitar micrófono
+    
     $("#b_icon_mic_off").click(function() {
         try {
             //disable_buttons_media(true, false);
@@ -192,5 +198,6 @@ $(document).ready(function () {
             //$("#local-video").css("display", "none");
         }
 	});
+    */
     
 });

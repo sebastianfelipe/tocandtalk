@@ -197,20 +197,20 @@
                     <image src="desktop/talk/assets/img/button-volume-off.svg" id="b_icon_vol_off" class="control_icon ic01 icon_volume_off"></image>
                     
                     <!-- Pantalla completa -->
-                    <image src="desktop/talk/assets/img/button-full-screen.svg" id="b_icon_fullscr" class="control_icon ic02 b_icon_click"></image>
-                    <image src="desktop/talk/assets/img/button-full-screen-exit.svg" id="b_icon_fullscr_exit" class="control_icon ic02 b_icon_click"></image>
+                    <image ng-click="media.onFullScreenClick('on')" src="desktop/talk/assets/img/button-full-screen.svg" id="b_icon_fullscr" class="control_icon ic02 b_icon_click"></image>
+                    <image ng-click="media.onFullScreenClick('off')" src="desktop/talk/assets/img/button-full-screen-exit.svg" id="b_icon_fullscr_exit" class="control_icon ic02 b_icon_click"></image>
                     
                     <div id="control_sep"></div>
 
                     <!-- Micrófono -->
                     <image ng-click="media.onMicClick()" src="desktop/talk/assets/img/button-mic.svg" id="b_icon_mic" class="control_icon ic03 b_icon_click"></image>
                     <image ng-click="media.onMicClick()" src="desktop/talk/assets/img/button-mic-off.svg" id="b_icon_mic_off" class="control_icon ic03 b_icon_click"></image>
-                    <image ng-click="media.onMicClick()" src="desktop/talk/assets/img/button-mic-none.svg" id="b_icon_mic_none" class="control_icon ic03"></image>
+                    <image src="desktop/talk/assets/img/button-mic-none.svg" id="b_icon_mic_none" class="control_icon ic03"></image>
                     
                     <!-- Video -->
                     <image ng-click="media.onVideoClick()" src="desktop/talk/assets/img/button-videocam.svg" id="b_icon_video" class="control_icon ic04 b_icon_click"></image>
                     <image ng-click="media.onVideoClick()" src="desktop/talk/assets/img/button-videocam-off.svg" id="b_icon_video_off" class="control_icon ic04 b_icon_click"></image>
-                    <image ng-click="media.onVideoClick()" src="desktop/talk/assets/img/button-videocam-none.svg" id="b_icon_video_none" class="control_icon ic04"></image>
+                    <image src="desktop/talk/assets/img/button-videocam-none.svg" id="b_icon_video_none" class="control_icon ic04"></image>
                 </div>
                 <div id="button_next">
                     <!-- <image src="desktop/talk/assets/img/button_next.svg" id="b_icon_next" class="control_icon"></image> -->
