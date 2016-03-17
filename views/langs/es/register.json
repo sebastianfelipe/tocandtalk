@@ -17,6 +17,8 @@
 	"sCountry": "Seleccione su país",
 	"sNativeLanguage": "Elija su idioma nativo",
 
+	"iSocialAccount" : "Regístrate con tu cuenta social",
+	"iNormalAccount": "O ingresa tus datos aquí",
 	"infoUsernameStandar":"Ingrese un nombre de usuario.",
 	"infoUsernameFormat" : "Ingrese sólo números (0-9) o letras (a-z).",
 	"infoUsernameLength" : "Mínimo 8 caracteres.",
