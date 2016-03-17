@@ -32,11 +32,11 @@ refs.sources.recTranscript.final = false;
 refs.meta.conn = {};
 refs.meta.recognizing = false;
 //refs.meta.conn.serverIp = null;
-/*
+
 refs.meta.conn.hostName = 'https.tocandtalk.com';
 refs.meta.conn.serverPort = '443';
 refs.meta.conn.secure = true;
-*/
+
 
 /*
 refs.meta.conn.hostName = 'localhost';
