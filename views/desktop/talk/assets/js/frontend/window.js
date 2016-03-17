@@ -159,6 +159,7 @@ $(document).ready(function ()
     });
 
     $('#remote-video').resize(function () {
+        resizeWin();
         resizeVideo();
     });
 });
