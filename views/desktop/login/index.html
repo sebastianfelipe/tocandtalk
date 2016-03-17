@@ -103,14 +103,14 @@
     			<t2><div class="str">{{body.lang.loginTitle}}</div></t2>
     		</div>
     		<hr>
-    		<p class="str">Ingresa con tu cuenta social</p>
+    		<p class="str">{{body.lang.iSocialAccount}}</p>
     		<div ng-controller="dSocial">
 				<a ng-click="dSocial.onClick('facebook')" class="btn btn-primary"><span class="fa fa-facebook"></span></a>
 	        	<a ng-click="dSocial.onClick('twitter')" class="btn btn-primary"><span class="fa fa-twitter"></span></a>
 	        	<a ng-click="dSocial.onClick('google')" class="btn btn-danger"><span class="fa fa-google-plus"></span></a>
     		</div>
     		<hr>
-    		<p class="str">O de la forma tradicional</p>
+    		<p class="str">{{body.lang.iNormalAccount}}</p>
     		<form ng-controller="form" id="fLogin" name="fLogin" class="formulario" ng-submit="form.onSubmit()">
     			<div>
 					<!-- Nombre de usuario / email -->
