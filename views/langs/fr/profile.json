@@ -1,8 +1,15 @@
 {
 	"title":      "Toc&Talk! - Mon Profil",
+	"tabHome": "Initial",
+	"tabFriends": "Personnes",
+	"tabProfile": "Mon profil",
 	"sMenuitem1": "Options",
 	"sMenuitem2": "Aider",
 	"sMenuitem3": "Fermer la Session",
+	"msgLocation": "Il n'a pas ajouté d'emplacement",
+	"msgDescription":"Il n'a pas ajouté de description",
+	"msgSpeakLang": "Il n'a pas ajouté de langue parlée",
+	"msgInterestLang":"Il n'a pas ajouté de langue que vous voulez pratiquer",
 	"bEdit" :     "Editer",
 	"bCancel":    "Annuler",
 	"bSave" :     "Garder",
@@ -24,4 +31,5 @@
 	"editSpokenLangTitle": "Editer les langues parlées",
 	"editInterestLangTitle": "Editer les langues que je veux pratiquer",
 	"dNon"				   : "Aucune description"
+
 }

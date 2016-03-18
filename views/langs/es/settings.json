@@ -1,5 +1,8 @@
 {
 	"title":      "Toc&Talk! - Settings",
+	"tabHome": "Inicio",
+	"tabFriends": "Amigos",
+	"tabProfile": "Mi perfil",
 	"sMenuitem1": "Opciones",
 	"sMenuitem2": "Ayuda",
 	"sMenuitem3": "Cerrar sesión",

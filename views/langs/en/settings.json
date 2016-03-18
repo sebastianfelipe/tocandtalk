@@ -1,5 +1,8 @@
 {
 	"title":      "Toc&Talk! - Settings",
+	"tabHome": "Home",
+	"tabFriends": "Friends",
+	"tabProfile": "My profile",
 	"sMenuitem1": "Settings",
 	"sMenuitem2": "Help",
 	"sMenuitem3": "Log Out",

@@ -90,18 +90,18 @@
 					<div id="bar-tab-container">
 						<a href="/" title="">
 							<div id="bar-tab1" class="bar-tab-element bar-tab-element1">
-								<div class="str_tab1 bar-tab-text bar-tab-text1"></div>
+								<div class="{{body.lang.tabHome}} bar-tab-text bar-tab-text1">{{body.lang.tabHome}}</div>
 								<div id="bar-tab-select1" class="bar-tab-select"></div>
 							</div>
 						</a>
 						<a href="/friends" title="">
 							<div id="bar-tab2" class="bar-tab-element bar-tab-element2">
-								<div class="str_tab2 bar-tab-text bar-tab-text2"></div>
+								<div class="{{body.lang.tabFriends}} bar-tab-text bar-tab-text2">{{body.lang.tabFriends}}</div>
 								<div id="bar-tab-select2" class="bar-tab-select"></div>
 							</div>
 						</a>
 						<div id="bar-tab3" class="bar-tab-element bar-tab-element3">
-							<div class="str_tab3 bar-tab-text bar-tab-text3"></div>
+							<div class="{{body.lang.tabProfile}} bar-tab-text bar-tab-text3"> {{body.lang.tabProfile}}</div>
 							<div id="bar-tab-select3" class="bar-tab-select"></div>
 						</div>
 					</div>
@@ -208,7 +208,7 @@
 								<p ng-show="body.user.spokenLanguages.length > 0" ng-repeat="language in body.user.spokenLanguages" value="language.code" >{{language.name | capitalize}}
 								</p>
 								<p ng-hide="body.user.spokenLanguages.length > 0" class="str usr-desc-text str_desc_content">
-									Mensaje3
+									{{body.lang.msgSpeakLang}}
 								</p>
 							</div>
 						</div>
@@ -295,7 +295,7 @@
 							<div class="str" id="str-lang-interest-list">
 								<p ng-repeat="language in body.user.interestLanguages" value="language.code">{{language.name | capitalize}}</p>
 								<p ng-hide="body.user.interestLanguages.length > 0" class="str usr-desc-text str_desc_content">
-									Mensaje4
+									{{body.lang.msgInterestLang}}
 								</p>
 							</div>
 							<!--<div class="str str_lang-list" id="str-lang-interest-list"></div>-->
@@ -398,7 +398,7 @@
 								<div id="usr-loc-section2">
 									<p class="str str_profile_country">{{body.user.nationality.name | capitalize}}</p>
 									<p ng-hide="body.user.nationality.name" class="str usr-desc-text str_desc_content">
-										Mensaje1
+										{{body.lang.msgLocation}}
 									</p>
 								</div>
 
@@ -457,7 +457,7 @@
 								<div id="usr-desc-section2">
 									<div class="str usr-desc-text str_desc_content">{{body.user.description}}</div>
 									<p ng-hide="body.user.description" class="str usr-desc-text str_desc_content">
-										Mensaje2
+										{{body.lang.msgDescription}}
 									</p>
 								</div>
 

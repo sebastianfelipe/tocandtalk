@@ -1,5 +1,8 @@
 {
 	"title": "Toc&Talk! - Home",
+	"tabHome": "Home",
+	"tabFriends": "Friends",
+	"tabProfile": "My profile",
 
 	"welcomeTitle": "¡Welcome to Toc&Talk!",
 	"sMenuitem1": "Settings",
