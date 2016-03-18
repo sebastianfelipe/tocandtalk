@@ -51,10 +51,11 @@ var _ioConnection = function(socket) {
         console.log('IO: on Ask');
         //console.log('The caller Id who has connected');
         //console.log(callerId);
-        if (languages.indexOf(language) == -1)
+        /*if (languages.indexOf(language) == -1)
         {
           language = DEFAULT_LANGUAGE;
         }
+        */
 
         if (callerId)
         {
