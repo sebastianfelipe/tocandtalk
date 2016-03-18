@@ -396,7 +396,7 @@
 								</div>
 
 								<div id="usr-loc-section2">
-									<p class="str str_profile_country">{{body.user.nationality.name | capitalize}}</p>
+									<p ng-show="body.user.nationality.name" class="str str_profile_country">{{body.user.nationality.name | capitalize}}</p>
 									<p ng-hide="body.user.nationality.name" class="str usr-desc-text str_desc_content">
 										Mensaje1
 									</p>
