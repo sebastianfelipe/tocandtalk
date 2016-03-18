@@ -5,7 +5,7 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 	this.setUser = function(params) {
         params.body.user = params.sources.user;
         console.log(params.sources.user.lang);
-        //params.fUpdateUserLang.sUserLang = params.body.user.lang.code || "";
+        params.fUpdateUserLang.sUserLang = params.body.user.lang.code || "";
 	};
 
     this.showErrors = function (errors)

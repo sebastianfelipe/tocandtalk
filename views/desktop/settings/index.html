@@ -309,62 +309,9 @@
 								</form>
 							</div>
 						</div>
-						<br>
-
-						<div id="usr-loc-container">
-							<!--
-								Mostrar Ubicación
-							-->
-							<div id="c-location">
-								<div id="usr-loc-section3">
-									<div id="b-edit-location" class="button-edit">
-										<div class="str str_button-edit">{{body.lang.bEdit}}</div>
-									</div>
-								</div>
-
-								<div id="usr-loc-section2">
-									<div class="str str_profile_country">{{body.user.nationality.name | capitalize}}</div>
-								</div>
-
-								<div id="usr-loc-section1">
-									<div class="str str_loc_title">{{body.lang.locTitle}}</div>:
-								</div>
-							</div>
-
-							<!--
-								Editar Ubicación
-							-->
-							<div id="c-location-edit">
-								<form ng-controller="fUpdateUserNationality" id="form_edit_user_nationality" name="form_edit_user_nationality" ng-submit="fUpdateUserNationality.onSubmit()">
-									<div id="edit-location-sel">
-										<select
-											ng-model="fUpdateUserNationality.sUserNationality"
-											id="s_country"
-											name="s_country"
-											required=""
-											class="input-sel-contry">
-											<option disabled="" selected="" hidden="" value="">{{body.user.nationality.name | capitalize}}</option>
-											<option ng-repeat="country in body.countries" value="{{country.code}}">{{country.name | capitalize}}</option>
-										</select>
-									</div>
-
-									<div class="str str-location-edit-title">{{body.lang.locEditTitle}}</div>:
-
-									<div class="save-cancel-container">
-										<div id="b-cancel-location" class="button-cancel">
-											<div class="str str_button-cancel">{{body.lang.bCancel}}</div>
-										</div>
-										<input type="submit" id="b-save-location" value="{{body.lang.bSave}}" class="button-save str_button-save"></input>
-									</div>
-								</form>
-							</div>
-						</div>
 					</div>
-
 				</div>
-
 			</div>
 		</div>
-
 	</body>
 </html>
