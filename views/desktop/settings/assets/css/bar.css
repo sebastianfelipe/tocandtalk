@@ -6,6 +6,6 @@
 	display: none;
 }
 
-#bar-tab3, #bar-tab3-icon {
-	cursor: default;
+#bar-tab-select3, #bar-tab-select3-icon {
+	display: none;
 }
