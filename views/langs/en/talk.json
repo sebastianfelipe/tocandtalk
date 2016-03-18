@@ -23,6 +23,8 @@
 	"msgWebcam2" :"la cámara desde su navegador Web",
 	"msgWebcam3" :"o si está funcionando correctamente.",
 
+	"infoChat" :"Chat",
+	"infoProfile": "Profile",
 	"infoSpokenLanguages" : "Languages that I talk:",
 	"infoInterestLanguages" : "Languages that interest me:",
 	"infoDescription" : "User description",
