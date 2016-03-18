@@ -79,6 +79,12 @@ schema.language = mongoose.Schema({
         unique: true,
         lowercase: true,
         trim: true
+    },
+    nativename: {
+        type: String,
+        lowercase: true,
+        //unique:true,
+        trim: true
     }
 });
 
