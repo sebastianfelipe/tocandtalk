@@ -1,4 +1,4 @@
-cfile = open('country.json')
+cfile = open('language.json')
 nfile = open('nfile.json', 'w')
 
 for line in cfile:
