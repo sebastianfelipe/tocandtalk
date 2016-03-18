@@ -4,6 +4,7 @@
 app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $http, $log, sStage) {
 	 
 	refs.body = scope = $scope.body = {};
+	refs.meta.lang = lang || refs.meta.lang;
 	
 	scope.user = {};
 	
@@ -28,6 +29,14 @@ app.controller('body', ['$scope', '$http', '$log', 'sStage', function ($scope, $
 	sStage.load(refs);
 }]);
 
+app.controller('fUpdateUserLang', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
+	$scope.fUpdateUserLang = {};
+	scope = $scope.fUpdateUserLang;
+    refs.fUpdateUserLang = scope;
+
+    scope.onSubmit = sActions.onUpdateUserLangSubmit(refs);
+}]);
+
 app.controller('fUpdateUserNationality', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
 	$scope.fUpdateUserNationality = {};
 	scope = $scope.fUpdateUserNationality;
@@ -35,48 +44,3 @@ app.controller('fUpdateUserNationality', ['$scope', '$http', '$log', 'sStage', '
 
     scope.onSubmit = sActions.onUpdateUserNationalitySubmit(refs);
 }]);
-
-app.controller('fUpdateUserDescription', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
-	$scope.fUpdateUserDescription = {};
-	scope = $scope.fUpdateUserDescription;
-    refs.fUpdateUserDescription = scope;
-
-
-    scope.onSubmit = sActions.onUpdateUserDescriptionSubmit(refs);
-}]);
-
-app.controller('fSaveUserSpokenLanguage', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
-	$scope.fSaveUserSpokenLanguage = {};
-	scope = $scope.fSaveUserSpokenLanguage;
-    refs.fSaveUserSpokenLanguage = scope;
-
-
-    scope.onSubmit = sActions.onSaveUserSpokenLanguageSubmit(refs);
-}]);
-
-app.controller('fSaveUserInterestLanguage', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
-	$scope.fSaveUserInterestLanguage = {};
-	scope = $scope.fSaveUserInterestLanguage;
-    refs.fSaveUserInterestLanguage = scope;
-
-
-    scope.onSubmit = sActions.onSaveUserInterestLanguageSubmit(refs);
-}]);
-
-app.controller('dRemoveUserSpokenLanguage', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
-	$scope.dRemoveUserSpokenLanguage = {};
-	scope = $scope.dRemoveUserSpokenLanguage;
-    refs.dRemoveUserSpokenLanguage = scope;
-
-    scope.onClick = sActions.onRemoveUserSpokenLanguageClick(refs);
-}]);
-
-app.controller('dRemoveUserInterestLanguage', ['$scope', '$http', '$log', 'sStage', 'sActions', function ($scope, $http, $log, sStage, sActions) {
-	$scope.dRemoveUserInterestLanguage = {};
-	scope = $scope.dRemoveUserInterestLanguage;
-    refs.dRemoveUserInterestLanguage = scope;
-
-    scope.onClick = sActions.onRemoveUserInterestLanguageClick(refs);
-}]);
-
-

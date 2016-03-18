@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es" ng-app="tocandtalk">
 	<header>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<title>Toc&Talk!</title>
 		<meta name="application-name" content="Toc&Talk!"/>
 
 		<!-- SERVER VARIABLES -->
 		<script>
 			var errors = <%- JSON.stringify(errors) %>;
+			var lang = <%- JSON.stringify(lang) %>;
 		</script>
 
 		<!-- ICONS -->
@@ -24,12 +26,12 @@
 		<link rel="stylesheet" href="desktop/shared/assets/css/fonts.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/assets/css/general.css" type="text/css"/>
 		<link rel="stylesheet" href="desktop/shared/assets/css/bar.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/assets/css/bar.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/assets/css/profile.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/assets/css/user.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/assets/css/inputs.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/assets/css/edit-profile.css" type="text/css"/>
-		<link rel="stylesheet" href="desktop/profile/assets/css/edit.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/settings/assets/css/bar.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/settings/assets/css/profile.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/settings/assets/css/user.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/settings/assets/css/inputs.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/settings/assets/css/edit-profile.css" type="text/css"/>
+		<link rel="stylesheet" href="desktop/settings/assets/css/edit.css" type="text/css"/>
 
     
     	<!-- LIBS -->
@@ -54,22 +56,22 @@
 		<script src="desktop/shared/assets/js/frontend/user-menu-items.js"></script>
 		<script src="desktop/shared/assets/js/frontend/user-menu.js"></script>
 		<script src="desktop/shared/assets/js/frontend/bar-window.js"></script>
-		<script src="desktop/profile/assets/js/frontend/user-image.js"></script>
-		<script src="desktop/profile/assets/js/frontend/window.js"></script>
-		<script src="desktop/profile/assets/js/frontend/classes.js"></script>
-		<script src="desktop/profile/assets/js/frontend/edit-profile.js"></script>
+		<script src="desktop/settings/assets/js/frontend/user-image.js"></script>
+		<script src="desktop/settings/assets/js/frontend/window.js"></script>
+		<script src="desktop/settings/assets/js/frontend/classes.js"></script>
+		<script src="desktop/settings/assets/js/frontend/edit-profile.js"></script>
 		
 		<!--AngularJS -->
 		<!--
 		<script src="desktop/shared/assets/js/backend/load.js"></script>
 		-->
 
-		<script src="desktop/profile/assets/js/backend/references.js" type="text/javascript"></script>
-		<script src="desktop/profile/assets/js/backend/app.js" type="text/javascript"></script>
-		<script src="desktop/profile/assets/js/backend/routes.js" type="text/javascript"></script>
-		<script src="desktop/profile/assets/js/backend/services.js" type="text/javascript"></script>
-		<script src="desktop/profile/assets/js/backend/controllers.js" type="text/javascript"></script>
-		<script src="desktop/profile/assets/js/backend/directives.js" type="text/javascript"></script>
+		<script src="desktop/settings/assets/js/backend/references.js" type="text/javascript"></script>
+		<script src="desktop/settings/assets/js/backend/app.js" type="text/javascript"></script>
+		<script src="desktop/settings/assets/js/backend/routes.js" type="text/javascript"></script>
+		<script src="desktop/settings/assets/js/backend/services.js" type="text/javascript"></script>
+		<script src="desktop/settings/assets/js/backend/controllers.js" type="text/javascript"></script>
+		<script src="desktop/settings/assets/js/backend/directives.js" type="text/javascript"></script>
 		<script src="desktop/home/assets/js/backend/filters.js" type="text/javascript"></script>
 	</header>
 
@@ -172,184 +174,7 @@
 		<!-- Contenido -->
 
 		<div id="profile-content">
-
-			<div id="profile-section2">
-		
-				<!-- Idiomas que hablo -->
-				<div id="card_spoken_lang" class="profile-card" style="overflow: hidden;">
-
-					<!--
-						Lista de idiomas que hablo
-					-->
-					<div id="c-spoken-languages">
-						
-						<div class="lang-title">
-							<div class="str str_lang_spoken_title">{{body.lang.spokenLangTitle}}</div>
-						</div>
-						<br>
-
-						<div class="lang-list">
-							<div ng-show="body.user.nativeLanguage.name">
-								<p class="str str_lang_native">
-									{{body.user.nativeLanguage.name | capitalize}}
-								</p>
-								<p class="str str_lang_native_title">
-									({{body.lang.nativeLangTitle}})
-								</p>
-							</div>
-							<br />
-							<div class="str" id="str_lang_spoken_list">
-								<p ng-repeat="language in body.user.spokenLanguages" value="language.code">{{language.name | capitalize}}</p>
-							</div>
-						</div>
-						<br>
-
-						<div class="lang-edit-button">
-							<div id="b-edit-spoken-lang" class="button-edit">
-								<div class="str str_button-edit_lang">{{body.lang.bEditLang}}</div>
-							</div>
-						</div>
-
-					</div>
-
-					<!--
-						Editar idiomas que hablo
-					-->
-					<div id="c-spoken-languages-edit">
-						<div class="lang-title">
-							<div class="str str_edit_lang_spoken_title">{{body.lang.editSpokenLangTitle}}</div>
-						</div>
-						<br>
-
-						<div class="lang-list">
-							<div class="str" id="str_lang_spoken_list_edit">
-								<!--
-								<p ng-repeat="language in body.user.spokenLanguages" value="language">{{language}}</p>
-							-->
-		            			<div ng-controller="dRemoveUserSpokenLanguage" ng-repeat="language in body.user.spokenLanguages" name="form_remove_spoken_language" class="item-lang">
-		            				<p class="subitem-lang">{{language.name | capitalize}}</p>
-		            				<input class="subitem-lang-button" type="submit" value="{{body.lang.bRemove}}" ng-click="dRemoveUserSpokenLanguage.onClick(language.code)"></input>
-		            			</div>
-							</div>
-						</div>
-
-						<!-- Añadir idioma que hablo -->
-						<div class="add-lang">
-							{{body.lang.locAddLang}}<br>
-							<form ng-controller="fSaveUserSpokenLanguage" id="form_add_user_spoken_language" name="form_add_user_spoken_language" ng-submit="fSaveUserSpokenLanguage.onSubmit()">
-								<select
-									ng-model="fSaveUserSpokenLanguage.sSpokenLanguage"
-									id="s_spoken_languages"
-									style="width:170px;"
-									name="s_spoken_languages"
-									class="s_languages input-sel-contry"
-									required="">
-									<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
-									<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name | capitalize}}</option>
-								</select>
-
-								<input type="submit" value="{{body.lang.bAdd}}" class="button-add-lang">
-							</form>
-						</div>
-						
-						<div class="save-cancel-container lang-buttons">
-							<div id="b-cancel-spoken-lang" class="button-cancel">
-								{{body.lang.bCancel}}
-								<!--<div class="str str_button-cancel"></div>-->
-							</div>
-							<div id="b-save-spoken-lang" class="button-save str_button_ok">{{body.lang.bFinish}}</div>
-						</div>
-
-					</div>
-				</div>
-
-				<!-- Idiomas que me interesan -->
-				<div id="card_interest_lang" class="profile-card" style="overflow: hidden;">
-
-					<!--
-						Lista de idiomas que me interesan
-					-->
-					<div id="c-interest-languages">
-						
-						<div class="lang-title">
-							<div class="str str_lang_interest_title">{{body.lang.interestLangTitle}}</div>
-						</div>
-						<br>
-
-						<div class="lang-list">
-							
-							<div class="lang-empity">
-								<i><div class="str str_lang-list_empity">{{body.lang.listLangEmpity}}</div></i>
-							</div>
-							
-							<div class="str" id="str-lang-interest-list">
-								<p ng-repeat="language in body.user.interestLanguages" value="language.code">{{language.name | capitalize}}</p>
-							</div>
-							<!--<div class="str str_lang-list" id="str-lang-interest-list"></div>-->
-						</div>
-						<br>
-
-						<div class="lang-edit-button">
-							<div id="b-edit-interest-lang" class="button-edit">
-								<div class="str str_button-edit_lang" id="str_button-edit_lang_int">{{body.lang.bEditLang}}</div>
-								<!--<div class="str str_button-add-lang" id="str-button-add-lang-int">kfdshklflsfhkshkldhflks</div>-->
-							</div>
-						</div>
-
-					</div>
-
-					<!--
-						Editar idiomas que me interesan
-					-->
-					<div id="c-interest-languages-edit">
-						<div class="lang-title">
-							<div class="str str_edit_lang_interest_title">{{body.lang.editInterestLangTitle}}</div>
-						</div>
-
-						<div class="lang-list">
-							<div class="str str_lang-list_edit" id="str-lang-interest-list_edit">
-								<!--
-								<p ng-repeat="language in body.user.interestLanguages" value="language">{{language}}</p>
-		            			-->
-		            			<div ng-controller="dRemoveUserInterestLanguage" ng-repeat="language in body.user.interestLanguages" class="item-lang">
-		            				<p class="subitem-lang">{{language.name | capitalize}}</p>
-		            				<input class="subitem-lang-button" type="submit" value="{{body.lang.bRemove}}" ng-click="dRemoveUserInterestLanguage.onClick(language.code)"></input>
-		            			</div>
-							</div>
-						</div>
-
-						<!-- Añadir idioma que me interesa -->
-						<div class="add-lang">
-							{{body.lang.locAddLang}}<br>
-							<form ng-controller="fSaveUserInterestLanguage" id="form_add_user_interest_language" name="form_add_user_interest_language" ng-submit="fSaveUserInterestLanguage.onSubmit()">
-								<select
-									ng-model="fSaveUserInterestLanguage.sInterestLanguage"
-									id="s_interest_languages"
-									style="width:170px;"
-									name="s_interest_languages"
-									class="s_languages input-sel-contry"
-									required="">
-									<option value="" disabled="" selected="" hidden="">{{body.lang.sLanguage}}</option>
-									<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name | capitalize}}</option>
-								</select>	
-
-								<input type="submit" value="{{body.lang.bAdd}}" class="button-add-lang">
-							</form>
-						</div>
-
-						<div class="save-cancel-container lang-buttons">
-							<div id="b-cancel-interest-lang" class="button-cancel">
-								{{body.lang.bCancel}}
-								<!--<div class="str str_button-cancel"></div>-->
-							</div>
-							<div id="b-save-interest-lang" class="button-save str_button_ok">{{body.lang.bFinish}}</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<div id="profile-section1">
-
 				<!-- Perfil -->
 				<div class="profile-card" style="padding-bottom: 20px;">
 
@@ -367,11 +192,126 @@
 						</div>
 					</div>
 					<br>
-
 					<div id="usr-content">
+						<!--
+						<div id="usr-birthday-container">
+							
+							<div class="lang-title">
+								<div class="str str_edit_lang_spoken_title">{{body.lang.birthdayTitle}}</div>
+							</div>
+							<br>
+							<div id="section-birthday">
+								<input
+									ng-model="form.iDay"
+									id="iDay"
+									name="iDay"
+									type="number"
+									placeholder="{{body.lang.iDayPH}}"
+									
+									autocomplete="off"
+									min="1"
+									max="31"
+									required=""
+
+									class="inputTxt inputFechaDia"
+									oninvalid="invalidInput()">
+
+								<select
+									ng-model="form.sMonth"
+									id="sMonth"
+									class="inputSel inputFechaMes"
+									name="sMonth"
+									required="">
+									<option value="" disabled="" selected="" hidden="">Mes</option>
+									<option ng-repeat="month in body.lang.months" value="{{month}}">{{month | capitalize}}</option>
+								</select>
+
+								<input
+									ng-model="form.iYear"
+									id="iYear"
+									name="iYear"
+									type="number"
+									placeholder="{{body.lang.iYearPH}}"
+									
+									autocomplete="off"
+									min="1920"
+									max="2001"
+									required=""
+
+									class="inputTxt inputFechaAnno"
+									oninvalid="invalidInput()">
+							</div>
+						</div>
+						-->
+						<!--
+						<div class="lang-title">
+							<div class="str str_edit_lang_spoken_title">{{body.lang.genderTitle}}</div>
+						</div>
+						<br>
+						<div id="usr-gender-container">
+							<div id="section-gender">
+								<input ng-model="form.rSex" type="radio" name="rSex" value="1">
+									<label for="male"><span><span></span></span>
+										<t2><div class="str">{{body.lang.sexMale}}</div></t2>
+									</label>
+								<input ng-model="form.rSex" type="radio" name="rSex" value="0" required>
+									<label for="female"><span><span></span></span>
+										<t2><div class="str">{{body.lang.sexFemale}}</div></t2>
+									</label>
+							</div>
+						</div>
+						-->
+						<div id="usr-loc-container">
+							<!--
+								Show Platform Language
+							-->
+							<div id="c-location">
+								<div id="usr-loc-section3">
+									<div id="b-edit-location" class="button-edit">
+										<div class="str str_button-edit">{{body.lang.bEdit}}</div>
+									</div>
+								</div>
+
+								<div id="usr-loc-section2">
+									<div class="str str_profile_country">{{body.user.lang.name | capitalize}}</div>
+								</div>
+
+								<div id="usr-loc-section1">
+									<div class="str str_loc_title">{{body.lang.langTitle}}</div>
+								</div>
+							</div>
+
+							<!--
+								Edit Platform Language
+							-->
+							<div id="c-location-edit">
+								<form ng-controller="fUpdateUserLang" id="form_edit_user_lang" name="form_edit_user_lang" ng-submit="fUpdateUserLang.onSubmit()">
+									<div id="edit-location-sel">
+										<select
+											ng-model="fUpdateUserLang.sUserLang"
+											id="s_lang"
+											name="s_lang"
+											required=""
+											class="input-sel-contry">
+											<option disabled="" selected="" hidden="" value="">{{body.user.lang.name | capitalize}}</option>
+											<option ng-repeat="lang in body.langs" value="{{lang.code}}">{{lang.name | capitalize}}</option>
+										</select>
+									</div>
+
+									<div class="str str-location-edit-title">{{body.lang.langEditTitle}}</div>:
+
+									<div class="save-cancel-container">
+										<div id="b-cancel-location" class="button-cancel">
+											<div class="str str_button-cancel">{{body.lang.bCancel}}</div>
+										</div>
+										<input type="submit" id="b-save-location" value="{{body.lang.bSave}}" class="button-save str_button-save"></input>
+									</div>
+								</form>
+							</div>
+						</div>
+						<br>
 
 						<div id="usr-loc-container">
-
 							<!--
 								Mostrar Ubicación
 							-->
@@ -415,50 +355,6 @@
 											<div class="str str_button-cancel">{{body.lang.bCancel}}</div>
 										</div>
 										<input type="submit" id="b-save-location" value="{{body.lang.bSave}}" class="button-save str_button-save"></input>
-									</div>
-								</form>
-							</div>
-						</div>
-						<br>
-
-						<div id="usr-desc-container">
-
-							<!--
-								Mostrar Descripción
-							-->
-							<div id="c-description">
-								
-								<div id="usr-desc-section3">
-									<div id="b-edit-description" class="button-edit">
-										<div class="str str_button-edit">{{body.lang.bEdit}}</div>
-									</div>
-								</div>
-
-								<div id="usr-desc-section1">
-									<div class="str str_desc_title">{{body.lang.descTitle}}</div>:
-								</div>
-
-								<div id="usr-desc-section2">
-									<div class="str usr-desc-text str_desc_content">{{body.user.description}}</div>
-									<i><div class="str str_desc-no" id="desc-no"></div></i> 
-								</div>
-
-							</div>
-
-							<!--
-								Editar Descripción
-							-->
-							<div id="c-description-edit">
-								<div class="str str_desc_edit_title">{{body.lang.descEditTitle}}</div>:
-
-								<form ng-controller="fUpdateUserDescription" id="form_edit_user_description" name="form_edit_user_description" ng-submit="fUpdateUserDescription.onSubmit()">
-									<textarea ng-model="body.user.description" width="430" id="input_edit_desc" name="input_edit_desc" class="input-desc"></textarea>
-
-									<div class="save-cancel-container">
-										<div id="b-cancel-description" class="button-cancel">
-											<div class="str str_button-cancel">{{body.lang.bCancel}}</div>
-										</div>
-										<input type="submit" id="b-save-description" value="{{body.lang.bSave}}" class="button-save str_button-save"></input>
 									</div>
 								</form>
 							</div>

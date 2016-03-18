@@ -1,5 +1,4 @@
-var express = require('express');
-var router = express.Router();
+var router = require('express').Router();
 var async = require('async');
 
 var db = require('../database/configuration.js');
@@ -11,32 +10,14 @@ var models = require('../database/models.js');
 var authenticate_module = require('../modules/authenticate.js');
 var functions_module = require('../modules/functions.js');
 
+// Functions
 var authenticate = authenticate_module.authenticate;
+var error_adapter = functions_module.error_adapter;
+var setPageLang = functions_module.setPageLang;
+// Shared Variables
 
-router.get('/', authenticate, function (req, res) {
-  async.parallel({
-      languages: function(callback){
-          setTimeout(function(){
-              models.Language.find().sort([['name', 1]]).exec(function (err, docs) {
-                callback(err, docs);
-              })
-          }, 200);
-      },
-      user: function(callback) {
-          setTimeout(function(){
-              models.User.findOne({_username: req.session.username}, {password: 0}).exec(function (err, doc) {
-                callback(err, doc);
-              })
-          }, 200);
-      }
-  },
-  function(err, results) {
-  var lang = "es";
-  if (req.session.meta)
-  {
-    var lang = req.session.meta.lang || lang;
-  }
-  	 return res.render('settings/index.html', {forceType: "desktop", lang: req.session.meta.lang.code, user: results.user, languages: results.languages, req: req.body, errors: ""});
-  });});
+router.get('/', authenticate, setPageLang, function (req, res) {
+    return res.render('settings/index.html', {forceType: "desktop", lang: req.session.meta.lang.code, errors: ""});
+});
 
 module.exports = router;

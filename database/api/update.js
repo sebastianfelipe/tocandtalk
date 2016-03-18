@@ -66,6 +66,54 @@ router.post('/user/nationality', authenticate, function (req, res) {
   });
 });
 
+router.post('/user/lang', authenticate, function (req, res) {
+	var id = req.session.user._id;
+	var code = req.body.code;
+
+	  async.parallel({
+	      user: function(callback) {
+	          setTimeout(function(){
+	              models.User
+	              .findOne({_id: id})
+	              .deepPopulate('_nationality')
+	              .exec(function (err, doc) {
+	                callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: doc});
+
+	              })
+	          }, 200)
+	      },
+	      lang: function(callback) {
+          setTimeout(function(){
+              models.Lang.findOne({code: code}).exec(function (err, doc) {
+                callback(null, {errors: errorAdapter(models.Lang.modelName, err), doc: doc});
+              })
+          }, 200);
+      },
+  },
+  function(err, results) {
+  	var user = results.user.doc;
+  	var lang = results.lang.doc;
+	var errors = "";
+	errors += results.user.errors;
+	errors += results.lang.errors;
+  	if (user && lang)
+  	{
+		user._lang = lang._id;
+		
+		user.save(function (err) {
+			if (err) { errors +='eDBUpdate' }
+			return res.send({errors: errors, doc: lang});
+		});
+		
+	}
+	else
+	{
+		errors += 'eDBNotFound';
+		return res.send({errors: errors, doc: null});
+	}
+  });
+});
+
 //localhost:4080/api/update/user/description/:username/:description
 //localhost:4080/api/update/user/description/pedrito/Meencantan
 //localhost:4080/api/update/user/description/pedrito/kjdhsakdhkajkhdjkakjdhjkakjha

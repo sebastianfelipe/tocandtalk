@@ -58,7 +58,7 @@ router.get('/user', authenticate, function (req, res) {
             setTimeout(function(){
                 models.User
                 .findOne({"_id": id})
-                .deepPopulate('_nationality _nativeLanguage _auth spokenLanguages interestLanguages')
+                .deepPopulate('_nationality _nativeLanguage _auth spokenLanguages interestLanguages _lang')
                 .exec(function (err, doc) {
                   callback(null, {errors: errorAdapter(models.Username.modelName, err), doc: doc});
 
@@ -80,6 +80,7 @@ router.get('/user', authenticate, function (req, res) {
     user.nativeLanguage = results.user.doc._nativeLanguage;
     user.nationality = results.user.doc._nationality;
     user.fullName = user.firstName + " " + user.lastName;
+    user.lang = results.user.doc._lang;
 
     user.spokenLanguages = results.user.doc.spokenLanguages;
     user.interestLanguages = results.user.doc.interestLanguages;

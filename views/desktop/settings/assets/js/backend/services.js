@@ -4,17 +4,8 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 	var service = this;
 	this.setUser = function(params) {
         params.body.user = params.sources.user;
-        /*
-        params.body.user.firstName =capitalize(params.sources.user.first_name);
-        params.body.user.lastName = capitalize(params.sources.user.last_name);
-        params.body.user.fullName = params.body.user.firstName + " " + params.body.user.lastName;
-        params.body.user.nationality = params.sources.user.nationality;
-        params.body.user.username = params.sources.user._username;  
-        params.body.user.nativeLanguage = params.sources.user.native_language;
-        params.body.user.interestLanguages = params.sources.user.interest_languages;
-       	params.body.user.spokenLanguages = params.sources.user.spoken_languages;
-       	params.body.user.description = params.sources.user.description;
-        */
+        console.log(params.sources.user.lang);
+        //params.fUpdateUserLang.sUserLang = params.body.user.lang.code || "";
 	};
 
     this.showErrors = function (errors)
@@ -40,6 +31,20 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
         this.clear(params);
 	    this.setUser(params);
         this.showErrors(params.errors);
+    };
+
+    this.getLang = function (params)
+    {
+        console.log(params.meta.lang);
+        console.log('/api/get/lang/'+params.meta.lang+'/'+params.meta.view);
+        $http.get('/api/get/lang/'+params.meta.lang+'/'+params.meta.view)
+            .success(function (result) {
+                params.body.lang = result;
+                document.title = params.body.lang.title;
+            })
+            .error(function (data, status) {
+                $log.error({data: data, status: status});
+            });
     };
 
 	this.getSources = function (params)
@@ -80,13 +85,43 @@ app.service('sStage', ['$http', '$log', function($http, $log) {
 	            .error(function (data, status) {
 	                $log.error({data: data, status: status});
 	            });
+
+            $http.get('/api/get/langs')
+                .success(function (result) {
+                    console.log(result);
+                    params.sources.languages = result.docs;
+                    params.body.langs = params.sources.languages;
+                })
+                .error(function (data, status) {
+                    $log.error({data: data, status: status});
+                });
     		
     };
 }]);
 
 app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage) {
 	var service = this;
-	
+
+    this.onUpdateUserLangSubmit = function (params) {
+        return function () {
+            var data = {
+                         code: params.fUpdateUserLang.sUserLang,
+                       };
+            
+            $http.post('/api/update/user/lang', data)
+                .success(function (result) {
+                    params.errors = result.errors;
+                    params.sources.user.lang = result.doc;
+                    refs.meta.lang = params.sources.user.lang.code;
+                    sStage.reload(params);
+                    sStage.getLang(params);
+                })
+                .error(function (data, status) {
+                    $log.error({data: data, status: status});
+            });
+        };
+    };
+
 	this.onUpdateUserNationalitySubmit = function (params) {
         return function () {
             var data = {
@@ -104,117 +139,6 @@ app.service('sActions', ['$http', '$log', 'sStage', function($http, $log, sStage
                     $log.error({data: data, status: status});
             });
             
-        };
-	};
-
-	this.onUpdateUserDescriptionSubmit = function (params) {
-        return function () {
-            var data = {
-                         description: params.body.user.description,
-                       };
-            
-            $http.post('/api/update/user/description', data)
-                .success(function (result) {
-                    params.errors = result.errors;
-                    params.sources.user.description = result.doc;
-                    sStage.reload(params);
-                })
-                .error(function (data, status) {
-                    $log.error({data: data, status: status});
-            });
-			
-        };
-	};
-
-	this.onSaveUserSpokenLanguageSubmit = function (params) {
-        return function () {
-            var data = {
-                         code: params.fSaveUserSpokenLanguage.sSpokenLanguage,
-                       };
-            
-            $http.post('/api/save/user/spokenLanguage', data)
-                .success(function (result) {
-                    console.log(result);
-                    params.errors = result.errors;
-                    if (!result.errors)
-                    {
-                        params.sources.user.spokenLanguages = result.doc;
-                    }
-                    sStage.reload(params);
-                })
-                .error(function (data, status) {
-                    $log.error({data: data, status: status});
-            });
-        };
-	};
-
-	this.onSaveUserInterestLanguageSubmit = function (params) {
-        return function () {
-            var data = {
-                         code: params.fSaveUserInterestLanguage.sInterestLanguage,
-                       };
-
-            console.log(data);
-            
-            $http.post('/api/save/user/interestLanguage', data)
-                .success(function (result) {
-                    console.log(result);
-                    params.errors = result.errors;
-                    if (!result.errors)
-                    {
-                        params.sources.user.interestLanguages = result.doc;
-                    }
-                    sStage.reload(params);
-                })
-                .error(function (data, status) {
-                    $log.error({data: data, status: status});
-            });
-        };
-	};
-
-	this.onRemoveUserSpokenLanguageClick = function (params) {
-        return function (id) {
-            var data = {
-                         code: id,
-                       };
-            console.log(data);
-            
-            $http.post('/api/delete/user/spokenLanguage', data)
-                .success(function (result) {
-                    console.log(result);
-                    params.errors = result.errors;
-                    if (!result.errors)
-                    {
-                        params.sources.user.spokenLanguages = result.doc;
-                    }
-                    sStage.reload(params);
-                })
-                .error(function (data, status) {
-                    $log.error({data: data, status: status});
-            });
-        };
-	};
-
-	this.onRemoveUserInterestLanguageClick = function (params) {
-        return function (id) {
-            var data = {
-                         code: id,
-                       };
-            console.log(data);
-            
-            $http.post('/api/delete/user/interestLanguage', data)
-                .success(function (result) {
-                    console.log(result);
-                    params.errors = result.errors;
-                    if (!result.errors)
-                    {
-                        params.sources.user.interestLanguages = result.doc;
-                    }
-                    sStage.reload(params);
-                })
-                .error(function (data, status) {
-                    $log.error({data: data, status: status});
-            });
         };
 	};
 }]);

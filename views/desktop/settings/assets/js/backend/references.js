@@ -5,7 +5,8 @@ var refs = {
 }
 refs.meta = {}; 
 refs.meta.lang = "es";
-refs.meta.view = "profile";
+refs.meta.view = "settings";
 refs.body = {};
+refs.body.langs = {};
 refs.errors = "";
 refs.sources = {};
