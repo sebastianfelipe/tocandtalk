@@ -2,7 +2,7 @@
     Tamaño máximo: 1066px
     */
 $(document).ready(function() {
-
+    
 	function resizeContent() {
         var win_width = $(window).width();
 
@@ -25,6 +25,5 @@ $(document).ready(function() {
     }
     
     resizeContent();
-    $(window).resize(function() { resizeContent() });
-        
+    $(window).resize(function() { resizeContent() });        
 });

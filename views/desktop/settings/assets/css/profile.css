@@ -29,6 +29,8 @@
 
 #profile-section1 {
 	position: relative;
+	left: 50%;
+  	transform: translateX(-50%);
 }
 
 #profile-section2 {
