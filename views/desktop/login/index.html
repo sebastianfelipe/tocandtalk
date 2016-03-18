@@ -90,7 +90,7 @@
 					</a>
 					
 					<select ng-controller="fChangeLang" class="button-bar" ng-model="fChangeLang.sLang" ng-change="fChangeLang.onClick(fChangeLang.lang)">
-						<option value="" disabled="" selected="" hidden="">Language</option>
+						<option value="" disabled="" selected="" hidden="">{{body.lang.bLanguagepage}}</option>
 						<option ng-repeat="language in body.languages" value="{{language.code}}">{{language.name | capitalize}}</option>
 					</select>				
      			</div>
