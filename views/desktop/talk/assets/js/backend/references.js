@@ -33,16 +33,20 @@ refs.meta.conn = {};
 refs.meta.recognizing = false;
 //refs.meta.conn.serverIp = null;
 
-/*
 refs.meta.conn.hostName = 'https.tocandtalk.com';
 refs.meta.conn.serverPort = '443';
 refs.meta.conn.secure = true;
+
+/*
+refs.meta.conn.hostName = 'localhost';
+refs.meta.conn.serverPort = '4443';
+refs.meta.conn.secure = true;
 */
-
-
+/*
 refs.meta.conn.hostName = 'localhost';
 refs.meta.conn.serverPort = '4080';
 refs.meta.conn.secure = false;
+*/
 
 refs.meta.conn.url = (refs.meta.conn.secure ? 'https' : 'http') + '://' + refs.meta.conn.hostName + ':' + refs.meta.conn.serverPort;
 

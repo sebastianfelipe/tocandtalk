@@ -1,11 +1,13 @@
 var ip = require('ip');
 var express = require('express');
 var app = express();
-var fs = require('fs');
+//var fs = require('fs');
 var http = require('http');
 var https = require('https');
+//var tls = require('tls');
 var io = require('socket.io');
 var ExpressPeerServer = require('peer').ExpressPeerServer;
+//var crypto = require('crypto');
 
 // Module Imports
 var search_module = require('./modules/search.js');
@@ -152,6 +154,10 @@ var ports = global_module.ports;
 
 // Server Configuration
 /*
+var privateKey = fs.readFileSync('./vm/certs/server.key').toString();
+var certificate = fs.readFileSync('./vm/certs/server.crt').toString();
+*/
+/*
 var credentials = {
                   key: privateKey,
                   cert: certificate,
@@ -166,6 +172,7 @@ var credentials = {
                   cert: certificate
                   };
 */
+//var credentials = tls.createSecureContext({key: privateKey, cert: certificate});
 // Servers
 var servers = {'http': {
                         'web':               http.createServer(app),
@@ -173,9 +180,9 @@ var servers = {'http': {
                         'peer':              http.createServer(app)
                      },
               'https': {
-                        'web':        null,//https.createServer(credentials, app),
+                        'web':        null,//http.createServer(credentials, app),
                         'io':         new io(),
-                        'peer':       null
+                        'peer':       http.createServer(app)
                       }
               };
 
@@ -196,3 +203,48 @@ servers.http.peer = ExpressPeerServer(servers.http.web, {debug: false});
 app.use('/', servers.http.peer);
 servers.http.peer.on('connection', _peerConnection);
 servers.http.peer.on('disconnect', _peerDisconnect);
+
+
+// HTTPS Servers
+
+//var server = http.createServer();
+//server.setSecure(credentials);
+//servers.http.web.addListener("request", handler);
+/*
+servers.http.web.listen(ports.http.web, function(){
+    console.log('HTTP: WebServer running on ' +
+                ip.address() + ':' + ports.http.web);
+});
+
+servers.http.io.listen(servers.http.web);
+servers.http.io.use(sharedsession(session, {
+    autoSave:true
+})); 
+servers.http.io.on('connection',_ioConnection);
+
+servers.http.peer = ExpressPeerServer(servers.http.web, {debug: false});
+app.use('/', servers.http.peer);
+servers.http.peer.on('connection', _peerConnection);
+servers.http.peer.on('disconnect', _peerDisconnect);
+*/
+/*
+servers.https.web.listen(ports.https.web, function(){
+    console.log('HTTPS: WebServer running on ' +
+                ip.address() + ':' + ports.https.web);
+});
+
+
+servers.https.io.listen(servers.https.web);
+servers.https.io.use(sharedsession(session, {
+    autoSave:true
+})); 
+
+servers.https.io.on('connection',_ioConnection);
+
+servers.https.peer = ExpressPeerServer(servers.https.web, {debug: false});
+
+app.use('/', servers.https.peer);
+
+servers.https.peer.on('connection', _peerConnection);
+servers.https.peer.on('disconnect', _peerDisconnect);
+*/
