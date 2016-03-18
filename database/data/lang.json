@@ -1,4 +1,6 @@
 [ 
+{"name": "francés", "code": "fr"}, 
+{"name": "portugués (beta)", "code": "pt"},
 {"name": "english", "code": "en"}, 
 {"name": "español", "code": "es"}
 ]
