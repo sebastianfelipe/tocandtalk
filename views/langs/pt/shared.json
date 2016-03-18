@@ -1,9 +1,9 @@
 {
-	"userNameExample": "Mi Nombre",
-	"tabHome": "Inicio",
+	"userNameExample": "Meu Nome",
+	"tabHome": "Início",
 	"tabFriends": "Amigos",
-	"tabProfile": "Mi perfil",
-	"menuOptions" : "Opciones",
-	"menuHelp" : "Ayuda",
-	"menuLogOut" : "Cerrar Sesion"
+	"tabProfile": "Meu perfil",
+	"menuOptions" : "Opções",
+	"menuHelp" : "Ajuda",
+	"menuLogOut" : "Fechar Sessão"
 }
