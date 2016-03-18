@@ -1,5 +1,8 @@
 {
 	"title": "Toc&Talk! - Amigos",
+	"sMenuitem1": "Opciones",
+	"sMenuitem2": "Ayuda",
+	"sMenuitem3": "Cerrar sesión",
 	"welcomeTitle": "¡Bienvenido a Toc&Talk!",
 	"welcomeDescription": "Pulse en comenzar para empezar a practicar un idioma.",
 	"selectLangTitle": "Idioma a practicar",

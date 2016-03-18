@@ -1,5 +1,8 @@
 {
 	"title":      "Toc&Talk! - Mi Perfil",
+	"sMenuitem1": "Opciones",
+	"sMenuitem2": "Ayuda",
+	"sMenuitem3": "Cerrar sesión",
 	"bEdit" :     "Editar",
 	"bCancel":    "Cancelar",
 	"bSave" :     "Guardar",

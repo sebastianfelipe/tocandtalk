@@ -1,6 +1,10 @@
 {
 	"title": "Toc&Talk! - Home",
+
 	"welcomeTitle": "¡Welcome to Toc&Talk!",
+	"sMenuitem1": "Settings",
+	"sMenuitem2": "Help",
+	"sMenuitem3": "Log Out",
 	"welcomeDescription": "Press start for begin practicing a language.",
 	"selectLangTitle": "Language to practice",
 	"sLanguage": "Choose a language",

@@ -1,5 +1,8 @@
 {
 	"title":      "Toc&Talk! - My profile",
+	"sMenuitem1": "Options",
+	"sMenuitem2": "Help",
+	"sMenuitem3": "Log out",
 	"bEdit" :     "Edit",
 	"bCancel":    "Cancel",
 	"bSave" :     "Save",
@@ -14,11 +17,11 @@
 	"locEditTitle": "Choose a country",
 	"descTitle":     "Description ",
 	"descEditTitle": "Edit description",
-	"spokenLangTitle":"Languages that I talk",
+	"spokenLangTitle":"Languages that I speak",
 	"interestLangTitle" :"Languages that I want to practice",
 	"nativeLangTitle": "Native",
 	"listLangEmpity" : "Not added any language.",
-	"editSpokenLangTitle": "Edit languages that I talk",
-	"editInterestLangTitle": "Edit languages that I want to talk",
+	"editSpokenLangTitle": "Edit languages that I speak",
+	"editInterestLangTitle": "Edit languages that I want to speak",
 	"dNon"				   : "There's any description to show"
 }
