@@ -192,6 +192,7 @@
 						<br>
 
 						<div class="lang-list">
+							<!--
 							<div ng-show="body.user.nativeLanguage.name">
 								<p class="str str_lang_native">
 									{{body.user.nativeLanguage.name | capitalize}}
@@ -201,8 +202,14 @@
 								</p>
 							</div>
 							<br />
+							-->
 							<div class="str" id="str_lang_spoken_list">
-								<p ng-repeat="language in body.user.spokenLanguages" value="language.code">{{language.name | capitalize}}</p>
+
+								<p ng-show="body.user.spokenLanguages.length > 0" ng-repeat="language in body.user.spokenLanguages" value="language.code" >{{language.name | capitalize}}
+								</p>
+								<p ng-hide="body.user.spokenLanguages.length > 0" class="str usr-desc-text str_desc_content">
+									Mensaje3
+								</p>
 							</div>
 						</div>
 						<br>
@@ -287,6 +294,9 @@
 							
 							<div class="str" id="str-lang-interest-list">
 								<p ng-repeat="language in body.user.interestLanguages" value="language.code">{{language.name | capitalize}}</p>
+								<p ng-hide="body.user.interestLanguages.length > 0" class="str usr-desc-text str_desc_content">
+									Mensaje4
+								</p>
 							</div>
 							<!--<div class="str str_lang-list" id="str-lang-interest-list"></div>-->
 						</div>
@@ -386,7 +396,10 @@
 								</div>
 
 								<div id="usr-loc-section2">
-									<div class="str str_profile_country">{{body.user.nationality.name | capitalize}}</div>
+									<p class="str str_profile_country">{{body.user.nationality.name | capitalize}}</p>
+									<p ng-hide="body.user.nationality.name" class="str usr-desc-text str_desc_content">
+										Mensaje1
+									</p>
 								</div>
 
 								<div id="usr-loc-section1">
@@ -443,7 +456,9 @@
 
 								<div id="usr-desc-section2">
 									<div class="str usr-desc-text str_desc_content">{{body.user.description}}</div>
-									<i><div class="str str_desc-no" id="desc-no"></div></i> 
+									<p ng-hide="body.user.description" class="str usr-desc-text str_desc_content">
+										Mensaje2
+									</p>
 								</div>
 
 							</div>
