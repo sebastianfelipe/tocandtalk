@@ -1,8 +1,12 @@
 {
-	"title": "Toc&Talk! - Amigos",
-	"welcomeTitle": "¡Bienvenido a Toc&Talk!",
-	"welcomeDescription": "Pulse en comenzar para empezar a practicar un idioma.",
-	"selectLangTitle": "Idioma a practicar",
-	"sLanguage": "Selecciona un idioma",
-	"start": "¡Comenzar!"
+	"title": "Toc&Talk! - Accueil",
+	"sMenuitem1": "Options",
+	"sMenuitem2": "Aider",
+	"sMenuitem3": "Fermer la Session",
+	"welcomeTitle": "¡Bienvenue à Toc&Talk!",
+	"welcomeDescription": "Clique sur commencer pour apprendre une langue.",
+	"selectLangTitle": "Langue à pratiquer",
+	"sLanguage": "Selectionne une langue",
+	"start": "Commencer!
+"
 }

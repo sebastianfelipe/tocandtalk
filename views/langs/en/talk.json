@@ -21,10 +21,10 @@
 	"msgWebcam3" :"or if it is working properly.",
 
 	"infoChat" :"Chat",
-	"infoProfile": "Perofile",
+	"infoProfile": "Profile",
 	"infoSpokenLanguages" : "Languages that I Speak:",
 	"infoInterestLanguages" : "Languages that I want to practice:",
-	"infoDescription" : "User description",
+	"infoDescription" : "About me",
 	"infoLocationTitle" : "Location:",
 	"infoSex": "Sex:",
 	"sex": {"true": "Male",

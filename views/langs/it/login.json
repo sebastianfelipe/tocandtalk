@@ -1,12 +1,13 @@
 {
-	"title": "Toc&Talk! - Ingresar",
-	"bRegister": "Regístrate",
-	"loginTitle": "Bienvenido a Toc&Talk!",
-	"iSocialAccount": "Ingresa con tu cuenta social",
-	"iNormalAccount": "O de la forma tradicional",
-	"iUsernamePH": "Nombre de usuario o email",
-	"iPasswordPH": "Contraseña",
-	"bLogin": "Ingresar",
-	"login1": "¿No tienes una cuenta?",
-	"eAuth": "Nombre de usuario y/o contraseña incorrecta"
+	"title": "Toc&Talk! - Se connecter",
+	"bRegister": "S’inscrire",
+	"bLanguagepage": "Langue",
+	"loginTitle": "¡Bienvenue à Toc&Talk!",
+	"iSocialAccount": "Inscrivez-vous avec votre compte social",
+	"iNormalAccount": "Ou entrer vos coordonnées ici",
+	"iUsernamePH": "Identifiant ou Email",
+	"iPasswordPH": "Mot de passe",
+	"bLogin": "Se connecter",
+	"login1": "Tu n’as pas de compte?",
+	"eAuth": "Nom d’identifiant et/ou mot de passe incorrect."
 }
